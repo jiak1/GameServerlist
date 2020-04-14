@@ -1,0 +1,58 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "register" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/form.css')}}">
+<title>Register - Minecraft Server Lists</title>
+{% endblock %}
+
+{% block beforeBody %}
+<script type="text/javascript">
+
+  // polyfill for RegExp.escape
+  if(!RegExp.escape) {
+    RegExp.escape = function(s) {
+      return String(s).replace(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+    };
+  }
+
+</script>
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-sm">
+	{% include 'notify.html' %}
+<div id="form-custom">
+  <form action="" method="post" class="form-signin" role="form">
+	{{ form.hidden_tag() }}
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
+    <p></p>
+  </div>
+
+  <div class="form-label-group">
+    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus="">
+    <label for="username">Username</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" required>
+    <label for="email">Email</label>
+  </div>
+
+  <div class="form-label-group">
+    <input title="Password must contain at least 6 characters, one uppercase, one lower & one number" type="password" id="password" name="password" class="form-control" placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');if(this.checkValidity()) form.password2.pattern = RegExp.escape(this.value);">
+    <label for="password">Password</label>
+  </div>
+
+  <div class="form-label-group">
+    <input title="Please enter the same Password as above" type="password" id="password2" name="password2" class="form-control" placeholder="Repeat Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');">
+    <label for="password">Repeat Password</label>
+  </div>
+
+  <button class="btn btn-lg btn-success btn-block" type="submit" name="submit" id="submit">Register</button>
+  <p class="mt-5 mb-3 text-muted text-center">Already have an account? <a href="{{url_for('MCRoutes.loginPage')}}">Login here.</a></p>
+  </form>
+  </div></div>
+{% endblock %}

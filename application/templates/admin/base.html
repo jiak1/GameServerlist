@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<link rel="stylesheet" href="https://cdn.statically.io/gh/jiak1/ServerList/e7b03502/bootstrap.min.css">
+
+	 {% block head %} {% endblock %}
+</head>
+
+<body>
+	<nav id= "mainNav" class="navbar navbar-expand-lg navbar-dark py-md-3" style="background-color:#616161">
+		<div class="container-fluid" style="max-width:90%">
+		<a class="navbar-brand" href="#">
+			<h1 id="title">Admin</h1>
+        </a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="border-color: rgba(1,1,1,0);">
+		<span class="">   
+    	<i class="fas fa-bars" style="color:#fff; font-size:28px;"></i>
+		</span>
+	</button>
+
+		<div class="collapse navbar-collapse justify-content-end" id="navbarColor01">
+		<ul class="navbar-nav">
+			{% if current_user.is_anonymous %}
+			<li class="nav-item">
+			<a class="nav-link" href="{{url_for('AdminRoutes.homePage')}}">Login</a>
+			{% else %}
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="{{url_for('AdminRoutes.reviewsPage')}}">Review</a>
+			<li class="nav-item">
+			<a class="nav-link" href="{{url_for('AdminRoutes.profilePage')}}">Profile</a>
+			<li class="nav-item">
+			<a class="nav-link" href="{{url_for('AdminRoutes.logoutPage')}}">Logout</a>
+			{% endif %}
+		</ul>
+		</div></div>
+  	</nav>
+
+	<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	 crossorigin="anonymous">
+	</script>
+	<script src="https://cdn.statically.io/gh/jiak1/ServerList/68948e76/bootstrap.min.js">
+	</script>
+	<script src="https://cdn.statically.io/gh/jiak1/ServerList/e01fcaf9/80f1a476ae.js"></script>
+	{% block beforeBody %}
+	{% endblock %}
+	<div class="container-fluid" style="max-width:90%">
+	{% block body %} {% endblock %}
+	</div>
+</body>
+
+</html>

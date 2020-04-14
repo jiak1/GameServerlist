@@ -1,0 +1,253 @@
+[[package]]
+category = "main"
+description = "Composable command line interface toolkit"
+name = "click"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "7.1.1"
+
+[[package]]
+category = "main"
+description = "A DNS toolkit for Python"
+name = "dnspython"
+optional = false
+python-versions = "*"
+version = "1.15.0"
+
+[[package]]
+category = "main"
+description = "A DNS toolkit for Python 3.x"
+name = "dnspython3"
+optional = false
+python-versions = "*"
+version = "1.15.0"
+
+[package.dependencies]
+dnspython = "1.15.0"
+
+[[package]]
+category = "main"
+description = "Dominate is a Python library for creating and manipulating HTML documents using an elegant DOM API."
+name = "dominate"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "2.5.1"
+
+[[package]]
+category = "main"
+description = "Python client for Elasticsearch"
+name = "elasticsearch"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4"
+version = "7.6.0"
+
+[package.dependencies]
+urllib3 = ">=1.21.1"
+
+[[package]]
+category = "main"
+description = "A simple framework for building complex web applications."
+name = "flask"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "1.1.2"
+
+[package.dependencies]
+Jinja2 = ">=2.10.1"
+Werkzeug = ">=0.15"
+click = ">=5.1"
+itsdangerous = ">=0.24"
+
+[[package]]
+category = "main"
+description = "An extension that includes Bootstrap in your project, without any boilerplate code."
+name = "flask-bootstrap"
+optional = false
+python-versions = "*"
+version = "3.3.7.1"
+
+[package.dependencies]
+Flask = ">=0.8"
+dominate = "*"
+visitor = "*"
+
+[[package]]
+category = "main"
+description = "User session management for Flask"
+name = "flask-login"
+optional = false
+python-versions = "*"
+version = "0.5.0"
+
+[package.dependencies]
+Flask = "*"
+
+[[package]]
+category = "main"
+description = "MySQLdb extension for Flask"
+name = "flask-mysqldb"
+optional = false
+python-versions = "*"
+version = "0.2.0"
+
+[package.dependencies]
+Flask = ">=0.10"
+mysqlclient = "*"
+
+[[package]]
+category = "main"
+description = "Adds SQLAlchemy support to your Flask application."
+name = "flask-sqlalchemy"
+optional = false
+python-versions = ">= 2.7, != 3.0.*, != 3.1.*, != 3.2.*, != 3.3.*"
+version = "2.4.1"
+
+[package.dependencies]
+Flask = ">=0.10"
+SQLAlchemy = ">=0.8.0"
+
+[[package]]
+category = "main"
+description = "Simple integration of Flask and WTForms."
+name = "flask-wtf"
+optional = false
+python-versions = "*"
+version = "0.14.3"
+
+[package.dependencies]
+Flask = "*"
+WTForms = "*"
+itsdangerous = "*"
+
+[[package]]
+category = "main"
+description = "Various helpers to pass data to untrusted environments and back."
+name = "itsdangerous"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "1.1.0"
+
+[[package]]
+category = "main"
+description = "A very fast and expressive template engine."
+name = "jinja2"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "2.11.1"
+
+[package.dependencies]
+MarkupSafe = ">=0.23"
+
+[[package]]
+category = "main"
+description = "Safely add untrusted strings to HTML/XML markup."
+name = "markupsafe"
+optional = false
+python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
+version = "1.1.1"
+
+[[package]]
+category = "main"
+description = "A library to query Minecraft Servers for their status and capabilities."
+name = "mcstatus"
+optional = false
+python-versions = ">=3.5"
+version = "3.1.0"
+
+[package.dependencies]
+click = "*"
+dnspython3 = "*"
+six = "*"
+
+[[package]]
+category = "main"
+description = "Python interface to MySQL"
+name = "mysqlclient"
+optional = false
+python-versions = "*"
+version = "1.4.6"
+
+[[package]]
+category = "main"
+description = "Is your password safe?"
+name = "safe"
+optional = false
+python-versions = "*"
+version = "0.4"
+
+[[package]]
+category = "main"
+description = "Python 2 and 3 compatibility utilities"
+name = "six"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+version = "1.14.0"
+
+[[package]]
+category = "main"
+description = "Database Abstraction Library"
+name = "sqlalchemy"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "1.3.16"
+
+[[package]]
+category = "main"
+description = "HTTP library with thread-safe connection pooling, file post, and more."
+name = "urllib3"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
+version = "1.25.8"
+
+[[package]]
+category = "main"
+description = "A tiny pythonic visitor implementation."
+name = "visitor"
+optional = false
+python-versions = "*"
+version = "0.1.3"
+
+[[package]]
+category = "main"
+description = "The comprehensive WSGI web application library."
+name = "werkzeug"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "1.0.1"
+
+[[package]]
+category = "main"
+description = "A flexible forms validation and rendering library for Python web development."
+name = "wtforms"
+optional = false
+python-versions = "*"
+version = "2.2.1"
+
+[metadata]
+content-hash = "189d8b93f0fa002e746e9738a0c2d29abd6774fcb7e71c88b08dd09d84e9e7f7"
+python-versions = "^3.7"
+
+[metadata.hashes]
+click = ["8a18b4ea89d8820c5d0c7da8a64b2c324b4dabb695804dbfea19b9be9d88c0cc", "e345d143d80bf5ee7534056164e5e112ea5e22716bbb1ce727941f4c8b471b9a"]
+dnspython = ["40f563e1f7a7b80dc5a4e76ad75c23da53d62f1e15e6e517293b04e1f84ead7c", "861e6e58faa730f9845aaaa9c6c832851fbf89382ac52915a51f89c71accdd31"]
+dnspython3 = ["6eb9504abafb91cb67ed9dc3d3289a3ccc438533b460eccbf77e36c5323100f4"]
+dominate = ["22636ad28200e75fa9e751f0511aaeb9f0b630044ed8ccbd89c27acdf3dda7a1", "9b05481605ea8c0afd0a98c0156a9fb78d9c406368d66b3e6fedf36920fb9d78"]
+elasticsearch = ["d228b2d37ac0865f7631335268172dbdaa426adec1da3ed006dddf05134f89c8", "f4bb05cfe55cf369bdcb4d86d0129d39d66a91fd9517b13cd4e4231fbfcf5c81"]
+flask = ["4efa1ae2d7c9865af48986de8aeb8504bf32c7f3d6fdc9353d34b21f4b127060", "8a4fdd8936eba2512e9c85df320a37e694c93945b33ef33c89946a340a238557"]
+flask-bootstrap = ["cb08ed940183f6343a64e465e83b3a3f13c53e1baabb8d72b5da4545ef123ac8"]
+flask-login = ["6d33aef15b5bcead780acc339464aae8a6e28f13c90d8b1cf9de8b549d1c0b4b", "7451b5001e17837ba58945aead261ba425fdf7b4f0448777e597ddab39f4fba0"]
+flask-mysqldb = ["1003c3d72d61a34f1ce5b1cbe427f31816f0c561cee5cd60d8158431381c37d7"]
+flask-sqlalchemy = ["0078d8663330dc05a74bc72b3b6ddc441b9a744e2f56fe60af1a5bfc81334327", "6974785d913666587949f7c2946f7001e4fa2cb2d19f4e69ead02e4b8f50b33d"]
+flask-wtf = ["57b3faf6fe5d6168bda0c36b0df1d05770f8e205e18332d0376ddb954d17aef2", "d417e3a0008b5ba583da1763e4db0f55a1269d9dd91dcc3eb3c026d3c5dbd720"]
+itsdangerous = ["321b033d07f2a4136d3ec762eac9f16a10ccd60f53c0c91af90217ace7ba1f19", "b12271b2047cb23eeb98c8b5622e2e5c5e9abd9784a153e9d8ef9cb4dd09d749"]
+jinja2 = ["93187ffbc7808079673ef52771baa950426fd664d3aad1d0fa3e95644360e250", "b0eaf100007721b5c16c1fc1eecb87409464edc10469ddc9a22a27a99123be49"]
+markupsafe = ["00bc623926325b26bb9605ae9eae8a215691f33cae5df11ca5424f06f2d1f473", "09027a7803a62ca78792ad89403b1b7a73a01c8cb65909cd876f7fcebd79b161", "09c4b7f37d6c648cb13f9230d847adf22f8171b1ccc4d5682398e77f40309235", "1027c282dad077d0bae18be6794e6b6b8c91d58ed8a8d89a89d59693b9131db5", "13d3144e1e340870b25e7b10b98d779608c02016d5184cfb9927a9f10c689f42", "24982cc2533820871eba85ba648cd53d8623687ff11cbb805be4ff7b4c971aff", "29872e92839765e546828bb7754a68c418d927cd064fd4708fab9fe9c8bb116b", "43a55c2930bbc139570ac2452adf3d70cdbb3cfe5912c71cdce1c2c6bbd9c5d1", "46c99d2de99945ec5cb54f23c8cd5689f6d7177305ebff350a58ce5f8de1669e", "500d4957e52ddc3351cabf489e79c91c17f6e0899158447047588650b5e69183", "535f6fc4d397c1563d08b88e485c3496cf5784e927af890fb3c3aac7f933ec66", "596510de112c685489095da617b5bcbbac7dd6384aeebeda4df6025d0256a81b", "62fe6c95e3ec8a7fad637b7f3d372c15ec1caa01ab47926cfdf7a75b40e0eac1", "6788b695d50a51edb699cb55e35487e430fa21f1ed838122d722e0ff0ac5ba15", "6dd73240d2af64df90aa7c4e7481e23825ea70af4b4922f8ede5b9e35f78a3b1", "717ba8fe3ae9cc0006d7c451f0bb265ee07739daf76355d06366154ee68d221e", "79855e1c5b8da654cf486b830bd42c06e8780cea587384cf6545b7d9ac013a0b", "7c1699dfe0cf8ff607dbdcc1e9b9af1755371f92a68f706051cc8c37d447c905", "88e5fcfb52ee7b911e8bb6d6aa2fd21fbecc674eadd44118a9cc3863f938e735", "8defac2f2ccd6805ebf65f5eeb132adcf2ab57aa11fdf4c0dd5169a004710e7d", "98c7086708b163d425c67c7a91bad6e466bb99d797aa64f965e9d25c12111a5e", "9add70b36c5666a2ed02b43b335fe19002ee5235efd4b8a89bfcf9005bebac0d", "9bf40443012702a1d2070043cb6291650a0841ece432556f784f004937f0f32c", "ade5e387d2ad0d7ebf59146cc00c8044acbd863725f887353a10df825fc8ae21", "b00c1de48212e4cc9603895652c5c410df699856a2853135b3967591e4beebc2", "b1282f8c00509d99fef04d8ba936b156d419be841854fe901d8ae224c59f0be5", "b2051432115498d3562c084a49bba65d97cf251f5a331c64a12ee7e04dacc51b", "ba59edeaa2fc6114428f1637ffff42da1e311e29382d81b339c1817d37ec93c6", "c8716a48d94b06bb3b2524c2b77e055fb313aeb4ea620c8dd03a105574ba704f", "cd5df75523866410809ca100dc9681e301e3c27567cf498077e8551b6d20e42f", "cdb132fc825c38e1aeec2c8aa9338310d29d337bebbd7baa06889d09a60a1fa2", "e249096428b3ae81b08327a63a485ad0878de3fb939049038579ac0ef61e17e7", "e8313f01ba26fbbe36c7be1966a7b7424942f670f38e666995b88d012765b9be"]
+mcstatus = ["2407ffe0b72e29dc78aa301ef270331f06de9dbfa82b233c40c3c45071f1a99e", "924cfe2f90bf75f1dc53854a64f605605ddf07ec9ccfdc6991e6357b645017d4"]
+mysqlclient = ["4c82187dd6ab3607150fbb1fa5ef4643118f3da122b8ba31c3149ddd9cf0cb39", "9e6080a7aee4cc6a06b58b59239f20f1d259c1d2fddf68ddeed242d2311c7087", "f3fdaa9a38752a3b214a6fe79d7cae3653731a53e577821f9187e67cbecb2e16", "f646f8d17d02be0872291f258cce3813497bc7888cd4712a577fd1e719b2f213"]
+safe = ["4e7315087d80fdbbc781362a656376cfa273c5c68a8abc0412e159bf541fcbda", "a2fdac9fe8a9dcf02b438201d6ce0b7be78f85dc6492d03edfb89be2adf489de"]
+six = ["236bdbdce46e6e6a3d61a337c0f8b763ca1e8717c03b369e87a7ec7ce1319c0a", "8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"]
+sqlalchemy = ["083e383a1dca8384d0ea6378bd182d83c600ed4ff4ec8247d3b2442cf70db1ad", "0a690a6486658d03cc6a73536d46e796b6570ac1f8a7ec133f9e28c448b69828", "114b6ace30001f056e944cebd46daef38fdb41ebb98f5e5940241a03ed6cad43", "128f6179325f7597a46403dde0bf148478f868df44841348dfc8d158e00db1f9", "13d48cd8b925b6893a4e59b2dfb3e59a5204fd8c98289aad353af78bd214db49", "211a1ce7e825f7142121144bac76f53ac28b12172716a710f4bf3eab477e730b", "2dc57ee80b76813759cccd1a7affedf9c4dbe5b065a91fb6092c9d8151d66078", "3e625e283eecc15aee5b1ef77203bfb542563fa4a9aa622c7643c7b55438ff49", "43078c7ec0457387c79b8d52fff90a7ad352ca4c7aa841c366238c3e2cf52fdf", "5b1bf3c2c2dca738235ce08079783ef04f1a7fc5b21cf24adaae77f2da4e73c3", "6056b671aeda3fc451382e52ab8a753c0d5f66ef2a5ccc8fa5ba7abd20988b4d", "68d78cf4a9dfade2e6cf57c4be19f7b82ed66e67dacf93b32bb390c9bed12749", "7025c639ce7e170db845e94006cf5f404e243e6fc00d6c86fa19e8ad8d411880", "7224e126c00b8178dfd227bc337ba5e754b197a3867d33b9f30dc0208f773d70", "7d98e0785c4cd7ae30b4a451416db71f5724a1839025544b4edbd92e00b91f0f", "8d8c21e9d4efef01351bf28513648ceb988031be4159745a7ad1b3e28c8ff68a", "bbb545da054e6297242a1bb1ba88e7a8ffb679f518258d66798ec712b82e4e07", "d00b393f05dbd4ecd65c989b7f5a81110eae4baea7a6a4cdd94c20a908d1456e", "e18752cecaef61031252ca72031d4d6247b3212ebb84748fc5d1a0d2029c23ea"]
+urllib3 = ["2f3db8b19923a873b3e5256dc9c2dedfa883e33d87c690d9c7913e1f40673cdc", "87716c2d2a7121198ebcb7ce7cccf6ce5e9ba539041cfbaeecfb641dc0bf6acc"]
+visitor = ["2c737903b2b6864ebc6167eef7cf3b997126f1aa94bdf590f90f1436d23e480a"]
+werkzeug = ["2de2a5db0baeae7b2d2664949077c2ac63fbd16d98da0ff71837f7d1dea3fd43", "6c80b1e5ad3665290ea39320b91e1be1e0d5f60652b964a3070216de83d2e47c"]
+wtforms = ["0cdbac3e7f6878086c334aa25dc5a33869a3954e9d1e015130d65a69309b3b61", "e3ee092c827582c50877cdbd49e9ce6d2c5c1f6561f849b3b068c1b8029626f1"]

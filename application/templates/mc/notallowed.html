@@ -1,0 +1,27 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "notallowed" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/notallowed.css')}}">
+<title>Login Required - Minecraft Server Lists</title>
+{% endblock %}
+
+{% block beforeBody %}
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-sm">
+<img src="https://cdn.statically.io/img/serverlist.jackdonaldson1.repl.co/images/background4.png">
+<div class="jumbotron-fluid">
+  <h1 class="display-4">Please login!</h1>
+  <p class="lead">In order to view this page you have to log in.</p>
+  <hr class="my-4">
+  <p>If you don't have an account it's quick and easy to register one, press an option below to get started!</p>
+  <p class="lead">
+    <a class="btn btn-success btn-lg" href="{{url_for('MCRoutes.loginPage')}}" role="button">Login</a>
+	<a class="btn btn-success btn-lg" href="{{url_for('MCRoutes.registerPage')}}" role="button">Register</a>
+  </p>
+</div>
+</div>
+{% endblock %}

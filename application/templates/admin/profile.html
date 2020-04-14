@@ -1,0 +1,70 @@
+{% extends 'admin/base.html' %}
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block beforeBody %}
+<div class="container-sm" style="padding-top:50px" align="center">
+{% include 'notify.html' %}
+<h1> Change Your Password</h1>
+<form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+		<div class="form-group">
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p>
+            {{ form.newPassword.label }}<br>
+            {{ form.newPassword(size=32) }}
+        </p>
+		<p>
+            {{ form.newPassword2.label }}<br>
+            {{ form.newPassword2(size=32) }}
+        </p>
+        <p>{{ form.passwordSubmit() }}</p></div>
+</form>
+<h1> Change Your Email</h1>
+<form action="" method="post" novalidate>
+        {{ emailForm.hidden_tag() }}
+		<div class="form-group">
+        <p>
+            {{ emailForm.oldEmail.label }}<br>
+            {{ emailForm.oldEmail }}
+        </p>
+        <p>
+            {{ emailForm.newEmail.label }}<br>
+            {{ emailForm.newEmail }}
+        </p>
+        <p>{{ emailForm.emailSubmit() }}</p></div>
+</form>
+{% if current_user.isOwner %}
+<h1> Add Another Admin</h1>
+<form action="" method="post" novalidate>
+        {{ adduserform.hidden_tag() }}
+		<div class="form-group">
+        <p>
+            {{ adduserform.username.label }}<br>
+            {{ adduserform.username}}
+        </p>
+        <p>
+            {{ adduserform.email.label }}<br>
+            {{ adduserform.email}}
+        </p>
+        <p>
+            {{ adduserform.password.label }}<br>
+            {{ adduserform.password}}
+        </p>
+		<p>
+            {{ adduserform.password.label }}<br>
+            {{ adduserform.password2}}
+        </p>
+        <p>{{ adduserform.submit() }}</p></div>
+</form>
+{% endif %}
+</div>
+{% endblock %}
+
+{% block body %}
+{% endblock %}

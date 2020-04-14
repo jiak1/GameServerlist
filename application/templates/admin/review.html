@@ -1,0 +1,87 @@
+{% extends 'admin/base.html' %}
+
+{% block head %}
+<title>Review</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/review.css')}}">
+{% endblock %}
+
+{% block beforeBody %}
+<div class="container-sm" style="padding-top:50px">
+{% include 'notify.html' %}
+<h1>Review Server Request</h1>
+<form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+		<div class="form-group">
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(value=server.name) }}
+        </p>
+        <p>
+            {{ form.ip.label }}<br>
+            {{ form.ip(value=server.ip) }}
+        </p>
+		<p>
+            {{ form.port.label }}<br>
+            {{ form.port(value=server.port) }}
+        </p>
+		<p>
+            {{ form.country.label }}<br>
+            {{ form.country(value=server.country) }}
+        </p>
+		<p>
+            {{ form.description.label }}<br>
+			<textarea name="description" id="description">{{server.description}}</textarea>
+        </p>
+		<p>
+            {{ form.serverType.label }}<br>
+			<select id="serverType" name="serverType" value={{server.serverType}}>
+			<option>Vanilla</option>
+			<option>Semi-Vanilla</option>
+			<option>Bukkit</option>
+			<option>Spigot</option>
+			<option>Paper</option>
+			<option>Modded</option>
+			</select>
+        </p>
+		<p>
+            {{ form.plugins.label }}<br>
+			<textarea name="plugins" id="plugins">{{server.plugins}}</textarea>
+        </p>
+		<p>
+            {{ form.datapacks.label }}<br>
+			<textarea name="datapacks" id="datapacks">{{server.datapacks}}</textarea>
+        </p>
+		<p>
+            {{ form.mods.label }}<br>
+			<textarea name="mods" id="mods">{{server.mods}}</textarea>
+        </p>
+		<p>
+            {{ form.tags.label }}<br>
+			<textarea name="tags" id="tags">{{server.tags}}</textarea>
+        </p>
+		<p>
+            {{ form.website.label }}<br>
+            {{ form.website(value=server.website) }}
+        </p>
+		<p>
+            {{ form.discord.label }}<br>
+            {{ form.discord(value=server.discord) }}
+        </p>
+		<p>
+            {{ form.trailer.label }}<br>
+            {{ form.trailer(value=server.trailer) }}
+        </p>
+
+		<p>
+            {{ form.rejectReason.label }}<br>
+			<textarea name="rejectReason" id="rejectReason">{{server.rejectReason}}</textarea>
+        </p>
+		<button class="btn-success" type="submit" name="approve" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=APPROVE">Approve</button>
+		<button class="btn-danger float-right" type="submit" name="reject" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=REJECT">Reject</button>
+		</div>
+</form>
+</div>
+{% endblock %}
+
+{% block body %}
+{% endblock %}

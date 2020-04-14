@@ -1,0 +1,18 @@
+{% extends 'admin/base.html' %}
+
+{% block head %}
+<title>Reviews</title>
+{% endblock %}
+
+{% block beforeBody %}
+<div class="container-sm" style="padding-top:50px">
+{% include 'notify.html' %}
+<h1>Server's Requiring Review</h1>
+{% for server in reviews %}
+<a href="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}">{{server.name}}</a><br>
+{% endfor %}
+</div>
+{% endblock %}
+
+{% block body %}
+{% endblock %}

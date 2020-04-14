@@ -1,0 +1,20 @@
+body{
+	background-color:#18A558;
+}
+
+.jumbotron-fluid{
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    font-family: Karla,sans-serif;
+}
+
+.btn-success{
+	color:white;
+	/*border-color:#116530;
+	background-color:#116530;*/
+}
+
+.my-4{
+	background-color:#d6d6d6;
+}
