@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch,RequestsHttpConnection
 from flask_mail import Mail
 from flask_crontab import Crontab
 from flask_migrate import Migrate
@@ -9,8 +9,27 @@ import re
 from oauthlib.oauth2 import WebApplicationClient
 from .Config import GOOGLE_CLIENT_ID,AppConfig,PRODUCTION,BONSAIURL,DEBUG_MAIL_SETTINGS,PRODUCTION_MAIL_SETTINGS,ADMIN_SECRET,MC_SECRET,SERVER_NAME
 from .momentjs import momentjs
+from requests_aws4auth import AWS4Auth
+import boto3
 
 def getElasticSearchURL():
+	if(PRODUCTION):
+		host = BONSAIURL # For example, my-test-domain.us-east-1.es.amazonaws.com
+		region = 'us-east-2' # e.g. us-west-1
+
+		service = 'es'
+		credentials = boto3.Session().get_credentials()
+		awsauth = AWS4Auth(credentials.access_key, credentials.secret_key, region, service, session_token=credentials.token)
+
+		elasticsearch = Elasticsearch(
+			hosts = [{'host': host, 'port': 443}],
+			http_auth = awsauth,
+			use_ssl = True,
+			verify_certs = True,
+			connection_class = RequestsHttpConnection
+		)
+		return
+
 	bonsai = BONSAIURL
 	auth = re.search('https\:\/\/(.*)\@', bonsai).group(1).split(':')
 	host = bonsai.replace('https://%s:%s@' % (auth[0], auth[1]), '')
@@ -31,7 +50,7 @@ def getElasticSearchURL():
 	'use_ssl': True,
 	'http_auth': (auth[0],auth[1])
 	}]
-	return es_header
+	elasticsearch = Elasticsearch(es_header)
 
 
 #PROJECT_ROOT = "sqlite:///"+os.path.dirname(os.path.realpath(__file__))+"/database/data.db"
@@ -57,10 +76,7 @@ client = WebApplicationClient(GOOGLE_CLIENT_ID)
 mc_login.login_view = 'MCRoutes.loginPage'
 admin_login.login_view = "AdminRoutes.homePage"
 
-if(PRODUCTION):
-	elasticsearch = Elasticsearch([BONSAIURL])
-else:
-	elasticsearch = Elasticsearch(getElasticSearchURL())
+getElasticSearchURL()
 
 if(PRODUCTION):
 	mail_settings = PRODUCTION_MAIL_SETTINGS
