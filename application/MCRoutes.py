@@ -92,7 +92,7 @@ def googleLoginPage():
     # scopes that let you retrieve user's profile from Google
 	request_uri = client.prepare_request_uri(
         authorization_endpoint,
-        redirect_uri=url,
+        redirect_uri=url+"/callback",
         scope=["openid", "email", "profile"],
 		prompt="select_account"
     )
