@@ -21,14 +21,13 @@ def getElasticSearchURL():
 		credentials = boto3.Session().get_credentials()
 		awsauth = AWS4Auth(credentials.access_key, credentials.secret_key, region, service, session_token=credentials.token)
 
-		elasticsearch = Elasticsearch(
+		return Elasticsearch(
 			hosts = [{'host': host, 'port': 443}],
 			http_auth = awsauth,
 			use_ssl = True,
 			verify_certs = True,
 			connection_class = RequestsHttpConnection
 		)
-		return
 
 	bonsai = BONSAIURL
 	auth = re.search('https\:\/\/(.*)\@', bonsai).group(1).split(':')
@@ -50,15 +49,15 @@ def getElasticSearchURL():
 	'use_ssl': True,
 	'http_auth': (auth[0],auth[1])
 	}]
-	elasticsearch = Elasticsearch(es_header)
+	return Elasticsearch(es_header)
 
 
 #PROJECT_ROOT = "sqlite:///"+os.path.dirname(os.path.realpath(__file__))+"/database/data.db"
 #PROJECT_ROOT= "mysql://sddusername:sddpassword@c/sddproject"
 #PROJECT_ROOT = "mysql://jiak1_username:Password@johnny.heliohost.org/jiak1_sddprojectdb"
 
-elasticsearch = None
-getElasticSearchURL()
+
+elasticsearch = getElasticSearchURL()
 
 mc_db = SQLAlchemy()
 admin_db = SQLAlchemy()

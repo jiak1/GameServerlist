@@ -123,18 +123,18 @@ indexCreation = {
   }
 }
 
-@APIRoutes.route(prefix+"elasticsearch",methods=['GET'])
+@APIRoutes.route(prefix+"API/elasticsearch",methods=['GET'])
 def esSetupPage():
 	elasticsearch.indices.create(index='server',body=indexCreation)
 	Server.reindex()
 	return redirect(url_for("MCRoutes.MCHomePage"))
 
-@APIRoutes.route(prefix+"reindex",methods=['GET'])
+@APIRoutes.route(prefix+"API/reindex",methods=['GET'])
 def esReindexPage():
 	Server.reindex()
 	return redirect(url_for("MCRoutes.MCHomePage"))
 
-@APIRoutes.route(prefix+"updateservers",methods=['GET'])
+@APIRoutes.route(prefix+"API/updateservers",methods=['GET'])
 def updateServersPage():
 	doUpdate()
 	return redirect(url_for("MCRoutes.MCHomePage"))
