@@ -57,6 +57,9 @@ def getElasticSearchURL():
 #PROJECT_ROOT= "mysql://sddusername:sddpassword@c/sddproject"
 #PROJECT_ROOT = "mysql://jiak1_username:Password@johnny.heliohost.org/jiak1_sddprojectdb"
 
+elasticsearch = None
+getElasticSearchURL()
+
 mc_db = SQLAlchemy()
 admin_db = SQLAlchemy()
 
@@ -75,8 +78,6 @@ client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
 mc_login.login_view = 'MCRoutes.loginPage'
 admin_login.login_view = "AdminRoutes.homePage"
-
-getElasticSearchURL()
 
 if(PRODUCTION):
 	mail_settings = PRODUCTION_MAIL_SETTINGS
