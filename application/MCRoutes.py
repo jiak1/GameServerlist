@@ -262,10 +262,10 @@ def googleLoginCallbackPage():
 	token_endpoint = google_provider_cfg["token_endpoint"]
 
 	baseUrl = request.base_url
-
+	
 	url= request.url
-
-	baseUrl = request.base_url
+	if url.startswith('http://'):
+		url = request.url.replace('http://', 'https://', 1)
 	if(PRODUCTION):
 		baseUrl = "https://minecraft.server-lists.com/googlelogin/callback"
 
