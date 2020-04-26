@@ -1,7 +1,6 @@
 <p>Dear {{ user.username }},</p>
 <p>
-    To activate your account we need you to 
-    <a href="{{ url_for('MCRoutes.confirmEmailPage', token=token, _external=True) }}">click here</a>.
+    To activate your account we need you to <a href="{{ url_for('MCRoutes.confirmEmailPage', token=token, _external=True) }}">click here</a>.
 </p>
 <p>Alternatively, you can paste the following link into your browser's address bar:</p>
 <p>{{ url_for('MCRoutes.confirmEmailPage', token=token, _external=True) }}</p>

@@ -57,7 +57,10 @@ client = WebApplicationClient(GOOGLE_CLIENT_ID)
 mc_login.login_view = 'MCRoutes.loginPage'
 admin_login.login_view = "AdminRoutes.homePage"
 
-elasticsearch = Elasticsearch(getElasticSearchURL())
+if(PRODUCTION):
+	elasticsearch = Elasticsearch(BONSAIURL)
+else:
+	elasticsearch = Elasticsearch(getElasticSearchURL())
 
 if(PRODUCTION):
 	mail_settings = PRODUCTION_MAIL_SETTINGS
