@@ -58,7 +58,7 @@ mc_login.login_view = 'MCRoutes.loginPage'
 admin_login.login_view = "AdminRoutes.homePage"
 
 if(PRODUCTION):
-	elasticsearch = Elasticsearch(BONSAIURL)
+	elasticsearch = Elasticsearch([BONSAIURL])
 else:
 	elasticsearch = Elasticsearch(getElasticSearchURL())
 
