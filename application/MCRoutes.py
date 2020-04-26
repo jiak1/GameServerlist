@@ -86,7 +86,7 @@ def googleLoginPage():
     
 	loginURL = request.base_url
 	if(PRODUCTION):
-		loginURL = "minecraft.server-lists.com/googlelogin/callback"
+		loginURL = "https://minecraft.server-lists.com/googlelogin/callback"
 
     # Use library to construct the request for Google login and provide
     # scopes that let you retrieve user's profile from Google
