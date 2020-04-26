@@ -16,18 +16,11 @@ curDir = os.path.dirname(os.path.realpath(__file__))
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 prefix = "/"
-sdomain=""
 if(PRODUCTION == False):
 	prefix = "/minecraft/" 
-else:
-	sdomain="minecraft"
+	print("A")
 
-@MCRoutes.route("/",methods=['GET'],subdomain=sdomain)
-def headerPage():
-	return redirect(url_for("MCRoutes.MCHomePage"))
-	return render_template("index.html")
-
-@MCRoutes.route(prefix,methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix,methods=['GET'])
 def MCHomePage():
 	page = request.args.get('page', 1, type=int)
 	search = request.args.get('search', "")
@@ -47,7 +40,7 @@ def MCHomePage():
 		return redirect(url_for("MCRoutes.MCHomePage",search=search))
  
 
-@MCRoutes.route(prefix+"tag/<tagname>",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"tag/<tagname>",methods=['GET'])
 def tagSearchPage(tagname):
 	try:
 		page = request.args.get('page', 1, type=int)
@@ -66,11 +59,11 @@ def tagSearchPage(tagname):
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.tagSearchPage",search=tagname))
 
-@MCRoutes.route(prefix+"tags",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"tags",methods=['GET'])
 def tagsPage():
 	return render_template("mc/tags.html",search="")	
 
-@MCRoutes.route(prefix+"login",methods=['GET', 'POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"login",methods=['GET', 'POST'])
 def loginPage():
 	if current_user.is_authenticated:
 		 return redirect(url_for('MCRoutes.MCHomePage'))
@@ -86,7 +79,7 @@ def loginPage():
 		return redirect(url_for('MCRoutes.MCHomePage'))
 	return render_template('mc/login.html', form=form)
 
-@MCRoutes.route(prefix+"googlelogin",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"googlelogin",methods=['GET'])
 def googleLoginPage():
 	google_provider_cfg = get_google_provider_cfg()
 	authorization_endpoint = google_provider_cfg["authorization_endpoint"]
@@ -104,7 +97,7 @@ def googleLoginPage():
     )
 	return redirect(request_uri)
 
-@MCRoutes.route(prefix+"register", methods=['GET', 'POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"register", methods=['GET', 'POST'])
 def registerPage():
 	if current_user.is_authenticated:
 		return redirect(url_for('MCRoutes.MCHomePage'))
@@ -123,7 +116,7 @@ def registerPage():
 			flash(form.errors[key][0],"danger")
 	return render_template('mc/register.html', form=form)
 
-@MCRoutes.route(prefix+"emailConfirmation", methods=['GET','POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"emailConfirmation", methods=['GET','POST'])
 def emailConfirmationPage():
 	if(request.method == "POST"):
 		if('email' in request.form and request.form['email'] != ""):
@@ -145,7 +138,7 @@ def emailConfirmationPage():
 			flash("Please enter a valid email address.","danger")
 	return render_template("mc/emailconfirm.html")
 
-@MCRoutes.route(prefix+"confirmEmail/<token>", methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"confirmEmail/<token>", methods=['GET'])
 def confirmEmailPage(token):
 	if current_user.is_authenticated:
 		return redirect(url_for('MCRoutes.MCHomePage'))
@@ -158,7 +151,7 @@ def confirmEmailPage(token):
 	flash('Your account has been activated. You may now log in.',"success")
 	return redirect(url_for('MCRoutes.loginPage'))
 
-@MCRoutes.route(prefix+"logout",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"logout",methods=['GET'])
 def logoutPage():
 	logout_user()
 	return redirect(url_for('MCRoutes.MCHomePage'))
@@ -167,20 +160,20 @@ def logoutPage():
 def load_account(id):
 	return Account.query.get(int(id))
 
-@MCRoutes.route(prefix+"advertise",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"advertise",methods=['GET'])
 def advertisePage():
 	if not current_user.is_authenticated:
 		return render_template("mc/notallowed.html")
 
 @login_required
-@MCRoutes.route(prefix+"servers",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"servers",methods=['GET'])
 def serversPage():
 	servers = current_user.servers
 	if(servers.count() == 0):
 		return redirect(url_for("MCRoutes.addServerPage"))
 	return render_template("mc/myServers.html", servers=servers)
 
-@MCRoutes.route(prefix+"server",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"server",methods=['GET'])
 def serverInfoPage():
 	return "Works"
 
@@ -193,7 +186,7 @@ def internal_error(error):
     db.session.rollback()
     return render_template('mc/error.html'), 500
 
-@MCRoutes.route(prefix+"forgotpassword",methods=['GET','POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"forgotpassword",methods=['GET','POST'])
 def forgotPasswordPage():
 	if current_user.is_authenticated:
 		return redirect(url_for('MCRoutes.MCHomePage'))
@@ -210,7 +203,7 @@ def forgotPasswordPage():
 			flash('This email is not linked to an account.',"danger")
 	return render_template("mc/forgotpassword.html")
 
-@MCRoutes.route(prefix+"forgotusername",methods=['GET','POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"forgotusername",methods=['GET','POST'])
 def forgotUsernamePage():
 	if current_user.is_authenticated:
 		return redirect(url_for('MCRoutes.MCHomePage'))
@@ -227,7 +220,7 @@ def forgotUsernamePage():
 			flash('This email is not linked to an account.',"danger")
 	return render_template("mc/forgotusername.html")
 
-@MCRoutes.route(prefix+'resetpassword/<token>', methods=['GET', 'POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+'resetpassword/<token>', methods=['GET', 'POST'])
 def resetPasswordPage(token):
 	if current_user.is_authenticated:
 		return redirect(url_for('MCRoutes.MCHomePage'))
@@ -244,7 +237,7 @@ def resetPasswordPage(token):
 		return redirect(url_for('MCRoutes.loginPage'))
 	return render_template("mc/resetpassword.html",form=form)
 
-@MCRoutes.route(prefix+"votifiertest",methods=['GET','POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"votifiertest",methods=['GET','POST'])
 def votifierTestPage():
 	if not current_user.is_authenticated:
 		return render_template("mc/notallowed.html")
@@ -258,7 +251,7 @@ def votifierTestPage():
 		return(redirect(url_for("MCRoutes.votifierTestPage")))
 	return render_template('mc/votifiertest.html', form=form)
 
-@MCRoutes.route(prefix+"googlelogin/callback",methods=['GET','POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"googlelogin/callback",methods=['GET','POST'])
 def googleLoginCallbackPage():
     # Get authorization code Google sent back to you
 	code = request.args.get("code")
@@ -329,7 +322,7 @@ def googleLoginCallbackPage():
 		return redirect(url_for("MCRoutes.loginPage"))
 
 
-@MCRoutes.route(prefix+"addserver",methods=['GET','POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"addserver",methods=['GET','POST'])
 def addServerPage():
 	if not current_user.is_authenticated:
 		return render_template("mc/notallowed.html")
@@ -395,7 +388,7 @@ def addServerPage():
 	return render_template("mc/addServer.html", form=form)
 
 @login_required
-@MCRoutes.route(prefix+"editserver/<serverid>",methods=['GET','POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"editserver/<serverid>",methods=['GET','POST'])
 def editServerPage(serverid):
 	if(serverid is None):
 		return redirect(url_for("MCRoutes.serversPage"))
@@ -470,7 +463,7 @@ def editServerPage(serverid):
 
 	return render_template("mc/editServer.html", form=form, server=server)
 
-@MCRoutes.route(prefix+"account",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"account",methods=['GET'])
 def accountPage():
 	usernameForm = AccountUsernameChangeForm()
 	emailForm = AccountEmailChangeForm()
@@ -479,7 +472,7 @@ def accountPage():
 
 	return render_template("mc/account.html",account=current_user,usernameForm=usernameForm,emailForm=emailForm,passwordForm=passwordForm,googleForm=googleForm)
 
-@MCRoutes.route(prefix+"accountusername",methods=['POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"accountusername",methods=['POST'])
 def accountChangeUsernamePage():
 	usernameForm = AccountUsernameChangeForm()
 	if(usernameForm.validate()):
@@ -494,7 +487,7 @@ def accountChangeUsernamePage():
 			flash(usernameForm.errors[key][0],"danger")
 	return redirect(url_for("MCRoutes.accountPage"))
 
-@MCRoutes.route(prefix+"accountemail",methods=['POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"accountemail",methods=['POST'])
 def accountChangeEmailPage():
 	emailForm = AccountEmailChangeForm()
 	if(emailForm.validate()):
@@ -510,7 +503,7 @@ def accountChangeEmailPage():
 			flash(emailForm.errors[key][0],"danger")
 	return redirect(url_for("MCRoutes.accountPage"))
 
-@MCRoutes.route(prefix+"accountpassword",methods=['POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"accountpassword",methods=['POST'])
 def accountChangePasswordPage():
 	passwordForm = AccountPasswordChangeForm()
 	if(passwordForm.validate()):
@@ -527,7 +520,7 @@ def accountChangePasswordPage():
 	return redirect(url_for("MCRoutes.accountPage"))
 
 
-@MCRoutes.route(prefix+"accountlinkgoogle",methods=['POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"accountlinkgoogle",methods=['POST'])
 def accountLinkGooglePage():
 	linkForm = AccountGoogleLinkForm()
 	if(linkForm.validate()):
@@ -545,7 +538,7 @@ def accountLinkGooglePage():
 	return redirect(url_for("MCRoutes.accountPage"))
 
 @login_required
-@MCRoutes.route(prefix+"downloaddata",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"downloaddata",methods=['GET'])
 def downloadDataPage():
 	if(current_user.lastDataDownload == None or current_user.lastDataDownload < datetime.datetime.now()-datetime.timedelta(hours=1)):
 		current_user.lastDataDownload = datetime.datetime.now()
@@ -557,7 +550,7 @@ def downloadDataPage():
 	return redirect(url_for("MCRoutes.accountPage"))
 
 @login_required
-@MCRoutes.route(prefix+"retrievedata",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"retrievedata",methods=['GET'])
 def retrieveDataPage():
 	url = "./application/data/"+str(current_user.id)+".json"
 	if( os.path.isfile(url)):
@@ -567,7 +560,7 @@ def retrieveDataPage():
 	return redirect(url_for("MCRoutes.accountPage"))
 
 @login_required
-@MCRoutes.route(prefix+"deleteaccount",methods=['GET','POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"deleteaccount",methods=['GET','POST'])
 def accountDeletePage():
 	deleteForm = AccountDeleteForm()
 	if(deleteForm.validate_on_submit()):
@@ -587,7 +580,7 @@ def accountDeletePage():
 	return render_template("mc/deleteaccount.html",deleteForm=deleteForm)
 
 @login_required
-@MCRoutes.route(prefix+"deleteserver/<serverid>",methods=['GET','POST'],subdomain=sdomain)
+@MCRoutes.route(prefix+"deleteserver/<serverid>",methods=['GET','POST'])
 def serverDeletePage(serverid):
 	deleteForm = ServerDeleteForm()
 	server = Server.query.filter_by(id=serverid).first()
@@ -607,7 +600,7 @@ def serverDeletePage(serverid):
 			flash(deleteForm.errors[key][0],"danger")
 	return render_template("mc/deleteServer.html",deleteForm=deleteForm,server=server)
 
-@MCRoutes.route(prefix+"privacy",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"privacy",methods=['GET'])
 def privacyPolicyPage():
 	return policyDetails();
 
@@ -620,7 +613,7 @@ def privacyPolicy2Page():
 def policyDetails():
 	return render_template("mc/privacy.html")
 
-@MCRoutes.route(prefix+"terms",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"terms",methods=['GET'])
 def termsPage():
 	return termsDetails();
 
@@ -633,7 +626,7 @@ def terms2Page():
 def termsDetails():
 	return render_template("mc/terms.html")
 
-@MCRoutes.route(prefix+"server/<serverid>",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"server/<serverid>",methods=['GET'])
 def viewServerPage(serverid):
 	server = Server.query.get(int(serverid))
 	if(server is not None):
@@ -641,7 +634,7 @@ def viewServerPage(serverid):
 	else:
 		return redirect(url_for("MCRoutes.MCHomePage"))
 
-@MCRoutes.route(prefix+"ping/<serverid>",methods=['GET'],subdomain=sdomain)
+@MCRoutes.route(prefix+"ping/<serverid>",methods=['GET'])
 def pingServerPage(serverid):
 	server = Server.query.get(int(serverid))
 	if(server is not None):

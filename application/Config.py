@@ -8,7 +8,7 @@ GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
 
 ISADMIN=False
-POSTS_PER_PAGE = 14
+POSTS_PER_PAGE = 6
 BONSAIURL=os.getenv("BONSAI_URL")
 ADMIN_SECRET=os.getenv("ADMIN_SECRET")
 MC_SECRET=os.getenv("MC_SECRET")
@@ -39,7 +39,7 @@ class AppConfig(object):
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 	DEBUG=True
 	SQLALCHEMY_POOL_RECYCLE=299
-	SQLALCHEMY_DATABASE_URI = "mysql://157iUrmRoN:rfGPoXMzty@remotemysql.com/157iUrmRoN"
+	SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
 	#SQLALCHEMY_DATABASE_URI= "mysql://serverlistuser:serverlistpass@db4free.net/serverlist"
 	RECAPTCHA_PUBLIC_KEY = '6Lep6u0UAAAAAFbBf33eRcCGDUsYygF5uWrTwXVe'
 	RECAPTCHA_PRIVATE_KEY = os.getenv("RECAPTCHA_PRIVATE_KEY")

@@ -13,18 +13,15 @@ curDir = os.path.dirname(os.path.realpath(__file__))
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 prefix="/"
-sdomain=""
 if(PRODUCTION == False):
 	prefix = "/minecraft/" 
-else:
-	sdomain="minecraft"
 
 if(ISADMIN):
 	from .Program import admin_crontab as crontab
 else:
 	from .Program import mc_crontab as crontab
 
-@APIRoutes.route(prefix+"API/PING",methods=['POST'],subdomain=sdomain)
+@APIRoutes.route(prefix+"API/PING",methods=['POST'])
 def APIPing():
 	data = request.get_json();
 	ip = data['IP']
@@ -35,7 +32,7 @@ def APIPing():
 	else:
 		return jsonify({"STATUS":"OFFLINE"})
 
-@APIRoutes.route(prefix+"API/STATUS",methods=['POST'],subdomain=sdomain)
+@APIRoutes.route(prefix+"API/STATUS",methods=['POST'])
 def APIStatus():
 	data = request.get_json();
 	ip = data['IP']
@@ -52,12 +49,12 @@ def APIStatus():
 	else:
 		return jsonify({"STATUS":"OFFLINE"})
 
-@APIRoutes.route(prefix+"API/RANK",methods=['GET'],subdomain=sdomain)
+@APIRoutes.route(prefix+"API/RANK",methods=['GET'])
 def APIRank():
 	serverRank()
 	return "DONE"
 
-@APIRoutes.route(prefix+"API/BANNERUPLOAD",methods=['POST'],subdomain=sdomain)
+@APIRoutes.route(prefix+"API/BANNERUPLOAD",methods=['POST'])
 def APIBannerUpload():
 	banner=request.files.get('file')
 	tempURL = url_for('static',filename='images/banners/temp')
@@ -72,17 +69,17 @@ def APIBannerUpload():
 	banner.save(url)
 	return jsonify({"URL":url,"IMGURL":"https://cdn.statically.io/img/"+IMGDOMAIN+tempURL+"/"+banner.filename})
 
-@APIRoutes.route(prefix+"API/BANNERCLEANUP",methods=['GET'],subdomain=sdomain)
+@APIRoutes.route(prefix+"API/BANNERCLEANUP",methods=['GET'])
 def APICleanupBanners():
 	cleanupTempBanners()
 	return "Done"
 
-@APIRoutes.route(prefix+"API/DATACLEANUP",methods=['GET'],subdomain=sdomain)
+@APIRoutes.route(prefix+"API/DATACLEANUP",methods=['GET'])
 def APICleanupData():
 	cleanupTempData()
 	return "Done"
 
-@APIRoutes.route(prefix+"API/VOTIFIER",methods=['POST'],subdomain=sdomain)
+@APIRoutes.route(prefix+"API/VOTIFIER",methods=['POST'])
 def APIVotifier():
 	data = request.get_json();
 	ip = data['IP']

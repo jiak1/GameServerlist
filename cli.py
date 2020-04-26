@@ -1,4 +1,3 @@
-from application.Program import create_mc_app,create_admin_app
-from application.Config import SetAdmin
+from application.Program import create_mc_app
 
 mcProgram = create_mc_app()
