@@ -7,7 +7,7 @@ from flask_crontab import Crontab
 from flask_migrate import Migrate
 import re
 from oauthlib.oauth2 import WebApplicationClient
-from .Config import GOOGLE_CLIENT_ID,AppConfig,PRODUCTION,BONSAIURL,DEBUG_MAIL_SETTINGS,PRODUCTION_MAIL_SETTINGS,ADMIN_SECRET,MC_SECRET
+from .Config import GOOGLE_CLIENT_ID,AppConfig,PRODUCTION,BONSAIURL,DEBUG_MAIL_SETTINGS,PRODUCTION_MAIL_SETTINGS,ADMIN_SECRET,MC_SECRET,SERVER_NAME
 from .momentjs import momentjs
 
 def getElasticSearchURL():
@@ -72,7 +72,8 @@ def create_mc_app():
 
 	mc_app.config.update(mail_settings)
 	mc_app.config['ADMINS']= ['jackdonaldson005@gmail.com']
-
+	if(PRODUCTION):
+		mc_app.config['SERVER_NAME']= SERVER_NAME
 	mc_app.secret_key = MC_SECRET
 
 	mc_db.init_app(mc_app)
@@ -113,6 +114,8 @@ def create_admin_app():
 
 	admin_app.config.update(mail_settings)
 	admin_app.config['ADMINS']= ['jackdonaldson005@gmail.com']
+	if(PRODUCTION):
+		admin_app.config['SERVER_NAME']= SERVER_NAME
 
 	admin_app.secret_key = ADMIN_SECRET
 
