@@ -84,15 +84,15 @@ def googleLoginPage():
 	google_provider_cfg = get_google_provider_cfg()
 	authorization_endpoint = google_provider_cfg["authorization_endpoint"]
     
-	loginURL = request.base_url
-	if(PRODUCTION):
-		loginURL = "https://minecraft.server-lists.com/googlelogin/callback"
+	url = request.base_url
+	if request.base_url.startswith('http://'):
+		url = request.base_url.replace('http://', 'https://', 1)
 
     # Use library to construct the request for Google login and provide
     # scopes that let you retrieve user's profile from Google
 	request_uri = client.prepare_request_uri(
         authorization_endpoint,
-        redirect_uri=loginURL,
+        redirect_uri=url,
         scope=["openid", "email", "profile"],
 		prompt="select_account"
     )
@@ -264,10 +264,9 @@ def googleLoginCallbackPage():
 	baseUrl = request.base_url
 	
 	url= request.url
-	if url.startswith('http://'):
+	if request.base_url.startswith('http://'):
+		baseUrl = request.base_url.replace('http://', 'https://', 1)
 		url = request.url.replace('http://', 'https://', 1)
-	if(PRODUCTION):
-		baseUrl = "https://minecraft.server-lists.com/googlelogin/callback"
 
 	# Prepare and send a request to get tokens! Yay tokens!
 	token_url, headers, body = client.prepare_token_request(
