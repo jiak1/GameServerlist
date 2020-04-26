@@ -7,7 +7,7 @@ from flask_crontab import Crontab
 from flask_migrate import Migrate
 import re
 from oauthlib.oauth2 import WebApplicationClient
-from .Config import GOOGLE_CLIENT_ID,AppConfig,PRODUCTION,BONSAIURL,DEBUG_MAIL_SETTINGS,PRODUCTION_MAIL_SETTINGS,ADMIN_SECRET,MC_SECRET,SERVER_NAME
+from .Config import GOOGLE_CLIENT_ID,AppConfig,PRODUCTION,BONSAIURL,CREDENTIALS_ACCESS_KEY,CREDENTIALS_SECRET_KEY,DEBUG_MAIL_SETTINGS,PRODUCTION_MAIL_SETTINGS,ADMIN_SECRET,MC_SECRET,SERVER_NAME
 from .momentjs import momentjs
 from requests_aws4auth import AWS4Auth
 import boto3
@@ -18,8 +18,8 @@ def getElasticSearchURL():
 		region = 'us-east-2' # e.g. us-west-1
 
 		service = 'es'
-		credentials = boto3.Session().get_credentials()
-		awsauth = AWS4Auth(credentials.access_key, credentials.secret_key, region, service, session_token=credentials.token)
+
+		awsauth = AWS4Auth(CREDENTIALS_ACCESS_KEY, CREDENTIALS_SECRET_KEY, region, service)
 
 		return Elasticsearch(
 			hosts = [{'host': host, 'port': 443}],

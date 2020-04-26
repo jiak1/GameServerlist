@@ -7,7 +7,8 @@ GOOGLE_CLIENT_ID = "608563324926-cc7o80bfiht44qr4joqvrfd6r58sh6n3.apps.googleuse
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
 SERVER_NAME=os.getenv("SERVER_NAME")
-
+CREDENTIALS_SECRET_KEY=os.getenv("CREDENTIALS_SECRET_KEY")
+CREDENTIALS_ACCESS_KEY=os.getenv("CREDENTIALS_ACCESS_KEY")
 ISADMIN=False
 POSTS_PER_PAGE = 6
 BONSAIURL=os.getenv("BONSAI_URL")
