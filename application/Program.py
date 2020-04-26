@@ -72,7 +72,7 @@ def create_mc_app():
 
 	mc_app.config.update(mail_settings)
 	if(PRODUCTION):
-		mc_app['SERVER_NAME']=SERVER_NAME
+		mc_app.config['SERVER_NAME']=SERVER_NAME
 	mc_app.config['ADMINS']= ['jackdonaldson005@gmail.com']
 
 	mc_app.secret_key = MC_SECRET
@@ -115,7 +115,7 @@ def create_admin_app():
 
 	admin_app.config.update(mail_settings)
 	if(PRODUCTION):
-		admin_app['SERVER_NAME']=SERVER_NAME
+		admin_app.config['SERVER_NAME']=SERVER_NAME
 	admin_app.config['ADMINS']= ['jackdonaldson005@gmail.com']
 
 	admin_app.secret_key = ADMIN_SECRET
