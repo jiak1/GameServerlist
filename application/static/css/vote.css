@@ -1,0 +1,13 @@
+.text-center {
+        text-align: center;
+}
+
+.banner-top{
+	margin-bottom:10px;
+	margin-top:10px;
+}
+
+.banner{
+	border-radius:5px;
+	width:100%
+}

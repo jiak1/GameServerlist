@@ -1,0 +1,26 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "error" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/notallowed.css')}}">
+<title>Error - Minecraft Server Lists</title>
+{% endblock %}
+
+{% block beforeBody %}
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-sm">
+<img src="{{url_for('static',filename='images/background4.png')}}">
+<div class="jumbotron-fluid">
+  <h1 class="display-4">Woops!</h1>
+  <p class="lead">It appears something isn't quite working as expected. Our system administrators have been notified of this!</p>
+  <hr class="my-4">
+  <p>Maybe try a button that we do know works :D</p>
+  <p class="lead">
+    <a class="btn btn-success btn-lg" href="{{url_for('MCRoutes.MCHomePage')}}" role="button">Home</a>
+  </p>
+</div>
+</div>
+{% endblock %}

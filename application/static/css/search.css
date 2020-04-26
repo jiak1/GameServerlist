@@ -13,6 +13,9 @@
 	padding-left:30px;
 	padding-right:30px;
 	font-weight:550;
+	position: absolute;
+	right: 0px;
+	height:100%;
 }
 
 .removeOutline,.removeOutline:active,.removeOutline:focus{
@@ -99,7 +102,7 @@
 .card-img-top{
 	/*max-width:800px;
 	max-height:100px;*/
-	min-height:50px;
+	min-height:40px;
 	border-radius:5px;
 }
 
@@ -148,4 +151,18 @@
 .server-title,.server-title:hover,.server-title:active,.server-title:visited{
 	color:white;
 	font-style:normal;
+}
+
+#pages
+{
+	margin-left:auto;
+	margin-right:auto;
+	width:fit-content;
+}
+
+.page-link,.page-link:hover{
+	color:#28a745;
+}
+.page-link:focus{
+	box-shadow:0 0 0 0.2rem rgba(0, 255, 52, 0.25)
 }

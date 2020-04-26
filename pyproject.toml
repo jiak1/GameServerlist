@@ -4,22 +4,28 @@ requires = ["poetry>=0.12"]
 
 [tool]
 [tool.poetry]
-authors = ["Your Name <you@example.com>"]
+authors = ["jiak1 <jackdonaldson005@gmail.com>"]
 description = ""
 name = "serverlist"
 version = "0.1.0"
 [tool.poetry.dependencies]
-flask-bootstrap = "^3.3"
 flask-login = "^0.5.0"
 flask-sqlalchemy = "^2.4"
 flask-wtf = "^0.14.3"
-mcstatus = "^3.1"
 python = "^3.7"
 safe = "^0.4.0"
 sqlalchemy = "^1.3"
 wtforms = "^2.2"
-werkzeug = "^1.0"
-flask = "^1.1"
-Flask-MySQLdb = "^0.2.0"
 elasticsearch = "^7.6"
+Flask-MySQLdb = "^0.2.0"
+Flask-Mail = "^0.9.1"
+oauthlib = "^3.1"
+rsa = "^4.0"
+arrow = "^0.15.5"
+Pillow = "^7.1"
+PyJWT = "^1.7"
+jsonify = "^0.5.0"
+flask-migrate = "^2.5"
+flask-crontab = "^0.1.2"
+alembic = "^1.4"
 [tool.poetry.dev-dependencies]

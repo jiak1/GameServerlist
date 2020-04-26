@@ -1,0 +1,122 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "account" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/account.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/form.css')}}">
+<title>Account - Minecraft Server Lists</title>
+{% endblock %}
+
+{% block beforeBody %}
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-sm" style="background-color:white;padding:10px;padding-top:30px;border-radius:5px">
+	{% include 'notify.html' %}
+	<h3 class="h3 font-weight-normal" style="margin:auto;text-align:center;color:black;">Account Details</h3>
+	<div class="" style="margin-top:20px;margin-bottom:20px;padding:20px;margin-left:auto;margin-right:auto;text-align:center">
+		{% if account.isGoogle %}
+		<p style=""><b>Username:</b> {{account.username}} <span class="badge badge-primary">Linked to Google</span></p>
+		{% else %}
+		<p style=""><b>Username:</b> {{account.username}}</p>
+		{% endif %}
+		<p style=""><b>Email:</b> {{account.email}}</p>
+		<p style=""><a href="{{url_for('MCRoutes.downloadDataPage')}}" class="btn btn-primary">Request Your Data</a></p>
+		<p style=""><a href="{{url_for('MCRoutes.accountDeletePage')}}" class="btn btn-danger" style="color:white">Delete Account</a></p>
+	</div>
+
+	{% if account.isGoogle %}
+	<h4 class="h3 font-weight-normal" style="margin:auto;width:50%;text-align:center;color:black;">Link Your Account With Us</h4>
+	<div id="form-custom" style="background-color:white;padding-top:0px">
+	<form action="{{url_for('MCRoutes.accountLinkGooglePage')}}" method="post" class="form-account" role="form" id="LinkForm">
+		{{ googleForm.hidden_tag() }}
+	<p class="form-text text-muted" style="text-align:center">Click <a data-toggle="collapse" href="#googleInfo" aria-expanded="false" aria-controls="googleInfo">here</a> to learn what this means for you.</p>
+	<div class="collapse" id="googleInfo" style="padding-top:0px;padding-bottom:20px">
+	<div class="card card-body">
+		<p>Linking your account with us will allow you to have a custom username & be able to log in both with your Google Account and with the credentials you supply here. This will also allow you to change your email address and link it to another Google Account.</p>
+	</div>
+	</div>
+	<div class="form-label-group">
+		<input type="text" id="newUsername" name="newUsername" class="form-control" placeholder="New Username" required>
+		<label for="newUsername">New Username</label>
+	</div>
+
+	<div class="form-label-group">
+		<input title="Password must contain at least 6 characters, one uppercase, one lower & one number" type="password" id="newPassword" name="newPassword" class="form-control" placeholder="New Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');if(this.checkValidity()) form.password2.pattern = RegExp.escape(this.value);">
+		<label for="newPassword">New Password</label>
+  	</div>
+
+	<div class="form-label-group">
+		<input title="Please enter the same Password as above"  type="password" id="newPassword2" name="newPassword2" class="form-control" placeholder="Repeat New Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');">
+		<label for="newPassword2">Repeat New Password</label>
+  	</div>
+
+	<div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" required> I have read and accept the <a href="/terms" target="_blank"> Terms of Use</a> and <a href="/privacy" target="_blank"> Privacy Policy.</a>
+    </label>
+  </div>
+
+	<button class="btn btn-lg btn-success btn-block" type="submit" name="googleSubmit" id="googleSubmit">Create Server List Account</button></form>
+	</div>
+
+	{% else %}
+	<h4 class="h3 font-weight-normal" style="margin:auto;width:50%;text-align:center;color:black;">Change Username</h4>
+	<div id="form-custom" style="background-color:white">
+		<form action="{{url_for('MCRoutes.accountChangeUsernamePage')}}" method="post" class="form-account" role="form" id="UsernameForm">
+		{{ usernameForm.hidden_tag() }}
+		<div class="form-label-group">
+			<input type="text" id="newUsername" name="newUsername" class="form-control" placeholder="New Username" required >
+			<label for="newUsername">New Username</label>
+		</div>
+
+		<div class="form-label-group">
+			<input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+			<label for="password">Password</label>
+		</div>
+
+		<button class="btn btn-lg btn-success btn-block" type="submit" name="usernameSubmit" id="usernameSubmit">Change Username</button></form>
+	</div>
+	
+	<h4 class="h3 font-weight-normal" style="margin:auto;width:50%;text-align:center;color:black;">Change Email</h4>
+	<div id="form-custom" style="background-color:white">
+		<form action="{{url_for('MCRoutes.accountChangeEmailPage')}}" method="post" class="form-account" role="form" id="EmailForm">
+		{{ emailForm.hidden_tag() }}
+		<div class="form-label-group">
+			<input type="email" id="newEmail" name="newEmail" class="form-control" placeholder="New Email" required>
+			<label for="newEmail">New Email</label>
+		</div>
+
+		<div class="form-label-group">
+			<input type="password" id="emailPassword" name="emailPassword" class="form-control" placeholder="Password" required>
+			<label for="emailPassword">Password</label>
+		</div>
+
+		<button class="btn btn-lg btn-success btn-block" type="submit" name="emailSubmit" id="emailSubmit">Change Email</button></form>
+	</div>
+
+	<h4 class="h3 font-weight-normal" style="margin:auto;width:50%;text-align:center;color:black;">Change Password</h4>
+	<div id="form-custom" style="background-color:white">
+		<form action="{{url_for('MCRoutes.accountChangePasswordPage')}}" method="post" class="form-account" role="form" id="ChangePasswordForm">
+		{{ passwordForm.hidden_tag() }}
+		<div class="form-label-group">
+			<input type="password" id="currentPassword" name="currentPassword" class="form-control" placeholder="Current Password" required>
+			<label for="currentPassword">Current Password</label>
+		</div>
+
+		<div class="form-label-group">
+			<input title="Password must contain at least 6 characters, one uppercase, one lower & one number" type="password" id="newPassword" name="newPassword" class="form-control" placeholder="New Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');if(this.checkValidity()) form.password2.pattern = RegExp.escape(this.value);">
+			<label for="newPassword">New Password</label>
+		</div>
+
+		<div class="form-label-group">
+			<input title="Please enter the same Password as above"  type="password" id="newPassword2" name="newPassword2" class="form-control" placeholder="Repeat New Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');">
+			<label for="newPassword2">Repeat New Password</label>
+		</div>
+
+		<button class="btn btn-lg btn-success btn-block" type="submit" name="passwordSubmit" id="passwordSubmit">Change Password</button></form>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

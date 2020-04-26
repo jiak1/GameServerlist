@@ -1,0 +1,48 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "votifiertest" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/form.css')}}">
+<title>Votifier Test - Minecraft Server Lists</title>
+{% endblock %}
+
+{% block beforeBody %}
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-sm">
+	{% include 'notify.html' %}
+<div id="form-custom">
+  <form action="" method="post" class="form-signin" role="form">
+	{{ form.hidden_tag() }}
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Votifier Test</h1>
+    <p></p>
+  </div>
+
+  <div class="form-label-group">
+    <input type="text" id="ip" name="ip" class="form-control" placeholder="IP Address" required autofocus="">
+    <label for="ip">IP Address</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="text" id="port" name="port" class="form-control" placeholder="Votifier Port" required>
+    <label for="port">Votifier Port</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="text" id="token" name="token" class="form-control" placeholder="Votifier Public Key" required>
+    <label for="token">Votifier Public Key</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="text" id="username" name="username" class="form-control" placeholder="Minecraft Username" required>
+    <label for="username">Minecraft Username</label>
+  </div>
+
+  <button class="btn btn-lg btn-success btn-block" type="submit" name="submit" id="submit">Test Vote</button>
+
+  </form>
+  </div></div>
+{% endblock %}

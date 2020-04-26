@@ -1,19 +1,52 @@
 from flask import request, render_template,Blueprint,redirect,flash,url_for,send_from_directory, jsonify,abort
-from .Program import db,adminLogin,isTesting
+from ..Program import admin_db as db,admin_login as login,elasticsearch
 from flask_login import current_user, login_user,logout_user, login_required
 import os
-from .Forms import LoginForm,RegisterForm,ServerForm,PasswordChangeForm,EmailChangeForm
-from .Models import Account, Server,Admin
-from .Util import UpdateServerWithForm
+from ..Forms import LoginForm,RegisterForm,AdminServerForm,PasswordChangeForm,EmailChangeForm,TagsForm
+from ..Models import Admin,Server,Account,ReviewTag
+from ..Util import UpdateAdminServerWithForm,addNewTags,sendServerApprovedEmail,sendServerDeniedEmail
+from ..Config import PRODUCTION
+import datetime
 
 AdminRoutes = Blueprint('AdminRoutes', __name__)
 curDir = os.path.dirname(os.path.realpath(__file__))
 
+indexCreation = {
+  "settings": {
+    "index": {
+      "max_ngram_diff": 7
+    },
+    "analysis": {
+      "analyzer": {
+        "default": {
+          "tokenizer": "keyword",
+          "filter": [ 
+			  "3_5_grams",
+			  "lowercase"
+			]
+        }
+      },
+      "filter": {
+        "3_5_grams": {
+          "type": "ngram",
+          "min_gram": 3,
+          "max_gram": 10,
+		  "token_chars":[
+            "letter",
+            "digit",
+            "symbol"
+          ]
+        }
+      }
+    }
+  }
+}
+
 prefix = "/"
-if(isTesting):
+if(PRODUCTION == False):
 	prefix = "/admin/"
 
-@adminLogin.user_loader
+@login.user_loader
 def load_account(id):
 	return Admin.query.get(int(id))
 
@@ -38,7 +71,26 @@ def homePage():
 @AdminRoutes.route(prefix+"reviews",methods=['GET'])
 def reviewsPage():
 	reviews = Server.query.filter_by(verified=0).order_by(Server.id).paginate(1,20,False).items
-	return render_template("admin/reviews.html",reviews=reviews)
+	reReviewed = Server.query.filter_by(verified=3).order_by(Server.id).paginate(1,20,False).items
+	for item in reReviewed:
+		reviews.append(item)
+	tags = ReviewTag.query.first()
+	needToReviewTags = True
+	if(tags is None):
+		needToReviewTags = False
+	return render_template("admin/reviews.html",reviews=reviews,needToReviewTags=needToReviewTags)
+
+@login_required
+@AdminRoutes.route(prefix+"elasticsearch",methods=['GET'])
+def esSetupPage():
+	elasticsearch.indices.create(index='server',body=indexCreation)
+	return redirect(url_for("AdminRoutes.homePage"))
+
+@login_required
+@AdminRoutes.route(prefix+"reindex",methods=['GET'])
+def esReindexPage():
+	Server.reindex()
+	return redirect(url_for("AdminRoutes.homePage"))
 
 @login_required
 @AdminRoutes.route(prefix+"profile",methods=['GET','POST'])
@@ -91,23 +143,50 @@ def logoutPage():
 def reviewPage():
 	serverID = request.args.get('id')
 	server = Server.query.filter_by(id=serverID).first()
-	form = ServerForm();
+	form = AdminServerForm();
 	if('action' in request.args):
 		if(request.args.get('action') == "APPROVE"):
-			UpdateServerWithForm(form,server)
+			UpdateAdminServerWithForm(form,server)
 			server.verified = 1
-			server.rejectReason = form.rejectReason.data
 			db.session.commit();
 			flash('Successfully approved server.','success')
-			redirect("AdminRoutes.reviewsPage")	
+			sendServerApprovedEmail(server)
+			return redirect(url_for("AdminRoutes.reviewsPage"))	
 		else:
-			UpdateServerWithForm(form,server)
+			UpdateAdminServerWithForm(form,server)
 			server.verified = 2
-			server.rejectReason = form.rejectReason.data
 			db.session.commit();
 			flash('Successfully rejected server.','warning')
-			redirect("AdminRoutes.reviewsPage")	
-	if(server is not None and server.verified==0):
+			sendServerDeniedEmail(server)
+			return redirect(url_for("AdminRoutes.reviewsPage"))	
+	if(server is not None):
 		return render_template("admin/review.html",server=server,form=form)
 	else:
 		return redirect(url_for("AdminRoutes.reviewsPage"))
+
+@login_required
+@AdminRoutes.route(prefix+"reviewtags",methods=['GET','POST'])
+def reviewTagsPage():
+	form = TagsForm()
+	tags = ReviewTag.query.all()
+	return render_template("admin/reviewTags.html",form=form,tags=tags)
+
+@AdminRoutes.route("/admin/API/REMOVEREVIEW",methods=['GET'])
+def APIRemoveReview():
+	id = request.args.get("ID")
+	_tag = ReviewTag.query.filter_by(id=id).first()
+	if(_tag is not None):
+		db.session.delete(_tag)
+		db.session.commit()
+		return jsonify(success=True)
+	abort(400)
+
+@AdminRoutes.route("/admin/API/ADDTAGS",methods=['POST'])
+def APIAddTags():
+	data = request.get_json();
+	tags = data['TAGS']
+	mods = data['MODS']
+	datapacks = data['DATAPACKS']
+	plugins = data['PLUGINS']
+	addNewTags(tags,mods,plugins,datapacks)
+	return jsonify(success=True)

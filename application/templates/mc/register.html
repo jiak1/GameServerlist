@@ -51,8 +51,18 @@
     <label for="password">Repeat Password</label>
   </div>
 
+  <div class="checkbox mb-1 mt-3">
+    <label>
+      <input type="checkbox" required> I confirm that the above details are correct, I am over the age of 13 and give permission to recieve emails from Server-lists.com
+    </label>
+  </div>
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" required> I have read and accept the <a href="/terms" target="_blank"> Terms of Use</a> and <a href="/privacy" target="_blank"> Privacy Policy.</a>
+    </label>
+  </div>
   <button class="btn btn-lg btn-success btn-block" type="submit" name="submit" id="submit">Register</button>
-  <p class="mt-5 mb-3 text-muted text-center">Already have an account? <a href="{{url_for('MCRoutes.loginPage')}}">Login here.</a></p>
+  <p class="mt-5 mb-3 text-muted text-center">Already have an account or want to sign in with Google? <a href="{{url_for('MCRoutes.loginPage')}}">Login here.</a></p>
   </form>
   </div></div>
 {% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "home" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/tags.css')}}">
+<script src="{{url_for('static',filename='js/lazy-load.js')}}"></script>
+<title>Tags - Minecraft Server Lists</title>
+<link href="{{url_for('static',filename='css/searchtagsinput.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block beforeBody %}
+{% include 'mc/searchbar.html' %}
+<div class="container-md" style="padding-top:35px;">
+	<h2><a class="tagToggle" data-toggle="collapse" href="#mainTags" aria-expanded="true">Popular Tags</a></h2>
+	<div class="collapse show">
+	<div class="card card-body collapse show"  id="mainTags">
+		
+	</div>
+	</div>
+	<h2><a class="tagToggle" data-toggle="collapse" href="#pluginTags"  aria-expanded="true">Plugin Tags</a></h2>
+	<div class="collapse show">
+	<div class="card card-body collapse show" id="pluginTags">
+		
+	</div>
+	</div>
+	<h2><a class="tagToggle" data-toggle="collapse" href="#datapackTags"  aria-expanded="true">Datapack Tags</a></h2>
+	<div class="collapse show">
+	<div class="card card-body collapse show" id="datapackTags">
+		
+	</div>
+	</div>
+	<h2><a class="tagToggle" data-toggle="collapse" href="#modTags"  aria-expanded="true">Mod & Modpack Tags</a></h2>
+	<div class="collapse show">
+	<div class="card card-body collapse show" id="modTags">
+		
+	</div>
+	</div>
+</div>
+
+<script>
+	var mainTag;
+	$.getJSON('/json/tags.json').done(function( data ) {
+		generateTags($("#mainTags"),data)
+	});
+	var pluginTag;
+	$.getJSON('/json/plugins.json', function(data) {
+    	generateTags($("#pluginTags"),data)
+	});
+	var datapackTag;
+	$.getJSON('/json/datapacks.json', function(data) {
+    	generateTags($("#datapackTags"),data)
+	});
+	var modsTag;
+	$.getJSON('/json/mods.json', function(data) {
+    	generateTags($("#modTags"),data)
+	});
+	var linkURL = "{{url_for('MCRoutes.tagSearchPage',tagname='')}}"
+	function generateTags(collapse,data){
+		var i;
+		for (i = 0; i < data.length; i++) {
+  		 	collapse.append('<a href="'+linkURL+data[i]+'" class="badge badge-success">'+data[i]+'</a>');
+		}
+	}
+</script>
+{% endblock %}

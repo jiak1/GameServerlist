@@ -1,0 +1,106 @@
+.searchInput{
+	border-radius: .5rem !important;
+	border:3px solid  rgba(17,101,48,0.6) !important;
+	font-family:Karla,sans-serif;
+}
+
+.searchButton:hover,.searchButton:hover:active, .searchButton:focus{
+	background-color:#C3E7D3 !important;
+}
+
+.searchButton{
+	font-family:Karla,sans-serif;
+	padding-left:30px;
+	padding-right:30px;
+	font-weight:550;
+	position: absolute;
+	right: 0px;
+	height:100%;
+}
+
+.removeOutline,.removeOutline:active,.removeOutline:focus{
+   outline: none !important;
+   border: none !important;
+   box-shadow: none !important;
+}
+
+::-webkit-input-placeholder {
+   font-style: italic;
+}
+:-moz-placeholder {
+   font-style: italic;  
+}
+::-moz-placeholder {
+   font-style: italic;  
+}
+:-ms-input-placeholder {  
+   font-style: italic; 
+}
+
+:-webkit-tap-highlight-color{
+	color:transparent;
+}
+
+.imgCenter{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+.tagButton{
+	font-family:Karla,sans-serif;
+	padding-left:20px;
+	padding-right:20px;
+	padding-bottom:4px;
+	padding-top:4px;
+	margin-bottom:7px;
+	font-weight:550;
+	border-width:2px;
+	border-radius:20px;
+	border-color:rgba(255,255,255,0.5);
+	margin-right:15px;
+	color:white !important;
+	box-shadow: 0 0 0 00rem rgba(0,0,0,0);
+}
+
+.tagButton:hover,.tagButton:active,.tagButton:active:hover{
+	background-color:rgba(33,182,168,1) !important;
+	border-color:rgba(33,182,168,0.5) !important;
+	color:white !important;
+}
+
+.tagButton:not(:disabled):not(.disabled):active:focus{
+	box-shadow: 0 0 0 0.2rem rgba(33,182,168,0.8);
+}
+
+.tagButton:focus,.tagButton:focus:active{
+	box-shadow: 0 0 0 0.2rem rgba(33,182,168,0.5);
+}
+
+.textIcon{
+	max-width:1.1rem;
+	max-height:1.1rem;
+	color:inherit;
+	vertical-align: text-bottom;
+}
+
+.card{
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.tagToggle,.tagToggle:hover,.tagToggle:hover:active,.tagToggle:active,.tagToggle:focus{
+	color:black;
+	text-decoration:none;
+}
+
+.badge{
+	width:fit-content;
+	margin:5px;
+	font-size:16px;
+}
+
+.card{
+    display: block;
+}

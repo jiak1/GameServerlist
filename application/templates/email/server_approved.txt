@@ -1,0 +1,15 @@
+Congratulations,
+
+Your Server, {{server.name}} has been approved!
+
+This means you are free to edit it whenever you want and it is now visible on our site to all of our viewers!
+
+{% if server.rejectReason != "" %}
+The following recommendations have being made by our staff:
+{{server.rejectReason}}
+{% endif %}
+
+To visit your server page go to https://minecraft.server-lists.com/server/{{server.id}}
+
+Sincerely,
+The Serverlist Team

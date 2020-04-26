@@ -1,5 +1,5 @@
 {% extends 'mc/base.html' %}
-{% set active_page = "login" %}
+{% set active_page = "servers" %}
 
 {% block head %}
 <link rel="stylesheet" href="{{url_for('static',filename='css/editServer.css')}}">
@@ -11,6 +11,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-typeahead.css" rel="stylesheet" />
 -->
 <link href="{{url_for('static',filename='css/tagsinput.css')}}" rel="stylesheet">
+
 <title>Edit Server - Minecraft Server Lists</title>
 {% endblock %}
 
@@ -29,12 +30,19 @@
   <form action="" method="post" class="form-server" role="form" id="ServerForm">
 	{{ form.hidden_tag() }}
   <div class="text-center mb-4">
-    <h1 class="h3 mb-3 font-weight-normal" style="text-align:left">{{header}}</h1>
-    <p></p>
+	{% if server.verified == 1 %}
+		<h1 class="h3 mb-3 font-weight-normal" style="text-align:left">Edit Your Server</h1>
+	{% else %}
+    	<h1 class="h3 mb-3 font-weight-normal" style="text-align:left">Resubmit Your Server For Verification</h1>
+		<h5 style="text-align:left">Reviewer Notes:</h5>
+    	<div class="alert alert-danger" role="alert" style="margin-top:10px">
+		{{server.rejectReason}}</b>
+		</div>
+	{% endif %}
   </div>
 
   <div class="form-label-group">
-    <input type="text" id="name" name="name" class="form-control" placeholder="Server Name" required autofocus="" minlength="5" maxlength="50">
+    <input type="text" id="name" name="name" class="form-control" placeholder="Server Name" required autofocus="" minlength="5" maxlength="50" value="{{server.name}}">
     <label for="name">Server Name</label>
 	<small id="nameHelp" class="form-text text-muted">Ensure this is only the server name without anything else</small>
   </div>
@@ -42,36 +50,41 @@
   <div class="row">
 	<div class="col-sm-8">
 		<div class="form-label-group">
-		<input type="text" id="ip" name="ip" class="form-control" placeholder="IP Address" required  minlength="5" maxlength="35">
+		<input type="text" id="ip" name="ip" class="form-control" placeholder="IP Address" required  minlength="5" maxlength="35" value="{{server.ip}}">
 		<label for="ip">IP Address</label>
 		<small id="ipHelp" class="form-text text-muted">The address users will enter in order to connect, do not include the port</small>
 	</div></div>
     <div class="col-sm-4">
 		<div class="form-label-group">
-		<input type="number" id="port" name="port" class="form-control" placeholder="Port" required value="25565" min="1" max="65535">
+		<input type="number" id="port" name="port" class="form-control" placeholder="Port" required value="{{server.port}}" min="1" max="65535">
 		<label for="port">Port</label>
 		<small id="portHelp" class="form-text text-muted">The port used to connect, the default is 25565</small>
 		</div>
     </div>
   </div>
+  <div class="form-label-group">
+		<input type="text" id="displayVersion" name="displayVersion" class="form-control" placeholder="Version" value="{{server.displayVersion}}" disabled>
+		<label for="displayVersion">Version</label>
+		<small id="displayVersionHelp" class="form-text text-muted">This is the recommended version of Minecraft required to join your server. If you believe this is inaccurate you can send us an email at <a href="mailto:contact@server-lists.com">contact@server-lists.com</a></small>
+	</div>
 
 <div class="row" style="margin-bottom:10px">
 	<div class="col-sm-8">
 		<label for="country" style="vertical-align:baseline;padding-right:10px;">Country</label>
-		<div class="bfh-selectbox bfh-countries" data-country="US" data-flags="true" data-name="country" data-value="US" data-blank="false" name="country" data-filter="true"></div>
+		<div class="bfh-selectbox bfh-countries" data-flags="true" data-name="country" data-country="{{server.country}}" data-blank="false" name="country" data-filter="true"></div>
 		<small id="countryHelp" class="form-text text-muted" style="margin-top:0px">The country the server is located in</small>
     </div>
   </div>
 
 <div class="form-group">
     <label for="description">Description</label>
-    <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter a meaningful description, describe your features and the appeal to new players..." minlength="30" maxlength="1000" required></textarea>
+    <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter a meaningful description, describe your features and the appeal to new players..." minlength="30" maxlength="1000" required>{{server.description}}</textarea>
   </div>
 
 <div class="form-group">
     <label for="serverType">Type</label>
     <select class="form-control" id="serverType" name="serverType">
-      <option>Vanilla</option>
+      <option >Vanilla</option>
       <option>Semi-Vanilla</option>
       <option>Bukkit</option>
       <option>Spigot</option>
@@ -84,27 +97,78 @@
 
 <div class="form-group"  id="datapacksDiv">
 	<label for="datapacks">Datapacks</label>
-	<input type="text" value="Double Shulker Shells, More Player Heads" id="datapacks" name="datapacks" data-role="datapacksinput" >
+	<input type="text" value="{{server.datapacks}}" id="datapacks" name="datapacks" data-role="datapacksinput" >
 	<small id="datapacksHelp" class="form-text text-muted">Choose up to 10 key datapacks that are on your server</small>
 </div>
 
 <div class="form-group"  id="pluginsDiv">
 	<label for="plugins">Plugins</label>
-	<input type="text" value="Worldedit, Votifier" id="plugins" name="plugins" data-role="pluginsinput" >
+	<input type="text" value="{{server.plugins}}" id="plugins" name="plugins" data-role="pluginsinput" >
 	<small id="pluginsHelp" class="form-text text-muted">Choose up to 10 key plugins that are on your server</small>
 </div>
 
 <div class="form-group" id="modsDiv">
 	<label for="mods">Mods/Modpack</label>
-	<input type="text" value="Not Enough Items, Redpower" id="mods" name="mods" data-role="modsinput" >
+	<input type="text" value="{{server.mods}}" id="mods" name="mods" data-role="modsinput" >
 	<small id="modsHelp" class="form-text text-muted">Choose up to 10 key mods or the modpack that is required on your server</small>
 </div>
 
 <div class="form-group">
 	<label for="tags">Tags</label>
-	<input type="text" value="" id="tags" name="tags" data-role="tagsinput">
+	<input type="text" value="{{server.tags}}" id="tags" name="tags" data-role="tagsinput">
 	<small id="tagHelp" class="form-text text-muted">Choose up to 10 tags describing your server to help players find you</small>
 </div>
+
+<div class="form-group">
+	<label for="bannerUpload">Banner</label>
+	<div class="custom-file">
+  		<input type="file" class="custom-file-input" id="bannerUpload" name="bannerUpload" accept="image/jpeg, image/png, image/gif">
+  		<label class="custom-file-label" for="bannerUpload">Choose image...</label>
+	</div>
+	<small id="bannerUploadHelp" class="form-text text-muted">RECOMMENDED Choose a file that will be displayed as your main server image. Your image size <b>must be 498x60</b> otherwise it will get cropped.<br>Valid image types are:<br>GIF - Will show an animated banner.<br>PNG & JPG - Show's a still banner.</small>
+	<div id="progress" class="progress" style="display:none">
+	<div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+	</div>
+	<div id="BannerDisplay" style="display:inline-block">
+		<label for="BannerIMG">Banner Preview</label><br>
+		<img id="BannerIMG" src="{{server.banner}}">
+	</div>
+	<div class="alert alert-success" role="alert" style="margin-top:10px">
+	If you change your banner image it may not appear immediately, in order to improve website load speeds we keep temporary copies that can be accessed quickly across the world. This means <b>it may take some time for these copies to be updated & display.</b>
+	</div>
+</div>
+
+<div class="form-group">
+    <label for="votifierEnabled">Votifier Status</label>
+    <select class="form-control" id="votifierEnabled" name="votifierEnabled">
+	  {% if server.votifierEnabled == 0 %}
+      <option selected>Disabled</option>
+	  <option>Enabled</option>
+	  {% else %}
+	  <option>Disabled</option>
+	  <option selected>Enabled</option>
+	  {% endif %}
+    </select>
+	<small id="votifierEnabledHelp" class="form-text text-muted">To learn more about votifier click <a data-toggle="collapse" href="#votifierInfo" aria-expanded="false" aria-controls="votifierInfo">here.</a></small>
+	<div class="collapse" id="votifierInfo" style="padding-top:10px">
+	<div class="card card-body">
+		<p>Votifier is a plugin that can be installed on a server that allows plugins such as Craftbukkit, Spigot or Paper. You cannot install it on the default Minecraft Server. <b>Votifier allows users to recieve in-game rewards for voting for your server,</b> voting increases your ranking on our site and increases your ability to get new players. If you are not using Votifier or don't have it setup currently, set this to disabled, otherwise you will have to know your Votifier details.<br><br><b>Setting up Votifier will require technical knowledge, including dedicating a new port to accept connections as well as finding your public key.</b> If you aren't using Votifier users will still be able to vote for your server on our site, they will just be unable to get rewards.<br><br>For help testing your Votifier setup you can head over to our <a href="{{url_for('MCRoutes.votifierTestPage')}}" target="_blank">testing page here.</a></p>
+	</div>
+	</div>
+</div>
+<div id="votifierHide">
+<div class="form-label-group">
+		<input type="number" id="votifierPort" name="votifierPort" class="form-control" placeholder="Port" value="{{server.votifierPort}}" min="1" max="65535">
+		<label for="votifierPort">Votifier Port</label>
+		<small id="votifierPortHelp" class="form-text text-muted">The port used to connect to Votifier, the default is 8192. <b>This cannnot not be the same as your Minecraft server port.</b></small>
+</div>
+
+<div class="form-group">
+    <label for="votifierToken">Votifier Public Key</label>
+    <textarea class="form-control" id="votifierToken" name="votifierToken" rows="4" placeholder="Navigate to the directory ./plugins/Votifier/rsa and copy the text inside the public.key file here." minlength="30" maxlength="1000">{{server.votifierToken}}</textarea>
+	<small id="votifierTokenHelp" class="form-text text-muted">You need to have run the server with the plugin for this to have generated.</small>
+  </div></div>
+
 
 <div class="form-group">
 	<label for="website">Website</label>
@@ -112,7 +176,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text">https://</div>
         </div>
-        <input type="text" class="form-control" id="website" name="website" placeholder="" maxlength="100">
+        <input type="text" class="form-control" id="website" name="website" placeholder="" maxlength="100" value="{{server.website}}">
       </div>
 	<small id="websiteHelp" class="form-text text-muted">OPTIONAL A link to your website, do not include the https://</small>
 </div>
@@ -121,11 +185,11 @@
 	<label for="discord">Discord</label>
       <div class="input-group">
         <div class="input-group-prepend">
-          <div class="input-group-text">https://discord.gg/</div>
+          <div class="input-group-text">Server ID</div>
         </div>
-        <input type="text" class="form-control" id="discord" name="discord" placeholder="" maxlength="15">
+        <input type="text" class="form-control" id="discord" name="discord" placeholder="" maxlength="80">
       </div>
-	<small id="discordHelp" class="form-text text-muted">OPTIONAL A link to your servers Discord, ensure the invite is permanent. Only enter the section of the URL after https://discord.gg/</small>
+	<small id="discordHelp" class="form-text text-muted">OPTIONAL Your Discord Server ID, to get this you need to <a href="https://blog.discord.com/add-the-discord-widget-to-your-site-d45ffcd718c6" target="_blank">Enable Your Server Widget.</a> Then just copy your Server ID here.</small>
 </div>
 
 <div class="form-group">
@@ -134,25 +198,19 @@
         <div class="input-group-prepend">
           <div class="input-group-text">youtube.com/watch?v=</div>
         </div>
-        <input type="text" class="form-control" id="trailer" name="trailer" placeholder="" maxlength="15">
+        <input type="text" class="form-control" id="trailer" name="trailer" placeholder="" maxlength="15" value="{{server.trailer}}">
       </div>
 	<small id="trailerHelp" class="form-text text-muted">OPTIONAL A trailer showcasing your server, in the format of a youtube video. Only enter the section of the URL after v=</small>
 	<div id="trailerShowcase" class="container-sm" style="padding:10px"><div class="videoWrapper">
 		<iframe id="trailerFrame" max-width="560" max-height="315" frameborder="0" allow="accelerometer; encrypted-media; gyroscope;" allowfullscreen></iframe>
 	</div></div>
 </div>
-
-  <div class="checkbox mb-1 mt-3">
-    <label>
-      <input type="checkbox" required> I am the owner of the server and agree that all details provided are correct.
-    </label>
-  </div>
-  <div class="checkbox mb-3">
-    <label>
-      <input type="checkbox" required> I have read and agree to the <a href="/terms"> Terms of Use</a>.
-    </label>
-  </div>
-  <button class="btn btn-lg btn-success btn-block" type="button" name="review" id="review" >Submit Server For Review</button>
+{{form.recaptcha()}}
+  {% if server.verified == 1 %}
+  <button class="btn btn-lg btn-success btn-block" type="button" name="review" id="review" >Update Your Server</button>
+  {% else %}
+  <button class="btn btn-lg btn-warning btn-block" type="button" name="review" id="review" >Resubmit Your Server For Verification</button>
+  {% endif %}
   <button style="display:none" type="submit" name="btnSubmit" id="btnSubmit" ></button>
   </form>
   </div></div>
@@ -172,6 +230,8 @@
         <p class="float-left" style="padding-top:2px">Pinging Server... </p><i class="fas fa-check float-right" id="test1Check"></i><i class="float-right fas fa-exclamation-triangle" id="test1Fail"></i><div id="test1Load" class="spinner-border text-success float-right" role="status"><span class="sr-only">Loading...</span></div></div>
 	<div id="test2" class="row">
         <p class="float-left" style="padding-top:2px">Getting Server Details... </p><i class="fas fa-check float-right" id="test2Check"></i><i class="float-right fas fa-exclamation-triangle" id="test2Fail"></i><div id="test2Load" class="spinner-border text-success float-right" role="status"><span class="sr-only">Loading...</span></div></div>
+	<div id="test3" class="row">
+        <p class="float-left" style="padding-top:2px">Sending Test Vote... </p><i class="fas fa-check float-right" id="test3Check"></i><i class="float-right fas fa-exclamation-triangle" id="test3Fail"></i><div id="test3Load" class="spinner-border text-success float-right" role="status"><span class="sr-only">Loading...</span></div></div>
 	<div id="details"  class="row-5">
         <b>Server IP: </b><samp id="IP_DETAILS"></samp><br>
 		<b>Server MOTD: </b><samp id="MOTD_DETAILS"></samp><br>
@@ -191,6 +251,11 @@
 </div>
 
 <script>
+if("{{server.trailer}}" != ""){
+	$("#trailerFrame").attr('src',"https://www.youtube.com/embed/{{server.trailer}}")
+}
+$("#serverType").val('{{server.serverType}}')
+
 updateTrailer();
 
 $("#trailer").change(updateTrailer);
@@ -213,10 +278,10 @@ document.getElementById("submitForm").onclick = submitForm;
 function submitForm(){
 	document.getElementById("ServerForm").submit();
 }
-
 function hideTests(){
 	$("#test1").hide();
 	$("#test2").hide();
+	$("#test3").hide();
 	$("#details").hide();
 	$("#extraText").text("");
 }
@@ -234,6 +299,13 @@ function showTest2(){
 	$("#test2Fail").hide();
 	$("#test2Load").show();
 	$("#test2").show();
+}
+
+function showTest3(){
+	$("#test3Check").hide();
+	$("#test3Fail").hide();
+	$("#test3Load").show();
+	$("#test3").show();
 }
 
 function testsFailed(){
@@ -262,7 +334,7 @@ function SendPing(ip, port){
 	var _data = {"IP":ip,"PORT":port}
 	$.ajax({
 			type: "POST",
-			url: "API/PING",
+			url: "{{url_for('APIRoutes.APIPing')}}",
 			data: JSON.stringify(_data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
@@ -293,7 +365,7 @@ function GetStatus(ip,port){
 	var _data = {"IP":ip,"PORT":port}
 	$.ajax({
 			type: "POST",
-			url: "API/STATUS",
+			url: "{{url_for('APIRoutes.APIStatus')}}",
 			data: JSON.stringify(_data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
@@ -301,9 +373,13 @@ function GetStatus(ip,port){
 				if(data["STATUS"] == "ONLINE"){
 				$("#test2Check").show();
 				$("#test2Load").hide();
-				$("#closeModal2").show();
-				$("#submitForm").show();
-				SetupDetails(data,ip,port)
+				if($("#votifierEnabled").val() == "Disabled"){
+					$("#closeModal2").show();
+					$("#submitForm").show();
+					SetupDetails(data,ip,port)
+				}else{
+					TestVote(data,ip,port)
+				}
 				}else{
 					$("#test2Fail").show();
 					$("#test2Load").hide();
@@ -314,6 +390,39 @@ function GetStatus(ip,port){
 			error: function(errMsg) {
 				$("#test2Fail").show();
 				$("#test2Load").hide();
+				testsFailed();
+				$("#extraText").text("Unable to reach servers, check your internet connection is working.");
+    		},
+			timeout: 5000,
+	})
+}
+
+function TestVote(_serverDetails,ip,port){
+	showTest3();
+	var _data = {"IP":ip,"PORT":port,"TOKEN":$("#votifierToken").val()}
+	$.ajax({
+			type: "POST",
+			url: "{{url_for('APIRoutes.APIVotifier')}}",
+			data: JSON.stringify(_data),
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			success: function(data){
+				if(data["STATUS"] == true){
+					$("#test3Check").show();
+					$("#test3Load").hide();
+					$("#closeModal2").show();
+					$("#submitForm").show();
+					SetupDetails(_serverDetails,ip,port)
+				}else{
+					$("#test3Fail").show();
+					$("#test3Load").hide();
+					testsFailed();
+					$("#extraText").text(data['MESSAGE']);
+				}
+			},
+			error: function(errMsg) {
+				$("#test3Fail").show();
+				$("#test3Load").hide();
 				testsFailed();
 				$("#extraText").text("Unable to reach servers, check your internet connection is working.");
     		},
@@ -336,44 +445,79 @@ function SetupDetails(data,ip,port){
 
 </script>
 <script>
-var data = ["Amsterdam",
-    "London",
-    "Paris",
-    "Washington",
-    "New York",
-    "New Jersey",
-    "New Orleans",
-    "Los Angeles",
-    "Sydney",
-    "Melbourne",
-    "Canberra",
-    "Beijing",
-    "New Delhi",
-    "Kathmandu",
-    "Cairo",
-    "Cape Town",
-    "Kinshasa"];
-var citynames = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+var tags = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: $.map(data, function (city) {
-        return {
-            name: city
-        };
-    })
+    prefetch: '{{url_for("static",filename="/json/tags.json")}}'
 });
-citynames.initialize();
+tags.initialize();
+var datapacks = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '{{url_for("static",filename="/json/datapacks.json")}}'
+});
+datapacks.initialize();
+var plugins = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '{{url_for("static",filename="/json/plugins.json")}}'
+});
+plugins.initialize();
+var mods = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '{{url_for("static",filename="/json/mods.json")}}'
+});
+mods.initialize();
 $('#tags').tagsinput({
 	typeaheadjs: [{
-          minLength: 1,
-          highlight: true,
-    },{
-        minlength: 1,
-        name: 'citynames',
-        displayKey: 'name',
-        valueKey: 'name',
-        source: citynames.ttAdapter()
-    }],
+        highlight:true,
+		minlength: 0
+    },[{
+        name: 'tags',
+        source: tags.ttAdapter()
+    }]],
+    freeInput: true,
+	maxTags: 10,
+	maxChars: 20,
+	trimValue: true,
+	allowDuplicates: false,
+});
+$('#mods').tagsinput({
+	typeaheadjs: [{
+        highlight:true,
+		minlength: 0
+    },[{
+        name: 'mods',
+        source: mods.ttAdapter()
+    }]],
+    freeInput: true,
+	maxTags: 10,
+	maxChars: 20,
+	trimValue: true,
+	allowDuplicates: false,
+});$('#plugins').tagsinput({
+	typeaheadjs: [{
+        highlight:true,
+		minlength: 0
+    },[{
+        name: 'plugins',
+        source: plugins.ttAdapter()
+    }]],
+    freeInput: true,
+	maxTags: 10,
+	maxChars: 20,
+	trimValue: true,
+	allowDuplicates: false,
+});
+$('#datapacks').tagsinput({
+	typeaheadjs: [{
+        highlight:true,
+		minlength: 0
+    },[{
+        name: 'datapacks',
+        source: datapacks.ttAdapter()
+    }]],
     freeInput: true,
 	maxTags: 10,
 	maxChars: 20,
@@ -397,17 +541,13 @@ $("#serverType").change(function() {
   } else if ($(this).val() == "Semi-Vanilla"){
     hideAll();
 	$('#datapacksDiv').show();
-	testDatapacks();
   }else if ($(this).val() == "Modded"){
     hideAll();
 	$('#modsDiv').show();
-	testMods();
   }else {
     $('#modsDiv').hide();
 	$('#datapacksDiv').show();
 	$('#pluginsDiv').show();
-	testPlugins();
-	testDatapacks();
   }
 });
 
@@ -482,5 +622,80 @@ function testDatapacks(){
 	datapacksOn = true;
 	}
 }
+
+$('#bannerUpload').change(function () {
+
+	// user has not chosen any file
+	if(document.querySelector('#bannerUpload').files.length == 0) {
+		alert('Error : No file selected');
+		return;
+	}
+
+	// first file that was chosen
+	var file = document.querySelector('#bannerUpload').files[0];
+
+	// allowed types
+	var mime_types = [ 'image/jpeg', 'image/png','image/gif' ];
+	
+	// validate MIME type
+	if(mime_types.indexOf(file.type) == -1) {
+		alert('Error : Incorrect file type');
+		return;
+	}
+
+	// max 2 MB size allowed
+	if(file.size > 2*1024*1024) {
+		alert('Error : Exceeded size 2MB');
+		return;
+	}
+
+	// upload file now
+	var data = new FormData();
+
+	// file selected by the user
+	// in case of multiple files append each of them
+	data.append('file', document.querySelector('#bannerUpload').files[0]);
+
+	var request = new XMLHttpRequest();
+	request.open('post', '{{url_for("APIRoutes.APIBannerUpload")}}'); 
+	var progressBar = $("#progressBar")
+	progressBar.css({"width":"0%"})
+	$("#progress").css({"display":"flex"})
+	// upload progress event
+	request.upload.addEventListener('progress', function(e) {
+		var percent_complete = (e.loaded / e.total)*100;
+		progressBar.css({"width":percent_complete+"%"})
+		// Percentage of upload completed
+	});
+
+	// AJAX request finished event
+	request.addEventListener('load', function(e) {
+		$("#progress").css({"display":"none"})
+		// HTTP status message
+
+		// request.response will hold the response from the server
+		json=JSON.parse(request.response)
+		var imgsrc = json['IMGURL']
+
+		$("#BannerDisplay").css({"display":"inline-block"})
+		$("#BannerIMG").attr({"src":imgsrc})
+		var containerURL = json['URL']
+		$("#banner").attr({"value":containerURL})
+	});
+
+	// send POST request to server side script
+	request.send(data);
+});
+
+function updateVotiifer(){
+	if ($("#votifierEnabled").val() == "Enabled") {
+		$("#votifierHide").show();
+	} else {
+		$("#votifierHide").hide();
+	}
+}
+
+$("#votifierEnabled").change(updateVotiifer);
+updateVotiifer();
 </script>
 {% endblock %}

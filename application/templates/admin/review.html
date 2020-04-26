@@ -12,6 +12,12 @@
 <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
 		<div class="form-group">
+			{% if server.verified == 3 %}
+			<h2 style="margin-top:20px">This Server Was Previously Denied Because:</h2>
+			<div class="alert alert-danger" role="alert" style="margin-top:10px">
+			{{server.rejectReason}}</b>
+			</div>
+			{% endif %}
         <p>
             {{ form.name.label }}<br>
             {{ form.name(value=server.name) }}
@@ -29,12 +35,20 @@
             {{ form.country(value=server.country) }}
         </p>
 		<p>
+            {{ form.version.label }}<br>
+			<textarea name="version" id="version">{{server.version}}</textarea>
+        </p>
+		<p>
+            {{ form.displayVersion.label }}<br>
+            {{ form.displayVersion(value=server.displayVersion) }}
+        </p>
+		<p>
             {{ form.description.label }}<br>
 			<textarea name="description" id="description">{{server.description}}</textarea>
         </p>
 		<p>
             {{ form.serverType.label }}<br>
-			<select id="serverType" name="serverType" value={{server.serverType}}>
+			<select id="serverType" name="serverType">
 			<option>Vanilla</option>
 			<option>Semi-Vanilla</option>
 			<option>Bukkit</option>
@@ -42,6 +56,26 @@
 			<option>Paper</option>
 			<option>Modded</option>
 			</select>
+        </p>
+		<p>
+            {{ form.votifierEnabled.label }}<br>
+			<select id="votifierEnabled" name="votifierEnabled">
+			{% if server.votifierEnabled == 0 %}
+			<option selected>Disabled</option>
+			<option>Enabled</option>
+			{% else %}
+			<option>Disabled</option>
+			<option selected>Enabled</option>
+			{% endif %}
+			</select>
+        </p>
+		<p>
+            {{ form.votifierPort.label }}<br>
+            {{ form.votifierPort(value=server.votifierPort) }}
+        </p>
+		<p>
+            {{ form.votifierToken.label }}<br>
+			<textarea name="votifierToken" id="votifierToken">{{server.votifierToken}}</textarea>
         </p>
 		<p>
             {{ form.plugins.label }}<br>
@@ -62,16 +96,53 @@
 		<p>
             {{ form.website.label }}<br>
             {{ form.website(value=server.website) }}
+			<a href="https://{{server.website}}" target="_blank">View Website</a>
         </p>
 		<p>
             {{ form.discord.label }}<br>
             {{ form.discord(value=server.discord) }}
+			{% if server.discord != "" %}
+			<iframe src="https://discordapp.com/widget?id={{server.discord}}&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0"></iframe>
+			{% endif %}
         </p>
 		<p>
             {{ form.trailer.label }}<br>
             {{ form.trailer(value=server.trailer) }}
+			<a href="https://www.youtube.com/watch?v={{server.trailer}}" target="_blank">View Trailer</a>
         </p>
-
+		<p>
+            {{ form.totalVotes.label }}<br>
+            {{ form.totalVotes(value=server.totalVotes) }}
+        </p>
+		<p>
+            {{ form.monthlyVotes.label }}<br>
+            {{ form.monthlyVotes(value=server.monthlyVotes) }}
+        </p>
+		<p>
+            {{ form.rank.label }}<br>
+            {{ form.rank(value=server.rank) }}
+        </p>
+		<p>
+            {{ form.playerCount.label }}<br>
+            {{ form.playerCount(value=server.playerCount) }}
+        </p>
+		<p>
+            {{ form.playerMax.label }}<br>
+            {{ form.playerMax(value=server.playerMax) }}
+        </p>
+		<div>
+		<p>Icon</p>
+		<img src="{{server.icon}}">
+		</div>
+		<div>
+		<p>Banner</p>
+		<img src="{{server.banner}}">
+		</div>
+		<p>
+            {{ form.banner.label }}<br>
+            {{ form.banner(value=server.banner) }}
+			<p> Default Banner Loc </p><input value="/images/main/LoadingBanner.webp" disabled>
+        </p>
 		<p>
             {{ form.rejectReason.label }}<br>
 			<textarea name="rejectReason" id="rejectReason">{{server.rejectReason}}</textarea>
@@ -81,6 +152,9 @@
 		</div>
 </form>
 </div>
+<script>
+	$("#serverType").val('{{server.serverType}}')
+</script>
 {% endblock %}
 
 {% block body %}

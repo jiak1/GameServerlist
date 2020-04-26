@@ -1,0 +1,55 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "servers" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/myServers.css')}}">
+<title>My Servers - Minecraft Server Lists</title>
+{% endblock %}
+
+{% block beforeBody %}
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-sm" style="background-color:white;padding:10px;padding-top:30px;border-radius:5px">
+	{% include 'notify.html' %}
+	<h3 class="h3 font-weight-normal" style="margin:auto;width:50%;text-align:center;color:black;">Manage Your Servers</h2>
+	<div style="margin-top:30px" id="ServerList">
+	{% for server in servers %}
+	<div class="card" style="margin-bottom:20px;max-width:700px;margin-left:auto;margin-right:auto;background-color:#c7c7c75e;border:none;color:black;font-weight:500;">
+		<img class="card-img-top" src="{{server.banner}}">
+		{% if server.online %}
+		<a class="badge badge-success" style="color:white" id="serverStatus">Online</a>
+		{% else %}
+		<a class="badge badge-danger" style="color:white" id="serverStatus">Offline</a>
+		{% endif %}
+		<div class="card-body" style="padding-bottom:5px">
+			{% if server.verified == 0 or server.verified == 3 %}
+			<h5 class="card-title float-left"><b>{{server.name}}</b> <span class="badge badge-warning">Pending Verification</span></h5>
+			{% elif server.verified == 1 %}
+			<h5 class="card-title float-left"><b>{{server.name}}</b> <span class="badge badge-dark">{{server.displayVersion}}</span></h5>
+			{% elif server.verified == 2%}
+			<h5 class="card-title float-left"><b>{{server.name}}</b> <span class="badge badge-danger">Failed Verification</span></h5>
+			{% endif %}
+			<p style="float:right;font-size:22.4px;font-weight:600"><i class="fas fa-users"></i> {{server.playerCount}}/{{server.playerMax}}</p><br><br>
+			<p class="card-text">{{server.description}}</p>
+		</div>
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item" style="background-color:inherit !important;border: none;">Rank: <span style="margin-right:20px" class="badge badge-dark">{{server.rank}}</span>Votes: <span class="badge badge-dark">{{server.monthlyVotes}}</span></li>
+		</ul>
+		<div class="card-body">
+			{% if server.verified == 1 %}
+			<a type="button" class="main-btn btn btn-primary" href="{{url_for('MCRoutes.editServerPage',serverid=server.id)}}" style="margin-right:10px">Edit Server</a>
+			<a type="button" class="main-btn btn btn-info"  href="{{url_for('MCRoutes.pingServerPage',serverid=server.id)}}">Ping Server</button>
+			{% elif server.verified == 2 %}
+			<a type="button" class="main-btn btn btn-warning" href="{{url_for('MCRoutes.editServerPage',serverid=server.id)}}" style="margin-right:10px">Fix Server</a>
+			{% endif %}
+			<a type="button" class="main-btn btn btn-danger float-right" href="{{url_for('MCRoutes.serverDeletePage',serverid=server.id)}}">Delete Server</a>
+	</div>
+	</div>
+	{% endfor %}
+	</div>
+	<hr>
+	<p style="width:50%;text-align:center;margin:auto;">End of your servers.</p>
+</div>
+{% endblock %}

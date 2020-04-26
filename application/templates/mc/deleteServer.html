@@ -1,0 +1,42 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "servers" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/account.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/form.css')}}">
+<title>Delete Server - Minecraft Server Lists</title>
+{% endblock %}
+
+{% block beforeBody %}
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-sm" style="background-color:white;padding:10px;padding-top:30px;border-radius:5px">
+	{% include 'notify.html' %}
+	<h4 class="h3 font-weight-normal" style="margin:auto;width:50%;text-align:center;color:black;">Delete Server</h4>
+	<div id="form-custom" style="background-color:white;padding-top:0px">
+	<form action="" method="post" class="form-account" role="form" id="DeleteForm">
+		{{ deleteForm.hidden_tag() }}
+	<p class="form-text text-muted" style="text-align:center">Confirm you wish to delete the following server: <b>{{server.name}}</b></p>
+	<div class="collapse show" id="deleteInfo" style="padding-top:0px;padding-bottom:20px">
+	<div class="card card-body">
+		<p>Deleting this Server will instantly remove all of it's data, including irreversibly <b>deleting all of your votes and ranking.</b></p>
+	</div>
+	</div>
+
+	<div class="form-label-group">
+			<input type="text" id="confirmName" name="confirmName" class="form-control" placeholder="Confirm Server Name" required>
+			<label for="confirmName">Confirm Server Name</label>
+	</div>
+
+	<div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" required> I understand that deleting this server is instant and irreversible.
+    </label>
+  </div>
+
+	<button class="btn btn-lg btn-danger btn-block" type="submit" name="deleteSubmit" id="deleteSubmit">Permanently Delete Server</button></form>
+	</div>
+</div>
+{% endblock %}

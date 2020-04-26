@@ -1,0 +1,91 @@
+<script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+<script src="{{url_for('static',filename='js/bootstrap-tagsinput.min.js')}}"></script>
+<header class="green-primary-back">
+	<div class="container-fluid" style="padding-top:15px;max-width:90%">
+	<div class="container-md" style="padding-bottom:35px;">
+		<img src="{{url_for('static',filename='images/background3.png')}}" class="imgCenter" style="max-width:95%">
+		<div>
+		<div class="input-group input-group-lg searchInput">
+			<input type="text" class="form-control removeOutline" placeholder="Find a server you're interested in..." aria-label="Search box" aria-describedby="basic-addon2" name="search" id="search" value="{{search}}">
+			<button id="searchButton" class="btn btn-light removeOutline searchButton" type="button">Search</button>
+		</div></div>
+		<div id="tags" style = "padding-top:15px;text-align:center">
+			<a href="/" class="btn btn-outline-light tagButton"><i class="fas fa-trophy"></i> Top</a>
+			<a href="{{url_for('MCRoutes.tagSearchPage',tagname='New')}}" class="btn btn-outline-light tagButton"><i class="far fa-clock"></i> New</a>
+			<a href="{{url_for('MCRoutes.tagSearchPage',tagname='Creative')}}" class="btn btn-outline-light tagButton"><i class="fas fa-infinity"></i> Creative</a>
+			<a href="{{url_for('MCRoutes.tagSearchPage',tagname='Survival')}}" class="btn btn-outline-light tagButton"><img src="{{url_for('static',filename='images/homeicon.png')}}" class="textIcon"> Survival</a>
+			<a href="{{url_for('MCRoutes.tagSearchPage',tagname='PVP')}}" class="btn btn-outline-light tagButton"><img src="{{url_for('static',filename='images/swordcrossicon.png')}}" class="textIcon"> PVP</a>
+			<a href="{{url_for('MCRoutes.tagSearchPage',tagname='Vanilla')}}" class="btn btn-outline-light tagButton"><i class="fas fa-heart"></i> Vanilla</a>
+			<a href="{{url_for('MCRoutes.tagsPage')}}" class="btn btn-outline-light tagButton"><i class="fas fa-tags"></i> More</a>
+		</div>
+  	</div>
+	</div>
+	</div>
+</header>
+<script>
+var tags = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '{{url_for("static",filename="/json/tags.json")}}',
+});
+tags.initialize();
+var datapacks = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '{{url_for("static",filename="/json/datapacks.json")}}',
+});
+datapacks.initialize();
+var plugins = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '{{url_for("static",filename="/json/plugins.json")}}',
+});
+plugins.initialize();
+var mods = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.obj.whitespace,
+    prefetch: '{{url_for("static",filename="/json/mods.json")}}',
+});
+mods.initialize();
+$('#search').tagsinput({
+	typeaheadjs: [{
+        highlight:true,
+		minlength: 0
+    },[{
+        name: 'plugins',
+        source: plugins.ttAdapter(),
+    },{
+        name: 'mods',
+        source: mods.ttAdapter()
+    },{
+        name: 'datapacks',
+        source: datapacks.ttAdapter(),
+    },{
+        name: 'tags',
+        source: tags.ttAdapter(),
+    }]],
+    freeInput: true,
+	trimValue: true,
+	allowDuplicates: false,
+});
+
+var typeaheadEle = document.getElementsByClassName("twitter-typeahead")[0]
+var bootTags = document.getElementsByClassName("bootstrap-tagsinput")[0]
+
+function updateMenu(){
+	var rect = typeaheadEle.getBoundingClientRect();
+    var rect2 = bootTags.getBoundingClientRect();
+    var dif = rect.left-rect2.left
+    $(".tt-menu").css({"left":dif+"px"})
+}
+$( ".tt-input" ).keypress(updateMenu)
+$( ".tt-input" ).keyup(updateMenu)
+$( ".tt-input" ).keydown(updateMenu)
+
+x = '{{url_for("MCRoutes.MCHomePage")}}'
+$( "#searchButton" ).click(function() {
+  inp = $("#search").val()
+  window.location.href= x+'?search='+inp
+});
+
+</script>

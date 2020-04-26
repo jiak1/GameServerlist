@@ -1,0 +1,14 @@
+body{
+	background-color:#18A558;
+}
+
+.main-btn{
+	font-weight:600 !important;
+}
+
+#serverStatus{
+	position:absolute;
+	margin-top: -7.5px;
+	margin-right:-8.4px;
+	right:0px;
+}

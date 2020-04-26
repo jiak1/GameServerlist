@@ -1,0 +1,12 @@
+<p>Dear {{ user.email }},</p>
+<p>
+    <h1>Your data is ready for download!</h1> 
+	To download it simply <a href="{{ url_for('MCRoutes.retrieveDataPage', _external=True) }}"> click here</a>.
+</p>
+<p>Alternatively, you can paste the following link in your browser's address bar:</p>
+<p>{{url_for('MCRoutes.retrieveDataPage', _external=True) }}</p>
+<br>
+<h4>For security purposes you have up to 2 days to use this link.</h4>
+
+<p>Sincerely,</p>
+<p>The Serverlist Team</p>

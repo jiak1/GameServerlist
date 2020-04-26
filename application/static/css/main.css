@@ -13,6 +13,7 @@
 }
 .nav-item .nav-link{
 	  color: rgba(255,255,255,.75) !important;
+	  white-space:nowrap;
 }
 
 .nav-item:hover .nav-link,.nav-item:hover:active .nav-link{
@@ -29,14 +30,72 @@
 }
 
 #title{
-	font-size: calc(24px + (36 - 24) * ((100vw - 350px) / (1600 - 300)));
+	font-size: calc(22px + (36 - 22) * ((100vw - 350px) / (1600 - 300)));
 	font-family:Karla,sans-serif;
 	font-weight:600;
-	margin-left:50px;
+	margin-left:12.5px;
+	display:inline-block;
+	vertical-align: sub;
+
 }
 
 #subtitle{
 	font-size:20px;
 	font-family:Karla,sans-serif;
 	font-weight:400;
+}
+
+.flag{
+	vertical-align:middle !important;
+	float:left;
+	padding-right:4px;
+}
+
+.navbar-brand{
+	margin-right:0px !important;
+}
+
+.navbar-collapse{
+	padding-left:0px;
+}
+
+#mcIcon{
+	padding-right:0px !important;
+}
+
+@media only screen and (max-width: 480px) {
+    #mcIcon {
+         max-height: 25px;
+    }
+}
+
+footer{
+	background-color:#343a40;
+	color:white;
+	margin-top:30px;
+	padding-top:10px;
+}
+
+.deep-purple{
+	border-color:white;
+}
+
+.white-link,.white-link:hover,.white-link:active,.white-link:hover:active{
+	color:white;
+}
+
+.text-uppercase{
+	margin-bottom:0px;
+}
+
+.navbar-toggler{
+	padding:0px;
+}
+
+.cookiealert{
+	background:#212327 !important;
+}
+
+.acceptcookies{
+	font-weight:450;
 }

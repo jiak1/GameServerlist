@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 	<link rel="stylesheet" href="https://cdn.statically.io/gh/jiak1/ServerList/e7b03502/bootstrap.min.css">
-	 
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.css">
 	<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
 	 {% block head %} {% endblock %}
 </head>
@@ -13,8 +13,9 @@
 <body>
 	<nav id= "mainNav" class="navbar navbar-expand-lg navbar-dark py-md-3" >
 		<div class="container-fluid" style="max-width:90%">
-		<a class="navbar-brand" href="#">
-          <img src="{{url_for('static',filename='images/icon.png')}}" align="left" alt="" style="max-width:60px;max-height:40px;padding-right:15px"><h1 id="title">Minecraft Servers</h1>
+		<a class="navbar-brand" href="/">
+		<div style="vertical-align:middle;display:inline-block">
+          <img id="mcIcon" src="{{url_for('static',filename='images/icon.png')}}" align="left" alt="" style="max-width:60px;max-height:40px;padding-right:15px"></div><h1 id="title">Minecraft Servers</h1>
         </a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="border-color: rgba(1,1,1,0);">
 		<span class="">   
@@ -27,21 +28,21 @@
 			<li class="{{ 'nav-item active' if active_page == 'home' else 'nav-item' }}">
 			<a class="nav-link" href="{{url_for('MCRoutes.MCHomePage')}}"><i class="fas fa-search"></i> Search</a>
 			</li>
-			<li class="{{ 'nav-item active' if active_page == 'servers' else 'nav-item' }}">
+			<li class="{{ 'nav-item active' if active_page == 'addserver' else 'nav-item' }}">
 			<a class="nav-link" href="{{url_for('MCRoutes.addServerPage')}}"><i class="fas fa-plus-circle"></i> Add A Server</a>
-			</li>
-			<li class="{{ 'nav-item active' if active_page == 'advertise' else 'nav-item' }}">
-			<a class="nav-link" href="{{url_for('MCRoutes.advertisePage')}}"><i class="fas fa-star"></i> Advertise</a>
 			</li>
 			{% if current_user.is_anonymous %}
 			<li class="{{ 'nav-item active' if active_page == 'login' else 'nav-item' }}"><a class="nav-link" href="{{url_for('MCRoutes.loginPage')}}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
 			</li>
 			{% else %}
-			<li class="nav-item"><a class="nav-link" href="{{url_for('MCRoutes.serversPage')}}"><i class="fas fa-server"></i> Servers</a></li>
+			<li class="{{ 'nav-item active' if active_page == 'servers' else 'nav-item' }}"><a class="nav-link" href="{{url_for('MCRoutes.serversPage')}}"><i class="fas fa-server"></i> Servers</a></li>
+			<li class="{{ 'nav-item active' if active_page == 'account' else 'nav-item' }}">
+			<a class="nav-link" href="{{url_for('MCRoutes.accountPage')}}"><i class="fas fa-user-circle"></i> Account</a>
+			</li>
 			<li class="{{ 'nav-item active' if active_page == 'logout' else 'nav-item' }}"><a class="nav-link" href="{{url_for('MCRoutes.logoutPage')}}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
 			{% endif %}
 		</ul>
-		</div></div>
+		</div>
   	</nav>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -54,9 +55,92 @@
 	<script src="https://cdn.statically.io/gh/jiak1/ServerList/e01fcaf9/80f1a476ae.js"></script>
 	{% block beforeBody %}
 	{% endblock %}
-	<div class="container-fluid" style="max-width:90%">
+	<script>
+		$( window ).resize(function() {
+			$( "#mcIcon" ).css({"max-height":$( "#title" ).height()+"px"})
+		});
+		$( "#mcIcon" ).css({"max-height":$( "#title" ).height()+"px"})
+	</script>
+	<div class="container-fluid" style="max-width:90%" id="MainContainer">
 	{% block body %} {% endblock %}
-	</div>
-</body>
+	</div></div>
+	<!-- START Bootstrap-Cookie-Alert -->
+	<div class="alert text-center cookiealert" role="alert">
+		In order to use this website you agree to our <a href="/terms">terms of service,</a> <a href="/privacy">privacy policy</a> and will let us store cookies. <a href="https://cookiesandyou.com/" target="_blank">Learn more</a>
 
+		<button type="button" class="btn btn-warning btn-sm acceptcookies" aria-label="Close">
+			Got It!
+		</button>
+	</div>
+	<!-- END Bootstrap-Cookie-Alert -->
+	<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+	<!-- Footer -->
+<footer class="page-footer font-small unique-color-dark" style="">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left mt-5">
+
+    <!-- Grid row -->
+    <div class="row mt-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 mx-auto mb-4">
+
+        <!-- Content -->
+        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+        <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>For any questions or queries send us an email at: <a class="white-link" href="mailto:contact@server-lists.com" target="_blank">contact@server-lists.com</a></p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-4 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">Important Links</h6>
+        <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a class="white-link" href="/terms">Terms Of Service</a>
+        </p>
+        <p>
+          <a class="white-link" href="/privacy">Privacy Policy</a>
+        </p>
+		<p>
+          <a class="white-link" href="/account">Manage Your Account</a>
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">Server Links</h6>
+        <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a class="white-link" href="/advertise">Advertise With Us</a>
+        </p>
+        <p>
+          <a class="white-link" href="/addserver">Add Your Server</a>
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright: Game Server Lists
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</body>
 </html>

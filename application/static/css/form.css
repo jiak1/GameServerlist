@@ -14,6 +14,13 @@
   margin: auto;
 }
 
+.form-account {
+  width: 100%;
+  max-width: 420px;
+  padding: 15px;
+  margin: auto;
+}
+
 .form-signin {
   width: 100%;
   max-width: 420px;
@@ -102,12 +109,9 @@
   }
 }
 
-body{
-	background-color:#18A558;
-}
 
-form{
-	background-color:white;
-	border-radius:10px;
-	padding:30px !important;
+#google{
+	max-height: 30px;
+	vertical-align: middle;
+	padding-right: 10px;
 }

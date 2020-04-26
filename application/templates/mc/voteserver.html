@@ -1,0 +1,60 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "vote" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/form.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/vote.css')}}">
+<title>Vote for {{server.name}} - Minecraft Server Lists</title>
+{% endblock %}
+
+{% block beforeBody %}
+<script>
+
+	function onSubmit(token) {
+      	document.getElementById("VoteForm").submit()
+    }
+
+    function validate(event) {
+      	event.preventDefault();
+      	if (document.getElementById("VoteForm").reportValidity()) {
+       		grecaptcha.execute();
+      	}
+    }
+
+    function onload() {
+      var element = document.getElementById('voteSubmit');
+      element.onclick = validate;
+    }
+
+</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onload"></script>
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-sm" style="background-color:white;padding:10px;padding-top:30px;border-radius:5px;min-height:70vh">
+	{% include 'notify.html' %}
+	<div id="form-custom" style="background-color:white;padding-top:0px">
+	<form action="" method="post" class="form-account" role="form" id="VoteForm">
+		{{ form.hidden_tag() }}
+	<div style="vertical-align:middle">
+	<h2 class="h3 font-weight-normal" style="text-align:center;color:black;">Vote for {{server.name}}</h2>
+	<div class="banner-top">
+	<img class="banner" src="{{server.banner}}"></div>
+
+	<div class="form-label-group">
+			<input type="text" id="username" name="username" class="form-control" placeholder="Minecraft Username" required maxlength="80">
+			<label for="username">Minecraft Username</label>
+	</div>
+	<div class="g-recaptcha"
+      data-sitekey="6Lep6u0UAAAAAFbBf33eRcCGDUsYygF5uWrTwXVe"
+      data-callback="onSubmit"
+      data-size="invisible">
+	</div>
+	<button class="btn btn-lg btn-success btn-block" name="voteSubmit" id="voteSubmit" type="button">Submit Vote</button>
+	
+	<a href="{{url_for('MCRoutes.viewServerPage',serverid=server.id)}}" style="margin-top:10px;line-height:1.5;font-size:1.25rem;width:100%" class="btn btn-dark">Return To Server Page</a></form>
+	</div></div>
+</div>
+
+{% endblock %}

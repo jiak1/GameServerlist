@@ -1,0 +1,9 @@
+Dear {{ user.email }},
+
+Your data is ready for download! 
+To download it simply visit {{ url_for('MCRoutes.retrieveDataPage', _external=True) }}
+
+For security purposes you have up to 2 days to use this link.
+
+Sincerely,
+The Serverlist Team

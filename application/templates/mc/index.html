@@ -3,55 +3,69 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{url_for('static',filename='css/search.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/background.css')}}">
+<script rel="preload" src="{{url_for('static',filename='js/lazy-load.js')}}"></script>
 <title>Home - Minecraft Server Lists</title>
+<!-- Flags -->
+
+<link rel="preload" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="styles.css"></noscript>
+<link href="{{url_for('static',filename='css/searchtagsinput.css')}}" rel="stylesheet">
 {% endblock %}
 
 {% block beforeBody %}
-<header class="green-primary-back">
-	<div class="container-fluid" style="padding-top:15px;max-width:90%">
-	<div class="container-md" style="padding-bottom:35px;">
-		<img src="https://cdn.statically.io/img/serverlist.jackdonaldson1.repl.co/images/background3.png" class="imgCenter" style="max-width:95%">
-		<form action="" method="post" class="" role="form">
-		<div class="input-group input-group-lg searchInput">
-			<input type="text" class="form-control removeOutline" placeholder="Find a server you're interested in..." aria-label="Search box" aria-describedby="basic-addon2" name="search">
-			<div class="input-group-append">
-				<button class="btn btn-light removeOutline searchButton" type="submit">Search</button>
-			</div>
-		</div></form>
-		<div id="tags" style = "padding-top:15px;text-align:center">
-			<button type="button" class="btn btn-outline-light tagButton"><i class="fas fa-trophy"></i> Top</button>
-			<button type="button" class="btn btn-outline-light tagButton"><i class="far fa-clock"></i> New</button>
-			<button type="button" class="btn btn-outline-light tagButton"><i class="fas fa-infinity"></i> Creative</button>
-			<button type="button" class="btn btn-outline-light tagButton"><img src="https://cdn.statically.io/img/serverlist.jackdonaldson1.repl.co/images/homeicon.png" class="textIcon"> Survival</button>
-			<button type="button" class="btn btn-outline-light tagButton"><img src="https://cdn.statically.io/img/serverlist.jackdonaldson1.repl.co/images/swordcrossicon.png" class="textIcon"> PVP</button>
-			<button type="button" class="btn btn-outline-light tagButton"><i class="fas fa-heart"></i> Vanilla</button>
-			<button type="button" class="btn btn-outline-light tagButton"><i class="fas fa-tags"></i> More</button>
-		</div>
-  	</div>
-	</div>
-	</div>
-</header>
+{% include 'mc/searchbar.html' %}
 {% endblock %}
 
 {% block body %}
+<div class="area" id="prettyBackground" >
+	<ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+</div >
 <div class="row row-cols-1 row-cols-md-2" style="padding-top:50px">
 {% for server in servers %}
 <div class="col mb-4" style="width:100%;padding-bottom:30px;">
-	<div class="card server-info" style="cursor: pointer;" url="{{url_for('MCRoutes.serverInfoPage')}}/{{server.id}}">
+	<div class="card server-info CLICKABLE" style="cursor: pointer;" url="{{url_for('MCRoutes.serverInfoPage')}}/{{server.id}}">
 		<div class="card-holder CLICKABLE">
-			<a class="badge badge-success CLICKABLE" id="version">1.15.2</a>
-    	<img src="{{server.banner}}" class="card-img-top CLICKABLE">
+			{% if server.online == 1 %}
+			<a class="tag badge badge-success CLICKABLE" id="version">{{server.displayVersion}}</a>
+			{% else %}
+			<a class="tag badge badge-danger CLICKABLE" id="version">{{server.displayVersion}}</a>
+			{% endif %}
+    	{% if loop.index <= 4 %}
+		<img src="{{server.banner}}" class="card-img-top CLICKABLE">
 		</div>
+		{% else %}
+		<img src="/images/main/LoadingBanner.webp" data-srcset="{{server.banner}}" class="lazy card-img-top CLICKABLE">
+		</div>
+		{% endif %}
     	<div class="card-body CLICKABLE">
-		<div id="info" class="row CLICKABLE">
-			<div class="col-7 CLICKABLE">
-			<a class="badge badge-dark float-left CLICKABLE" id="rank">{{server.id}}</a><a class="card-title float-left server-title CLICKABLE" id="ServerName" style="margin-bottom:0px;font-weight:600">{{server.name}}</a></div>
-			<div class="col-5 CLICKABLE">  
-			<div id="IP" class="input-group float-right">
-				<input type="text" class="form-control" value="{{server.ip}}" readonly style="font-weight:500" id="IP{{server.id}}">
-				<div class="input-group-append">
-					<button class="btn btn-secondary" type="button" onclick="copyIP({{server.id}})"><i class="far fa-copy"></i></button>
-				</div>
+		<div id="info" class="CLICKABLE" style="display:inline-block;width:100%;height:100%">
+
+			<a style="display:inline-block" class="badge badge-dark CLICKABLE" id="rank">{{server.rank}}</a>
+			<a class="card-title server-title CLICKABLE" id="ServerName" style="display:inline-block;white-space:nowrap;font-weight:600;padding-right:10px;margin-bottom:0px;"><div class="f32"><div class="flag {{server.country.lower()}}" style=""></div></div><p style="padding-left:40px;margin-bottom:0px;">{{server.name}}</p></a>
+			
+			<p class="CLICKABLE" style="display:inline-block;float:right;font-size:22.4px;font-weight:600;margin-bottom:0px;"><i class="fas fa-users CLICKABLE"></i> {{server.playerCount}}</p>
+			<div id="Tags" style="display:block;padding-left:25px;margin-bottom:10px">
+				{% for tag in server.tags.split(',') %}
+				<a href="#" class="tag badge badge-dark">{{tag}}</a>
+				{% endfor %}
+			</div>
+			<div id="IP" class="input-group" style="display:block;padding-left:25px;">
+				<input type="text" class="form-control" value="{{server.displayIP}}" readonly style="display:inline-block;font-weight:500;width:calc(100% - 40px)" id="IP{{server.id}}">
+				<div class="input-group-append" style="display:inline-block;">
+					<button class="btn btn-secondary" type="button" onclick="copyIP({{server.id}})" style="display:inline-block;margin-left:-4px;margin-top:-4px"><i class="far fa-copy"></i></button>
+
 			</div></div>
 		</div>
 		<div id="" class="row" style="padding:0px">
@@ -66,6 +80,13 @@
 </div>
 {% endfor %}
 </div>
+<div id="pages">
+<nav>
+  <ul class="pagination">
+    <li class="page-item {% if not prev_url %} disabled{% endif %}"><a class="page-link" href="{{ prev_url or '#' }}">Previous</a></li>
+    <li class="page-item {% if not next_url %} disabled{% endif %}"><a class="page-link" href="{{ next_url or '#' }}">Next</a></li>
+  </ul>
+</nav></div></div>
 <script>
 $( ".server-info" ).click(function(event) {
 if ($(event.target).hasClass("CLICKABLE") == false){
@@ -85,5 +106,20 @@ function copyIP(id) {
   /* Copy the text inside the text field */
   document.execCommand("copy");
 }
+
+var tagURL = "{{url_for('MCRoutes.tagSearchPage',tagname='')}}"
+$('.tag').each(function(i, obj) {
+    _tag = $(this).text()
+	$(this).attr("href", tagURL+_tag);
+});
+
+$( window ).resize(function() {
+	$( "#prettyBackground" ).css({"height":$( "#MainContainer" ).height()+40+"px"})
+});
+$( window ).on("load", function(){
+  $( "#prettyBackground" ).css({"height":$( "#MainContainer" ).height()+40+"px"})
+});
+
 </script>
+
 {% endblock %}

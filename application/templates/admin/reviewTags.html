@@ -1,0 +1,161 @@
+{% extends 'admin/base.html' %}
+
+{% block head %}
+<title>Review</title>
+<link href="{{url_for('static',filename='css/tagsinput.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block beforeBody %}
+<script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+<script src="{{url_for('static',filename='js/bootstrap-tagsinput.min.js')}}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container-sm" style="padding-top:50px" align="center">
+{% include 'notify.html' %}
+<h1> Review Tags:</h1>
+<table class="table">
+<thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Tag</th>
+      <th scope="col">Section</th>
+      <th scope="col">Owner</th>
+	  <th scope="col">Add</th>
+	  <th scope="col">Remove</th>
+    </tr>
+  </thead>
+<tbody>
+{% for tag in tags %}
+<tr id="ROW-{{tag.id}}">
+      <th scope="row">{{tag.id}}</th>
+      <td id="NAME-{{tag.id}}">{{tag.tag}}</td>
+      <td id="SECTION-{{tag.id}}">{{tag.section}}</td>
+      <td>{{tag.owner}}</td>
+	  <td><a class="btn btn-success" style="color:white;font-weight:500" onclick="addTag({{tag.id}})">ADD</a></td>
+	  <td><a class="btn btn-danger" style="color:white;font-weight:500" onclick="removeTag({{tag.id}})">REMOVE</a></td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+<h2>Test Tags:</h2>
+<div style="text-align:left">
+<input id="test"></input></div>
+<h3>Mods:</h3>
+<textarea style="width:100%" id="mods"></textarea>
+<h3>Datapacks:</h3>
+<textarea style="width:100%" id="datapacks"></textarea>
+<h3>Plugins:</h3>
+<textarea style="width:100%" id="plugins"></textarea>
+<h3>Tags:</h3>
+<textarea style="width:100%" id="tags"></textarea>
+<a class="btn btn-primary" style="color:white;font-weight:500;margin-top:20px;margin-bottom:100px" onclick="updateTags()">Submit Revisions</a>
+<script>
+function addTag(_ID){
+	name = $("#NAME-"+_ID).text()
+	section = $("#SECTION-"+_ID).text()
+	parentOBJ = null
+	if(section == "tags"){
+		parentOBJ = $("#tags")
+	}else if(section == "plugins"){
+		parentOBJ = $("#plugins")
+	}else if(section == "datapacks"){
+		parentOBJ = $("#datapacks")
+	}else if(section == "mods"){
+		parentOBJ = $("#mods")
+	}
+	if(parentOBJ.text() != ""){
+	parentOBJ.append(","+name)
+	}else{
+		parentOBJ.append(name)
+	}
+	$("#ROW-"+_ID).remove()
+}
+function removeTag(_ID){
+	var jqxhr = $.get( "{{url_for('AdminRoutes.APIRemoveReview')}}"+"?ID="+_ID, function() {
+		$("#ROW-"+_ID).remove()
+	})
+	.done(function() {
+		$("#ROW-"+_ID).remove()
+	})
+	.fail(function() {
+		alert( "error" );
+	})
+}
+
+function updateTags(){
+	var _data = {"TAGS":$("#tags").val(),"MODS":$("#mods").val(),"PLUGINS":$("#plugins").val(),"DATAPACKS":$("#datapacks").val()}
+	$.ajax({
+			type: "POST",
+			url: "{{url_for('AdminRoutes.APIAddTags')}}",
+			data: JSON.stringify(_data),
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			success: function(data){
+				alert("Added revisions succesfully.")
+				
+				$("#tags").val("")
+				$("#mods").val("")
+				$("#plugins").val("")
+				$("#datapacks").val("")
+			},
+			error: function(errMsg) {
+				alert("Failed to submit revisions.")
+    		},
+			timeout: 5000,
+	})
+}
+</script>
+
+<script>
+	var tags = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '{{url_for("static",filename="/json/tags.json")}}',
+	cache:false
+});
+tags.initialize();
+var datapacks = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '{{url_for("static",filename="/json/datapacks.json")}}',
+	cache:false
+});
+datapacks.initialize();
+var plugins = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '{{url_for("static",filename="/json/plugins.json")}}',
+	cache:false
+});
+plugins.initialize();
+var mods = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '{{url_for("static",filename="/json/mods.json")}}',
+	cache:false
+});
+mods.initialize();
+$('#test').tagsinput({
+	typeaheadjs: [{
+        highlight:true,
+		minlength: 0
+    },[{
+        name: 'plugins',
+        source: plugins.ttAdapter()
+    },{
+        name: 'mods',
+        source: mods.ttAdapter()
+    },{
+        name: 'datapacks',
+        source: datapacks.ttAdapter()
+    },{
+        name: 'tags',
+        source: tags.ttAdapter()
+    }]],
+    freeInput: true,
+	trimValue: true,
+	allowDuplicates: false,
+});
+</script>
+{% endblock %}

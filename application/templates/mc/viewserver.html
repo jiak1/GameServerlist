@@ -1,0 +1,160 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "viewserver" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/viewserver.css')}}">
+<title>{{server.name}} - Minecraft Server Lists</title>
+{% endblock %}
+
+{% block beforeBody %}
+<link rel="preload" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<script src="/js/moment.min.js"></script>
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-sm" style="background-color:white;padding:20px;border-radius:5px">
+	{% include 'notify.html' %}
+	<div class="row justify-content-start">
+		<div class="col-xs" style>
+	<img class="" style="display:flex;align-items:center" src="{{server.icon}}"></div>
+	<div class="col-xs"><h1 class="" style="display:flex;align-items:center;height:100%;margin-bottom:0px">{{server.name}}</h1></div>
+	<div class="col-sm-2" style="display:flex;align-items:center"><a href="{{server.id}}/vote" style="font-weight:500;font-size:1.2rem;width:100%" class="btn btn-success">Vote</a></div>
+	</div>
+
+	<div class="row" style="padding-top:20px">
+	<div class="col-md-7" style="margin-bottom: 20px;">
+	{% if server.trailer != "" %}
+	<div id="trailerShowcase" class="" style=""><div class="videoWrapper">
+		<iframe id="trailerFrame" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen src="https://www.youtube.com/embed/{{server.trailer}}?autoplay=1" ></iframe>
+	</div></div>
+	{% endif %}
+	<textarea id="Description" class="form-control" readonly>{{server.description}}</textarea>
+	</div>
+	<div class="col-md-5">
+		<table class="table table-bordered" id="MainTable">
+		<img src="{{server.banner}}" style="width: 100%;border-top-left-radius: 5px;border-top-right-radius: 5px;" id="BannerIMG">
+		<div id="IP" class="input-group" style="border-radius:0px">
+		<div class="input-group-prepend">
+    	<span class="btn btn-secondary" id="IPNotify">Server IP</span>
+  		</div>
+		<input type="text" class="form-control" value="{{server.displayIP}}" readonly style="" id="IPText">
+		<div class="input-group-append" style="">
+		<button class="btn btn-secondary" type="button" onclick="copyIP({{server.id}})" style="" id="COPYButton"><i class="far fa-copy"></i></button></div></div>
+
+		<tbody>
+			<tr>
+			<th class="firstCol" scope="row">Server Status</th>
+			{% if server.online %}
+			<td><div class="btn btn-success">Online</div></td>
+			{% else %}
+			<td><div class="btn btn-danger">Offline</div></td>
+			{% endif %}
+			</tr>
+			<tr>
+			<th class="firstCol" scope="row">Players</th>
+			<td>{{server.playerCount}}/{{server.playerMax}}</td>
+			</tr>
+			<tr>
+			<th class="firstCol" scope="row">Version</th>
+			<td>{{server.displayVersion}}</td>
+			</tr>
+			<th class="firstCol" scope="row">Rank</th>
+			<td>{{server.rank}}</td>
+			</tr>
+			<tr>
+			<th class="firstCol" scope="row">Monthly Votes</th>
+			<td>{{server.monthlyVotes}}</td>
+			</tr>
+			<tr>
+			<th class="firstCol" scope="row">All Time Votes</th>
+			<td>{{server.totalVotes}}</td>
+			</tr>
+			<tr>
+			<th class="firstCol" scope="row">Last Update</th>
+			<td >{{ momentjs(server.lastPingTime).fromNow() }}</td>
+			</tr>
+			<th class="firstCol" scope="row">Country</th>
+			<td><div class="f32" style="display:inline-block;margin-right:5px;vertical-align:middle"><div class="flag {{server.country.lower()}}" style=""></div></div><div style="display:inline-block;vertical-align:middle">{{server.country}}</div></td>
+			</tr>
+			{% if server.website != "" %}
+			<th class="firstCol" scope="row">Website</th>
+			<td><a href="https://{{server.website}}" target="_blank" style="word-wrap:break-word;">{{server.website}}</a></td>
+			</tr>
+			{% endif %}
+			</tr>
+			{% if server.tags != "" %}
+			<th class="firstCol" scope="row">Tags</th><td>
+			{% for tag in server.tags.split(',') %}
+			<a href="#" class="tag badge badge-dark">{{tag}}</a>
+			{% endfor %}
+			</td></tr>
+			{% endif %}
+
+			{% if server.plugins != "" %}
+			<th class="firstCol" scope="row">Plugins</th><td>
+			{% for tag in server.plugins.split(',') %}
+			<a href="#" class="tag badge badge-dark">{{tag}}</a>
+			{% endfor %}
+			</td></tr>
+			{% endif %}
+
+			{% if server.mods != "" %}
+			<th class="firstCol" scope="row">Mods</th><td>
+			{% for tag in server.mods.split(',') %}
+			<a href="#" class="tag badge badge-dark">{{tag}}</a>
+			{% endfor %}
+			</td></tr>
+			{% endif %}
+
+			{% if server.datapacks != "" %}
+			<th class="firstCol" scope="row">Datapacks</th><td>
+			{% for tag in server.datapacks.split(',') %}
+			<a href="#" class="tag badge badge-dark">{{tag}}</a>
+			{% endfor %}
+			</td></tr>
+			{% endif %}
+		</tbody>
+		</table>
+		{% if server.discord != "" %}
+		<iframe src="https://discordapp.com/widget?id={{server.discord}}&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0"></iframe>
+		{% endif %}
+	</div>	
+	</div>
+</div>
+<script>
+	function copyIP(id) {
+  /* Get the text field */
+  var copyText = document.getElementById("IPText");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+}
+
+function setHeight(ele){
+	//alert(ele.scrollTop)
+    ele.css({"height":2+ele[0].scrollHeight+"px"} );
+}
+setHeight($('#Description'));
+updateBanner();
+$( window ).resize(function() {
+  setHeight($('#Description'));
+  updateBanner();
+});
+
+function updateBanner(){
+	var wide = $("#MainTable").width()
+	$("#BannerIMG").css({"width":wide+"px"})
+	$("#IP").css({"width":wide+"px"})
+}
+var tagURL = "{{url_for('MCRoutes.tagSearchPage',tagname='')}}"
+$('.tag').each(function(i, obj) {
+    _tag = $(this).text()
+	$(this).attr("href", tagURL+_tag);
+});
+</script>
+{% endblock %}

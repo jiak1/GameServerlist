@@ -1,0 +1,31 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "emailconfirm" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/form.css')}}">
+<title>Account Activation Required - Minecraft Server Lists</title>
+{% endblock %}
+
+{% block beforeBody %}
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-sm">
+	{% include 'notify.html' %}
+<div id="form-custom">
+  <form action="" method="post" class="form-signin" role="form">
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Account Activation Required</h1>
+    <p>In order to activate your account we require you to click on the link in the activation email that was sent to you, make sure you check your spam and junk folders if you have not recieved it. This link will expire after 30 minutes. Alternatively you can log in with your Google Account if it shares the same email address which will automatically activate the account.</p>
+  </div>
+
+  <div class="form-label-group">
+    <input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus="">
+    <label for="email">Email</label>
+  </div>
+
+  <button class="btn btn-lg btn-success btn-block" type="submit" name="submit" id="submit">Send Another Activation Email</button>
+  </form>
+  </div></div>
+{% endblock %}
