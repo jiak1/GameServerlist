@@ -79,15 +79,15 @@ def loginPage():
 		return redirect(url_for('MCRoutes.MCHomePage'))
 	return render_template('mc/login.html', form=form)
 
-loginURL = request.base_url
-if(PRODUCTION):
-	loginURL = "minecraft.server-lists.com/googlelogin/callback"
-
 @MCRoutes.route(prefix+"googlelogin",methods=['GET'])
 def googleLoginPage():
 	google_provider_cfg = get_google_provider_cfg()
 	authorization_endpoint = google_provider_cfg["authorization_endpoint"]
     
+	loginURL = request.base_url
+	if(PRODUCTION):
+		loginURL = "minecraft.server-lists.com/googlelogin/callback"
+
     # Use library to construct the request for Google login and provide
     # scopes that let you retrieve user's profile from Google
 	request_uri = client.prepare_request_uri(
