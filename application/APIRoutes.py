@@ -6,14 +6,14 @@ from .SendVote import sendVote
 from .Models import Server,ReviewTag
 from .Program import mc_mail as mail, elasticsearch
 from random import randrange
-from .Config import IMGDOMAIN,PRODUCTION,ISADMIN
+from .Config import IMGDOMAIN,getProduction,ISADMIN
 
 APIRoutes = Blueprint('APIRoutes', __name__)
 curDir = os.path.dirname(os.path.realpath(__file__))
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 prefix="/"
-if(PRODUCTION == False):
+if(getProduction() == False):
 	prefix = "/minecraft/" 
 
 if(ISADMIN):

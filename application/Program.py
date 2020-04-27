@@ -13,7 +13,7 @@ from requests_aws4auth import AWS4Auth
 
 
 def getElasticSearchURL():
-	if(PRODUCTION == True):
+	if(getProduction() == True):
 		host = BONSAIURL # WITHOUT HTTP AND ENDING /
 		region = 'us-east-2' # e.g. us-east-2
 
@@ -28,7 +28,6 @@ def getElasticSearchURL():
 			verify_certs = True,
 			connection_class = RequestsHttpConnection
 		)
-
 	bonsai = BONSAIURL
 	auth = re.search('https\:\/\/(.*)\@', bonsai).group(1).split(':')
 	host = bonsai.replace('https://%s:%s@' % (auth[0], auth[1]), '')
@@ -56,7 +55,6 @@ def getElasticSearchURL():
 #PROJECT_ROOT= "mysql://sddusername:sddpassword@c/sddproject"
 #PROJECT_ROOT = "mysql://jiak1_username:Password@johnny.heliohost.org/jiak1_sddprojectdb"
 
-getConfig()
 elasticsearch = getElasticSearchURL()
 
 mc_db = SQLAlchemy()
@@ -77,8 +75,7 @@ client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
 mc_login.login_view = 'MCRoutes.loginPage'
 admin_login.login_view = "AdminRoutes.homePage"
-print("PRODUCTION:"+str(PRODUCTION))
-if(PRODUCTION == True):
+if(getProduction() == True):
 	mail_settings = PRODUCTION_MAIL_SETTINGS
 else:
 	mail_settings = DEBUG_MAIL_SETTINGS
@@ -91,9 +88,7 @@ def create_mc_app():
 
 	mc_app.config.update(mail_settings)
 	mc_app.config['ADMINS']= ['jackdonaldson005@gmail.com']
-	if(PRODUCTION == True):
-		print("CONFIGURING")
-		print("PRODUCTION:"+str(PRODUCTION))
+	if(getProduction() == True):
 		mc_app.config['SERVER_NAME']= SERVER_NAME
 	mc_app.secret_key = MC_SECRET
 
@@ -135,7 +130,7 @@ def create_admin_app():
 
 	admin_app.config.update(mail_settings)
 	admin_app.config['ADMINS']= ['jackdonaldson005@gmail.com']
-	if(PRODUCTION):
+	if(getProduction()):
 		admin_app.config['SERVER_NAME']= SERVER_NAME
 
 	admin_app.secret_key = ADMIN_SECRET

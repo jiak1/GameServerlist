@@ -1,7 +1,6 @@
 import os
 
 IMGDOMAIN=os.getenv("IMG_DOMAIN")
-PRODUCTION=os.getenv("PRODUCTION")
 GOOGLE_CLIENT_ID = "608563324926-cc7o80bfiht44qr4joqvrfd6r58sh6n3.apps.googleusercontent.com"
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
@@ -32,12 +31,11 @@ PRODUCTION_MAIL_SETTINGS = {
     "MAIL_PASSWORD": os.getenv("PRODUCTION_MAIL_PASSWORD")
 }
 
-def getConfig():
-	global PRODUCTION
-	if(PRODUCTION == "False"):
-		PRODUCTION = False
+def getProduction():
+	if(os.getenv("PRODUCTION") == "False"):
+		return False
 	else:
-		PRODUCTION = True
+		return True
 
 def SetAdmin(val):
 	global ISADMIN

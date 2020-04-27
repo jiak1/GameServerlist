@@ -5,7 +5,7 @@ import os
 from .Forms import LoginForm,RegisterForm,ServerForm,ResetPasswordForm,VotifierTestForm,AccountEmailChangeForm,AccountPasswordChangeForm,VoteForm,AccountUsernameChangeForm,AccountGoogleLinkForm,AccountDeleteForm,ServerDeleteForm
 from .Models import Account, Server,Vote
 from .Util import UpdateServerWithForm,update_server_details, send_password_reset_email,send_username_reminder_email, getVersion,get_google_provider_cfg,sendVotifierVote,validateServer,sendData,updateTagRequests,verifyCaptcha,checkHasVoted,submitVote,sendConfirmEmail
-from .Config import PRODUCTION,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,POSTS_PER_PAGE
+from .Config import getProduction,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,POSTS_PER_PAGE
 import requests
 import json
 import datetime
@@ -16,7 +16,7 @@ curDir = os.path.dirname(os.path.realpath(__file__))
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 prefix = "/"
-if(PRODUCTION == False):
+if(getProduction() == False):
 	print("TO CONNECT GO TO testing.server-lists.com/minecraft/")
 	prefix = "/minecraft/" 
 

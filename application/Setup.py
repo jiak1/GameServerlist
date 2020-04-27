@@ -1,8 +1,8 @@
 import logging
 from logging.handlers import SMTPHandler
-from .Config import PRODUCTION
+from .Config import getProduction
 def setup(app):
-	if(PRODUCTION == False):
+	if(getProduction() == False):
 		return
 	mail_handler = SMTPHandler(
 				mailhost=(app.config['MAIL_SERVER'], 587),
