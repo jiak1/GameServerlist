@@ -139,16 +139,15 @@ def updateServersPage():
 	doUpdate()
 	return redirect(url_for("MCRoutes.MCHomePage"))
 
-@crontab.job(minute="1")
+@crontab.job(minute="*/1")
 def doUpdate():
-	print("UPDATING SERVERS")
 	checkServerUpdates()
 
-@crontab.job(minute="0", hour="1")
+@crontab.job(minute="0", hour="*/1")
 def doCleanup():
 	cleanupTempBanners()
 	cleanupTempData()
 
-@crontab.job(minute="0", hour="0",day="1")
+@crontab.job(minute="0", hour="0",day="*/1")
 def doRank():
 	serverRank()

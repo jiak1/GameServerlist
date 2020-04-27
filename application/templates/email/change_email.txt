@@ -1,0 +1,11 @@
+Dear {{ user.username }},
+
+To change the email address for your account we need you to visit the following link:
+
+{{ url_for('MCRoutes.changeEmailPage', token=token, _external=True) }}
+
+If you have not requested this email, simply ignore this message.
+
+Sincerely,
+
+The Server List Team
