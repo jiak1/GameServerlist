@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="{{url_for('static',filename='css/background.css')}}">
 <script rel="preload" src="{{url_for('static',filename='js/lazy-load.js')}}"></script>
 <title>Home - Minecraft Server Lists</title>
-<!-- Flags -->
 <meta name="description" content="Easily Search and find the top Minecraft Servers using our Minecraft Server List. Host your MC Server IP today with us for free and advertise to get more players online.">
 <script type="application/ld+json">
     {
@@ -20,7 +19,8 @@
       }
     }
 </script>
-<link rel="preload" href="{{url_for('static',filename='css/flags32.css')}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<!-- Flags -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/world-flags-sprite@0.0.2/stylesheets/flags32.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="styles.css"></noscript>
 <link href="{{url_for('static',filename='css/searchtagsinput.css')}}" rel="stylesheet">
 {% endblock %}
