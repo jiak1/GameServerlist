@@ -5,7 +5,7 @@ import os
 from ..Forms import LoginForm,RegisterForm,AdminServerForm,PasswordChangeForm,EmailChangeForm,TagsForm
 from ..Models import Admin,Server,Account,ReviewTag
 from ..Util import UpdateAdminServerWithForm,addNewTags,sendServerApprovedEmail,sendServerDeniedEmail
-from ..Config import PRODUCTION
+from ..Config import getProduction
 import datetime
 
 AdminRoutes = Blueprint('AdminRoutes', __name__)
@@ -43,7 +43,7 @@ indexCreation = {
 }
 
 prefix = "/"
-if(PRODUCTION == False):
+if(getProduction() == False):
 	prefix = "/admin/"
 
 @login.user_loader
