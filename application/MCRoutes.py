@@ -182,13 +182,8 @@ def serversPage():
 def serverInfoPage():
 	return "Works"
 
-@MCRoutes.errorhandler(404)
-def not_found_error(error):
-    return render_template('mc/error.html')
-
 @MCRoutes.errorhandler(Exception)
 def internal_error(error):
-    db.session.rollback()
     return render_template('mc/error.html')
 
 @MCRoutes.route(prefix+"forgotpassword",methods=['GET','POST'])
