@@ -144,11 +144,11 @@ def doUpdate():
 	print("UPDATING SERVERS")
 	checkServerUpdates()
 
-@crontab.job(hour="1")
+@crontab.job(minute="0", hour="1")
 def doCleanup():
 	cleanupTempBanners()
 	cleanupTempData()
 
-@crontab.job(hour="24")
+@crontab.job(minute="0", hour="24")
 def doRank():
 	serverRank()
