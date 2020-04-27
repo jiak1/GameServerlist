@@ -7,8 +7,20 @@
 <script rel="preload" src="{{url_for('static',filename='js/lazy-load.js')}}"></script>
 <title>Home - Minecraft Server Lists</title>
 <!-- Flags -->
-
-<link rel="preload" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="description" content="Easily Search and find the top Minecraft Servers using our Minecraft Server List. Host your MC Server IP today with us for free and advertise to get more players online.">
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://minecraft.server-lists.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://minecraft.server-lists.com/?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+</script>
+<link rel="preload" href="{{url_for('static',filename='css/flags32.css')}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="styles.css"></noscript>
 <link href="{{url_for('static',filename='css/searchtagsinput.css')}}" rel="stylesheet">
 {% endblock %}
@@ -46,16 +58,16 @@
 		<img src="{{server.banner}}" class="card-img-top CLICKABLE">
 		</div>
 		{% else %}
-		<img src="/images/main/LoadingBanner.webp" data-srcset="{{server.banner}}" class="lazy card-img-top CLICKABLE">
+		<img src="/images/main/LoadingBanner.webp" data-srcset="{{server.banner}}" class="lazy card-img-top CLICKABLE" alt="{{server.name}}">
 		</div>
 		{% endif %}
     	<div class="card-body CLICKABLE">
 		<div id="info" class="CLICKABLE" style="display:inline-block;width:100%;height:100%">
 
-			<a style="display:inline-block" class="badge badge-dark CLICKABLE" id="rank">{{server.rank}}</a>
+			<a style="display:inline-block" class="badge badge-dark CLICKABLE" id="rank" title="Rank #{{server.rank}}">{{server.rank}}</a>
 			<a class="card-title server-title CLICKABLE" id="ServerName" style="display:inline-block;white-space:nowrap;font-weight:600;padding-right:10px;margin-bottom:0px;"><div class="f32"><div class="flag {{server.country.lower()}}" style=""></div></div><p style="padding-left:40px;margin-bottom:0px;">{{server.name}}</p></a>
 			
-			<p class="CLICKABLE" style="display:inline-block;float:right;font-size:22.4px;font-weight:600;margin-bottom:0px;"><i class="fas fa-users CLICKABLE"></i> {{server.playerCount}}</p>
+			<p class="CLICKABLE" style="display:inline-block;float:right;font-size:22.4px;font-weight:600;margin-bottom:0px;" title="Players {{server.playerCount}}/{{server.playerMax}}"><i class="fas fa-users CLICKABLE"></i> {{server.playerCount}}</p>
 			<div id="Tags" style="display:block;padding-left:25px;margin-bottom:10px">
 				{% for tag in server.tags.split(',') %}
 				<a href="#" class="tag badge badge-dark">{{tag}}</a>
@@ -64,7 +76,7 @@
 			<div id="IP" class="input-group" style="display:block;padding-left:25px;">
 				<input type="text" class="form-control" value="{{server.displayIP}}" readonly style="display:inline-block;font-weight:500;width:calc(100% - 40px)" id="IP{{server.id}}">
 				<div class="input-group-append" style="display:inline-block;">
-					<button class="btn btn-secondary" type="button" onclick="copyIP({{server.id}})" style="display:inline-block;margin-left:-4px;margin-top:-4px"><i class="far fa-copy"></i></button>
+					<button class="btn btn-secondary" type="button" onclick="copyIP({{server.id}})" style="display:inline-block;margin-left:-4px;margin-top:-4px" title="Copy Server IP Address"><i class="far fa-copy"></i></button>
 
 			</div></div>
 		</div>
