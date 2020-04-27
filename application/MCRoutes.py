@@ -182,6 +182,7 @@ def serversPage():
 def serverInfoPage():
 	return "Works"
 
+
 @MCRoutes.errorhandler(Exception)
 def internal_error(error):
     return render_template('mc/error.html')
