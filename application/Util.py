@@ -329,11 +329,7 @@ def sendConfirmEmail(user):
                                          user=user, token=token))
 
 def sendChangeEmail(user):
-	print("1")
 	token = user.get_email_change_token()
-	print("2")
-	print("#:"+str(user.changeEmail))
-	print("##:"+str(token))
 	send_email('[Serverlist] Change Email',
                sender="contact@server-lists.com",
                recipients=[str(user.changeEmail)],
@@ -341,4 +337,10 @@ def sendChangeEmail(user):
                                          user=user, token=token),
                html_body=render_template('email/change_email.html',
                                          user=user, token=token))
-	print("3")
+
+def clearVotes():
+	since = datetime.datetime.now() - datetime.timedelta(hours=24)
+	votes = (db.session.query(Vote).filter(Vote.voteTime < since))
+	for vote in votes:
+		db.session.delete(vote)
+	db.session.commit()

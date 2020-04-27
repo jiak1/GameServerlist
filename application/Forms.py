@@ -204,3 +204,11 @@ class AdminServerForm(FlaskForm):
 
 	playerCount = StringField('Current Player Count')
 	playerMax = StringField('Max Players')
+
+class ReportServerForm(FlaskForm):
+	reason = StringField('Reason')
+	description = StringField('Description',validators=[Length(max=1000,min=20)])
+
+	recaptcha = RecaptchaField(validators=[Recaptcha(message="You didn't prove you weren't a robot, please try again. 🤖")])
+
+	submit = SubmitField('Report')

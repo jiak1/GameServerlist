@@ -210,3 +210,12 @@ class Vote(db.Model,Serializer):
 	username = db.Column(db.String(80),nullable=False)
 	ip = db.Column(db.String(80),nullable=False)
 	voteTime = db.Column(db.DateTime,nullable=False,default=func.now())
+
+class Report(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	serverID = db.Column(db.String(12),nullable=False)
+	name = db.Column(db.String(50),nullable=False)
+
+	reason = db.Column(db.String(20),nullable=False)
+	description = db.Column(db.Text(),nullable=False)

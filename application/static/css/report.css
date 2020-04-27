@@ -1,0 +1,19 @@
+body{
+	background-color:#18A558;
+}
+
+.container-md{
+	background-color:white;
+	padding:20px;
+	border-radius:5px;
+}
+
+.form-report {
+  width: 100%;
+  padding: 15px;
+  margin: auto;
+}
+
+.g-recaptcha{
+	margin-bottom:15px;
+}

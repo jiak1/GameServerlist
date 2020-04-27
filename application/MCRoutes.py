@@ -2,8 +2,8 @@ from flask import request, render_template,Blueprint,redirect,flash,url_for,send
 from .Program import mc_db as db,mc_login as login,client
 from flask_login import current_user, login_user,logout_user, login_required
 import os
-from .Forms import LoginForm,RegisterForm,ServerForm,ResetPasswordForm,VotifierTestForm,AccountEmailChangeForm,AccountPasswordChangeForm,VoteForm,AccountUsernameChangeForm,AccountGoogleLinkForm,AccountDeleteForm,ServerDeleteForm
-from .Models import Account, Server,Vote
+from .Forms import LoginForm,RegisterForm,ServerForm,ResetPasswordForm,VotifierTestForm,AccountEmailChangeForm,AccountPasswordChangeForm,VoteForm,AccountUsernameChangeForm,AccountGoogleLinkForm,AccountDeleteForm,ServerDeleteForm,ReportServerForm
+from .Models import Account, Server,Vote,Report
 from .Util import UpdateServerWithForm,update_server_details, send_password_reset_email,send_username_reminder_email, getVersion,get_google_provider_cfg,sendVotifierVote,validateServer,sendData,updateTagRequests,verifyCaptcha,checkHasVoted,submitVote,sendConfirmEmail,sendChangeEmail
 from .Config import getProduction,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,POSTS_PER_PAGE
 import requests
@@ -19,6 +19,8 @@ prefix = "/"
 if(getProduction() == False):
 	print("TO CONNECT GO TO testing.server-lists.com/minecraft/")
 	prefix = "/minecraft/" 
+else:
+	from .ErrorHandler import *
 
 @MCRoutes.route(prefix,methods=['GET'])
 def MCHomePage():
@@ -181,11 +183,6 @@ def serversPage():
 @MCRoutes.route(prefix+"server",methods=['GET'])
 def serverInfoPage():
 	return "Works"
-
-
-@MCRoutes.errorhandler(Exception)
-def internal_error(error):
-    return render_template('mc/error.html')
 
 @MCRoutes.route(prefix+"forgotpassword",methods=['GET','POST'])
 def forgotPasswordPage():
@@ -514,15 +511,10 @@ def accountChangeEmailPage():
 	if(emailForm.validate()):
 		if(current_user.check_password(emailForm.emailPassword.data)):
 			if(current_user.lastEmailConfirmSent < datetime.datetime.now()-datetime.timedelta(minutes=1)):
-				print("a")
-				user = Account.query.get(int(current_user.id))
-				user.changeEmail = emailForm.newEmail.data
-				user.lastEmailConfirmSent = datetime.datetime.now()
-				print("b")
+				current_user.changeEmail = emailForm.newEmail.data
+				current_user.lastEmailConfirmSent = datetime.datetime.now()
 				db.session.commit()
-				print("c")
-				sendChangeEmail(user)
-				print("d")
+				sendChangeEmail(current_user)
 				flash("A link was sent to your new email that you will need to confirm.","success")
 			else:
 				flash("You have already requested an email change recently. Please check your inbox.","warning")
@@ -703,3 +695,21 @@ def serverVotePage(serverid):
 		return render_template("mc/voteserver.html",server=server,form=form)
 	else:
 		return redirect(url_for("MCRoutes.MCHomePage"))
+
+@MCRoutes.route(prefix+"server/<serverid>/report",methods=['GET','POST'])
+def serverReportPage(serverid):
+	server = Server.query.get(int(serverid))
+	if(server is None):
+		return redirect(url_for("MCRoutes.MCHomePage"))
+	form = ReportServerForm()
+	if(form.validate_on_submit()):
+		report = Report(serverID=serverid,name=server.name,reason=form.reason.data,description=form.description.data)
+		db.session.add(report)
+		db.session.commit()
+		flash("Successfully reported server","success")
+		return redirect(url_for("MCRoutes.viewServerPage",serverid=serverid))
+	else:
+		for key in form.errors:
+			flash(form.errors[key][0],"danger")	
+
+	return render_template("mc/reportserver.html",server=server,form=form)

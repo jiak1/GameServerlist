@@ -30,4 +30,5 @@ flask-crontab = "^0.1.2"
 alembic = "^1.4"
 boto3 = "^1.12"
 requests-aws4auth = "^0.9.0"
+flask-sitemap = "^0.3.0"
 [tool.poetry.dev-dependencies]

@@ -10,7 +10,7 @@ from .Config import *
 from oauthlib.oauth2 import WebApplicationClient
 from .momentjs import momentjs
 from requests_aws4auth import AWS4Auth
-
+from flask_sitemap import Sitemap
 
 def getElasticSearchURL():
 	if(getProduction() == True):
@@ -70,6 +70,7 @@ mc_crontab = Crontab()
 admin_crontab = Crontab()
 
 migrate = Migrate()
+sitemap = Sitemap()
 
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
@@ -97,6 +98,7 @@ def create_mc_app():
 
 	mc_crontab.init_app(mc_app)
 	migrate.init_app(mc_app)
+	sitemap.init_app(mc_app)
 
 	mc_app.jinja_env.globals['momentjs'] = momentjs
 	
