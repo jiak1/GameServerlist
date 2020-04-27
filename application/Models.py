@@ -179,7 +179,7 @@ class Server(SearchableMixin, db.Model,Serializer):
 
 	trailer = db.Column(db.String(15), nullable=True, default="")
 
-	banner = db.Column(db.Text(), nullable=True, default="/images/main/LoadingBanner.webp")
+	banner = db.Column(db.Text(), nullable=True, default="/images/main/LoadingBanner.webp?1")
 
 	rejectReason = db.Column(db.Text(), nullable=True, default="")
 
