@@ -149,6 +149,6 @@ def doCleanup():
 	cleanupTempBanners()
 	cleanupTempData()
 
-@crontab.job(minute="0", hour="24")
+@crontab.job(minute="0", hour="2")
 def doRank():
 	serverRank()
