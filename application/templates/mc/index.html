@@ -55,7 +55,7 @@
 			<a class="tag badge badge-danger CLICKABLE" id="version">{{server.displayVersion}}</a>
 			{% endif %}
     	{% if loop.index <= 4 %}
-		<img src="{{server.banner}}" class="card-img-top CLICKABLE">
+		<img src="{{server.banner}}" class="card-img-top CLICKABLE" alt="{{server.name}}">
 		</div>
 		{% else %}
 		<img src="/images/main/LoadingBanner.webp" data-srcset="{{server.banner}}" class="lazy card-img-top CLICKABLE" alt="{{server.name}}">

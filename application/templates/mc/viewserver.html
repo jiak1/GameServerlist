@@ -4,12 +4,12 @@
 {% block head %}
 <link rel="stylesheet" href="{{url_for('static',filename='css/viewserver.css')}}">
 <title>{{server.name}} - Minecraft Server Lists</title>
+<meta name="description" content="Get the Minecraft Server IP Address for {{server.name}}">
 {% endblock %}
 
 {% block beforeBody %}
 <link rel="preload" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <script src="/js/moment.min.js"></script>
-<meta name="description" content="Get the Minecraft Server IP Address for {{server.name}}">
 {% endblock %}
 
 {% block body %}
@@ -34,7 +34,7 @@
 	</div>
 	<div class="col-md-5">
 		<table class="table table-bordered" id="MainTable">
-		<img src="{{server.banner}}" style="width: 100%;border-top-left-radius: 5px;border-top-right-radius: 5px;" id="BannerIMG">
+		<img src="{{server.banner}}" style="width: 100%;border-top-left-radius: 5px;border-top-right-radius: 5px;" id="BannerIMG" alt="{{server.name}}">
 		<div id="IP" class="input-group" style="border-radius:0px">
 		<div class="input-group-prepend">
     	<span class="btn btn-secondary" id="IPNotify">Server IP</span>
