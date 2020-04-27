@@ -179,6 +179,18 @@ mysqlclient = "*"
 
 [[package]]
 category = "main"
+description = "Flask extension that helps with sitemap generation."
+name = "flask-sitemap"
+optional = false
+python-versions = "*"
+version = "0.3.0"
+
+[package.dependencies]
+Flask = "*"
+blinker = "*"
+
+[[package]]
+category = "main"
 description = "Adds SQLAlchemy support to your Flask application."
 name = "flask-sqlalchemy"
 optional = false
@@ -419,7 +431,7 @@ python-versions = "*"
 version = "2.2.1"
 
 [metadata]
-content-hash = "a197899552c358525916c2b92494e7963c76478e437904f702d9d97b75cb71b5"
+content-hash = "574e6a40cdd7c876b20574a902ad7f8ceb3b37f15419c1b4434e1674668a355e"
 python-versions = "^3.7"
 
 [metadata.hashes]
@@ -439,6 +451,7 @@ flask-login = ["6d33aef15b5bcead780acc339464aae8a6e28f13c90d8b1cf9de8b549d1c0b4b
 flask-mail = ["22e5eb9a940bf407bcf30410ecc3708f3c56cc44b29c34e1726fe85006935f41"]
 flask-migrate = ["4dc4a5cce8cbbb06b8dc963fd86cf8136bd7d875aabe2d840302ea739b243732", "a69d508c2e09d289f6e55a417b3b8c7bfe70e640f53d2d9deb0d056a384f37ee"]
 flask-mysqldb = ["1003c3d72d61a34f1ce5b1cbe427f31816f0c561cee5cd60d8158431381c37d7"]
+flask-sitemap = ["3e3c54acc2639d1e415586e7bc315b32873c14f9975d60d95308d3af8dca5c0d", "a062204e4dfeb1809350dcfc4183348eb6595ac82bba639e49644d0bfc964ecd"]
 flask-sqlalchemy = ["0078d8663330dc05a74bc72b3b6ddc441b9a744e2f56fe60af1a5bfc81334327", "6974785d913666587949f7c2946f7001e4fa2cb2d19f4e69ead02e4b8f50b33d"]
 flask-wtf = ["57b3faf6fe5d6168bda0c36b0df1d05770f8e205e18332d0376ddb954d17aef2", "d417e3a0008b5ba583da1763e4db0f55a1269d9dd91dcc3eb3c026d3c5dbd720"]
 idna = ["7588d1c14ae4c77d74036e8c22ff447b26d0fde8f007354fd48a7814db15b7cb", "a068a21ceac8a4d63dbfd964670474107f541babbd2250d61922f029858365fa"]

@@ -1,0 +1,60 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "report" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/form.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/report.css')}}">
+<title>Report Server - Minecraft Server Lists</title>
+{% endblock %}
+
+{% block beforeBody %}
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-md">
+	{% include 'notify.html' %}
+<div id="form-custom">
+  <form action="" method="post" class="form-report" role="form">
+	  {{ form.hidden_tag() }}
+  <div class="mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Report Server</h1>
+
+  </div>
+
+	<div class="row">
+		<div class="col-10">
+    <div class="form-label-group">
+		<input type="text" id="serverName" name="serverName" class="form-control" placeholder="Server Name" value="{{server.name}}" disabled>
+		<label for="serverName">Server Name</label>
+		<small id="serverNameHelp" class="form-text text-muted">Check this is the correct server you wish to report.</small>
+   </div></div>
+   <div class="col-2">
+	   <div class="form-label-group">
+	   	<input type="text" id="serverID" name="serverID" class="form-control" placeholder="Server ID" value="{{server.id}}" disabled>
+		<label for="serverID">Server ID</label>
+		</div>
+	</div></div>
+
+	<div class="form-group">
+    <label for="reason">Reason</label>
+    <select class="form-control" id="reason" name="reason">
+      <option selected>Innapropriate Banner</option>
+      <option>Innapropriate Description</option>
+      <option>Cracked Server</option>
+      <option>Incorrect Tags</option>
+	  <option>Broken Links</option>
+      <option>Other</option>
+    </select>
+	<small id="reasonHelp" class="form-text text-muted">Choose a reason why you are reporting this server.</small>
+	</div>
+
+	<div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" name="description" rows="4" placeholder="Try and provide as much detail as possible regarding the violation..." minlength="20" maxlength="1000" required></textarea>
+  </div>
+  {{form.recaptcha()}}
+  <button class="btn btn-lg btn-success btn-block" type="submit" name="submit" id="submit">Report Server</button>
+  </form>
+  </div></div>
+{% endblock %}

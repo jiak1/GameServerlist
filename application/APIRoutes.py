@@ -1,7 +1,7 @@
 from flask import request,Blueprint, jsonify,abort,url_for,redirect
 from .Program import mc_db as db
 import os
-from .Util import ServerUp,ServerStatus,cleanupTempBanners,cleanupTempData,checkServerUpdates, serverRank
+from .Util import ServerUp,ServerStatus,cleanupTempBanners,cleanupTempData,checkServerUpdates, serverRank,clearVotes
 from .SendVote import sendVote
 from .Models import Server,ReviewTag
 from .Program import mc_mail as mail, elasticsearch
@@ -142,6 +142,10 @@ def updateServersPage():
 @crontab.job(minute="*/1")
 def doUpdate():
 	checkServerUpdates()
+
+@crontab.job(minute="*/5")
+def clearVotesCron():
+	clearVotes()
 
 @crontab.job(minute="0", hour="*/1")
 def doCleanup():
