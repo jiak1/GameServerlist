@@ -17,8 +17,8 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 prefix = "/"
 if(PRODUCTION == False):
+	print("TO CONNECT GO TO testing.server-lists.com/minecraft/")
 	prefix = "/minecraft/" 
-	print("A")
 
 @MCRoutes.route(prefix,methods=['GET'])
 def MCHomePage():

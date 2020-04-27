@@ -10,12 +10,12 @@ from .Config import *
 from oauthlib.oauth2 import WebApplicationClient
 from .momentjs import momentjs
 from requests_aws4auth import AWS4Auth
-import boto3
+
 
 def getElasticSearchURL():
-	if(PRODUCTION):
-		"""host = BONSAIURL # For example, my-test-domain.us-east-1.es.amazonaws.com
-		region = 'us-east-2' # e.g. us-west-1
+	if(True):
+		host = BONSAIURL # WITHOUT HTTP AND ENDING /
+		region = 'us-east-2' # e.g. us-east-2
 
 		service = 'es'
 
@@ -27,8 +27,7 @@ def getElasticSearchURL():
 			use_ssl = True,
 			verify_certs = True,
 			connection_class = RequestsHttpConnection
-		)"""
-		return Elasticsearch([BONSAIURL])
+		)
 
 	bonsai = BONSAIURL
 	auth = re.search('https\:\/\/(.*)\@', bonsai).group(1).split(':')
@@ -79,7 +78,7 @@ client = WebApplicationClient(GOOGLE_CLIENT_ID)
 mc_login.login_view = 'MCRoutes.loginPage'
 admin_login.login_view = "AdminRoutes.homePage"
 print("PRODUCTION:"+str(PRODUCTION))
-if(PRODUCTION):
+if(PRODUCTION == True):
 	mail_settings = PRODUCTION_MAIL_SETTINGS
 else:
 	mail_settings = DEBUG_MAIL_SETTINGS
@@ -92,7 +91,9 @@ def create_mc_app():
 
 	mc_app.config.update(mail_settings)
 	mc_app.config['ADMINS']= ['jackdonaldson005@gmail.com']
-	if(PRODUCTION):
+	if(PRODUCTION == True):
+		print("CONFIGURING")
+		print("PRODUCTION:"+str(PRODUCTION))
 		mc_app.config['SERVER_NAME']= SERVER_NAME
 	mc_app.secret_key = MC_SECRET
 
