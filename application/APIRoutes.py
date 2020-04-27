@@ -49,11 +49,6 @@ def APIStatus():
 	else:
 		return jsonify({"STATUS":"OFFLINE"})
 
-@APIRoutes.route(prefix+"API/RANK",methods=['GET'])
-def APIRank():
-	serverRank()
-	return "DONE"
-
 @APIRoutes.route(prefix+"API/BANNERUPLOAD",methods=['POST'])
 def APIBannerUpload():
 	banner=request.files.get('file')
@@ -68,16 +63,6 @@ def APIBannerUpload():
 		url = os.path.join(APP_ROOT+"/static"+tempURL+"/", newName)
 	banner.save(url)
 	return jsonify({"URL":url,"IMGURL":"https://cdn.statically.io/img/"+IMGDOMAIN+tempURL+"/"+banner.filename})
-
-@APIRoutes.route(prefix+"API/BANNERCLEANUP",methods=['GET'])
-def APICleanupBanners():
-	cleanupTempBanners()
-	return "Done"
-
-@APIRoutes.route(prefix+"API/DATACLEANUP",methods=['GET'])
-def APICleanupData():
-	cleanupTempData()
-	return "Done"
 
 @APIRoutes.route(prefix+"API/VOTIFIER",methods=['POST'])
 def APIVotifier():
@@ -122,22 +107,6 @@ indexCreation = {
     }
   }
 }
-
-@APIRoutes.route(prefix+"API/elasticsearch",methods=['GET'])
-def esSetupPage():
-	elasticsearch.indices.create(index='server',body=indexCreation)
-	Server.reindex()
-	return redirect(url_for("MCRoutes.MCHomePage"))
-
-@APIRoutes.route(prefix+"API/reindex",methods=['GET'])
-def esReindexPage():
-	Server.reindex()
-	return redirect(url_for("MCRoutes.MCHomePage"))
-
-@APIRoutes.route(prefix+"API/updateservers",methods=['GET'])
-def updateServersPage():
-	doUpdate()
-	return redirect(url_for("MCRoutes.MCHomePage"))
 
 @crontab.job(minute="*/1")
 def doUpdate():
