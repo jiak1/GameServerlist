@@ -13,7 +13,7 @@ from requests_aws4auth import AWS4Auth
 import boto3
 
 def getElasticSearchURL():
-	"""if(PRODUCTION):
+	if(PRODUCTION):
 		host = BONSAIURL # For example, my-test-domain.us-east-1.es.amazonaws.com
 		region = 'us-east-2' # e.g. us-west-1
 
@@ -27,7 +27,7 @@ def getElasticSearchURL():
 			use_ssl = True,
 			verify_certs = True,
 			connection_class = RequestsHttpConnection
-		)"""
+		)
 
 	bonsai = BONSAIURL
 	auth = re.search('https\:\/\/(.*)\@', bonsai).group(1).split(':')
