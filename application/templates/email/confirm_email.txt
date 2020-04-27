@@ -4,7 +4,7 @@ To activate your account we need you to visit the following link:
 
 {{ url_for('MCRoutes.confirmEmailPage', token=token, _external=True) }}
 
-If you have not requested this email, reply here and we will ensure that you do not recieve any further correspondances.
+If you have not requested this email, simply ignore this message.
 
 Sincerely,
 

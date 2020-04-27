@@ -4,7 +4,7 @@ from flask_login import current_user, login_user,logout_user, login_required
 import os
 from .Forms import LoginForm,RegisterForm,ServerForm,ResetPasswordForm,VotifierTestForm,AccountEmailChangeForm,AccountPasswordChangeForm,VoteForm,AccountUsernameChangeForm,AccountGoogleLinkForm,AccountDeleteForm,ServerDeleteForm
 from .Models import Account, Server,Vote
-from .Util import UpdateServerWithForm,update_server_details, send_password_reset_email,send_username_reminder_email, getVersion,get_google_provider_cfg,sendVotifierVote,validateServer,sendData,updateTagRequests,verifyCaptcha,checkHasVoted,submitVote,sendConfirmEmail
+from .Util import UpdateServerWithForm,update_server_details, send_password_reset_email,send_username_reminder_email, getVersion,get_google_provider_cfg,sendVotifierVote,validateServer,sendData,updateTagRequests,verifyCaptcha,checkHasVoted,submitVote,sendConfirmEmail,sendChangeEmail
 from .Config import getProduction,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,POSTS_PER_PAGE
 import requests
 import json
@@ -465,6 +465,7 @@ def editServerPage(serverid):
 
 	return render_template("mc/editServer.html", form=form, server=server)
 
+@login_required
 @MCRoutes.route(prefix+"account",methods=['GET'])
 def accountPage():
 	usernameForm = AccountUsernameChangeForm()
@@ -474,6 +475,7 @@ def accountPage():
 
 	return render_template("mc/account.html",account=current_user,usernameForm=usernameForm,emailForm=emailForm,passwordForm=passwordForm,googleForm=googleForm)
 
+@login_required
 @MCRoutes.route(prefix+"accountusername",methods=['POST'])
 def accountChangeUsernamePage():
 	usernameForm = AccountUsernameChangeForm()
@@ -489,15 +491,41 @@ def accountChangeUsernamePage():
 			flash(usernameForm.errors[key][0],"danger")
 	return redirect(url_for("MCRoutes.accountPage"))
 
+@MCRoutes.route(prefix+"changeemail/<token>",methods=['GET'])
+def changeEmailPage(token):
+	user = Account.verify_email_change_token(token)
+	if not user:
+		flash("Invalid email change token. Did you wait more then 10 minutes?","danger")
+	else:
+		if(user.changeEmail != ""):
+			user.email = user.changeEmail
+			user.changeEmail = ""
+			db.session.commit()
+			flash("You email has been changed.","success")
+		else:
+			flash("This token has already been used.","danger")			
+	return redirect(url_for('MCRoutes.accountPage'))
+
+
+@login_required
 @MCRoutes.route(prefix+"accountemail",methods=['POST'])
 def accountChangeEmailPage():
 	emailForm = AccountEmailChangeForm()
 	if(emailForm.validate()):
 		if(current_user.check_password(emailForm.emailPassword.data)):
-			current_user.email = emailForm.newEmail.data
-			#TODO - VERIFY EMAIL
-			db.session.commit()
-			flash("Successfully changed the email for the account.","success")
+			if(current_user.lastEmailConfirmSent < datetime.datetime.now()-datetime.timedelta(minutes=1)):
+				print("a")
+				user = Account.query.get(int(current_user.id))
+				user.changeEmail = emailForm.newEmail.data
+				user.lastEmailConfirmSent = datetime.datetime.now()
+				print("b")
+				db.session.commit()
+				print("c")
+				sendChangeEmail(user)
+				print("d")
+				flash("A link was sent to your new email that you will need to confirm.","success")
+			else:
+				flash("You have already requested an email change recently. Please check your inbox.","warning")
 		else:
 			flash("Incorrect password.","danger")
 	else:
@@ -505,6 +533,7 @@ def accountChangeEmailPage():
 			flash(emailForm.errors[key][0],"danger")
 	return redirect(url_for("MCRoutes.accountPage"))
 
+@login_required
 @MCRoutes.route(prefix+"accountpassword",methods=['POST'])
 def accountChangePasswordPage():
 	passwordForm = AccountPasswordChangeForm()
@@ -521,7 +550,7 @@ def accountChangePasswordPage():
 			flash(passwordForm.errors[key][0],"danger")
 	return redirect(url_for("MCRoutes.accountPage"))
 
-
+@login_required
 @MCRoutes.route(prefix+"accountlinkgoogle",methods=['POST'])
 def accountLinkGooglePage():
 	linkForm = AccountGoogleLinkForm()

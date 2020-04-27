@@ -20,14 +20,20 @@ else:
 	from .Program import mc_db as db
 
 def ServerUp(ip,port):
-	response = requests.get("https://mcapi.us/server/status?ip="+ip+"&port="+port)
+	if(port != "25565"):
+		response = requests.get("https://mcapi.us/server/status?ip="+ip+"&port="+port)
+	else:
+		response = requests.get("https://mcapi.us/server/status?ip="+ip)
 	data = response.json() 
 	if(data != None and data['status'] == "success" and data["online"] == True):
 		return True
 	return False
 
 def ServerStatus(ip,port):
-	response = requests.get("https://mcapi.us/server/status?ip="+ip+"&port="+port)
+	if(port != "25565"):
+		response = requests.get("https://mcapi.us/server/status?ip="+ip+"&port="+port)
+	else:
+		response = requests.get("https://mcapi.us/server/status?ip="+ip)
 	data = response.json()
 	if(data != None and data['status'] == "success" and data["online"] == True):
 		return True,data
@@ -59,9 +65,12 @@ def UpdateServerWithForm(_serverForm, _serverModel):
 		_serverModel.displayIP = _serverForm.ip.data
 
 def send_email(subject,sender,recipients,text_body,html_body):
+	print("10")
 	msg = Message(subject, sender=sender, recipients=recipients)
+	print("9")
 	msg.body = text_body
 	msg.html = html_body
+	print("8")
 	Thread(target=send_async_email, args=(app, msg)).start()
 
 def send_async_email(app, msg):
@@ -318,3 +327,18 @@ def sendConfirmEmail(user):
                                          user=user, token=token),
                html_body=render_template('email/confirm_email.html',
                                          user=user, token=token))
+
+def sendChangeEmail(user):
+	print("1")
+	token = user.get_email_change_token()
+	print("2")
+	print("#:"+str(user.changeEmail))
+	print("##:"+str(token))
+	send_email('[Serverlist] Change Email',
+               sender="contact@server-lists.com",
+               recipients=[str(user.changeEmail)],
+               text_body=render_template('email/change_email.txt',
+                                         user=user, token=token),
+               html_body=render_template('email/change_email.html',
+                                         user=user, token=token))
+	print("3")

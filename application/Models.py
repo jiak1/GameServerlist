@@ -87,6 +87,11 @@ class User(UserMixin,db.Model):
 		return jwt.encode(
             {'confirm_email': self.id, 'exp': time() + expires_in},
             app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+	
+	def get_email_change_token(self):
+		return jwt.encode(
+            {'change_email': self.id},
+            app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
 			
 class Account(User,Serializer):
 	accountCreateDate = db.Column(db.DateTime,nullable=False,default=func.now())
@@ -95,6 +100,7 @@ class Account(User,Serializer):
 	emailConfirmed = db.Column(db.Boolean,default=0,nullable=False)
 	servers = db.relationship('Server', backref='owner',lazy="dynamic")
 	lastEmailConfirmSent = db.Column(db.DateTime,nullable=False,default=func.now())
+	changeEmail = db.Column(db.String(120), nullable=False,default="")
 	
 	def addServer(self, server):
 		if not self.ownsServer(server.id):
@@ -119,6 +125,14 @@ class Account(User,Serializer):
 	def verify_email_confirm_token(token):
 		try:
 			id = jwt.decode(token, app.config['SECRET_KEY'],algorithms=['HS256'])['confirm_email']
+		except:
+			return
+		return Account.query.get(id)
+
+	@staticmethod
+	def verify_email_change_token(token):
+		try:
+			id = jwt.decode(token, app.config['SECRET_KEY'],algorithms=['HS256'])['change_email']
 		except:
 			return
 		return Account.query.get(id)
