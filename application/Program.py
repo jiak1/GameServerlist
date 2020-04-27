@@ -89,7 +89,7 @@ def create_mc_app():
 	mc_app.config.update(mail_settings)
 	mc_app.config['ADMINS']= ['jackdonaldson005@gmail.com']
 	if(getProduction() == True):
-		mc_app.config['SERVER_NAME']= SERVER_NAME
+		mc_app.config['SERVER_NAME']= "minecraft.server-lists.com"
 	mc_app.secret_key = MC_SECRET
 
 	mc_db.init_app(mc_app)
@@ -131,7 +131,7 @@ def create_admin_app():
 	admin_app.config.update(mail_settings)
 	admin_app.config['ADMINS']= ['jackdonaldson005@gmail.com']
 	if(getProduction()):
-		admin_app.config['SERVER_NAME']= SERVER_NAME
+		admin_app.config['SERVER_NAME']= "admin.server-lists.com"
 
 	admin_app.secret_key = ADMIN_SECRET
 
