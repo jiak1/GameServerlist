@@ -186,7 +186,7 @@ def serverInfoPage():
 def not_found_error(error):
     return render_template('mc/error.html')
 
-@MCRoutes.errorhandler(500)
+@MCRoutes.errorhandler(Exception)
 def internal_error(error):
     db.session.rollback()
     return render_template('mc/error.html')
