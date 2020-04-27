@@ -28,6 +28,7 @@ def MCHomePage():
 	search = request.args.get('search', "")
 	try:
 		servers,total = Server.search(search,page,POSTS_PER_PAGE)
+
 		if total > page * POSTS_PER_PAGE:
 			next_url = url_for('MCRoutes.MCHomePage', search=search, page=page + 1)
 		else:
