@@ -1,0 +1,18 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+#Banners
+application/static/images/banners
+application/static/json/datapacks.json
+application/static/json/plugins.json
+application/static/json/mods.json
+application/static/json/tags.json
