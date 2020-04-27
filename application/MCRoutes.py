@@ -613,6 +613,7 @@ def serverDeletePage(serverid):
 	if(deleteForm.validate_on_submit()):
 		if(deleteForm.confirmName.data == server.name):
 			current_user.servers.remove(server)
+			db.session.delete(server)
 			db.session.commit()
 			flash("Successfully deleted server.","success")
 			return redirect(url_for("MCRoutes.serversPage"))
