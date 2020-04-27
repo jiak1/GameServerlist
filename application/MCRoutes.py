@@ -38,7 +38,11 @@ def MCHomePage():
 	except:
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.MCHomePage",search=search))
- 
+
+@MCRoutes.route(prefix+"break",methods=['GET'])
+def breakPage():
+	print(1+"2")
+	return "test"
 
 @MCRoutes.route(prefix+"tag/<tagname>",methods=['GET'])
 def tagSearchPage(tagname):

@@ -13,7 +13,7 @@ from requests_aws4auth import AWS4Auth
 
 
 def getElasticSearchURL():
-	if(True):
+	if(PRODUCTION == True):
 		host = BONSAIURL # WITHOUT HTTP AND ENDING /
 		region = 'us-east-2' # e.g. us-east-2
 
