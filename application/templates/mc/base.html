@@ -7,6 +7,15 @@
 	<link rel="stylesheet" href="https://cdn.statically.io/gh/jiak1/ServerList/e7b03502/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.css">
 	<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108144905-4"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-108144905-4');
+	</script>
 	 {% block head %} {% endblock %}
 </head>
 
@@ -32,7 +41,7 @@
 			<a class="nav-link" href="{{url_for('MCRoutes.addServerPage')}}"><i class="fas fa-plus-circle"></i> Add A Server</a>
 			</li>
 			{% if current_user.is_anonymous %}
-			<li class="{{ 'nav-item active' if active_page == 'login' else 'nav-item' }}"><a class="nav-link" href="{{url_for('MCRoutes.loginPage')}}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+			<li class="{{ 'nav-item active' if active_page == 'login' else 'nav-item' }}"><a class="nav-link" href="{{url_for('MCRoutes.loginPage')}}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login</a>
 			</li>
 			{% else %}
 			<li class="{{ 'nav-item active' if active_page == 'servers' else 'nav-item' }}"><a class="nav-link" href="{{url_for('MCRoutes.serversPage')}}"><i class="fas fa-server"></i> Servers</a></li>
