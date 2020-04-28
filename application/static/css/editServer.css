@@ -57,3 +57,11 @@ body{
 .g-recaptcha{
 	margin-bottom:25px;
 }
+
+#test1,#test2,#test3{
+	align-items:baseline;
+}
+
+.fa-check,.fa-exclamation-triangle{
+	width:inherit !important;
+}

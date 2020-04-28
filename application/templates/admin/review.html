@@ -8,7 +8,7 @@
 {% block beforeBody %}
 <div class="container-sm" style="padding-top:50px">
 {% include 'notify.html' %}
-<h1>Review Server Request</h1>
+<h1>Server Details</h1>
 <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
 		<div class="form-group">
@@ -17,6 +17,8 @@
 			<div class="alert alert-danger" role="alert" style="margin-top:10px">
 			{{server.rejectReason}}</b>
 			</div>
+			{% elif server.verified == 10 %}
+			<h2 style="margin-top:20px"><span class="badge badge-danger" style="padding:20px">This Server Is Banned</span></h2>
 			{% endif %}
         <p>
             {{ form.name.label }}<br>
@@ -147,9 +149,19 @@
             {{ form.rejectReason.label }}<br>
 			<textarea name="rejectReason" id="rejectReason">{{server.rejectReason}}</textarea>
         </p>
+		<p>
+            {{ form.notes.label }}<br>
+			<textarea name="notes" id="notes">{{server.notes}}</textarea>
+        </p>
 		<button class="btn-success" type="submit" name="approve" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=APPROVE">Approve</button>
 		<button class="btn-danger float-right" type="submit" name="reject" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=REJECT">Reject</button>
 		</div>
+		<div>
+		<button class="btn-primary float-left" type="submit" name="update" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=UPDATE">Update Case</button>
+		<button class="btn-warning float-right" type="submit" name="update" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=BAN">Ban Server</button>
+		</div>
+
+		<div style="height:200px"></div>
 </form>
 </div>
 <script>

@@ -205,6 +205,8 @@ class AdminServerForm(FlaskForm):
 	playerCount = StringField('Current Player Count')
 	playerMax = StringField('Max Players')
 
+	notes = StringField('Notes')
+
 class ReportServerForm(FlaskForm):
 	reason = StringField('Reason')
 	description = StringField('Description',validators=[Length(max=1000,min=20)])
