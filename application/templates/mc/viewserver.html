@@ -32,6 +32,9 @@
 	</div></div>
 	{% endif %}
 	<textarea id="Description" class="form-control" readonly>{{server.description}}</textarea>
+	<div class="chart-container" style="position: relative; height:40vh; width:100%">
+	<canvas id="serverGraph"></canvas>
+	</div>
 	</div>
 	<div class="col-md-5">
 		<table class="table table-bordered" id="MainTable">
@@ -159,5 +162,53 @@ $('.tag').each(function(i, obj) {
     _tag = $(this).text()
 	$(this).attr("href", tagURL+_tag);
 });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script>
+	$.getJSON('/json/graphs/{{server.id}}.json', function(data) {
+    	setupGraph(data)
+	});
+
+function setupGraph(data){
+	Chart.defaults.line.spanGaps = true;
+
+	var jsonfile = data;
+
+	var labels = jsonfile.players.map(function(e) {
+	return new Date(e.time);
+	});
+	var data = jsonfile.players.map(function(e) {
+	return e.count;
+	});;
+
+	var ctx = document.getElementById('serverGraph').getContext('2d');
+	var config = {
+	type: 'line',
+	data: {
+		labels: labels,
+		datasets: [{
+			label: 'Online Players',
+			data: data,
+			backgroundColor: 'rgba(24, 165, 88, 0.3)'
+		}]
+	},
+	
+	options: {
+			scales: {
+				xAxes: [{
+					type: 'time',
+					time: {
+						displayFormats: {
+							quarter: 'D'
+						}
+					}
+				}]
+			}
+		}
+	};
+
+	var chart = new Chart(ctx, config);
+}
 </script>
 {% endblock %}

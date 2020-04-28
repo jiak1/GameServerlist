@@ -1,10 +1,10 @@
 from flask import request, render_template,Blueprint,redirect,flash,url_for,send_file
-from .Program import mc_db as db,mc_login as login,client
+from .Program import mc_db as db,mc_login as login,client,mc_crontab as crontab
 from flask_login import current_user, login_user,logout_user, login_required
 import os
 from .Forms import LoginForm,RegisterForm,ServerForm,ResetPasswordForm,VotifierTestForm,AccountEmailChangeForm,AccountPasswordChangeForm,VoteForm,AccountUsernameChangeForm,AccountGoogleLinkForm,AccountDeleteForm,ServerDeleteForm,ReportServerForm
 from .Models import Account, Server,Vote,Report
-from .Util import UpdateServerWithForm,update_server_details, send_password_reset_email,send_username_reminder_email, getVersion,get_google_provider_cfg,sendVotifierVote,validateServer,sendData,updateTagRequests,verifyCaptcha,checkHasVoted,submitVote,sendConfirmEmail,sendChangeEmail
+from .Util import UpdateServerWithForm,update_server_details, send_password_reset_email,send_username_reminder_email, getVersion,get_google_provider_cfg,sendVotifierVote,validateServer,sendData,updateTagRequests,verifyCaptcha,checkHasVoted,submitVote,sendConfirmEmail,sendChangeEmail,ValidUsername,getSuggestionCacheNum
 from .Config import getProduction,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,POSTS_PER_PAGE
 import requests
 import json
@@ -15,12 +15,19 @@ MCRoutes = Blueprint('MCRoutes', __name__)
 curDir = os.path.dirname(os.path.realpath(__file__))
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+SUGGESTION_CACHE_NUM = getSuggestionCacheNum()
+
 prefix = "/"
 if(getProduction() == False):
 	print("TO CONNECT GO TO testing.server-lists.com/minecraft/")
 	prefix = "/minecraft/" 
 else:
 	from .ErrorHandler import *
+
+@crontab.job(minute="*/5")
+def updateCacheNum():
+	global SUGGESTION_CACHE_NUM
+	SUGGESTION_CACHE_NUM = getSuggestionCacheNum()
 
 @MCRoutes.route(prefix,methods=['GET'])
 def MCHomePage():
@@ -37,7 +44,7 @@ def MCHomePage():
 			prev_url = url_for('MCRoutes.MCHomePage', search=search, page=page - 1)
 		else:
 			prev_url=None
-		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url)
+		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM)
 	except:
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.MCHomePage",search=search))
@@ -61,14 +68,14 @@ def tagSearchPage(tagname):
 			prev_url = url_for('MCRoutes.tagSearchPage',tagname=tagname, page=page - 1)
 		else:
 			prev_url=None
-		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url)
+		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM)
 	except:
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.tagSearchPage",search=tagname))
 
 @MCRoutes.route(prefix+"tags",methods=['GET'])
 def tagsPage():
-	return render_template("mc/tags.html",search="")	
+	return render_template("mc/tags.html",search="",cacheNum=SUGGESTION_CACHE_NUM)	
 
 @MCRoutes.route(prefix+"login",methods=['GET', 'POST'])
 def loginPage():
@@ -196,8 +203,13 @@ def forgotPasswordPage():
 			if(account.isGoogle):
 				flash("This email is linked to a google account, the only way to change the password is through Google. We do not have your password.","primary")
 			else:
-				flash('Check your email for the instructions to reset your password.',"success")
-				send_password_reset_email(account)
+				if(account.passwordChangeSent < datetime.datetime.now()-datetime.timedelta(minutes=1)):
+					account.passwordChangeSent = datetime.datetime.now()
+					db.session.commit()
+					send_password_reset_email(account)
+					flash('Check your email for instructions on how to reset your password.',"success")
+				else:
+					flash("We have already recently sent you an email. Please check your inbox as well as your Spam and Junk folders.","danger")
 		else:
 			flash('This email is not linked to an account.',"danger")
 	return render_template("mc/forgotpassword.html")
@@ -213,8 +225,13 @@ def forgotUsernamePage():
 			if(account.isGoogle):
 				flash("This email is linked to a google account, simply choose the login with Google option when trying to sign in. You do not require a username.","primary")
 			else:
-				send_username_reminder_email(account)
-				flash('Check your email for your username.',"success")
+				if(account.usernameChangeSent < datetime.datetime.now()-datetime.timedelta(minutes=1)):
+					account.usernameChangeSent = datetime.datetime.now()
+					db.session.commit()
+					send_username_reminder_email(account)
+					flash('Check your email for your username.',"success")
+				else:
+					flash("We have already recently sent you an email. Please check your inbox as well as your Spam and Junk folders.","danger")
 		else:
 			flash('This email is not linked to an account.',"danger")
 	return render_template("mc/forgotusername.html")
@@ -385,7 +402,7 @@ def addServerPage():
 	else:
 		for key in form.errors:
 			flash(form.errors[key][0],"danger")
-	return render_template("mc/addServer.html", form=form)
+	return render_template("mc/addServer.html", form=form,cacheNum=SUGGESTION_CACHE_NUM)
 
 @MCRoutes.route(prefix+"editserver/<serverid>",methods=['GET','POST'])
 @login_required
@@ -464,7 +481,7 @@ def editServerPage(serverid):
 		for key in form.errors:
 			flash(form.errors[key][0],"danger")
 
-	return render_template("mc/editServer.html", form=form, server=server)
+	return render_template("mc/editServer.html", form=form, server=server,cacheNum=SUGGESTION_CACHE_NUM)
 
 @MCRoutes.route(prefix+"account",methods=['GET'])
 @login_required
@@ -688,9 +705,12 @@ def serverVotePage(serverid):
 					if(verifyCaptcha(token)):
 						hasVoted,message = checkHasVoted(_ip,form.username.data,server.id)
 						if(hasVoted == False):
-							submitVote(server,form.username.data,_ip)
-							flash("Successfully voted for server.","success")
-							return redirect(url_for("MCRoutes.viewServerPage",serverid=serverid))
+							if(ValidUsername(form.username.data)):
+								submitVote(server,form.username.data,_ip)
+								flash("Successfully voted for server.","success")
+								return redirect(url_for("MCRoutes.viewServerPage",serverid=serverid))
+							else:
+								flash("That username is not registered to a paid Minecraft account.","danger")
 						else:
 							flash(message,"warning")
 					else:

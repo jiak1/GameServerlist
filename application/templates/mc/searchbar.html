@@ -26,25 +26,25 @@
 var tags = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: '{{url_for("static",filename="/json/tags.json")}}',
+    prefetch: '{{url_for("static",filename="/json/tags.json")}}?{{cacheNum}}',
 });
 tags.initialize();
 var datapacks = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: '{{url_for("static",filename="/json/datapacks.json")}}',
+    prefetch: '{{url_for("static",filename="/json/datapacks.json")}}?{{cacheNum}}',
 });
 datapacks.initialize();
 var plugins = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: '{{url_for("static",filename="/json/plugins.json")}}',
+    prefetch: '{{url_for("static",filename="/json/plugins.json")}}?{{cacheNum}}',
 });
 plugins.initialize();
 var mods = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
     queryTokenizer: Bloodhound.tokenizers.obj.whitespace,
-    prefetch: '{{url_for("static",filename="/json/mods.json")}}',
+    prefetch: '{{url_for("static",filename="/json/mods.json")}}?{{cacheNum}}',
 });
 mods.initialize();
 $('#search').tagsinput({
