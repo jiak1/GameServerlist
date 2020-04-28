@@ -2,7 +2,7 @@ import requests
 from .Models import Server,ReviewTag,Vote,Account
 from .Forms import ServerForm
 from flask_mail import Message
-from flask import render_template
+from flask import render_template,url_for
 from .Config import GOOGLE_DISCOVERY_URL,ISADMIN
 from .SendVote import sendVote
 from pathlib import Path
@@ -18,6 +18,8 @@ if(ISADMIN):
 else:
 	from .Program import mc_mail as mail,mc_app as app
 	from .Program import mc_db as db
+
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 def ServerUp(ip,port):
 	if(port != "25565"):
@@ -380,8 +382,9 @@ def updateServerGraphs(app):
 			logServer(server)
 
 def logServer(server):
-	url = "application/static/json/graphs/"+str(server.id)+".json"
-	if(os.path.exists(url) == False):
+	url = "application/static/json/graphs/"+ str(server.id)+".json"
+	if(os.path.isfile(""+url) == False):
+		print("RUNNING")
 		baseData = {
 			"players":[]
 		}
