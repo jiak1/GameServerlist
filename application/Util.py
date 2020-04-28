@@ -39,6 +39,13 @@ def ServerStatus(ip,port):
 		return True,data
 	return (False,None);
 
+def ValidUsername(username):
+	response = requests.get("https://api.mojang.com/users/profiles/minecraft/"+username)
+	if(response.status_code == 200 and response.json() != None):
+		return True
+	else:
+		return False
+		
 def UpdateServerWithForm(_serverForm, _serverModel):
 	_serverModel.name = _serverForm.name.data
 	_serverModel.ip = _serverForm.ip.data
@@ -196,6 +203,7 @@ def addNewTags(tags,mods,plugins,datapacks):
 	addSection('datapacks',datapacks)
 	addSection('mods',mods)
 	db.session.commit()
+	updateSuggestionCacheNum()
 
 def addSection(section,values):
 	if(values == ""):
@@ -345,3 +353,55 @@ def clearVotes():
 	for vote in votes:
 		db.session.delete(vote)
 	db.session.commit()
+
+def getSuggestionCacheNum():
+	f = open('application/static/json/cache.txt')
+	response = f.readline()
+	f.close()
+	return response
+
+def updateSuggestionCacheNum():
+	nextCacheNum = str(int(getSuggestionCacheNum())+1)
+
+	with open('application/static/json/cache.txt', "r+") as f:
+		f.read()
+		f.seek(0)
+		f.write(nextCacheNum)
+		f.truncate()
+
+#every two hours will yield 84 points for a week
+def logServerGraphs():
+	Thread(target=updateServerGraphs, args=(app,)).start()
+
+def updateServerGraphs(app):
+	with app.app_context():
+		servers = servers = Server.query.all()
+		for server in servers:
+			logServer(server)
+
+def logServer(server):
+	url = "application/static/json/graphs/"+str(server.id)+".json"
+	if(os.path.exists(url) == False):
+		baseData = {
+			"players":[]
+		}
+		with open(url, 'w+') as f:
+			json.dump(baseData, f, indent=4, sort_keys=True, default=str)
+	response,stats = ServerStatus(server.ip,server.port)
+	if(response):
+		playersNow = int(stats["players"]["now"])
+	else:
+		playersNow = 0
+	with open(url,"r+") as f:
+		section_dict = json.load(f)
+		#every two hours will yield 84 points for a week
+		if(len(section_dict["players"]) >= 84):
+			section_dict["players"].pop(0)
+		section_dict["players"].append({
+			"count":playersNow,
+			"time":datetime.datetime.now()
+		})
+		f.seek(0)
+		json.dump(section_dict, f, indent=4, sort_keys=True, default=str)
+		f.truncate()
+

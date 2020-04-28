@@ -100,6 +100,8 @@ class Account(User,Serializer):
 	emailConfirmed = db.Column(db.Boolean,default=0,nullable=False)
 	servers = db.relationship('Server', backref='owner',lazy="dynamic")
 	lastEmailConfirmSent = db.Column(db.DateTime,nullable=False,default=func.now())
+	passwordChangeSent = db.Column(db.DateTime,nullable=False,default=func.now())
+	usernameChangeSent = db.Column(db.DateTime,nullable=False,default=func.now())
 	changeEmail = db.Column(db.String(120), nullable=False,default="")
 	
 	def addServer(self, server):

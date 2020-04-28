@@ -45,12 +45,14 @@
 #Description{
 	width:100%;
 	resize: none;
-	background-color:#e9ecef61;
+	border:none;
+	background-color:transparent;
+	text-align:justify;
 }
 
 #Description:focus{
 	box-shadow:none;
-	border-color:#ced4da;
+	border-color:transparent;
 }
 
 .col{
