@@ -15,6 +15,33 @@
 <h1>Tags Require Review</h1>
 <a href="{{url_for('AdminRoutes.reviewTagsPage')}}">Click Here To Review Tags</a><br>
 {% endif %}
+
+<h1>Reports</h1>
+<table class="table">
+<thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Server ID</th>
+      <th scope="col">Server Name</th>
+      <th scope="col">Reason</th>
+	  <th scope="col">View</th>
+	  <th scope="col">Delete</th>
+    </tr>
+  </thead>
+<tbody>
+{% for report in reports %}
+<tr>
+      <th scope="row">{{report.id}}</th>
+      <td>{{report.serverID}}</td>
+      <td>{{report.name}}</td>
+      <td>{{report.reason}}</td>
+	  <td><a class="btn btn-success" style="color:white;font-weight:500" href="{{url_for('AdminRoutes.reportPage')}}?id={{report.id}}">View</a></td>
+	  <td><a class="btn btn-danger" style="color:white;font-weight:500" onclick="">Delete</a></td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+
 </div>
 {% endblock %}
 

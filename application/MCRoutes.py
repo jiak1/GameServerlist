@@ -173,8 +173,8 @@ def advertisePage():
 	if not current_user.is_authenticated:
 		return render_template("mc/notallowed.html")
 
-@login_required
 @MCRoutes.route(prefix+"servers",methods=['GET'])
+@login_required
 def serversPage():
 	servers = current_user.servers
 	if(servers.count() == 0):
@@ -387,8 +387,8 @@ def addServerPage():
 			flash(form.errors[key][0],"danger")
 	return render_template("mc/addServer.html", form=form)
 
-@login_required
 @MCRoutes.route(prefix+"editserver/<serverid>",methods=['GET','POST'])
+@login_required
 def editServerPage(serverid):
 	if(serverid is None):
 		return redirect(url_for("MCRoutes.serversPage"))
@@ -398,6 +398,9 @@ def editServerPage(serverid):
 	if(server.verified != 1 and server.verified != 2):
 		flash("You cannot edit a server whilst it is being reviewed.","warning")
 		return redirect(url_for("MCRoutes.serversPage"))
+	if(server.verified == 10):
+		flash("This server is banned.","warning")
+		return redirect(url_for("MCRoutes.serversPage"))		
 	form = ServerForm()
 	form.isEdit.data="Y"
 	if form.validate_on_submit():
@@ -463,8 +466,8 @@ def editServerPage(serverid):
 
 	return render_template("mc/editServer.html", form=form, server=server)
 
-@login_required
 @MCRoutes.route(prefix+"account",methods=['GET'])
+@login_required
 def accountPage():
 	usernameForm = AccountUsernameChangeForm()
 	emailForm = AccountEmailChangeForm()
@@ -473,8 +476,8 @@ def accountPage():
 
 	return render_template("mc/account.html",account=current_user,usernameForm=usernameForm,emailForm=emailForm,passwordForm=passwordForm,googleForm=googleForm)
 
-@login_required
 @MCRoutes.route(prefix+"accountusername",methods=['POST'])
+@login_required
 def accountChangeUsernamePage():
 	usernameForm = AccountUsernameChangeForm()
 	if(usernameForm.validate()):
@@ -505,8 +508,8 @@ def changeEmailPage(token):
 	return redirect(url_for('MCRoutes.accountPage'))
 
 
-@login_required
 @MCRoutes.route(prefix+"accountemail",methods=['POST'])
+@login_required
 def accountChangeEmailPage():
 	emailForm = AccountEmailChangeForm()
 	if(emailForm.validate()):
@@ -526,8 +529,9 @@ def accountChangeEmailPage():
 			flash(emailForm.errors[key][0],"danger")
 	return redirect(url_for("MCRoutes.accountPage"))
 
-@login_required
+
 @MCRoutes.route(prefix+"accountpassword",methods=['POST'])
+@login_required
 def accountChangePasswordPage():
 	passwordForm = AccountPasswordChangeForm()
 	if(passwordForm.validate()):
@@ -543,8 +547,8 @@ def accountChangePasswordPage():
 			flash(passwordForm.errors[key][0],"danger")
 	return redirect(url_for("MCRoutes.accountPage"))
 
-@login_required
 @MCRoutes.route(prefix+"accountlinkgoogle",methods=['POST'])
+@login_required
 def accountLinkGooglePage():
 	linkForm = AccountGoogleLinkForm()
 	if(linkForm.validate()):
@@ -561,8 +565,8 @@ def accountLinkGooglePage():
 			flash(linkForm.errors[key][0],"danger")
 	return redirect(url_for("MCRoutes.accountPage"))
 
-@login_required
 @MCRoutes.route(prefix+"downloaddata",methods=['GET'])
+@login_required
 def downloadDataPage():
 	if(current_user.lastDataDownload == None or current_user.lastDataDownload < datetime.datetime.now()-datetime.timedelta(hours=1)):
 		current_user.lastDataDownload = datetime.datetime.now()
@@ -573,8 +577,8 @@ def downloadDataPage():
 		flash("We have already sent you your data recently. Please check your email.","danger")
 	return redirect(url_for("MCRoutes.accountPage"))
 
-@login_required
 @MCRoutes.route(prefix+"retrievedata",methods=['GET'])
+@login_required
 def retrieveDataPage():
 	url = "./application/data/"+str(current_user.id)+".json"
 	if( os.path.isfile(url)):
@@ -583,8 +587,8 @@ def retrieveDataPage():
 		flash("Unable to find your data file, please send another request. Your link expires after 2 Days.","danger")
 	return redirect(url_for("MCRoutes.accountPage"))
 
-@login_required
 @MCRoutes.route(prefix+"deleteaccount",methods=['GET','POST'])
+@login_required
 def accountDeletePage():
 	deleteForm = AccountDeleteForm()
 	if(deleteForm.validate_on_submit()):
@@ -603,12 +607,12 @@ def accountDeletePage():
 			flash(deleteForm.errors[key][0],"danger")
 	return render_template("mc/deleteaccount.html",deleteForm=deleteForm)
 
-@login_required
 @MCRoutes.route(prefix+"deleteserver/<serverid>",methods=['GET','POST'])
+@login_required
 def serverDeletePage(serverid):
 	deleteForm = ServerDeleteForm()
 	server = Server.query.filter_by(id=serverid).first()
-	if(serverid is None or server is None):
+	if(serverid is None or server is None or server.verified != 1):
 		return redirect(url_for("MCRoutes.serversPage"))
 
 	if(deleteForm.validate_on_submit()):
@@ -654,7 +658,7 @@ def termsDetails():
 @MCRoutes.route(prefix+"server/<serverid>",methods=['GET'])
 def viewServerPage(serverid):
 	server = Server.query.get(int(serverid))
-	if(server is not None):
+	if(server is not None and server.verified == 1):
 		return render_template("mc/viewserver.html",server=server)
 	else:
 		return redirect(url_for("MCRoutes.MCHomePage"))

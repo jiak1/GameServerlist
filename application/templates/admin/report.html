@@ -1,0 +1,24 @@
+{% extends 'admin/base.html' %}
+
+{% block head %}
+<title>Report</title>
+{% endblock %}
+
+{% block beforeBody %}
+{% endblock %}
+
+{% block body %}
+<div class="container-sm" style="padding-top:50px" align="center">
+{% include 'notify.html' %}
+<h1> Report #{{report.id}}</h1>
+<h2>Server Name: {{report.name}}</h2>
+<h2>Reason: {{report.reason}}</h2>
+<textarea style="width:100%">{{report.description}}</textarea>
+<iframe width="100%" height="1000px" src="https://minecraft.server-lists.com/server/{{report.serverID}}" frameBorder="0">
+</iframe>
+<a href="{{url_for('AdminRoutes.reviewPage')}}?id={{report.serverID}}" class="btn btn-primary" style="color:white;font-weight:500;width:100%;float:left;margin-top:20px;margin-bottom:20px;" target="_blank">Server Case</a>
+<div style="margin-top:30px;width:100%;margin-bottom:200px">
+	<a href="{{url_for('AdminRoutes.reportPage')}}?id={{report.id}}&action=allow" class="btn btn-success" style="color:white;font-weight:500;width:45%;float:left;">Allow Server</a>
+	<a href="{{url_for('AdminRoutes.reportPage')}}?id={{report.id}}&action=deny" class="btn btn-danger" style="color:white;font-weight:500;width:45%;float:right;">Deny Server</a>
+</div>
+{% endblock %}

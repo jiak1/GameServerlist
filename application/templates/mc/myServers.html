@@ -28,8 +28,10 @@
 			<h5 class="card-title float-left"><b>{{server.name}}</b> <span class="badge badge-warning">Pending Verification</span></h5>
 			{% elif server.verified == 1 %}
 			<h5 class="card-title float-left"><b>{{server.name}}</b> <span class="badge badge-dark">{{server.displayVersion}}</span></h5>
-			{% elif server.verified == 2%}
+			{% elif server.verified == 2 %}
 			<h5 class="card-title float-left"><b>{{server.name}}</b> <span class="badge badge-danger">Failed Verification</span></h5>
+			{% elif server.verified == 10 %}
+			<h5 class="card-title float-left"><b>{{server.name}}</b> <span class="badge badge-danger">Banned</span></h5>
 			{% endif %}
 			<p style="float:right;font-size:22.4px;font-weight:600"><i class="fas fa-users"></i> {{server.playerCount}}/{{server.playerMax}}</p><br><br>
 			<p class="card-text">{{server.description}}</p>
@@ -43,8 +45,12 @@
 			<a type="button" class="main-btn btn btn-info"  href="{{url_for('MCRoutes.pingServerPage',serverid=server.id)}}">Ping Server</button>
 			{% elif server.verified == 2 %}
 			<a type="button" class="main-btn btn btn-warning" href="{{url_for('MCRoutes.editServerPage',serverid=server.id)}}" style="margin-right:10px">Fix Server</a>
+			{% elif server.verified == 10 %}
+			<a type="button" class="main-btn btn btn-warning" href="mailto:banned@server-lists.com" target="_blank" style="margin-right:10px">Appeal Ban</a>
 			{% endif %}
+			{% if server.verified == 1 %}
 			<a type="button" class="main-btn btn btn-danger float-right" href="{{url_for('MCRoutes.serverDeletePage',serverid=server.id)}}">Delete Server</a>
+			{% endif %}
 	</div>
 	</div>
 	{% endfor %}
