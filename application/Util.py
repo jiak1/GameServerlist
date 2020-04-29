@@ -373,10 +373,7 @@ def updateSuggestionCacheNum():
 
 #every two hours will yield 84 points for a week
 def logServerGraphs():
-	servers = servers = Server.query.all()
-	for server in servers:
-		logServer(server)
-	#Thread(target=updateServerGraphs, args=(app,)).start()
+	Thread(target=updateServerGraphs, args=(app,)).start()
 
 def updateServerGraphs(app):
 	with app.app_context():
