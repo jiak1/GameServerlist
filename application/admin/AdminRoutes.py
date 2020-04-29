@@ -4,7 +4,7 @@ from flask_login import current_user, login_user,logout_user, login_required
 import os
 from ..Forms import LoginForm,RegisterForm,AdminServerForm,PasswordChangeForm,EmailChangeForm,TagsForm
 from ..Models import Admin,Server,Account,ReviewTag,Report
-from ..Util import UpdateAdminServerWithForm,addNewTags,sendServerApprovedEmail,sendServerDeniedEmail,serverRank
+from ..Util import UpdateAdminServerWithForm,addNewTags,sendServerApprovedEmail,sendServerDeniedEmail,serverRank,logServerGraphs
 from ..Config import getProduction
 import datetime
 
@@ -232,4 +232,9 @@ def esReindexPage():
 @login_required
 def rankPage():
 	serverRank()
+	return redirect(url_for("AdminRoutes.homePage"))
+
+@AdminRoutes.route(prefix+"graph",methods=['GET'])
+def APIGRAPH():
+	logServerGraphs()
 	return redirect(url_for("AdminRoutes.homePage"))

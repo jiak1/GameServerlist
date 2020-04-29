@@ -40,7 +40,7 @@ class ServerForm(FlaskForm):
 	port = IntegerField('Port',validators=[DataRequired(message="No port was given."),NumberRange(min=1, max=65535,message="Invalid port.")])
 	country = StringField('Country',validators=[DataRequired(message="No Country was given."),Length(max=4)])
 	
-	description = StringField('Description', validators=[DataRequired(),Length(min=30,max=1000,message="The description needs to be between 30 & 1000 characters.")])
+	description = StringField('Description', validators=[DataRequired(),Length(min=30,max=3000,message="The description needs to be between 30 & 3000 characters.")])
 
 	serverType = StringField('ServerType', validators=[DataRequired(message="No Server Type was selected.")])
 	banner = HiddenField('Banner')
@@ -172,7 +172,7 @@ class AdminServerForm(FlaskForm):
 	port = IntegerField('Port',validators=[DataRequired(message="No port was given."),NumberRange(min=1, max=65535,message="Invalid port.")])
 	country = StringField('Country',validators=[DataRequired(message="No Country was given."),Length(max=4)])
 	
-	description = StringField('Description', validators=[DataRequired(),Length(min=30,max=1000,message="The description needs to be between 30 & 1000 characters.")])
+	description = StringField('Description', validators=[DataRequired(),Length(min=30,max=3000,message="The description needs to be between 30 & 3000 characters.")])
 
 	serverType = StringField('ServerType', validators=[DataRequired(message="No Server Type was selected.")])
 	banner = StringField('Banner')

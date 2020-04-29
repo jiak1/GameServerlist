@@ -128,8 +128,3 @@ def doRank():
 @crontab.job(minute="5", hour="*/2")
 def graphServers():
 	logServerGraphs()
-
-@APIRoutes.route(prefix+"API/GRAPH",methods=['GET'])
-def APIGRAPH():
-	logServerGraphs()
-	return "DONE"

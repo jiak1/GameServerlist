@@ -380,10 +380,10 @@ def addServerPage():
 						frames = thumbnails(frames)
 						om = next(frames)
 						om.info = im.info
-						om.save(newPath,'webp',quality=80,save_all=True, loop=0,append_images=list(frames))
+						om.save(newPath,'webp',quality=100,save_all=True, loop=0,append_images=list(frames))
 					else:
 						im = im.resize(size=(498,60))
-						im.save(newPath,'webp',quality=80)
+						im.save(newPath,'webp',quality=100)
 
 					server.banner=url_for('static',filename='images/banners/live')+"/"+str(server.id)+".webp?1"
 
