@@ -27,7 +27,7 @@
 			{% if server.verified == 0 or server.verified == 3 %}
 			<h5 class="card-title float-left"><b>{{server.name}}</b> <span class="badge badge-warning">Pending Verification</span></h5>
 			{% elif server.verified == 1 %}
-			<h5 class="card-title float-left"><b>{{server.name}}</b> <span class="badge badge-dark">{{server.displayVersion}}</span></h5>
+			<h5 class="card-title float-left"><b><a class="serverLink" href="{{url_for('MCRoutes.viewServerPage',serverid=server.id)}}">{{server.name}}</a></b> <span class="badge badge-dark">{{server.displayVersion}}</span></h5>
 			{% elif server.verified == 2 %}
 			<h5 class="card-title float-left"><b>{{server.name}}</b> <span class="badge badge-danger">Failed Verification</span></h5>
 			{% elif server.verified == 10 %}
@@ -41,12 +41,12 @@
 		</ul>
 		<div class="card-body">
 			{% if server.verified == 1 %}
-			<a type="button" class="main-btn btn btn-primary" href="{{url_for('MCRoutes.editServerPage',serverid=server.id)}}" style="margin-right:10px">Edit Server</a>
-			<a type="button" class="main-btn btn btn-info"  href="{{url_for('MCRoutes.pingServerPage',serverid=server.id)}}">Ping Server</button>
+			<a type="button" class="mb-3 main-btn btn btn-primary" href="{{url_for('MCRoutes.editServerPage',serverid=server.id)}}" style="margin-right:10px">Edit Server</a>
+			<a type="button" class="mb-3 main-btn btn btn-info"  href="{{url_for('MCRoutes.pingServerPage',serverid=server.id)}}">Ping Server</button>
 			{% elif server.verified == 2 %}
-			<a type="button" class="main-btn btn btn-warning" href="{{url_for('MCRoutes.editServerPage',serverid=server.id)}}" style="margin-right:10px">Fix Server</a>
+			<a type="button" class="mb-3 main-btn btn btn-warning" href="{{url_for('MCRoutes.editServerPage',serverid=server.id)}}" style="margin-right:10px">Fix Server</a>
 			{% elif server.verified == 10 %}
-			<a type="button" class="main-btn btn btn-warning" href="mailto:banned@server-lists.com" target="_blank" style="margin-right:10px">Appeal Ban</a>
+			<a type="button" class="mb-3 main-btn btn btn-warning" href="mailto:banned@server-lists.com" target="_blank" style="margin-right:10px">Appeal Ban</a>
 			{% endif %}
 			{% if server.verified == 1 %}
 			<a type="button" class="main-btn btn btn-danger float-right" href="{{url_for('MCRoutes.serverDeletePage',serverid=server.id)}}">Delete Server</a>
