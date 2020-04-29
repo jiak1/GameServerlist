@@ -32,7 +32,7 @@
 	</div></div>
 	{% endif %}
 	<textarea id="Description" class="form-control" readonly>{{server.description}}</textarea>
-	<div class="chart-container" style="position: relative; height:40vh; width:100%">
+	<div class="chart-container" style="position: relative; width:100%">
 	<canvas id="serverGraph"></canvas>
 	</div>
 	</div>
@@ -196,13 +196,20 @@ function setupGraph(data){
 	
 	options: {
 			scales: {
+				yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }],
 				xAxes: [{
 					type: 'time',
-					time: {
-						displayFormats: {
-							quarter: 'D'
-						}
-					}
+                    time: {
+                        unit: 'day',
+                        displayFormats: {
+                            day: 'MMM D'
+                        },                            
+                    },
+                    display: true,
 				}]
 			}
 		}
