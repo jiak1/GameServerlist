@@ -62,7 +62,7 @@ def APIBannerUpload():
 		newName = filename+"."+ext
 		url = os.path.join(APP_ROOT+"/static"+tempURL+"/", newName)
 	banner.save(url)
-	return jsonify({"URL":url,"IMGURL":"https://cdn.statically.io/img/"+IMGDOMAIN+tempURL+"/"+banner.filename})
+	return jsonify({"URL":url,"IMGURL":"https://"+IMGDOMAIN+tempURL+"/"+banner.filename})
 
 @APIRoutes.route(prefix+"API/VOTIFIER",methods=['POST'])
 def APIVotifier():
