@@ -72,6 +72,10 @@
 			</select>
         </p>
 		<p>
+            {{ form.votifierIP.label }}<br>
+            {{ form.votifierIP(value=server.votifierIP) }}
+        </p>
+		<p>
             {{ form.votifierPort.label }}<br>
             {{ form.votifierPort(value=server.votifierPort) }}
         </p>

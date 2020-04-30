@@ -52,6 +52,7 @@ class ServerForm(FlaskForm):
 	tags = StringField('Tags',validators=[Optional()])
 
 	votifierEnabled = StringField('Votifier Status')
+	votifierIP = StringField('Votifier IP', validators=[DataRequired(message="No IP was given."),Length(min=5, max=35,message="Invalid Votifier IP.")])
 	votifierPort = IntegerField('Votifier Port',validators=[Optional(),DataRequired(message="No votifier port was given."),NumberRange(min=1, max=65535,message="Invalid votifier port.")])
 	votifierToken = StringField('Votifier Public Key',validators=[Optional(),DataRequired(message="Please fill in the Votifier public key.")])
 

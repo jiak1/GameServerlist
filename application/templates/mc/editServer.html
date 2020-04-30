@@ -158,6 +158,11 @@
 </div>
 <div id="votifierHide">
 <div class="form-label-group">
+		<input type="text" id="votifierIP" name="votifierIP" class="form-control" placeholder="Votifier IP Address" required  minlength="5" maxlength="35" value="{{server.votifierIP}}">
+		<label for="votifierIP">Votifier IP Address</label>
+		<small id="votifierIPHelp" class="form-text text-muted">The address your votifier plugin is installed at.</small>
+</div>
+<div class="form-label-group">
 		<input type="number" id="votifierPort" name="votifierPort" class="form-control" placeholder="Port" value="{{server.votifierPort}}" min="1" max="65535">
 		<label for="votifierPort">Votifier Port</label>
 		<small id="votifierPortHelp" class="form-text text-muted">The port used to connect to Votifier, the default is 8192. <b>This cannnot not be the same as your Minecraft server port.</b></small>
@@ -416,7 +421,7 @@ function GetStatus(ip,port){
 
 function TestVote(_serverDetails,ip,port){
 	showTest3();
-	var _data = {"IP":ip,"PORT":$("#votifierPort").val(),"TOKEN":$("#votifierToken").val()}
+	var _data = {"IP":$("#votifierIP").val(),"PORT":$("#votifierPort").val(),"TOKEN":$("#votifierToken").val()}
 	$.ajax({
 			type: "POST",
 			url: "{{url_for('APIRoutes.APIVotifier')}}",
