@@ -439,7 +439,7 @@ def editServerPage(serverid):
 					if os.path.isfile(newPath):
 						os.remove(newPath)
 
-					if(im.format == "GIF"):
+					if(im.format == "GIF" or im.format == "WEBP"):
 						# Get sequence iterator
 						frames = ImageSequence.Iterator(im)
 

@@ -657,7 +657,7 @@ $('#bannerUpload').change(function () {
 	var file = document.querySelector('#bannerUpload').files[0];
 
 	// allowed types
-	var mime_types = [ 'image/jpeg', 'image/png','image/gif' ];
+	var mime_types = [ 'image/jpeg', 'image/png','image/gif','image/webp' ];
 	
 	// validate MIME type
 	if(mime_types.indexOf(file.type) == -1) {
