@@ -50,7 +50,7 @@ body{
 
 #BannerIMG{
 	max-height:60px;
-	max-width:468px;
+	max-width:100%;
 	border-radius:5px;
 }
 
@@ -64,4 +64,15 @@ body{
 
 .fa-check,.fa-exclamation-triangle{
 	width:inherit !important;
+}
+
+#discordFrame{
+	height:500px;
+}
+
+@media only screen and (max-device-width: 480px) {
+	.g-recaptcha {
+		transform:scale(0.77);
+		transform-origin:0 0;
+	}
 }
