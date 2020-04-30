@@ -461,7 +461,6 @@ def editServerPage(serverid):
 					end = int(server.banner.split('?')[1])+1
 					server.banner=url_for('static',filename='images/banners/live')+"/"+str(server.id)+".webp?"+str(end)
 				
-				server.rank=server.id
 				server.version = mcdetails['server']['name']
 				server.playerCount = mcdetails['players']['now']
 				server.playerMax = mcdetails['players']['max']
