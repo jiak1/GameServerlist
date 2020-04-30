@@ -1,7 +1,7 @@
 from flask import request,Blueprint, jsonify,abort,url_for,redirect
 from .Program import mc_db as db
 import os
-from .Util import ServerUp,ServerStatus,cleanupTempBanners,cleanupTempData,checkServerUpdates, serverRank,clearVotes,logServerGraphs
+from .Util import ServerUp,ServerStatus,cleanupTempBanners,cleanupTempData,checkServerUpdates, serverRank,clearVotes,logServerGraphs,sendVotifierVote
 from .SendVote import sendVote
 from .Models import Server,ReviewTag
 from .Program import mc_mail as mail, elasticsearch
@@ -70,7 +70,7 @@ def APIVotifier():
 	ip = data['IP']
 	port = data['PORT']
 	token = data['TOKEN']
-	response = sendVote(ip,port,"MCServerListTest",request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr),token)
+	response = sendVotifierVote(ip,port,"MCServerListTest",request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr),token)
 	result = {
 		"STATUS":response[0],
 		"MESSAGE":response[1]
