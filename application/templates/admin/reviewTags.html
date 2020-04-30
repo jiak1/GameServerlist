@@ -52,24 +52,32 @@
 <a class="btn btn-primary" style="color:white;font-weight:500;margin-top:20px;margin-bottom:100px" onclick="updateTags()">Submit Revisions</a>
 <script>
 function addTag(_ID){
-	name = $("#NAME-"+_ID).text()
-	section = $("#SECTION-"+_ID).text()
-	parentOBJ = null
-	if(section == "tags"){
-		parentOBJ = $("#tags")
-	}else if(section == "plugins"){
-		parentOBJ = $("#plugins")
-	}else if(section == "datapacks"){
-		parentOBJ = $("#datapacks")
-	}else if(section == "mods"){
-		parentOBJ = $("#mods")
-	}
-	if(parentOBJ.text() != ""){
-	parentOBJ.append(","+name)
-	}else{
-		parentOBJ.append(name)
-	}
-	$("#ROW-"+_ID).remove()
+	var jqxhr = $.get( "{{url_for('AdminRoutes.APIRemoveReview')}}"+"?ID="+_ID, function() {
+		name = $("#NAME-"+_ID).text()
+		section = $("#SECTION-"+_ID).text()
+		parentOBJ = null
+		if(section == "tags"){
+			parentOBJ = $("#tags")
+		}else if(section == "plugins"){
+			parentOBJ = $("#plugins")
+		}else if(section == "datapacks"){
+			parentOBJ = $("#datapacks")
+		}else if(section == "mods"){
+			parentOBJ = $("#mods")
+		}
+		if(parentOBJ.text() != ""){
+		parentOBJ.append(","+name)
+		}else{
+			parentOBJ.append(name)
+		}
+		$("#ROW-"+_ID).remove()
+	})
+	.done(function() {
+		console.log("How ya going?")
+	})
+	.fail(function() {
+		alert( "error" );
+	})
 }
 function removeTag(_ID){
 	var jqxhr = $.get( "{{url_for('AdminRoutes.APIRemoveReview')}}"+"?ID="+_ID, function() {
