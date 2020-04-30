@@ -416,7 +416,7 @@ function GetStatus(ip,port){
 
 function TestVote(_serverDetails,ip,port){
 	showTest3();
-	var _data = {"IP":ip,"PORT":port,"TOKEN":$("#votifierToken").val()}
+	var _data = {"IP":ip,"PORT":$("#votifierPort").val(),"TOKEN":$("#votifierToken").val()}
 	$.ajax({
 			type: "POST",
 			url: "{{url_for('APIRoutes.APIVotifier')}}",

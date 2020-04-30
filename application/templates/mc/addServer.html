@@ -398,7 +398,7 @@ function GetStatus(ip,port){
 
 function TestVote(_serverDetails,ip,port){
 	showTest3();
-	var _data = {"IP":ip,"PORT":port,"TOKEN":$("#votifierToken").val()}
+	var _data = {"IP":ip,"PORT":$("#votifierPort").val(),"TOKEN":$("#votifierToken").val()}
 	$.ajax({
 			type: "POST",
 			url: "API/VOTIFIER",
@@ -406,6 +406,7 @@ function TestVote(_serverDetails,ip,port){
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			success: function(data){
+				console.log(data)
 				if(data["STATUS"] == true){
 					$("#test3Check").show();
 					$("#test3Load").hide();
