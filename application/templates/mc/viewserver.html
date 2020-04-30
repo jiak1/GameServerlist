@@ -172,10 +172,14 @@ $('.tag').each(function(i, obj) {
 </script>
 
 <script>
-	$.getJSON('/json/graphs/{{server.id}}.json', function(data) {
-    	setupGraph(data)
-	});
-
+$.ajax({
+    type: "GET",
+    cache: false,
+    url: "/json/graphs/{{server.id}}.json",
+    success: function(data) {
+      setupGraph(data)
+    }
+});
 function setupGraph(data){
 	Chart.defaults.line.spanGaps = true;
 
