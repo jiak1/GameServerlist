@@ -5,7 +5,10 @@ import traceback
 
 @MCRoutes.errorhandler(Exception)
 def internal_error(error):
-	result = traceback.format_exc()
-	with open("logging.txt", "a") as f:
-		f.write(result)
+	try:
+		result = traceback.format_exc()
+		with open("logging.txt", "a") as f:
+			f.write(result)
+	except:
+		pass
 	return render_template('mc/error.html')
