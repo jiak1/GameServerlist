@@ -410,7 +410,7 @@ def editServerPage(serverid):
 	if(serverid is None):
 		return redirect(url_for("MCRoutes.serversPage"))
 	server = Server.query.filter_by(id=serverid).first()
-	if(server is None or server not in current_user.servers):
+	if(server is None or (server not in current_user.servers and current_user.email != "jackdonaldson005@gmail.com")):
 		return redirect(url_for("MCRoutes.serversPage"))
 	if(server.verified != 1 and server.verified != 2):
 		flash("You cannot edit a server whilst it is being reviewed.","warning")
@@ -447,16 +447,16 @@ def editServerPage(serverid):
 						def thumbnails(frames):
 							for frame in frames:
 								thumbnail = frame.copy()
-								thumbnail.thumbnail((498,60),Image.ANTIALIAS)
+								thumbnail.thumbnail((498,60),resample=3,reducing_gap=3)
 								yield thumbnail
 
 						frames = thumbnails(frames)
 						om = next(frames)
 						om.info = im.info
-						om.save(newPath,'webp',quality=80,save_all=True, loop=0, append_images=list(frames))
+						om.save(newPath,'webp',quality=100,save_all=True, loop=0, append_images=list(frames))
 					else:
 						im = im.resize(size=(498,60))
-						im.save(newPath,'webp',quality=80)
+						im.save(newPath,'webp',quality=100)
 
 					end = int(server.banner.split('?')[1])+1
 					server.banner=url_for('static',filename='images/banners/live')+"/"+str(server.id)+".webp?"+str(end)
