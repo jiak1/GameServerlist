@@ -26,6 +26,8 @@ def APIPing():
 	data = request.get_json();
 	ip = data['IP']
 	port = data['PORT']
+	print(ip)
+	print(port)
 	online = ServerUp(ip,port)
 	if(online):
 		return jsonify({"STATUS":"ONLINE"})
