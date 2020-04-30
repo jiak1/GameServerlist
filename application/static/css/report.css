@@ -17,3 +17,10 @@ body{
 .g-recaptcha{
 	margin-bottom:15px;
 }
+
+@media only screen and (max-device-width: 480px) {
+	.g-recaptcha {
+		transform:scale(0.77);
+		transform-origin:0 0;
+	}
+}
