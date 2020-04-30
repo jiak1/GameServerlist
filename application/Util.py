@@ -26,20 +26,26 @@ def ServerUp(ip,port):
 		response = requests.get("https://mcapi.us/server/status?ip="+ip+"&port="+port)
 	else:
 		response = requests.get("https://mcapi.us/server/status?ip="+ip)
-	data = response.json() 
-	if(data != None and data['status'] == "success" and data["online"] == True):
+	if(response.status_code == 200):
+		data = response.json() 
+		if(data != None and data['status'] == "success" and data["online"] == True):
+			return True
+		return False
+	else:
 		return True
-	return False
 
 def ServerStatus(ip,port):
 	if(port != "25565"):
 		response = requests.get("https://mcapi.us/server/status?ip="+ip+"&port="+port)
 	else:
 		response = requests.get("https://mcapi.us/server/status?ip="+ip)
-	data = response.json()
-	if(data != None and data['status'] == "success" and data["online"] == True):
-		return True,data
-	return (False,None);
+	if(response.status_code == 200):
+		data = response.json()
+		if(data != None and data['status'] == "success" and data["online"] == True):
+			return True,data
+		return (False,None);
+	else:
+		return (True,{"status":"success","online":True,"motd":"","favicon":"","error":"","players":{"max":0,"now":0},"server":{"name":"","protocol":578},"last_online":"1588221063","last_updated":"1588221063","duration":183339623})
 
 def ValidUsername(username):
 	response = requests.get("https://api.mojang.com/users/profiles/minecraft/"+username)

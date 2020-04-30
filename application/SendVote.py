@@ -19,20 +19,19 @@ def sendVote(ip,port,username,voterAddress,token):
 		read_line(sock)
 	except:
 		return (False,"Unable to connect to Votifier. Check the ip & port entered is correct.")
-
-	data = "VOTE\n%s\n%s\n%s\n%s\n" % ("mcserver-lists", username, voterAddress, int(time.time()))
-
-	public_key_encoded = token
-
-	header = "-----BEGIN PUBLIC KEY-----\n"
-	footer = "\n-----END PUBLIC KEY-----"
-
-	if not public_key_encoded[0] == '-':
-		public_key_encoded = header + public_key_encoded
-	if not public_key_encoded[-1] == '-':
-		public_key_encoded += footer
-	
 	try:
+		data = "VOTE\n%s\n%s\n%s\n%s\n" % ("mcserver-lists", username, voterAddress, int(time.time()))
+
+		public_key_encoded = token
+
+		header = "-----BEGIN PUBLIC KEY-----\n"
+		footer = "\n-----END PUBLIC KEY-----"
+
+		if not public_key_encoded[0] == '-':
+			public_key_encoded = header + public_key_encoded
+		if not public_key_encoded[-1] == '-':
+			public_key_encoded += footer
+	
 		public_key = rsa.PublicKey.load_pkcs1_openssl_pem(bytes(public_key_encoded, encoding='utf8'))
 
 		encrypted = rsa.encrypt(bytes(data, encoding='utf8'), public_key)
