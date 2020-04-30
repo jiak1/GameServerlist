@@ -23,7 +23,7 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 def ServerUp(ip,port):
 	if(port != "25565"):
-		response = requests.get("https://mcapi.us/server/status?ip="+ip+"&port="+port)
+		response = requests.get("https://mcapi.us/server/status?ip="+str(ip)+"&port="+str(port))
 	else:
 		response = requests.get("https://mcapi.us/server/status?ip="+ip)
 	if(response.status_code == 200):
@@ -36,7 +36,7 @@ def ServerUp(ip,port):
 
 def ServerStatus(ip,port):
 	if(port != "25565"):
-		response = requests.get("https://mcapi.us/server/status?ip="+ip+"&port="+port)
+		response = requests.get("https://mcapi.us/server/status?ip="+str(ip)+"&port="+str(port))
 	else:
 		response = requests.get("https://mcapi.us/server/status?ip="+ip)
 	if(response.status_code == 200):
@@ -76,7 +76,7 @@ def UpdateServerWithForm(_serverForm, _serverModel):
 	_serverModel.votifierPort = _serverForm.votifierPort.data
 	_serverModel.votifierToken = _serverForm.votifierToken.data
 	if(str(_serverForm.port.data) != "25565"):
-		_serverModel.displayIP = _serverForm.ip.data+":"+_serverForm.port.data
+		_serverModel.displayIP = _serverForm.ip.data+":"+str(_serverForm.port.data)
 	else:
 		_serverModel.displayIP = _serverForm.ip.data
 

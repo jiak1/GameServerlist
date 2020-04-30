@@ -346,7 +346,7 @@ def addServerPage():
 	form = ServerForm()
 	form.isEdit.data="N"
 	if form.validate_on_submit():
-		response = validateServer(form.ip.data,form.port.data,form.votifierEnabled.data,form.votifierPort.data,request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr),form.votifierToken.data)
+		response = validateServer(form.ip.data,form.port.data,form.votifierEnabled.data,form.votifierPort.data,request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr),form.votifierToken.data,form.votifierIP.data)
 		if(response[0] == False):
 			flash(response[1],"danger")
 		else:
@@ -421,7 +421,7 @@ def editServerPage(serverid):
 	form = ServerForm()
 	form.isEdit.data="Y"
 	if form.validate_on_submit():
-		response = validateServer(form.ip.data,form.port.data,form.votifierEnabled.data,form.votifierPort.data,request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr),form.votifierToken.data)
+		response = validateServer(form.ip.data,form.port.data,form.votifierEnabled.data,form.votifierPort.data,request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr),form.votifierToken.data,form.votifierIP.data)
 		if(response[0] == False):
 			flash(response[1],"danger")
 		else:
