@@ -1,7 +1,8 @@
 from .MCRoutes import MCRoutes
 from flask import render_template
 from .Program import mc_app as app
-import traceback
+
+app.logger.info("SETTING UP LOGGER")
 
 @MCRoutes.errorhandler(Exception)
 def internal_error(error):

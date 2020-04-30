@@ -132,3 +132,29 @@ DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): mcapi.us:443
 DEBUG:urllib3.connectionpool:https://mcapi.us:443 "GET /server/status?ip=mc.c0vidmc.best HTTP/1.1" 403 None
 INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:28] "[37mPOST /minecraft/API/STATUS HTTP/1.1[0m" 200 -
 INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:28] "[37mPOST /minecraft/API/VOTIFIER HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:19:06] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:20:06] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:21:06] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:22:06] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:23:06] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:24:06] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:24:55] "[37mGET /minecraft/addserver HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:24:56] "[33mGET /fonts/glyphicons/glyphicons-halflings-regular.woff2 HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:24:56] "[33mGET /fonts/glyphicons/glyphicons-halflings-regular.woff HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:24:57] "[33mGET /fonts/glyphicons/glyphicons-halflings-regular.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:24:58] "[37mGET /favicon.ico HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:25:06] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:26:06] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:27:06] "[33mGET / HTTP/1.1[0m" 404 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:27:13] "[33mGET / HTTP/1.1[0m" 404 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:27:45] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:28:06] "[33mGET / HTTP/1.1[0m" 404 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:application.Program:SETTING UP LOGGER
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:28:18] "[33mGET / HTTP/1.1[0m" 404 -
