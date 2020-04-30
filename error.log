@@ -75,3 +75,60 @@ INFO:elasticsearch:POST https://serverlist-9276239137.ap-southeast-2.bonsaisearc
 DEBUG:elasticsearch:> {"sort":{"rank":"asc"},"query":{"term":{"verified":"1"}},"from":0,"size":14}
 DEBUG:elasticsearch:< {"took":0,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":14,"relation":"eq"},"max_score":null,"hits":[{"_index":"server","_type":"_doc","_id":"1","_score":null,"_source":{"name":"Wondercraft","tags":"","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"AU","rank":1,"newTime":"2020-04-28T04:17:20"},"sort":[1]},{"_index":"server","_type":"_doc","_id":"35","_score":null,"_source":{"name":"Prisonfun","tags":"","plugins":"Worldedit,Votifier","datapacks":"Double Shulker Shells,More Player Heads","mods":"Not Enough Items,Redpower","verified":1,"displayVersion":"1.13","country":"MX","rank":2,"newTime":"2020-04-22T02:07:52"},"sort":[2]},{"_index":"server","_type":"_doc","_id":"2","_score":null,"_source":{"name":"TheSeedMC","tags":"","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"Seed","country":"US","rank":"2","newTime":"2020-04-29T02:16:53.118281"},"sort":[2]},{"_index":"server","_type":"_doc","_id":"8","_score":null,"_source":{"name":"Votififer","tags":"Worldedit,Votifier","plugins":"Worldedit,Votifier","datapacks":"Double Shulker Shells,More Player Heads","mods":"Not Enough Items,Redpower","verified":1,"displayVersion":"1.15.2","country":"US","rank":3,"newTime":"2020-04-22T02:07:52"},"sort":[3]},{"_index":"server","_type":"_doc","_id":"9","_score":null,"_source":{"name":"Mine Superior","tags":"Not Enough Items,Redpower","plugins":"Worldedit,Votifier","datapacks":"Double Shulker Shells,More Player Heads","mods":"Not Enough Items,Redpower","verified":1,"displayVersion":"1.10","country":"US","rank":4,"newTime":"2020-04-22T02:07:52"},"sort":[4]},{"_index":"server","_type":"_doc","_id":"10","_score":null,"_source":{"name":"Pixelmon","tags":"","plugins":"Worldedit,Votifier","datapacks":"Double Shulker Shells,More Player Heads","mods":"Not Enough Items,Redpower","verified":1,"displayVersion":"1.15.2","country":"US","rank":5,"newTime":"2020-04-22T02:07:52"},"sort":[5]},{"_index":"server","_type":"_doc","_id":"11","_score":null,"_source":{"name":"Aspiria MC","tags":"Worldedit,Votifier,Not Enough Items,Redpower,Double Shulker Shells,More Player Heads","plugins":"Worldedit,Votifier","datapacks":"Double Shulker Shells,More Player Heads","mods":"Not Enough Items,Redpower","verified":1,"displayVersion":"1.15.2","country":"AU","rank":6,"newTime":"2020-04-25T09:29:32"},"sort":[6]},{"_index":"server","_type":"_doc","_id":"38","_score":null,"_source":{"name":"Mineheroes","tags":"","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7.x,","country":"US","rank":8,"newTime":"2020-04-23T06:34:43"},"sort":[8]},{"_index":"server","_type":"_doc","_id":"39","_score":null,"_source":{"name":"GTA Minecraft","tags":"","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8.x,","country":"US","rank":9,"newTime":"2020-04-23T06:40:08"},"sort":[9]},{"_index":"server","_type":"_doc","_id":"69","_score":null,"_source":{"name":"MC Complex","tags":"","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":10,"newTime":"2020-04-24T04:01:17"},"sort":[10]},{"_index":"server","_type":"_doc","_id":"36","_score":null,"_source":{"name":"Applecraft","tags":"Adventure,Discord,Economy,Land Claim,Minigames,PVP,PVE,Survival,Vanilla","plugins":"","datapacks":"","mods":"Not Enough Items,Redpower","verified":1,"displayVersion":"1.8.x,","country":"US","rank":36,"newTime":"2020-04-22T02:07:52"},"sort":[36]},{"_index":"server","_type":"_doc","_id":"70","_score":null,"_source":{"name":"Loverfella","tags":"","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8.x,","country":"US","rank":70,"newTime":"2020-04-25T10:16:41"},"sort":[70]},{"_index":"server","_type":"_doc","_id":"71","_score":null,"_source":{"name":"Breaking MC","tags":"","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":71,"newTime":"2020-04-25T10:14:08"},"sort":[71]},{"_index":"server","_type":"_doc","_id":"72","_score":null,"_source":{"name":"leftadjacentarms","tags":"Creative,Survival,Spectator,Adventure","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"TW","rank":72,"newTime":"2020-04-26T02:45:06"},"sort":[72]}]}}
 INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:01] "[37mGET /minecraft/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:06] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:08] "[37mGET /minecraft/servers HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:08] "[37mGET /images/main/LoadingBanner.webp?1 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:10] "[37mGET /minecraft/server/1 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:10] "[37mGET /css/viewserver.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:10] "[37mGET /js/moment.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:11] "[37mGET /json/graphs/1.json?_=1588230969992 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:12] "[37mGET /minecraft/servers HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:15] "[37mGET /minecraft/addserver HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:16] "[33mGET /fonts/glyphicons/glyphicons-halflings-regular.woff2 HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:16] "[33mGET /fonts/glyphicons/glyphicons-halflings-regular.woff HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:16] "[33mGET /fonts/glyphicons/glyphicons-halflings-regular.ttf HTTP/1.1[0m" 404 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): mcapi.us:443
+DEBUG:urllib3.connectionpool:https://mcapi.us:443 "GET /server/status?ip=mc.c0vidmc.best HTTP/1.1" 403 None
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:43] "[37mPOST /minecraft/API/PING HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): mcapi.us:443
+DEBUG:urllib3.connectionpool:https://mcapi.us:443 "GET /server/status?ip=mc.c0vidmc.best HTTP/1.1" 403 None
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:43] "[37mPOST /minecraft/API/STATUS HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:44] "[37mPOST /minecraft/API/VOTIFIER HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): mcapi.us:443
+DEBUG:urllib3.connectionpool:https://mcapi.us:443 "GET /server/status?ip=mc.c0vidmc.best HTTP/1.1" 403 None
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:57] "[37mPOST /minecraft/API/PING HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): mcapi.us:443
+DEBUG:urllib3.connectionpool:https://mcapi.us:443 "GET /server/status?ip=mc.c0vidmc.best HTTP/1.1" 403 None
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:57] "[37mPOST /minecraft/API/STATUS HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:16:58] "[37mPOST /minecraft/API/VOTIFIER HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): mcapi.us:443
+DEBUG:urllib3.connectionpool:https://mcapi.us:443 "GET /server/status?ip=mc.c0vidmc.best HTTP/1.1" 403 None
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:17:04] "[37mPOST /minecraft/API/PING HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): mcapi.us:443
+DEBUG:urllib3.connectionpool:https://mcapi.us:443 "GET /server/status?ip=mc.c0vidmc.best HTTP/1.1" 403 None
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:17:04] "[37mPOST /minecraft/API/STATUS HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:17:04] "[37mPOST /minecraft/API/VOTIFIER HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:17:06] "[33mGET / HTTP/1.1[0m" 404 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:17:54] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:01] "[37mGET /minecraft/addserver HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:02] "[33mGET /fonts/glyphicons/glyphicons-halflings-regular.woff2 HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:02] "[33mGET /fonts/glyphicons/glyphicons-halflings-regular.woff HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:03] "[33mGET /fonts/glyphicons/glyphicons-halflings-regular.ttf HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:04] "[37mGET /favicon.ico HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:06] "[33mGET / HTTP/1.1[0m" 404 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): mcapi.us:443
+DEBUG:urllib3.connectionpool:https://mcapi.us:443 "GET /server/status?ip=mc.c0vidmc.best HTTP/1.1" 403 None
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:23] "[37mPOST /minecraft/API/PING HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): mcapi.us:443
+DEBUG:urllib3.connectionpool:https://mcapi.us:443 "GET /server/status?ip=mc.c0vidmc.best HTTP/1.1" 403 None
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:23] "[37mPOST /minecraft/API/STATUS HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:23] "[37mPOST /minecraft/API/VOTIFIER HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): mcapi.us:443
+DEBUG:urllib3.connectionpool:https://mcapi.us:443 "GET /server/status?ip=mc.c0vidmc.best HTTP/1.1" 403 None
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:27] "[37mPOST /minecraft/API/PING HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): mcapi.us:443
+DEBUG:urllib3.connectionpool:https://mcapi.us:443 "GET /server/status?ip=mc.c0vidmc.best HTTP/1.1" 403 None
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:28] "[37mPOST /minecraft/API/STATUS HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [30/Apr/2020 07:18:28] "[37mPOST /minecraft/API/VOTIFIER HTTP/1.1[0m" 200 -
