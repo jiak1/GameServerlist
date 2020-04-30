@@ -23,13 +23,13 @@
   </div>
 
 	<div class="row">
-		<div class="col-10">
+		<div class="col-sm-10">
     <div class="form-label-group">
 		<input type="text" id="serverName" name="serverName" class="form-control" placeholder="Server Name" value="{{server.name}}" disabled>
 		<label for="serverName">Server Name</label>
 		<small id="serverNameHelp" class="form-text text-muted">Check this is the correct server you wish to report.</small>
    </div></div>
-   <div class="col-2">
+   <div class="col-sm-2">
 	   <div class="form-label-group">
 	   	<input type="text" id="serverID" name="serverID" class="form-control" placeholder="Server ID" value="{{server.id}}" disabled>
 		<label for="serverID">Server ID</label>
@@ -54,7 +54,7 @@
     <textarea class="form-control" id="description" name="description" rows="4" placeholder="Try and provide as much detail as possible regarding the violation..." minlength="20" maxlength="1000" required></textarea>
   </div>
   {{form.recaptcha()}}
-  <button class="btn btn-lg btn-success btn-block" type="submit" name="submit" id="submit">Report Server</button>
+  <button class="btn btn-lg btn-danger btn-block" type="submit" name="submit" id="submit">Report Server</button>
   </form>
   </div></div>
 {% endblock %}
