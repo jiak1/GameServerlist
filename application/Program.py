@@ -11,7 +11,7 @@ from oauthlib.oauth2 import WebApplicationClient
 from .momentjs import momentjs
 from requests_aws4auth import AWS4Auth
 import sentry_sdk
-from sentry_sdk.integrations.flask import FlaskIntegration
+
 
 def getElasticSearchURL():
 	if(getProduction() == True):
@@ -86,17 +86,13 @@ def create_mc_app():
 	global mc_app
 	mc_app = Flask(__name__,static_url_path="", static_folder="static")
 
-	sentry_sdk.init(
-    dsn="https://1578d5f47ed44ef684b3cd820d2e1009@o385754.ingest.sentry.io/5218982",
-    integrations=[FlaskIntegration()]
-	)
-
 	mc_app.config.from_object(AppConfig)
 	
 	mc_app.config.update(mail_settings)
 	mc_app.config['ADMINS']= ['jackdonaldson005@gmail.com']
 	if(getProduction() == True):
 		mc_app.config['SERVER_NAME']= "minecraft.server-lists.com"
+
 	mc_app.secret_key = MC_SECRET
 
 	mc_db.init_app(mc_app)
