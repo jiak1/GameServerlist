@@ -68,6 +68,7 @@ body{
 
 #discordFrame{
 	height:500px;
+	max-width:500px;
 }
 
 @media only screen and (max-device-width: 480px) {
