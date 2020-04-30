@@ -185,6 +185,7 @@ class Server(SearchableMixin, db.Model,Serializer):
 	mods = db.Column(db.Text(), nullable=True, default="")
 
 	votifierEnabled = db.Column(db.Boolean,default=0,nullable=False)
+	votifierIP = db.Column(db.String(35),nullable=False)
 	votifierPort = db.Column(db.String(5),nullable=False)
 	votifierToken = db.Column(db.Text(),nullable=True,default="")
 

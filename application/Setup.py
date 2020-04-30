@@ -2,7 +2,7 @@ import logging
 from logging.handlers import SMTPHandler
 from .Config import getProduction
 def setup(app):
-	logging.basicConfig(filename='error.log',level=logging.ERROR)
+	logging.basicConfig(filename='error.log',level=logging.DEBUG)
 	if(getProduction() == False):
 		return
 	mail_handler = SMTPHandler(

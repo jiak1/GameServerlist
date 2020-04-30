@@ -259,7 +259,7 @@ def votifierTestPage():
 		return render_template("mc/notallowed.html")
 	form = VotifierTestForm();
 	if(form.validate_on_submit()):
-		response = sendVotifierVote(form.ip.data,form.port.data,form.username.data,request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr),form.token.data)
+		response = sendVotifierVote(form.ip.data,form.port.data,form.username.data,request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr),form.token.data,form.votifierIP.data)
 		if(response[0]):
 			flash(response[1],"success")
 		else:

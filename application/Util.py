@@ -72,6 +72,7 @@ def UpdateServerWithForm(_serverForm, _serverModel):
 		_serverModel.votifierEnabled = 1
 	else:
 		_serverModel.votifierEnabled = 0
+	_serverModel.votifierIP = _serverForm.votifierIP.data	
 	_serverModel.votifierPort = _serverForm.votifierPort.data
 	_serverModel.votifierToken = _serverForm.votifierToken.data
 	if(str(_serverForm.port.data) != "25565"):
@@ -146,12 +147,12 @@ def get_google_provider_cfg():
 def sendVotifierVote(ip,port,username,userIP,token):
 	return sendVote(ip,port,username,userIP,token)
 
-def validateServer(ip,port,votifierEnabled,votifierPort,userIP,token):
+def validateServer(ip,port,votifierEnabled,votifierPort,userIP,token,votifierIP):
 	mcup,mcdetails = ServerStatus(ip,str(port));
 	if(mcup == False):
 		return (False,"Unable to connect to your server, check the ip & port are correct and that it is running.")
 	if(votifierEnabled == "Enabled"):
-		response = sendVotifierVote(ip,votifierPort,"VotifierTestUsername",userIP,token)
+		response = sendVotifierVote(votifierIP,votifierPort,"VotifierTestUsername",userIP,token)
 		if(response[0] == False):
 			return (False,response[1])
 	return [True,"",mcdetails]
@@ -257,7 +258,7 @@ def submitVote(server, username,ip):
 	server.totalVotes += 1
 	db.session.commit()
 	if(server.votifierEnabled == 1):
-		sendVote(server.ip,server.votifierPort,username,ip,server.votifierToken)
+		sendVote(server.votifierIP,server.votifierPort,username,ip,server.votifierToken)
 
 def checkServerUpdates():
 	Thread(target=do_update_check, args=(app,)).start()
