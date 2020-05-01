@@ -3,7 +3,8 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{url_for('static',filename='css/notallowed.css')}}">
-<title>Login Required - Minecraft Server Lists</title>
+<title>Add Server - Minecraft Server Lists</title>
+<meta name="description" content="Add your Minecraft Server on our website for free so that you can easily get more players to join your multiplayer game.">
 {% endblock %}
 
 {% block beforeBody %}
@@ -14,11 +15,11 @@
 <div class="container-sm" style="max-width:100%">
 <img src="{{url_for('static',filename='images/background4.png')}}" style="max-width:inherit">
 <div class="jumbotron-fluid">
-  <h1 class="display-4">Please login!</h1>
-  <p class="lead">In order to view this page you have to log in.</p>
+  <h1 class="display-4">Add Your Server</h1>
+  <p class="lead">In order to add your server you need to be logged in.</p>
   <hr class="my-4">
   <p>If you don't have an account it's quick and easy to register one, press an option below to get started!</p>
-<p class="lead">
+  <p class="lead">
     <a class="btn btn-success btn-lg" href="{{url_for('MCRoutes.loginPage')}}" role="button" style="margin-bottom:10px;">Login</a>
 	<a class="btn btn-success btn-lg" href="{{url_for('MCRoutes.registerPage')}}" role="button" style="margin-bottom:10px;">Register</a>
 

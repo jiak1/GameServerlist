@@ -342,7 +342,7 @@ def googleLoginCallbackPage():
 @MCRoutes.route(prefix+"addserver",methods=['GET','POST'])
 def addServerPage():
 	if not current_user.is_authenticated:
-		return render_template("mc/notallowed.html")
+		return render_template("mc/nologinaddserver.html")
 	form = ServerForm()
 	form.isEdit.data="N"
 	if form.validate_on_submit():

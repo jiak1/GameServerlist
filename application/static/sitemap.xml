@@ -1,102 +1,157 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!--
+ created with Free Online Sitemap Generator www.xml-sitemaps.com 
+-->
 <url>
-  <loc>https://minecraft.server-lists.com/</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>1.00</priority>
+<loc>https://minecraft.server-lists.com/</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>1.00</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/addserver</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://minecraft.server-lists.com/addserver</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/login</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://minecraft.server-lists.com/login</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/tag/New</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://minecraft.server-lists.com/tag/New</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/tag/Creative</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://minecraft.server-lists.com/tag/Creative</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/tag/Survival</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://minecraft.server-lists.com/tag/Survival</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/tag/PVP</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://minecraft.server-lists.com/tag/PVP</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/tag/Vanilla</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://minecraft.server-lists.com/tag/Vanilla</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/tags</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://minecraft.server-lists.com/tags</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/terms</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://minecraft.server-lists.com/?search=&page=2</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/privacy</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://minecraft.server-lists.com/terms</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/account</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://minecraft.server-lists.com/privacy</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/advertise</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>
+https://minecraft.server-lists.com/login?next=%2Faccount
+</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/register</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://minecraft.server-lists.com/register</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/forgotusername</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://minecraft.server-lists.com/forgotusername</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/forgotpassword</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://minecraft.server-lists.com/forgotpassword</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/downloaddata</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://minecraft.server-lists.com/tag/New?page=2</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.64</priority>
 </url>
 <url>
-  <loc>https://minecraft.server-lists.com/deleteaccount</loc>
-  <lastmod>2020-04-28T05:34:43+00:00</lastmod>
-  <priority>0.64</priority>
+<loc>https://minecraft.server-lists.com/?search=&page=1</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.64</priority>
 </url>
-
-
+<url>
+<loc>https://minecraft.server-lists.com/tag/New?page=1</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.51</priority>
+</url>
+<url>
+<loc>https://minecraft.server-lists.com/server/2</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.4</priority>
+</url>
+<url>
+<loc>https://minecraft.server-lists.com/server/4</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.4</priority>
+</url>
+<url>
+<loc>https://minecraft.server-lists.com/server/5</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.4</priority>
+</url>
+<url>
+<loc>https://minecraft.server-lists.com/server/6</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.4</priority>
+</url>
+<url>
+<loc>https://minecraft.server-lists.com/server/7</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.4</priority>
+</url>
+<url>
+<loc>https://minecraft.server-lists.com/server/10</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.4</priority>
+</url>
+<url>
+<loc>https://minecraft.server-lists.com/server/11</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.4</priority>
+</url>
+<url>
+<loc>https://minecraft.server-lists.com/server/12</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.4</priority>
+</url>
+<url>
+<loc>https://minecraft.server-lists.com/server/13</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.4</priority>
+</url>
+<url>
+<loc>https://minecraft.server-lists.com/server/14</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.4</priority>
+</url>
+<url>
+<loc>https://minecraft.server-lists.com/server/15</loc>
+<lastmod>2020-05-01T23:21:31+00:00</lastmod>
+<priority>0.4</priority>
+</url>
 </urlset>
