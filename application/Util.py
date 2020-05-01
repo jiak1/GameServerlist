@@ -429,7 +429,10 @@ def logServer(server):
 		}
 		with open(url, 'w+') as f:
 			json.dump(baseData, f, indent=4, sort_keys=True, default=str)
-	response,stats = ServerStatus(server.ip,server.port)
+	if(server.querOn == 0):
+		response,stats = ServerStatus(server.ip,server.port)
+	else:
+		response,stats = ServerQuery(server.ip,server.port)
 	if(response):
 		playersNow = int(stats["players"]["now"])
 	else:
