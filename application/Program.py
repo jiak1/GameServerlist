@@ -10,7 +10,6 @@ from .Config import *
 from oauthlib.oauth2 import WebApplicationClient
 from .momentjs import momentjs
 from requests_aws4auth import AWS4Auth
-import sentry_sdk
 
 
 def getElasticSearchURL():

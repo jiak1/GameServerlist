@@ -47,6 +47,32 @@ def ServerStatus(ip,port):
 	else:
 		return (True,{"status":"success","online":True,"motd":"","favicon":"","error":"","players":{"max":0,"now":0},"server":{"name":"","protocol":578},"last_online":"1588221063","last_updated":"1588221063","duration":183339623})
 
+def ServerQuery(ip,port):
+	if(port != "25565"):
+		response = requests.get("https://mcapi.us/server/query?ip="+str(ip)+"&port="+str(port))
+	else:
+		response = requests.get("https://mcapi.us/server/query?ip="+ip)
+	if(response.status_code == 200):
+		data = response.json()
+		if(data != None and data['status'] == "success" and data["online"] == True):
+			return True,data
+		return (False,None);
+	else:
+		return (True,{"status":"success","online":True,"motd":"","favicon":"","error":"","players":{"max":0,"now":0},"server":{"name":"","protocol":578},"last_online":"1588221063","last_updated":"1588221063","duration":183339623})
+
+def ServerHasQuery(ip,port):
+	if(port != "25565"):
+		response = requests.get("https://mcapi.us/server/query?ip="+str(ip)+"&port="+str(port))
+	else:
+		response = requests.get("https://mcapi.us/server/query?ip="+ip)
+	if(response.status_code == 200):
+		data = response.json()
+		if(data != None and data['status'] == "success" and data['version'] != ""):
+			return True
+		return False
+	else:
+		return False
+
 def ValidUsername(username):
 	response = requests.get("https://api.mojang.com/users/profiles/minecraft/"+username)
 	if(response.status_code == 200 and response.json() != None):
@@ -278,8 +304,11 @@ def do_update_check(app):
 					update_server_details(server)
 		db.session.commit()
 
-def update_server_details(server,forceOn = False):
-	response,stats = ServerStatus(server.ip,server.port)
+def update_server_details(server,forceOn = False,forceIcon = False):
+	if(server.queryOn == 0):
+		response,stats = ServerStatus(server.ip,server.port)
+	else:
+		response,stats = ServerQuery(server.ip,server.port)
 	server.lastPingTime = datetime.datetime.now()
 	if(response):
 		#Server Online
@@ -287,9 +316,12 @@ def update_server_details(server,forceOn = False):
 		server.online = 1
 		server.playerCount = stats['players']['now']
 		server.playerMax = stats['players']['max']
+		queryOn = ServerHasQuery(server.ip,server.port)
+		server.queryOn = queryOn
+		if(forceIcon or forceOn):
+			server.icon = stats['favicon']
 		if(forceOn):
 			server.displayVersion = getVersion(stats['server']['name'])
-			server.icon = stats['favicon']
 			db.session.commit()
 	else:
 		#Server Offline

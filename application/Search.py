@@ -52,7 +52,7 @@ def query_index(index, query, page, per_page):
 							"multi_match":{
 								"query":query,
 								"type":"most_fields",
-								"fields":['name^2','plugins','datapacks','mods','tags','displayVersion^3','country']
+								"fields":['name^3','plugins','datapacks','mods','tags^2','displayVersion^3','country']
 							}
 						},
 						"filter":{
