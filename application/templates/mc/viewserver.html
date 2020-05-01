@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{{url_for('static',filename='css/viewserver.css')}}">
 <title>{{server.name}} - Minecraft Server Lists</title>
 <meta name="description" content="View information about the Minecraft Server {{server.name}}, including their IP, player count and more!">
+<meta property="og:title" content="{{server.name}} - Minecraft Server Lists" />
 <meta property="og:image" content="https://minecraft.server-lists.com/images/main/ogimage.webp" />
 {% if server.trailer != "" %}
 <meta property="og:video" content="https://www.youtube.com/v/{{server.trailer}}" />
