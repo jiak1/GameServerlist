@@ -4,7 +4,7 @@ from flask_login import current_user, login_user,logout_user, login_required
 import os
 from .Forms import LoginForm,RegisterForm,ServerForm,ResetPasswordForm,VotifierTestForm,AccountEmailChangeForm,AccountPasswordChangeForm,VoteForm,AccountUsernameChangeForm,AccountGoogleLinkForm,AccountDeleteForm,ServerDeleteForm,ReportServerForm
 from .Models import Account, Server,Vote,Report
-from .Util import UpdateServerWithForm,update_server_details, send_password_reset_email,send_username_reminder_email, getVersion,get_google_provider_cfg,sendVotifierVote,validateServer,sendData,updateTagRequests,verifyCaptcha,checkHasVoted,submitVote,sendConfirmEmail,sendChangeEmail,ValidUsername,getSuggestionCacheNum
+from .Util import UpdateServerWithForm,update_server_details, send_password_reset_email,send_username_reminder_email, getVersion,get_google_provider_cfg,sendVotifierVote,validateServer,sendData,updateTagRequests,verifyCaptcha,checkHasVoted,submitVote,sendConfirmEmail,sendChangeEmail,ValidUsername,getSuggestionCacheNum,ServerHasQuery
 from .Config import getProduction,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,POSTS_PER_PAGE
 import requests
 import json
@@ -44,7 +44,7 @@ def MCHomePage():
 			prev_url = url_for('MCRoutes.MCHomePage', search=search, page=page - 1)
 		else:
 			prev_url=None
-		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM)
+		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title="Home",description="Find the best Minecraft Servers using our Minecraft Server List. Find a server that suits your needs with hundreds of categories!")
 	except:
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.MCHomePage",search=search))
@@ -68,7 +68,7 @@ def tagSearchPage(tagname):
 			prev_url = url_for('MCRoutes.tagSearchPage',tagname=tagname, page=page - 1)
 		else:
 			prev_url=None
-		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM)
+		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title=str(tagname)+" Servers",description="Find "+str(tagname)+" servers on our Minecraft Server List! With hundreds of categories you can find one that suits you!")
 	except:
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.tagSearchPage",search=tagname))
@@ -386,7 +386,9 @@ def addServerPage():
 						im.save(newPath,'webp',quality=100)
 
 					server.banner=url_for('static',filename='images/banners/live')+"/"+str(server.id)+".webp?1"
-
+					
+				queryOn = ServerHasQuery(server.ip,server.port)
+				server.queryOn = queryOn
 				server.rank=server.id
 				server.version = mcdetails['server']['name']
 				server.displayVersion = getVersion(mcdetails['server']['name'])
@@ -460,7 +462,8 @@ def editServerPage(serverid):
 
 					end = int(server.banner.split('?')[1])+1
 					server.banner=url_for('static',filename='images/banners/live')+"/"+str(server.id)+".webp?"+str(end)
-				
+				queryOn = ServerHasQuery(server.ip,server.port)
+				server.queryOn = queryOn
 				server.version = mcdetails['server']['name']
 				server.playerCount = mcdetails['players']['now']
 				server.playerMax = mcdetails['players']['max']

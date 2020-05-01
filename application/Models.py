@@ -165,6 +165,7 @@ class Server(SearchableMixin, db.Model,Serializer):
 	port = db.Column(db.String(5),nullable=False)
 	version = db.Column(db.Text(),nullable=True, default="")
 	displayVersion = db.Column(db.String(10),nullable=True,default="")
+	queryOn = db.Column(db.Boolean,default=0,nullable=False)	
 
 	monthlyVotes = db.Column(db.Integer,default=0,nullable=False)
 	totalVotes = db.Column(db.Integer,default=0,nullable=False)
