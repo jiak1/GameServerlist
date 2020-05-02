@@ -1,0 +1,15 @@
+User-Agent: *
+Disallow: /account
+Disallow: /API/RANK
+Disallow: /API/BANNERCLEANUP
+Disallow: /break
+Disallow: /API/elasticsearch
+Disallow: /advertise
+Disallow: /downloaddata
+Disallow: /API/reindex
+Disallow: /deleteaccount
+Disallow: /retrievedata
+Disallow: /emailConfirmation
+Disallow: /googlelogin/callback
+
+Sitemap: https://minecraft.server-lists.com/sitemap.xml
