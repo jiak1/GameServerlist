@@ -11,5 +11,7 @@ Disallow: /deleteaccount
 Disallow: /retrievedata
 Disallow: /emailConfirmation
 Disallow: /googlelogin/callback
+Disallow: /googlelogin
+Disallow: /logout
 
 Sitemap: https://minecraft.server-lists.com/sitemap.xml
