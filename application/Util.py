@@ -429,7 +429,7 @@ def logServer(server):
 		}
 		with open(url, 'w+') as f:
 			json.dump(baseData, f, indent=4, sort_keys=True, default=str)
-	if(server.querOn == 0):
+	if(server.queryOn == 0):
 		response,stats = ServerStatus(server.ip,server.port)
 	else:
 		response,stats = ServerQuery(server.ip,server.port)
