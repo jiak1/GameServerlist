@@ -318,9 +318,11 @@ def update_server_details(server,forceOn = False,forceIcon = False):
 		server.playerMax = stats['players']['max']
 		queryOn = ServerHasQuery(server.ip,server.port)
 		server.queryOn = queryOn
-		if(forceIcon or forceOn):
+		if(forceIcon and not forceOn):
 			server.icon = stats['favicon']
+			db.session.commit()
 		if(forceOn):
+			server.icon = stats['favicon']
 			server.displayVersion = getVersion(stats['server']['name'])
 			db.session.commit()
 	else:
