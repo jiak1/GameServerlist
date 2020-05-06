@@ -686,7 +686,7 @@ def viewServerPage(serverid):
 def pingServerPage(serverid):
 	server = Server.query.get(int(serverid))
 	if(server is not None):
-		update_server_details(server,True)
+		update_server_details(server,False,True)
 		flash("Forcefully pinged server. Your details should now be updated.","success")
 	return redirect(url_for("MCRoutes.serversPage"))
 
