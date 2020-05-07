@@ -14,5 +14,7 @@ Disallow: /googlelogin/callback
 Disallow: /googlelogin
 Disallow: /logout
 Disallow: /minecraft/*
+Disallow: /tag/Minecraft
+Disallow: /tag/*NEW*
 
 Sitemap: https://minecraft.server-lists.com/sitemap.xml
