@@ -187,23 +187,38 @@ def validateServer(ip,port,votifierEnabled,votifierPort,userIP,token,votifierIP)
 bannersTempPath = "./application/static/images/banners/temp"
 
 def cleanupTempBanners():
-	criticalTime = arrow.now().shift(hours=-8)
-	for item in Path(bannersTempPath).glob('*'):
-		if item.is_file():
-			itemTime = arrow.get(item.stat().st_mtime)
-			if itemTime < criticalTime:
-				os.remove(item.absolute())
+	app.logger.info('cleaning banners')
+	Thread(target=do_cleanup_banners, args=(app,)).start()
+
+def do_cleanup_banners(app):
+	with(app.app_context()):
+		criticalTime = arrow.now().shift(hours=-8)
+		for item in Path(bannersTempPath).glob('*'):
+			if item.is_file():
+				itemTime = arrow.get(item.stat().st_mtime)
+				if itemTime < criticalTime:
+					os.remove(item.absolute())
+		app.logger.info('finished cleaning banners')
+		return
 
 dataTempPath = "./application/data/"
 def cleanupTempData():
-	criticalTime = arrow.now().shift(days=-2)
-	for item in Path(dataTempPath).glob('*'):
-		if item.is_file():
-			itemTime = arrow.get(item.stat().st_mtime)
-			if itemTime < criticalTime:
-				os.remove(item.absolute())
+	app.logger.info('cleaning temp data')
+	Thread(target=do_cleanup_temp_data, args=(app,)).start()
+
+def do_cleanup_temp_data(app):
+	with(app.app_context()):
+		criticalTime = arrow.now().shift(days=-2)
+		for item in Path(dataTempPath).glob('*'):
+			if item.is_file():
+				itemTime = arrow.get(item.stat().st_mtime)
+				if itemTime < criticalTime:
+					os.remove(item.absolute())
+		app.logger.info('finished cleaning temp data')
+		return
 
 def sendData(account):
+	app.logger.info('sending data')
 	Thread(target=send_data, args=(app,account.id)).start()
 
 def send_data(app,accid):
@@ -232,6 +247,7 @@ def send_data(app,accid):
 				user=account),
 				html_body=render_template('email/download_data.html',
 				user=account))
+		app.logger.info('finished sending data')
 		return
 
 def addNewTags(tags,mods,plugins,datapacks):
@@ -289,6 +305,7 @@ def submitVote(server, username,ip):
 		sendVote(server.votifierIP,server.votifierPort,username,ip,server.votifierToken)
 
 def checkServerUpdates():
+	app.logger.info('checking updates')
 	Thread(target=do_update_check, args=(app,)).start()
 
 #run once a every 1 minute
@@ -305,6 +322,7 @@ def do_update_check(app):
 					count += 1
 					update_server_details(server)
 		db.session.commit()
+		app.logger.info('finished checking updates')
 		return
 
 def update_server_details(server,forceOn = False,forceIcon = False):
@@ -337,6 +355,7 @@ def update_server_details(server,forceOn = False,forceIcon = False):
 			db.session.commit()
 
 def serverRank():
+	app.logger.info('ranking servers')
 	Thread(target=do_server_rank, args=(app,)).start()
 
 def do_server_rank(app):
@@ -347,6 +366,7 @@ def do_server_rank(app):
 			server.rank = rank
 			rank += 1
 		db.session.commit()
+		app.logger.info('finished ranking')
 		return
 
 def UpdateAdminServerWithForm(_serverForm, _serverModel):
@@ -424,6 +444,7 @@ def updateSuggestionCacheNum():
 
 #every two hours will yield 84 points for a week
 def logServerGraphs():
+	app.logger.info('logging graphs')
 	Thread(target=updateServerGraphs, args=(app,)).start()
 
 def updateServerGraphs(app):
@@ -431,6 +452,7 @@ def updateServerGraphs(app):
 		servers = servers = Server.query.all()
 		for server in servers:
 			logServer(server)
+		app.logger.info('finished graphs')
 		return
 
 def logServer(server):
@@ -462,4 +484,3 @@ def logServer(server):
 		f.seek(0)
 		json.dump(section_dict, f, indent=4, sort_keys=True, default=str)
 		f.truncate()
-
