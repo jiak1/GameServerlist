@@ -10,7 +10,10 @@ from .Config import *
 from oauthlib.oauth2 import WebApplicationClient
 from .momentjs import momentjs
 from requests_aws4auth import AWS4Auth
-
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
+from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
+from sentry_sdk.integrations.aiohttp import AioHttpIntegration
 
 def getElasticSearchURL():
 	if(getProduction() == True):
@@ -81,6 +84,7 @@ else:
 	mail_settings = DEBUG_MAIL_SETTINGS
 
 def create_mc_app():
+	sentry_sdk.init("https://48bd4af68237433c8b42f566835b585d@o385754.ingest.sentry.io/5226663",integrations=[FlaskIntegration(),SqlalchemyIntegration(),AioHttpIntegration()])
 	"""Construct the core mc_application."""
 	global mc_app
 	mc_app = Flask(__name__,static_url_path="", static_folder="static")
