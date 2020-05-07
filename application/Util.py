@@ -332,12 +332,16 @@ def update_server_details(server,forceOn = False,forceIcon = False):
 			db.session.commit()
 
 def serverRank():
-	servers = Server.query.order_by(Server.monthlyVotes.desc())
-	rank = 1
-	for server in servers:
-		server.rank = rank
-		rank += 1
-	db.session.commit()
+	Thread(target=do_server_rank, args=(app,)).start()
+
+def do_server_rank(app):
+	with(app.app_context()):
+		servers = Server.query.order_by(Server.monthlyVotes.desc())
+		rank = 1
+		for server in servers:
+			server.rank = rank
+			rank += 1
+		db.session.commit()
 
 def UpdateAdminServerWithForm(_serverForm, _serverModel):
 	UpdateServerWithForm(_serverForm,_serverModel)
