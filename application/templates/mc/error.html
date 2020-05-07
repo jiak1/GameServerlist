@@ -23,4 +23,10 @@
   </p>
 </div>
 </div>
+{% if sentry_event_id %}
+<script>
+  Sentry.init({ dsn: 'https://48bd4af68237433c8b42f566835b585d@o385754.ingest.sentry.io/5226663' });
+  Sentry.showReportDialog({ eventId: '{{ sentry_event_id }}' })
+</script>
+{% endif %}
 {% endblock %}
