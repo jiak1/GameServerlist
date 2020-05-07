@@ -13,5 +13,6 @@ Disallow: /emailConfirmation
 Disallow: /googlelogin/callback
 Disallow: /googlelogin
 Disallow: /logout
+Disallow: /minecraft/*
 
 Sitemap: https://minecraft.server-lists.com/sitemap.xml
