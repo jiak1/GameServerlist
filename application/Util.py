@@ -187,21 +187,31 @@ def validateServer(ip,port,votifierEnabled,votifierPort,userIP,token,votifierIP)
 bannersTempPath = "./application/static/images/banners/temp"
 
 def cleanupTempBanners():
-	criticalTime = arrow.now().shift(hours=-8)
-	for item in Path(bannersTempPath).glob('*'):
-		if item.is_file():
-			itemTime = arrow.get(item.stat().st_mtime)
-			if itemTime < criticalTime:
-				os.remove(item.absolute())
+	Thread(target=do_cleanup_banners, args=(app,)).start()
+
+def do_cleanup_banners(app):
+	with(app.app_context()):
+		criticalTime = arrow.now().shift(hours=-8)
+		for item in Path(bannersTempPath).glob('*'):
+			if item.is_file():
+				itemTime = arrow.get(item.stat().st_mtime)
+				if itemTime < criticalTime:
+					os.remove(item.absolute())
+		return
 
 dataTempPath = "./application/data/"
 def cleanupTempData():
-	criticalTime = arrow.now().shift(days=-2)
-	for item in Path(dataTempPath).glob('*'):
-		if item.is_file():
-			itemTime = arrow.get(item.stat().st_mtime)
-			if itemTime < criticalTime:
-				os.remove(item.absolute())
+	Thread(target=do_cleanup_temp_data, args=(app,)).start()
+
+def do_cleanup_temp_data(app):
+	with(app.app_context()):
+		criticalTime = arrow.now().shift(days=-2)
+		for item in Path(dataTempPath).glob('*'):
+			if item.is_file():
+				itemTime = arrow.get(item.stat().st_mtime)
+				if itemTime < criticalTime:
+					os.remove(item.absolute())
+		return
 
 def sendData(account):
 	Thread(target=send_data, args=(app,account.id)).start()
