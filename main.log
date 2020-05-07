@@ -46,3 +46,10 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
 DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
 DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
 INFO:werkzeug:172.18.0.1 - - [07/May/2020 10:09:37] "[33mGET / HTTP/1.1[0m" 404 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [07/May/2020 10:12:58] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:application.Program:test
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [07/May/2020 10:14:17] "[33mGET / HTTP/1.1[0m" 404 -
