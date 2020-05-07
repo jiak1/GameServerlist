@@ -33,6 +33,7 @@ def updateCacheNum():
 def MCHomePage():
 	page = request.args.get('page', 1, type=int)
 	search = request.args.get('search', "")
+	canonURL="https://minecraft.server-lists.com"
 	try:
 		servers,total = Server.search(search,page,POSTS_PER_PAGE)
 
@@ -44,7 +45,10 @@ def MCHomePage():
 			prev_url = url_for('MCRoutes.MCHomePage', search=search, page=page - 1)
 		else:
 			prev_url=None
-		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title="Home",description="Find the best Minecraft Servers using our Minecraft Server List. Find a server that suits your needs with hundreds of categories!")
+		if(search != ""):
+			canonURL="https://minecraft.server-lists.com?search="+search
+			
+		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title="",description="Find the best Minecraft Servers using our Minecraft Server List. Find a server that suits your needs with hundreds of categories!",canonURL=canonURL)
 	except:
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.MCHomePage",search=search))
@@ -68,7 +72,7 @@ def tagSearchPage(tagname):
 			prev_url = url_for('MCRoutes.tagSearchPage',tagname=tagname, page=page - 1)
 		else:
 			prev_url=None
-		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title=str(tagname)+" Servers",description="Find "+str(tagname)+" servers on our Minecraft Server List! With hundreds of categories you can find one that suits you!")
+		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title=str(tagname)+" Servers -",description="Find "+str(tagname)+" servers on our Minecraft Server List! With hundreds of categories you can find one that suits you!",canonURL="https://minecraft.server-lists.com/tag/"+tagname)
 	except:
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.tagSearchPage",search=tagname))
