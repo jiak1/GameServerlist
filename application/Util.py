@@ -322,10 +322,12 @@ def update_server_details(server,forceOn = False,forceIcon = False):
 		queryOn = ServerHasQuery(server.ip,server.port)
 		server.queryOn = queryOn
 		if(forceIcon and not forceOn):
-			server.icon = stats['favicon']
-			db.session.commit()
+			if('favicon' in stats):
+				server.icon = stats['favicon']
+				db.session.commit()
 		if(forceOn):
-			server.icon = stats['favicon']
+			if('favicon' in stats):
+				server.icon = stats['favicon']
 			server.displayVersion = getVersion(stats['server']['name'])
 			db.session.commit()
 	else:
