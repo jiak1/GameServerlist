@@ -118,6 +118,7 @@ def send_email(subject,sender,recipients,text_body,html_body):
 def send_async_email(app, msg):
 	with app.app_context():
 		mail.send(msg)
+		return
 
 def updateTagRequests(email,tags,plugins,mods,datapacks):
 	did1 = checkTags('tags',tags,email)
@@ -231,6 +232,7 @@ def send_data(app,accid):
 				user=account),
 				html_body=render_template('email/download_data.html',
 				user=account))
+		return
 
 def addNewTags(tags,mods,plugins,datapacks):
 	addSection('tags',tags)
@@ -303,6 +305,7 @@ def do_update_check(app):
 					count += 1
 					update_server_details(server)
 		db.session.commit()
+		return
 
 def update_server_details(server,forceOn = False,forceIcon = False):
 	if(server.queryOn == 0):
@@ -342,6 +345,7 @@ def do_server_rank(app):
 			server.rank = rank
 			rank += 1
 		db.session.commit()
+		return
 
 def UpdateAdminServerWithForm(_serverForm, _serverModel):
 	UpdateServerWithForm(_serverForm,_serverModel)
@@ -425,6 +429,7 @@ def updateServerGraphs(app):
 		servers = servers = Server.query.all()
 		for server in servers:
 			logServer(server)
+		return
 
 def logServer(server):
 	url = "application/static/json/graphs/"+ str(server.id)+".json"
