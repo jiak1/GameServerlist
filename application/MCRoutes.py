@@ -4,7 +4,7 @@ from flask_login import current_user, login_user,logout_user, login_required
 import os
 from .Forms import LoginForm,RegisterForm,ServerForm,ResetPasswordForm,VotifierTestForm,AccountEmailChangeForm,AccountPasswordChangeForm,VoteForm,AccountUsernameChangeForm,AccountGoogleLinkForm,AccountDeleteForm,ServerDeleteForm,ReportServerForm
 from .Models import Account, Server,Vote,Report
-from .Util import UpdateServerWithForm,update_server_details, send_password_reset_email,send_username_reminder_email, getVersion,get_google_provider_cfg,sendVotifierVote,validateServer,sendData,updateTagRequests,verifyCaptcha,checkHasVoted,submitVote,sendConfirmEmail,sendChangeEmail,ValidUsername,getSuggestionCacheNum,ServerHasQuery
+from .Util import UpdateServerWithForm,update_server_details, send_password_reset_email,send_username_reminder_email, getVersion,get_google_provider_cfg,sendVotifierVote,validateServer,sendData,updateTagRequests,verifyCaptcha,checkHasVoted,submitVote,sendConfirmEmail,sendChangeEmail,ValidUsername,getSuggestionCacheNum,ServerHasQuery,send_email
 from .Config import getProduction,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,POSTS_PER_PAGE
 import requests
 import json
@@ -402,6 +402,7 @@ def addServerPage():
 				db.session.commit()
 				updateTagRequests(email,server.tags,server.plugins,server.mods,server.datapacks)
 				flash('Your server has been submitted for review!',"success")
+				send_email("NEW SERVER REVIEW","contact@server-lists.com",['jackdonaldson005@gmail.com'],"NEW SERVER TO REVIEW","<h1>NEW SERVER TO REVIEW</h1><br><a href='https://admin.server-lists.com/reviews'>CLICK HERE</a>")
 				redirect(url_for('MCRoutes.MCHomePage'))
 			else:
 				flash("Invalid session, please log in again.","danger")

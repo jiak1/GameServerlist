@@ -120,12 +120,9 @@ def UpdateServerWithForm(_serverForm, _serverModel):
 		_serverModel.displayIP = _serverForm.ip.data
 
 def send_email(subject,sender,recipients,text_body,html_body):
-	print("10")
 	msg = Message(subject, sender=sender, recipients=recipients)
-	print("9")
 	msg.body = text_body
 	msg.html = html_body
-	print("8")
 	Thread(target=send_async_email, args=(app, msg)).start()
 
 def send_async_email(app, msg):
@@ -471,7 +468,6 @@ def updateServerGraphs(app):
 def logServer(server):
 	url = "application/static/json/graphs/"+ str(server.id)+".json"
 	if(os.path.isfile(""+url) == False):
-		print("RUNNING")
 		baseData = {
 			"players":[]
 		}
