@@ -38,7 +38,7 @@
 		<iframe id="trailerFrame" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen src="https://www.youtube.com/embed/{{server.trailer}}?autoplay=1" ></iframe>
 	</div></div>
 	{% endif %}
-	<textarea id="Description" class="form-control" readonly>{{server.description}}</textarea>
+	<textarea id="Description" class="form-control" readonly style="">{{server.description}}</textarea>
 	<div class="chart-container" style="position: relative; width:100%">
 	<canvas id="serverGraph"></canvas>
 	</div>
@@ -135,7 +135,6 @@
 	</div>	
 	</div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
 	function copyIP(id) {
   /* Get the text field */
@@ -171,7 +170,7 @@ $('.tag').each(function(i, obj) {
 	$(this).attr("href", tagURL+_tag);
 });
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
 $.ajax({
     type: "GET",

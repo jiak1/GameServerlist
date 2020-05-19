@@ -4,7 +4,7 @@
 {% block head %}
 <link rel="stylesheet" href="{{url_for('static',filename='css/search.css')}}">
 <link rel="stylesheet" href="{{url_for('static',filename='css/background.css')}}">
-<script rel="preload" src="{{url_for('static',filename='js/lazy-load.js')}}"></script>
+<!--<script rel="preload" src="{{url_for('static',filename='js/lazy-load.js')}}"></script>-->
 <meta property="og:image" content="https://minecraft.server-lists.com/images/main/ogimage.webp" />
 <title>{{title}} Minecraft Server Lists</title>
 <meta name="description" content="{{description}}">
@@ -60,7 +60,7 @@
 		<img src="{{server.banner}}" class="card-img-top CLICKABLE" alt="{{server.name}}">
 		</div>
 		{% else %}
-		<img src="/images/main/LoadingBanner.webp" data-srcset="{{server.banner}}" class="lazy card-img-top CLICKABLE" alt="{{server.name}}">
+		<img loading="lazy" src="{{server.banner}}" class="lazy card-img-top CLICKABLE" alt="{{server.name}}">
 		</div>
 		{% endif %}
     	<div class="card-body CLICKABLE">
