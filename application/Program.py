@@ -129,6 +129,7 @@ def create_mc_app():
 		return mc_app
 
 def create_admin_app():
+	sentry_sdk.init("https://48bd4af68237433c8b42f566835b585d@o385754.ingest.sentry.io/5226663",integrations=[FlaskIntegration(),SqlalchemyIntegration(),AioHttpIntegration()])
 	"""Construct the core admin_application."""
 	global admin_app
 	admin_app = Flask(__name__,static_url_path="", static_folder="static")
