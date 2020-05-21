@@ -115,8 +115,14 @@
 }
 
 #ServerName{
+	text-decoration:none;
 	font-family:Karla,sans-serif;
 	font-size:1.4rem;
+	display:inline-block;
+	white-space:nowrap;
+	font-weight:600;
+	padding-right:10px;
+	margin-bottom:0px;
 }
 
 .col-5{
@@ -165,4 +171,10 @@
 }
 .page-link:focus{
 	box-shadow:0 0 0 0.2rem rgba(0, 255, 52, 0.25)
+}
+
+#serverName{
+	padding-left: 40px;
+	margin-bottom:0px;
+	margin-top: 0px;
 }
