@@ -370,7 +370,7 @@ def addServerPage():
 					Live_Banner_URL = os.path.join(APP_ROOT,"static"+url_for('static',filename='images/banners/live')+"/");
 					im = Image.open(bannerURL)
 					newPath = Live_Banner_URL+str(server.id)+".webp";
-					if(im.format == "GIF"):
+					if(im.format == "GIF" or im.format == "WEBP"):
 						# Get sequence iterator
 						frames = ImageSequence.Iterator(im)
 
