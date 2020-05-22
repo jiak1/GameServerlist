@@ -398,7 +398,8 @@ def addServerPage():
 				server.displayVersion = getVersion(mcdetails['server']['name'])
 				server.playerCount = mcdetails['players']['now']
 				server.playerMax = mcdetails['players']['max']
-				server.icon = mcdetails['favicon']
+				if("favicon" in mcdetails):
+					server.icon = mcdetails['favicon']
 				db.session.commit()
 				updateTagRequests(email,server.tags,server.plugins,server.mods,server.datapacks)
 				flash('Your server has been submitted for review!',"success")
@@ -472,7 +473,8 @@ def editServerPage(serverid):
 				server.version = mcdetails['server']['name']
 				server.playerCount = mcdetails['players']['now']
 				server.playerMax = mcdetails['players']['max']
-				server.icon = mcdetails['favicon']
+				if("favicon" in mcdetails):
+					server.icon = mcdetails['favicon']
 				if(server.verified == 2):
 					server.verified = 3
 				db.session.commit()
