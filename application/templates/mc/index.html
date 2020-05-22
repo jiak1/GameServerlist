@@ -4,7 +4,7 @@
 {% block head %}
 <link rel="stylesheet" href="{{url_for('static',filename='css/search.css')}}?2">
 <link rel="stylesheet" href="{{url_for('static',filename='css/background.css')}}">
-<script rel="preload" src="{{url_for('static',filename='js/lazy-load.js')}}"></script>
+<link rel="preload" href="{{url_for('static',filename='js/lazy-load.js')}}" as="script">
 <meta property="og:image" content="https://minecraft.server-lists.com/images/main/ogimage.webp" />
 <title>{{title}} Minecraft Server Lists</title>
 <meta name="description" content="{{description}}">
