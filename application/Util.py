@@ -361,6 +361,7 @@ def update_server_details(server,forceOn = False,forceIcon = False):
 	else:
 		#Server Offline
 		server.online = 0
+		server.playerCount = 0
 		if(forceOn):
 			db.session.commit()
 
