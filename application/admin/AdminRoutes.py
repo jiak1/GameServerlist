@@ -222,6 +222,12 @@ def esSetupPage():
 	elasticsearch.indices.create(index='server',body=indexCreation)
 	return redirect(url_for("AdminRoutes.homePage"))
 
+@AdminRoutes.route(prefix+"esdelete",methods=['GET'])
+@login_required
+def esDeletePage():
+	elasticsearch.indices.delete(index='server', ignore=[400, 404])
+	return redirect(url_for("AdminRoutes.homePage"))
+
 @AdminRoutes.route(prefix+"reindex",methods=['GET'])
 @login_required
 def esReindexPage():

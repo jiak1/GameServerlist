@@ -144,7 +144,7 @@ class Admin(User):
 
 
 class Server(SearchableMixin, db.Model,Serializer):
-	__searchable__ = ['name','tags','plugins','datapacks','mods','verified','displayVersion','country','rank','newTime']
+	__searchable__ = ['name','tags','plugins','datapacks','mods','verified','displayVersion','country','rank','newTime','online']
 
 	id = db.Column(db.Integer, primary_key=True)
 	ownerID = db.Column(db.Integer, db.ForeignKey('account.id'))
@@ -171,7 +171,7 @@ class Server(SearchableMixin, db.Model,Serializer):
 	totalVotes = db.Column(db.Integer,default=0,nullable=False)
 	rank = db.Column(db.Integer,default=10000,nullable=False)
 	
-	online = db.Column(db.Boolean,default=1,nullable=False)
+	online = db.Column(db.Integer,default=1,nullable=False)
 
 	playerCount = db.Column(db.Integer,default=0,nullable=False)
 	playerMax = db.Column(db.Integer,default=0,nullable=False)
