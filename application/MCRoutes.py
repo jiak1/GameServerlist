@@ -41,14 +41,17 @@ def MCHomePage():
 			next_url = url_for('MCRoutes.MCHomePage', search=search, page=page + 1)
 		else:
 			next_url=None
+
 		if page > 1:
+			title = f"Page {page} - Minecraft Server Lists"
 			prev_url = url_for('MCRoutes.MCHomePage', search=search, page=page - 1)
 		else:
+			title = "Minecraft Server Lists"
 			prev_url=None
 		if(search != ""):
 			canonURL="https://minecraft.server-lists.com?search="+search
-			
-		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title="",description="Find the best Minecraft Servers using our Minecraft Server List. Find a server that suits your needs with hundreds of categories!",canonURL=canonURL)
+		
+		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title=title,description="Find the best Minecraft Servers using our Minecraft Server List. Find a server that suits your needs with hundreds of categories!",canonURL=canonURL)
 	except TypeError as e:
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.MCHomePage",search=search))
@@ -69,10 +72,12 @@ def tagSearchPage(tagname):
 		else:
 			next_url=None
 		if page > 1:
+			title = tagname+" Minecraft Servers - Page "+str(page)
 			prev_url = url_for('MCRoutes.tagSearchPage',tagname=tagname, page=page - 1)
 		else:
+			title = tagname+" Minecraft Servers"
 			prev_url=None
-		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title=str(tagname)+" Servers -",description="Find "+str(tagname)+" servers on our Minecraft Server List! With hundreds of categories you can find one that suits you!",canonURL="https://minecraft.server-lists.com/tag/"+tagname)
+		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title=title,description="Find "+str(tagname)+" servers on our Minecraft Server List! With hundreds of categories you can find one that suits you!",canonURL="https://minecraft.server-lists.com/tag/"+tagname)
 	except:
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.tagSearchPage",search=tagname))
