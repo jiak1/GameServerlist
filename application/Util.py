@@ -460,7 +460,7 @@ def logServerGraphs():
 
 def updateServerGraphs(app):
 	with app.app_context():
-		servers = servers = Server.query.all()
+		servers = Server.query.all()
 		for server in servers:
 			logServer(server)
 		app.logger.info('finished graphs')
@@ -494,3 +494,14 @@ def logServer(server):
 		f.seek(0)
 		json.dump(section_dict, f, indent=4, sort_keys=True, default=str)
 		f.truncate()
+
+def transitionVotesMonth():
+	Thread(target=do_vote_month_change, args=(app,)).start()
+
+def do_vote_month_change(app):
+	with(app.app_context()):
+		servers = Server.query.all()
+		for server in servers:
+			server.monthlyVotes = 0
+		db.session.commit()
+		
