@@ -14,6 +14,7 @@ def remove_from_index(index, model):
     elasticsearch.delete(index=index, id=model.id)
 
 def query_index(index, query, page, per_page):
+	print(per_page)
 	if not elasticsearch:
 		return [], 0
 	if( query == ""):
@@ -23,19 +24,8 @@ def query_index(index, query, page, per_page):
 				"sort" : {
 					"rank":"asc"
 				},
-				"query":{
-					"bool":{
-						"must":{
-							"term": {
-								"online": "1"
-							}
-						},
-						"filter":{
-							"term":{
-								"verified":"1"
-							}
-						}
-					}
+				"query" : {
+					"term":{"verified" : "1",}
 				},
 				"from":(page-1)*per_page,
 				"size":per_page
@@ -47,19 +37,8 @@ def query_index(index, query, page, per_page):
 				"sort" : {
 					"newTime":"desc"
 				},
-				"query":{
-					"bool":{
-						"must":{
-							"term": {
-								"online": "1"
-							}
-						},
-						"filter":{
-							"term":{
-								"verified":"1"
-							}
-						}
-					}
+				"query" : {
+					"term":{"verified" : "1"}
 				},
 				"from":(page-1)*per_page,
 				"size":per_page
