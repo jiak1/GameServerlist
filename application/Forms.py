@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm,RecaptchaField,Recaptcha
 from wtforms import StringField, PasswordField, BooleanField, SubmitField,IntegerField,HiddenField
 from wtforms.fields.html5 import URLField
-from wtforms.validators import DataRequired,ValidationError, Email, EqualTo,Length,url,Optional,NumberRange
+from wtforms.validators import DataRequired,ValidationError, Email, EqualTo,Length,url,Optional,NumberRange,IPAddress
 from .Models import Account,Server
 import safe
 
@@ -81,8 +81,8 @@ class PasswordChangeForm(FlaskForm):
 	passwordSubmit = SubmitField('Change Password')
 
 class EmailChangeForm(FlaskForm):
-	oldEmail = PasswordField('Old Email', validators=[DataRequired()])
-	newEmail = PasswordField('New Email', validators=[DataRequired()])
+	oldEmail = StringField('Old Email', validators=[DataRequired(),Email()])
+	newEmail = StringField('New Email', validators=[DataRequired(),Email()])
 	emailSubmit = SubmitField('Change Email')
 
 class ResetPasswordForm(FlaskForm):
