@@ -25,7 +25,7 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 def ServerUp(ip,port):
 	try:
 		if(port != "25565"):
-			status = MinecraftServer.lookup(ipstr).status(retries=2)
+			status = requests.get("https://mcapi.us/server/status?ip="+ip+"&port="+str(port))
 		else:
 			response = requests.get("https://mcapi.us/server/status?ip="+ip)
 		if(response.status_code == 200):
