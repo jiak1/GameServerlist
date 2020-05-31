@@ -1,3 +1,0 @@
-DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
-DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
-DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
