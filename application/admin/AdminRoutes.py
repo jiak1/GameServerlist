@@ -255,3 +255,8 @@ def APIPING():
 def voteMonthChange():
 	transitionVotesMonth()
 	return redirect(url_for("AdminRoutes.homePage"))
+
+@AdminRoutes.route(prefix+"break",methods=['GET'])
+def breakPage():
+	print(1+"2")
+	return "test"
