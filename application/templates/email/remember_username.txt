@@ -1,3 +1,4 @@
+{% autoescape true %}
 Dear {{ user.email }},
 
 Your username is {{user.username}}! 
@@ -5,3 +6,4 @@ To login with it visit {{ url_for('MCRoutes.MCHomePage', _external=True) }}
 
 Sincerely,
 The Serverlist Team
+{% endautoescape %}

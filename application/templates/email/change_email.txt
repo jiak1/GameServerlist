@@ -1,3 +1,4 @@
+{% autoescape true %}
 Dear {{ user.username }},
 
 To change the email address for your account we need you to visit the following link:
@@ -9,3 +10,4 @@ If you have not requested this email, simply ignore this message.
 Sincerely,
 
 The Server List Team
+{% endautoescape %}
