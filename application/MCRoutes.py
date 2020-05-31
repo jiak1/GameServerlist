@@ -268,7 +268,7 @@ def votifierTestPage():
 		return render_template("mc/notallowed.html")
 	form = VotifierTestForm();
 	if(form.validate_on_submit()):
-		response = sendVotifierVote(form.ip.data,form.port.data,form.username.data,request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr),form.token.data,form.votifierIP.data)
+		response = sendVotifierVote(form.ip.data,form.port.data,form.username.data,request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr),form.token.data)
 		if(response[0]):
 			flash(response[1],"success")
 		else:
@@ -695,6 +695,7 @@ def viewServerPage(serverid):
 		return redirect(url_for("MCRoutes.MCHomePage"))
 
 @MCRoutes.route(prefix+"ping/<serverid>",methods=['GET'])
+@login_required
 def pingServerPage(serverid):
 	server = Server.query.get(int(serverid))
 	if(server is not None):
