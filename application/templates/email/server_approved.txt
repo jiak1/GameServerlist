@@ -1,3 +1,4 @@
+{% autoescape true %}
 Congratulations,
 
 Your Server, {{server.name}} has been approved!
@@ -13,3 +14,4 @@ To visit your server page go to https://minecraft.server-lists.com/server/{{serv
 
 Sincerely,
 The Serverlist Team
+{% endautoescape %}
