@@ -320,6 +320,7 @@ def checkServerUpdates():
 
 #run once a every 1 minute
 def do_update_check(app):
+	app.logger.info('pinging servers for updates')
 	with app.app_context():
 		servers = Server.query.all()
 		total = len(servers)

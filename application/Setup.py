@@ -5,8 +5,7 @@ def setup(app):
 	if(getProduction() == False):
 		logging.basicConfig(filename='testing.log',level=logging.DEBUG)
 	else:
-		pass
-		#logging.basicConfig(filename='main.log',level=logging.DEBUG)
+		logging.basicConfig(filename='main.log',level=logging.DEBUG)
 	#mail_handler = SMTPHandler(
 	#			mailhost=(app.config['MAIL_SERVER'], 587),
 	#			fromaddr='jackdonaldson005@gmail.com',
