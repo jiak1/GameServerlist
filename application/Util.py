@@ -11,6 +11,7 @@ import os
 from threading import Thread
 import json
 import datetime
+from mcstatus import MinecraftServer
 
 if(ISADMIN):
 	from .Program import admin_mail as mail,admin_app as app
@@ -24,7 +25,7 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 def ServerUp(ip,port):
 	try:
 		if(port != "25565"):
-			response = requests.get("https://mcapi.us/server/status?ip="+str(ip)+"&port="+str(port))
+			status = MinecraftServer.lookup(ipstr).status(retries=2)
 		else:
 			response = requests.get("https://mcapi.us/server/status?ip="+ip)
 		if(response.status_code == 200):
