@@ -11,6 +11,7 @@ import os
 from threading import Thread
 import json
 import datetime
+import socket
 from mcstatus import MinecraftServer
 
 if(ISADMIN):
@@ -25,66 +26,71 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 def ServerUp(ip,port):
 	try:
 		if(port != "25565"):
-			status = requests.get("https://mcapi.us/server/status?ip="+ip+"&port="+str(port))
+			MinecraftServer.lookup(ip+":"+port).ping(retries=1)
 		else:
-			response = requests.get("https://mcapi.us/server/status?ip="+ip)
-		if(response.status_code == 200):
-			data = response.json() 
-			if(data != None and data['status'] == "success" and data["online"] == True):
-				return True
-			return False
-		else:
-			return True
-	except:
+			MinecraftServer.lookup(ip).ping(retries=1)
+		return True
+	except (socket.timeout, ConnectionRefusedError, ConnectionResetError, OSError):
+		return False
+	except Exception:
 		return False
 
 def ServerStatus(ip,port):
 	try:
 		if(port != "25565"):
-			response = requests.get("https://mcapi.us/server/status?ip="+str(ip)+"&port="+str(port))
+			status = MinecraftServer.lookup(ip+":"+port).status(retries=1)
 		else:
-			response = requests.get("https://mcapi.us/server/status?ip="+ip)
-		if(response.status_code == 200):
-			data = response.json()
-			if(data != None and data['status'] == "success" and data["online"] == True):
-				return True,data
-			return (False,None);
-		else:
-			return (True,{"status":"success","online":True,"motd":"","favicon":"","error":"","players":{"max":0,"now":0},"server":{"name":"","protocol":578},"last_online":"1588221063","last_updated":"1588221063","duration":183339623})
-	except:
-		return (False,{})
+			status = MinecraftServer.lookup(ip).status(retries=1)
+		
+		motd = status.description.get("text") if isinstance(status.description, dict) else str(status.description)
+		return (True,{
+			"server":{
+				"name":status.version.name,
+				"protocol":status.version.protocol
+			},
+			"motd":motd,
+			"players":{
+				"now":status.players.online,
+				"max":status.players.max
+			}
+		})
+
+	except (socket.timeout, ConnectionRefusedError, ConnectionResetError, OSError):
+		#Server Offline
+		return (False,None);
+	except Exception:
+		#Server Offline
+		return (False,None);
 
 def ServerQuery(ip,port):
 	try:
 		if(port != "25565"):
-			response = requests.get("https://mcapi.us/server/query?ip="+str(ip)+"&port="+str(port))
+			status = MinecraftServer.lookup(ip+":"+port).query(retries=1)
 		else:
-			response = requests.get("https://mcapi.us/server/query?ip="+ip)
-		if(response.status_code == 200):
-			data = response.json()
-			if(data != None and data['status'] == "success" and data["online"] == True):
-				return True,data
-			return (False,None);
-		else:
-			return (True,{"status":"success","online":True,"motd":"","favicon":"","error":"","players":{"max":0,"now":0},"server":{"name":"","protocol":578},"last_online":"1588221063","last_updated":"1588221063","duration":183339623})
-	except:
-		return (False,{})
+			status = MinecraftServer.lookup(ip).query(retries=1)
+		
+		motd = status.description.get("text") if isinstance(status.description, dict) else str(status.description)
+		return (True,{
+			"server":{
+				"name":status.version.name,
+				"protocol":status.version.protocol
+			},
+			"motd":motd,
+			"players":{
+				"now":status.players.online,
+				"max":status.players.max
+			}
+		})
+
+	except (socket.timeout, ConnectionRefusedError, ConnectionResetError, OSError):
+		#Server Offline
+		return (False,None);
+	except Exception:
+		#Server Offline
+		return (False,None);
 
 def ServerHasQuery(ip,port):
-	try:
-		if(port != "25565"):
-			response = requests.get("https://mcapi.us/server/query?ip="+str(ip)+"&port="+str(port))
-		else:
-			response = requests.get("https://mcapi.us/server/query?ip="+ip)
-		if(response.status_code == 200):
-			data = response.json()
-			if(data != None and data['status'] == "success" and data['version'] != ""):
-				return True
-			return False
-		else:
-			return False
-	except:
-		return False
+	return False
 
 
 def ValidUsername(username):
