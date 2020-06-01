@@ -52,7 +52,8 @@ def ServerStatus(ip,port):
 			"players":{
 				"now":status.players.online,
 				"max":status.players.max
-			}
+			},
+			"favicon":status.favicon
 		})
 
 	except (socket.timeout, ConnectionRefusedError, ConnectionResetError, OSError):
@@ -79,7 +80,8 @@ def ServerQuery(ip,port):
 			"players":{
 				"now":status.players.online,
 				"max":status.players.max
-			}
+			},
+			"favicon":status.favicon
 		})
 
 	except (socket.timeout, ConnectionRefusedError, ConnectionResetError, OSError):
@@ -355,12 +357,12 @@ def update_server_details(server,forceOn = False,forceIcon = False):
 		server.online = 1
 		server.playerCount = stats['players']['now']
 		server.playerMax = stats['players']['max']
-		queryOn = ServerHasQuery(server.ip,server.port)
-		server.queryOn = queryOn
+		#queryOn = ServerHasQuery(server.ip,server.port)
+		#server.queryOn = queryOn
 		if(forceIcon and not forceOn):
 			if('favicon' in stats):
 				server.icon = stats['favicon']
-				db.session.commit()
+			db.session.commit()
 		if(forceOn):
 			if('favicon' in stats):
 				server.icon = stats['favicon']
