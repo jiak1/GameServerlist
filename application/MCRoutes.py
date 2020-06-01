@@ -16,6 +16,10 @@ curDir = os.path.dirname(os.path.realpath(__file__))
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 SUGGESTION_CACHE_NUM = getSuggestionCacheNum()
+fName = "images/banners/live"
+if(getProduction() == True):
+	fName = "images/banners/testing"
+Live_Banner_URL = os.path.join(APP_ROOT,"static"+url_for('static',fName)+"/");
 
 prefix = "/"
 if(getProduction() == False):
@@ -367,7 +371,6 @@ def addServerPage():
 				db.session.refresh(server)
 
 				if(bannerURL != ""):
-					Live_Banner_URL = os.path.join(APP_ROOT,"static"+url_for('static',filename='images/banners/live')+"/");
 					im = Image.open(bannerURL)
 					newPath = Live_Banner_URL+str(server.id)+".webp";
 					if(im.format == "GIF" or im.format == "WEBP"):
@@ -389,7 +392,7 @@ def addServerPage():
 						im = im.resize(size=(498,60))
 						im.save(newPath,'webp',quality=100)
 
-					server.banner=url_for('static',filename='images/banners/live')+"/"+str(server.id)+".webp?1"
+					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+".webp?1"
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
@@ -440,7 +443,6 @@ def editServerPage(serverid):
 
 				UpdateServerWithForm(form,server)
 				if(bannerURL != ""):
-					Live_Banner_URL = os.path.join(APP_ROOT,"static"+url_for('static',filename='images/banners/live')+"/");
 
 					im = Image.open(bannerURL)
 					newPath = Live_Banner_URL+str(server.id)+".webp";
@@ -467,7 +469,7 @@ def editServerPage(serverid):
 						im.save(newPath,'webp',quality=100)
 
 					end = int(server.banner.split('?')[1])+1
-					server.banner=url_for('static',filename='images/banners/live')+"/"+str(server.id)+".webp?"+str(end)
+					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+".webp?"+str(end)
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
 				server.version = mcdetails['server']['name']
@@ -693,7 +695,7 @@ def viewServerPage(serverid):
 @login_required
 def pingServerPage(serverid):
 	server = Server.query.get(int(serverid))
-	
+
 	if(server is None or (server not in current_user.servers and current_user.email != "jackdonaldson005@gmail.com")):
 		return redirect(url_for("MCRoutes.serversPage"))
 
