@@ -16,10 +16,13 @@ curDir = os.path.dirname(os.path.realpath(__file__))
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 SUGGESTION_CACHE_NUM = getSuggestionCacheNum()
-fName = "images/banners/live"
-if(getProduction() == True):
+
+if(getProduction() == False):
 	fName = "images/banners/testing"
-Live_Banner_URL = os.path.join(APP_ROOT,"static"+url_for('static',filename=fName)+"/");
+	Live_Banner_URL = os.path.join("https://testing.server-lists.com/images/banners/testing");
+else:
+	fName = "images/banners/live"
+	Live_Banner_URL = os.path.join(APP_ROOT,"static"+url_for('static',filename=fName)+"/");
 
 prefix = "/"
 if(getProduction() == False):
