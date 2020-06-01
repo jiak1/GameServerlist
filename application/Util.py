@@ -26,13 +26,14 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 def ServerUp(ip,port):
 	try:
 		if(port != "25565"):
-			MinecraftServer.lookup(ip+":"+port).ping(retries=1)
+			#TLDR using ping caused weird issues
+			MinecraftServer.lookup(ip+":"+port).status(retries=1)
 		else:
-			MinecraftServer.lookup(ip).ping(retries=1)
+			MinecraftServer.lookup(ip).status(retries=1)
 		return True
 	except (socket.timeout, ConnectionRefusedError, ConnectionResetError, OSError):
 		return False
-	except Exception:
+	except Exception as e:
 		return False
 
 def ServerStatus(ip,port):
