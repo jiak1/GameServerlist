@@ -19,7 +19,7 @@ SUGGESTION_CACHE_NUM = getSuggestionCacheNum()
 fName = "images/banners/live"
 if(getProduction() == True):
 	fName = "images/banners/testing"
-Live_Banner_URL = os.path.join(APP_ROOT,"static"+url_for('static',fName)+"/");
+Live_Banner_URL = os.path.join(APP_ROOT,"static"+url_for('static',filename=fName)+"/");
 
 prefix = "/"
 if(getProduction() == False):

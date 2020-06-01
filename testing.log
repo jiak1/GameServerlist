@@ -97,3 +97,36 @@ INFO:werkzeug:172.18.0.1 - - [01/Jun/2020 06:41:09] "[37mPOST /minecraft/API/ST
 INFO:werkzeug:172.18.0.1 - - [01/Jun/2020 06:41:12] "[37mPOST /minecraft/API/PING HTTP/1.1[0m" 200 -
 INFO:werkzeug:172.18.0.1 - - [01/Jun/2020 06:41:12] "[37mPOST /minecraft/API/STATUS HTTP/1.1[0m" 200 -
 INFO:werkzeug:172.18.0.1 - - [01/Jun/2020 06:46:50] "[33mGET / HTTP/1.1[0m" 404 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
