@@ -693,9 +693,12 @@ def viewServerPage(serverid):
 @login_required
 def pingServerPage(serverid):
 	server = Server.query.get(int(serverid))
-	if(server is not None):
-		update_server_details(server,False,True)
-		flash("Forcefully pinged server. Your details should now be updated.","success")
+	
+	if(server is None or (server not in current_user.servers and current_user.email != "jackdonaldson005@gmail.com")):
+		return redirect(url_for("MCRoutes.serversPage"))
+
+	update_server_details(server,False,True)
+	flash("Forcefully pinged server. Your details should now be updated.","success")
 	return redirect(url_for("MCRoutes.serversPage"))
 
 @MCRoutes.route(prefix+"server/<serverid>/vote",methods=['GET','POST'])
