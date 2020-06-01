@@ -22,7 +22,7 @@ if(getProduction() == False):
 	Live_Banner_URL = os.path.join("https://testing.server-lists.com/images/banners/testing");
 else:
 	fName = "images/banners/live"
-	Live_Banner_URL = os.path.join(APP_ROOT,"static"+url_for('static',filename=fName)+"/");
+	Live_Banner_URL = APP_ROOT+"/images/banners/live/";
 
 prefix = "/"
 if(getProduction() == False):

@@ -394,3 +394,7 @@ INFO:werkzeug:172.18.0.1 - - [01/Jun/2020 07:35:02] "[37mPOST /minecraft/API/PI
 DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
 INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 INFO:werkzeug:172.18.0.1 - - [01/Jun/2020 07:36:51] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [01/Jun/2020 07:37:06] "[37mPOST /minecraft/API/PING HTTP/1.1[0m" 200 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [01/Jun/2020 07:40:03] "[33mGET / HTTP/1.1[0m" 404 -
