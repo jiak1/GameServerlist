@@ -1,7 +1,7 @@
 from flask import request,Blueprint, jsonify,abort,url_for,redirect
 from .Program import mc_db as db
 import os
-from .Util import ServerUp,ServerStatus,cleanupTempBanners,cleanupTempData,checkServerUpdates, serverRank,clearVotes,logServerGraphs,sendVotifierVote
+from .Util import ServerUp,ServerStatus,cleanupTempBanners,cleanupTempData,checkServerUpdates, serverRank,clearVotes,logServerGraphs,sendVotifierVote,disableServers
 from .SendVote import sendVote
 from .Models import Server,ReviewTag
 from .Program import mc_mail as mail, elasticsearch
@@ -129,3 +129,7 @@ def doRank():
 @crontab.job(minute="5", hour="*/2")
 def graphServers():
 	logServerGraphs()
+
+@crontab.job(minute="20", hour="*/10")
+def doDisableCheck():
+	disableServers()

@@ -358,6 +358,7 @@ def update_server_details(server,forceOn = False,forceIcon = False):
 		server.online = 1
 		server.playerCount = stats['players']['now']
 		server.playerMax = stats['players']['max']
+		server.lastOnlineTime = datetime.datetime.now()
 		#queryOn = ServerHasQuery(server.ip,server.port)
 		#server.queryOn = queryOn
 		if(forceIcon and not forceOn):
@@ -389,6 +390,22 @@ def do_server_rank(app):
 			rank += 1
 		db.session.commit()
 		app.logger.info('finished ranking')
+		return
+
+def disableServers():
+	app.logger.info('disabling servers that are still offline')
+	Thread(target=do_disable_server_check, args=(app,)).start()
+
+def do_disable_server_check(app):
+	with(app.app_context()):
+		servers = Server.query.all()
+		weekAgo = arrow.now().shift(days=-7)
+		for server in servers:
+			if(server.lastOnlineTime < weekAgo):
+				server.verified = 2
+				server.rejectReason = "Server Was Offline For More Then 7 Days."
+		db.session.commit()
+		app.logger.info('finished disabling servers')
 		return
 
 def UpdateAdminServerWithForm(_serverForm, _serverModel):

@@ -170,6 +170,7 @@ class Server(SearchableMixin, db.Model,Serializer):
 	monthlyVotes = db.Column(db.Integer,default=0,nullable=False)
 	totalVotes = db.Column(db.Integer,default=0,nullable=False)
 	rank = db.Column(db.Integer,default=10000,nullable=False)
+	lastOnlineTime = db.Column(db.DateTime,nullable=False,default=func.now())
 	
 	online = db.Column(db.Integer,default=1,nullable=False)
 
