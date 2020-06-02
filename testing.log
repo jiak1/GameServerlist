@@ -398,3 +398,168 @@ INFO:werkzeug:172.18.0.1 - - [01/Jun/2020 07:37:06] "[37mPOST /minecraft/API/PI
 DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
 INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 INFO:werkzeug:172.18.0.1 - - [01/Jun/2020 07:40:03] "[33mGET / HTTP/1.1[0m" 404 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 10:58:24] "[33mGET / HTTP/1.1[0m" 404 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:8000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:08:04] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:08:05] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:08:07] "[32mGET /admin HTTP/1.1[0m" 308 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:08:08] "[37mGET /admin/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:08:11] "[32mPOST /admin/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:08:11] "[37mGET /admin/profile HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:08:13] "[37mGET /admin/reviews HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:08:15] "[37mGET /admin/review?id=3 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:08:15] "[37mGET /css/review.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:08:15] "[37mGET /images/main/LoadingBanner.webp?1 HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): serverlist-9276239137.ap-southeast-2.bonsaisearch.net:443
+DEBUG:urllib3.connectionpool:https://serverlist-9276239137.ap-southeast-2.bonsaisearch.net:443 "PUT /server/_doc/3 HTTP/1.1" 200 155
+INFO:elasticsearch:PUT https://serverlist-9276239137.ap-southeast-2.bonsaisearch.net:443/server/_doc/3 [status:200 request:0.868s]
+DEBUG:elasticsearch:> {"name":"CovidCraft","tags":"","plugins":"","datapacks":"","mods":"","verified":2,"displayVersion":"","country":"US","rank":"3","newTime":"2020-06-02T11:08:28.700393","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"3","_version":3,"result":"updated","_shards":{"total":2,"successful":2,"failed":0},"_seq_no":40,"_primary_term":1}
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:08:29] "[32mPOST /admin/review?id=3&action=REJECT HTTP/1.1[0m" 302 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:08:30] "[37mGET /admin/reviews HTTP/1.1[0m" 200 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:21] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:21] "[32mGET /minecraft HTTP/1.1[0m" 308 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): serverlist-9276239137.ap-southeast-2.bonsaisearch.net:443
+DEBUG:urllib3.connectionpool:https://serverlist-9276239137.ap-southeast-2.bonsaisearch.net:443 "POST /server/_search HTTP/1.1" 200 4669
+INFO:elasticsearch:POST https://serverlist-9276239137.ap-southeast-2.bonsaisearch.net:443/server/_search [status:200 request:1.446s]
+DEBUG:elasticsearch:> {"sort":{"rank":"asc"},"query":{"term":{"verified":"1"}},"from":0,"size":14}
+DEBUG:elasticsearch:< {"took":586,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":32,"relation":"eq"},"max_score":null,"hits":[{"_index":"server","_type":"_doc","_id":"7","_score":null,"_source":{"name":"CovidCraft","tags":"Hunger Games,Factions,Creative,Minecraft,mcMMO,Paintball,Small Community,New World","plugins":"Factions,CreativePlots,mcMMO,Parkour,Paintball,Hungergames,Economy","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":1,"newTime":"2020-04-30T04:38:18","online":1},"sort":[1]},{"_index":"server","_type":"_doc","_id":"1","_score":null,"_source":{"name":"Wondercraft","tags":"","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"AU","rank":1,"newTime":"2020-04-28T04:17:20","online":1},"sort":[1]},{"_index":"server","_type":"_doc","_id":"13","_score":null,"_source":{"name":"CraftYourTown","tags":"Towny,Slimefun,mcMMO,Jobs,LWC,Quests","plugins":"Jobs,Towny,mcMMO,Crates,Custom Enchantments,Barrels,Slimefun,Custom Banks,Dungeons","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":2,"newTime":"2020-05-21T04:17:39","online":1},"sort":[2]},{"_index":"server","_type":"_doc","_id":"2","_score":null,"_source":{"name":"Create MC","tags":"","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":2,"newTime":"2020-04-29T02:16:53","online":1},"sort":[2]},{"_index":"server","_type":"_doc","_id":"21","_score":null,"_source":{"name":"Gamers Nest","tags":"Skyblock,Small Community,Fun","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":3,"newTime":"2020-05-08T02:51:30","online":1},"sort":[3]},{"_index":"server","_type":"_doc","_id":"14","_score":null,"_source":{"name":"AirCraft","tags":"Survival,No Grief,Economy,Creative,Discord,mcMMO,Land Claim,Claims,Custom Bosses,No Raid","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":4,"newTime":"2020-05-21T04:18:30","online":1},"sort":[4]},{"_index":"server","_type":"_doc","_id":"10","_score":null,"_source":{"name":"PURPLE PRISON","tags":"Prison,Factions,PVP,Creative","plugins":"Parkour,Creative Plots,Factions,Gangs,Prison,Essentials,Worldedit","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":5,"newTime":"2020-05-21T04:18:51","online":1},"sort":[5]},{"_index":"server","_type":"_doc","_id":"16","_score":null,"_source":{"name":"Xento Network","tags":"Prison,Skyblock,Factions","plugins":"Custom Plugins,Tokens,Crates,Plots,Custom Enchantments,Vouchers,Pouches,Gems,PvP Rewards,Unlimited Prestiges","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":6,"newTime":"2020-05-07T00:49:05","online":1},"sort":[6]},{"_index":"server","_type":"_doc","_id":"25","_score":null,"_source":{"name":"Lectron","tags":"Economy,mcMMO,PVE,PVP,Roleplay,Survival,Vanilla","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"US","rank":7,"newTime":"2020-05-21T04:35:20","online":1},"sort":[7]},{"_index":"server","_type":"_doc","_id":"29","_score":null,"_source":{"name":"Ferox MC","tags":"Discord,Economy,PVE,Events,mcMMO,Ranks,Land Claim","plugins":"mcMMO,Ranks","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":9,"newTime":"2020-05-21T04:19:15","online":1},"sort":[9]},{"_index":"server","_type":"_doc","_id":"15","_score":null,"_source":{"name":"CreateeMC","tags":"Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":10,"newTime":"2020-04-30T21:18:29","online":1},"sort":[10]},{"_index":"server","_type":"_doc","_id":"31","_score":null,"_source":{"name":"Suralt","tags":"Discord,Land Claim,mcMMO,Ranks,Skyblock","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"GB","rank":12,"newTime":"2020-05-21T04:35:39","online":1},"sort":[12]},{"_index":"server","_type":"_doc","_id":"38","_score":null,"_source":{"name":"Minefun","tags":"Anarchy,Creative,Factions,KitPVP,Prison,PVP,Skyblock,Survival,Towny","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"US","rank":13,"newTime":"2020-05-22T03:48:27","online":1},"sort":[13]},{"_index":"server","_type":"_doc","_id":"11","_score":null,"_source":{"name":"MineMalia Network","tags":"Survival,Prison,Claims,mcMMO,Enchantments,Land Claim","plugins":"Essentials,mcmmo,crates,jobs,customenchants","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"GB","rank":14,"newTime":"2020-04-30T11:31:41","online":1},"sort":[14]}]}}
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:23] "[37mGET /minecraft/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /css/main.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /css/search.css?2 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /css/background.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /css/searchtagsinput.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /images/icon.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /js/bootstrap-tagsinput.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /images/background3.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /images/homeicon.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /images/swordcrossicon.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /images/banners/live/1.webp?7 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /images/banners/live/2.webp?2 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /json/plugins.json?3 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /json/tags.json?3 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /json/mods.json?3 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:24] "[37mGET /json/datapacks.json?3 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:30] "[37mGET /minecraft/servers HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:30] "[37mGET /css/myServers.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:36] "[37mGET /minecraft/editserver/3 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:37] "[37mGET /css/editServer.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:37] "[37mGET /css/form.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:37] "[37mGET /css/bootstrap-glyphicons.min.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:10:37] "[37mGET /css/tagsinput.css HTTP/1.1[0m" 200 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:8000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:11:35] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:11:37] "[37mGET /admin/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:11:41] "[32mPOST /admin/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:11:41] "[37mGET /admin/profile HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:11:43] "[37mGET /admin/reviews HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:11:45] "[37mGET /admin/review?id=4 HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): serverlist-9276239137.ap-southeast-2.bonsaisearch.net:443
+DEBUG:urllib3.connectionpool:https://serverlist-9276239137.ap-southeast-2.bonsaisearch.net:443 "PUT /server/_doc/4 HTTP/1.1" 200 155
+INFO:elasticsearch:PUT https://serverlist-9276239137.ap-southeast-2.bonsaisearch.net:443/server/_doc/4 [status:200 request:0.848s]
+DEBUG:elasticsearch:> {"name":"testing","tags":"","plugins":"","datapacks":"","mods":"","verified":0,"displayVersion":"1.8.8","country":"US","rank":"4","newTime":"2020-06-02T11:11:55.113557","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"4","_version":3,"result":"updated","_shards":{"total":2,"successful":2,"failed":0},"_seq_no":41,"_primary_term":1}
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:11:56] "[32mPOST /admin/review?id=4&action=UPDATE HTTP/1.1[0m" 302 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:11:56] "[37mGET /admin/review?id=4 HTTP/1.1[0m" 200 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:12:42] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:12:43] "[32mGET /minecraft/editserver/3 HTTP/1.1[0m" 302 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:12:43] "[37mGET /minecraft/login?next=%2Fminecraft%2Feditserver%2F3 HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:12:44] "[37mGET /images/main/googleIcon.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:12:47] "[32mPOST /minecraft/login?next=%2Fminecraft%2Feditserver%2F3 HTTP/1.1[0m" 302 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:12:47] "[37mGET /minecraft/login HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.google.com:443
+DEBUG:urllib3.connectionpool:https://accounts.google.com:443 "GET /.well-known/openid-configuration HTTP/1.1" 200 1280
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:12:51] "[32mGET /minecraft/googlelogin HTTP/1.1[0m" 302 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): accounts.google.com:443
+DEBUG:urllib3.connectionpool:https://accounts.google.com:443 "GET /.well-known/openid-configuration HTTP/1.1" 200 1280
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): oauth2.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): openidconnect.googleapis.com:443
+DEBUG:urllib3.connectionpool:https://openidconnect.googleapis.com:443 "GET /v1/userinfo HTTP/1.1" 200 None
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:12:54] "[32mGET /minecraft/googlelogin/callback?code=4%2F0QEuBX0vOwP37_Uln7PL0Gg0cvL2X_DH_DAuhuaR5wviGrK7-vTpU7PF7_qYLbCWsPtJqEQeRdF8pJGX4ZNyQH8&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=0&prompt=none HTTP/1.1[0m" 302 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): serverlist-9276239137.ap-southeast-2.bonsaisearch.net:443
+DEBUG:urllib3.connectionpool:https://serverlist-9276239137.ap-southeast-2.bonsaisearch.net:443 "POST /server/_search HTTP/1.1" 200 4669
+INFO:elasticsearch:POST https://serverlist-9276239137.ap-southeast-2.bonsaisearch.net:443/server/_search [status:200 request:1.747s]
+DEBUG:elasticsearch:> {"sort":{"rank":"asc"},"query":{"term":{"verified":"1"}},"from":0,"size":14}
+DEBUG:elasticsearch:< {"took":924,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":32,"relation":"eq"},"max_score":null,"hits":[{"_index":"server","_type":"_doc","_id":"7","_score":null,"_source":{"name":"CovidCraft","tags":"Hunger Games,Factions,Creative,Minecraft,mcMMO,Paintball,Small Community,New World","plugins":"Factions,CreativePlots,mcMMO,Parkour,Paintball,Hungergames,Economy","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":1,"newTime":"2020-04-30T04:38:18","online":1},"sort":[1]},{"_index":"server","_type":"_doc","_id":"1","_score":null,"_source":{"name":"Wondercraft","tags":"","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"AU","rank":1,"newTime":"2020-04-28T04:17:20","online":1},"sort":[1]},{"_index":"server","_type":"_doc","_id":"13","_score":null,"_source":{"name":"CraftYourTown","tags":"Towny,Slimefun,mcMMO,Jobs,LWC,Quests","plugins":"Jobs,Towny,mcMMO,Crates,Custom Enchantments,Barrels,Slimefun,Custom Banks,Dungeons","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":2,"newTime":"2020-05-21T04:17:39","online":1},"sort":[2]},{"_index":"server","_type":"_doc","_id":"2","_score":null,"_source":{"name":"Create MC","tags":"","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":2,"newTime":"2020-04-29T02:16:53","online":1},"sort":[2]},{"_index":"server","_type":"_doc","_id":"21","_score":null,"_source":{"name":"Gamers Nest","tags":"Skyblock,Small Community,Fun","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":3,"newTime":"2020-05-08T02:51:30","online":1},"sort":[3]},{"_index":"server","_type":"_doc","_id":"14","_score":null,"_source":{"name":"AirCraft","tags":"Survival,No Grief,Economy,Creative,Discord,mcMMO,Land Claim,Claims,Custom Bosses,No Raid","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":4,"newTime":"2020-05-21T04:18:30","online":1},"sort":[4]},{"_index":"server","_type":"_doc","_id":"10","_score":null,"_source":{"name":"PURPLE PRISON","tags":"Prison,Factions,PVP,Creative","plugins":"Parkour,Creative Plots,Factions,Gangs,Prison,Essentials,Worldedit","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":5,"newTime":"2020-05-21T04:18:51","online":1},"sort":[5]},{"_index":"server","_type":"_doc","_id":"16","_score":null,"_source":{"name":"Xento Network","tags":"Prison,Skyblock,Factions","plugins":"Custom Plugins,Tokens,Crates,Plots,Custom Enchantments,Vouchers,Pouches,Gems,PvP Rewards,Unlimited Prestiges","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":6,"newTime":"2020-05-07T00:49:05","online":1},"sort":[6]},{"_index":"server","_type":"_doc","_id":"25","_score":null,"_source":{"name":"Lectron","tags":"Economy,mcMMO,PVE,PVP,Roleplay,Survival,Vanilla","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"US","rank":7,"newTime":"2020-05-21T04:35:20","online":1},"sort":[7]},{"_index":"server","_type":"_doc","_id":"29","_score":null,"_source":{"name":"Ferox MC","tags":"Discord,Economy,PVE,Events,mcMMO,Ranks,Land Claim","plugins":"mcMMO,Ranks","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":9,"newTime":"2020-05-21T04:19:15","online":1},"sort":[9]},{"_index":"server","_type":"_doc","_id":"15","_score":null,"_source":{"name":"CreateeMC","tags":"Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":10,"newTime":"2020-04-30T21:18:29","online":1},"sort":[10]},{"_index":"server","_type":"_doc","_id":"31","_score":null,"_source":{"name":"Suralt","tags":"Discord,Land Claim,mcMMO,Ranks,Skyblock","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"GB","rank":12,"newTime":"2020-05-21T04:35:39","online":1},"sort":[12]},{"_index":"server","_type":"_doc","_id":"38","_score":null,"_source":{"name":"Minefun","tags":"Anarchy,Creative,Factions,KitPVP,Prison,PVP,Skyblock,Survival,Towny","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"US","rank":13,"newTime":"2020-05-22T03:48:27","online":1},"sort":[13]},{"_index":"server","_type":"_doc","_id":"11","_score":null,"_source":{"name":"MineMalia Network","tags":"Survival,Prison,Claims,mcMMO,Enchantments,Land Claim","plugins":"Essentials,mcmmo,crates,jobs,customenchants","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"GB","rank":14,"newTime":"2020-04-30T11:31:41","online":1},"sort":[14]}]}}
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:12:56] "[37mGET /minecraft/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:12:58] "[37mGET /minecraft/servers HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): o385754.ingest.sentry.io:443
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:13:02] "[35m[1mGET /minecraft/editserver/3 HTTP/1.1[0m" 500 -
+ERROR:werkzeug:Error on request:
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/werkzeug/serving.py", line 323, in run_wsgi
+    execute(self.server.app)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/werkzeug/serving.py", line 312, in execute
+    application_iter = app(environ, start_response)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/sentry_sdk/integrations/flask.py", line 89, in sentry_patched_wsgi_app
+    return SentryWsgiMiddleware(lambda *a, **kw: old_app(self, *a, **kw))(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/sentry_sdk/integrations/wsgi.py", line 129, in __call__
+    reraise(*_capture_exception(hub))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/sentry_sdk/_compat.py", line 57, in reraise
+    raise value
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/sentry_sdk/integrations/wsgi.py", line 122, in __call__
+    rv = self.app(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/sentry_sdk/integrations/flask.py", line 89, in <lambda>
+    return SentryWsgiMiddleware(lambda *a, **kw: old_app(self, *a, **kw))(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/runner/PCServerlist/application/MCRoutes.py", line 498, in editServerPage
+    return render_template("mc/editServer.html", form=form, server=server,cacheNum=SUGGESTION_CACHE_NUM)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/jinja2/loaders.py", line 127, in load
+    code = environment.compile(source, name, filename)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/jinja2/environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/home/runner/PCServerlist/application/templates/mc/editServer.html", line 35, in template
+    {% else if server.rejectReason != "" %}
+jinja2.exceptions.TemplateSyntaxError: expected token 'end of statement block', got 'if'
+DEBUG:urllib3.connectionpool:https://o385754.ingest.sentry.io:443 "POST /api/5226663/store/ HTTP/1.1" 200 41
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:13:31] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:13:33] "[37mGET /minecraft/editserver/3 HTTP/1.1[0m" 200 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:14:06] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:14:11] "[37mGET /minecraft/editserver/3 HTTP/1.1[0m" 200 -

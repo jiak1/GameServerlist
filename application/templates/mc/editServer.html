@@ -32,12 +32,14 @@
   <div class="text-center mb-4">
 	{% if server.verified == 1 %}
 		<h1 class="h3 mb-3 font-weight-normal" style="text-align:left">Edit Your Server</h1>
-	{% else %}
+	{% elif server.rejectReason != "" %}
     	<h1 class="h3 mb-3 font-weight-normal" style="text-align:left">Resubmit Your Server For Verification</h1>
 		<h5 style="text-align:left">Reviewer Notes:</h5>
     	<div class="alert alert-danger" role="alert" style="margin-top:10px">
 		{{server.rejectReason}}</b>
 		</div>
+	{% else %}
+    	<h1 class="h3 mb-3 font-weight-normal" style="text-align:left">Resubmit Your Server For Verification</h1>
 	{% endif %}
   </div>
 
