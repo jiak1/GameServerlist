@@ -399,7 +399,7 @@ def disableServers():
 def do_disable_server_check(app):
 	with(app.app_context()):
 		servers = Server.query.all()
-		weekAgo = arrow.now().shift(days=-7)
+		weekAgo = datetime.datetime.now()-datetime.timedelta(days=7)
 		for server in servers:
 			if(server.lastOnlineTime < weekAgo):
 				server.verified = 2
