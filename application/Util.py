@@ -383,7 +383,7 @@ def serverRank():
 
 def do_server_rank(app):
 	with(app.app_context()):
-		servers = Server.query.order_by(Server.monthlyVotes.desc(),Server.playerCount)
+		servers = Server.query.order_by(Server.monthlyVotes.desc(),Server.playerCount.desc())
 		rank = 1
 		for server in servers:
 			server.rank = rank
