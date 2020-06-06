@@ -566,3 +566,6 @@ INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:14:11] "[37mGET /minecraft/editser
 INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:21:34] "[37mGET /minecraft/servers HTTP/1.1[0m" 200 -
 INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 11:55:59] "[33mGET / HTTP/1.1[0m" 404 -
 INFO:werkzeug:172.18.0.1 - - [02/Jun/2020 12:11:43] "[33mGET / HTTP/1.1[0m" 404 -
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:172.18.0.1 - - [03/Jun/2020 06:40:00] "[33mGET / HTTP/1.1[0m" 404 -
