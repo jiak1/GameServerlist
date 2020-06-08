@@ -2,7 +2,7 @@
 {% set active_page = "home" %}
 
 {% block head %}
-<link rel="stylesheet" href="{{url_for('static',filename='css/search.css')}}?2">
+<link rel="stylesheet" href="{{url_for('static',filename='css/search.css')}}?3">
 <link rel="stylesheet" href="{{url_for('static',filename='css/background.css')}}">
 <script src="https://minecraft.server-lists.com/js/lazy-load.js"></script>
 
@@ -47,6 +47,7 @@
                     <li></li>
             </ul>
 </div >
+<h2 id="searchTerm">{{searchTerm}}</h2>
 <div class="row row-cols-1 row-cols-md-2" style="padding-top:50px">
 {% for server in servers %}
 <div class="col mb-4" style="width:100%;padding-bottom:30px;">

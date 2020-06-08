@@ -41,6 +41,7 @@ def MCHomePage():
 	page = request.args.get('page', 1, type=int)
 	search = request.args.get('search', "")
 	canonURL="https://minecraft.server-lists.com"
+	_term = "Top Servers"
 	try:
 		servers,total = Server.search(search,page,POSTS_PER_PAGE)
 
@@ -56,9 +57,10 @@ def MCHomePage():
 			title = "Minecraft Server Lists"
 			prev_url=None
 		if(search != ""):
+			_term = "Search Results"
 			canonURL="https://minecraft.server-lists.com?search="+search
 		
-		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title=title,description="Find top Minecraft Servers using our Minecraft Server List with detailed information on servers that suit your needs including...",canonURL=canonURL)
+		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title=title,description="Find top Minecraft Servers using our Minecraft Server List with detailed information on servers that suit your needs including...",canonURL=canonURL,searchTerm=_term)
 	except TypeError as e:
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.MCHomePage",search=search))
@@ -79,7 +81,7 @@ def tagSearchPage(tagname):
 		else:
 			title = tagname+" Minecraft Servers"
 			prev_url=None
-		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title=title,description="Find top "+str(tagname)+" servers on our Minecraft Server List with detailed information on servers that suit your needs including...",canonURL="https://minecraft.server-lists.com/tag/"+tagname)
+		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title=title,description="Find top "+str(tagname)+" servers on our Minecraft Server List with detailed information on servers that suit your needs including...",canonURL="https://minecraft.server-lists.com/tag/"+tagname,searchTerm=tagname+" Servers")
 	except:
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.tagSearchPage",search=tagname))

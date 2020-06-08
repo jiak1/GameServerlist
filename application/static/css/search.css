@@ -179,3 +179,20 @@
 	margin-bottom:0px;
 	margin-top: 0px;
 }
+
+.strip{
+	height:6px;
+	background-color:#d0d0d0;
+	width:100%;
+}
+
+#searchTerm{
+	padding-top: 20px;
+    margin-bottom: 0px;
+}
+
+@media screen and (max-width: 780px){
+	#searchTerm{
+		  text-align:center;
+	}
+}

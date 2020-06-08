@@ -2,6 +2,10 @@
 	background-color:#18A558;
 }
 
+.navbar-nav{
+	margin-left:15px;
+}
+
 .navbar-nav > li:hover {
   background-color: rgba(0,0,0,0.2);
 }
@@ -36,6 +40,7 @@
 	margin-left:12.5px;
 	display:inline-block;
 	vertical-align: sub;
+	margin-bottom: 0px;
 
 }
 
