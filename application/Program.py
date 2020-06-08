@@ -29,7 +29,7 @@ def getElasticSearchURL():
 			http_auth = awsauth,
 			use_ssl = True,
 			verify_certs = True,
-			connection_class = RequestsHttpConnection
+			connection_class = RequestsHttpConnection, timeout=10, max_retries=3, retry_on_timeout=True
 		)
 	bonsai = BONSAIURL
 	auth = re.search('https\:\/\/(.*)\@', bonsai).group(1).split(':')
@@ -51,7 +51,7 @@ def getElasticSearchURL():
 	'use_ssl': True,
 	'http_auth': (auth[0],auth[1])
 	}]
-	return Elasticsearch(es_header)
+	return Elasticsearch(es_header, timeout=10, max_retries=3, retry_on_timeout=True)
 
 
 #PROJECT_ROOT = "sqlite:///"+os.path.dirname(os.path.realpath(__file__))+"/database/data.db"
