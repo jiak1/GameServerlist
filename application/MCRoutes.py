@@ -757,3 +757,7 @@ def serverReportPage(serverid):
 			flash(form.errors[key][0],"danger")	
 
 	return render_template("mc/reportserver.html",server=server,form=form)
+
+@MCRoutes.route(prefix+"pinterest-0cb36",methods=['GET'])
+def PintrestConfirmation():
+	return render_template("admin/pinterest-0cb36.html")
