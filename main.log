@@ -95,3 +95,167 @@ INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-e
 DEBUG:elasticsearch:> {"name":"Xento Network","tags":"Prison,Skyblock,Factions","plugins":"Custom Plugins,Tokens,Crates,Plots,Custom Enchantments,Vouchers,Pouches,Gems,PvP Rewards,Unlimited Prestiges","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":74,"newTime":"2020-05-07T00:49:05","online":1}
 DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"16","_version":4069,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":48009,"_primary_term":7}
 INFO:application.Program:finished checking updates
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:application.Program:checking updates
+INFO:application.Program:pinging servers for updates
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/71 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/71 [status:200 request:0.054s]
+DEBUG:elasticsearch:> {"name":"Pokecentral","tags":"BungeeCord,Casual,Discord,Economy,Land Claim,Parkour,Pixelmon,Pixelspark,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"US","rank":36,"newTime":"2020-06-06T07:08:37","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"71","_version":510,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":20295,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/59 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/59 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"JartexNetwork","tags":"Creative,Events,Faction,Mcmmo,Minigames,Prison,PvP,Skyblock,Skywars","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":3,"newTime":"2020-06-06T07:09:06","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"59","_version":516,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":39054,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/72 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/72 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"VexedMC","tags":"Economy,Events,Lucky Block,Parkour,Prison,PvE,PvP,Spigot,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"US","rank":33,"newTime":"2020-06-06T07:08:43","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"72","_version":510,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":38929,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/60 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/60 [status:200 request:0.019s]
+DEBUG:elasticsearch:> {"name":"WilderCraft","tags":"Discord,Economy,Events,Land Claim,Minigames,PvE,Ranks,Survival,Vanilla","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":45,"newTime":"2020-06-06T07:09:18","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"60","_version":514,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":39055,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/73 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/73 [status:200 request:0.008s]
+DEBUG:elasticsearch:> {"name":"InsanityCraft","tags":"Creative,Economy,Faction,Land Claim,Mcmmo,Parkour,PvP,Skyblock,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"US","rank":38,"newTime":"2020-06-06T10:15:43","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"73","_version":483,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":48018,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/61 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/61 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"DestinyMC","tags":"Discord,Economy,Pixelmon,Pixelspark,Pokemon,Prison,Skyblock,Survival,Towny","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":39,"newTime":"2020-06-06T06:48:23","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"61","_version":517,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":39056,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/74 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/74 [status:200 request:0.008s]
+DEBUG:elasticsearch:> {"name":"JailBreakMC","tags":"Economy,Events,Prison,PvE,PvP","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":43,"newTime":"2020-06-06T10:14:02","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"74","_version":481,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":32154,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/62 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/62 [status:200 request:0.008s]
+DEBUG:elasticsearch:> {"name":"AnubisMC","tags":"Arena,Creative,Discord,Economy,Events,Land Claim,Pixelmon Reforged,Ranks,Skyblock","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"US","rank":42,"newTime":"2020-06-06T07:09:26","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"62","_version":514,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":48019,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/75 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/75 [status:200 request:0.014s]
+DEBUG:elasticsearch:> {"name":"Skycade","tags":"BungeeCord,Creative,Faction,KitPvP,Minigames,Prison,PvP,Skyblock,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":40,"newTime":"2020-06-06T10:16:01","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"75","_version":481,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":48020,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/63 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/63 [status:200 request:0.008s]
+DEBUG:elasticsearch:> {"name":"MineBox","tags":"Creative,Economy,Minigames,PvE,PvP,Skywars,Spigot,Survival,Waterfall","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15","country":"ES","rank":25,"newTime":"2020-06-06T07:09:40","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"63","_version":513,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":32155,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/76 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/76 [status:200 request:0.008s]
+DEBUG:elasticsearch:> {"name":"PokeZone","tags":"Adventure,Bukkit,Economy,Parkour,Pixelmon,Pixelmon Reforged,Pixelspark,Pokemon","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":48,"newTime":"2020-06-06T10:16:27","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"76","_version":481,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":48021,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/64 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/64 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"Vortex","tags":"Discord,Events,Faction,Minigames,Prison,PvP,Raiding,Skyblock","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":18,"newTime":"2020-06-06T07:09:50","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"64","_version":513,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":39057,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/77 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/77 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"Omegacraft","tags":"Faction,Hunger Games,Minigames,Prison,PvP,Skyblock,Skywars,Survival,Survival Games","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"CL","rank":2,"newTime":"2020-06-06T10:16:47","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"77","_version":482,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":38930,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/65 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/65 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"Rede Beast","tags":"Adventure,Discord,Events,Land Claim,Pixelmon,Pixelmon Reforged,Pokemon,PvE,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"BR","rank":55,"newTime":"2020-06-06T07:09:57","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"65","_version":511,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":39058,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/78 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/78 [status:200 request:0.010s]
+DEBUG:elasticsearch:> {"name":"MCDrugs","tags":"Creative,Drug,Economy,Faction,Parkour,Prison,PvP,Roleplay,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":41,"newTime":"2020-06-06T10:17:09","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"78","_version":480,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":38931,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/66 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/66 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"Pixelmon Realms","tags":"Discord,Economy,Events,Pixelmon,Pixelmon Reforged,Pixelspark,Pokemon,PvE,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"US","rank":52,"newTime":"2020-06-06T07:10:05","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"66","_version":512,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":32156,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/67 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/67 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"ViperMC","tags":"Discord,Faction,KitPvP,PvP,Raiding","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":24,"newTime":"2020-06-06T07:10:17","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"67","_version":512,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":38932,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/56 HTTP/1.1" 200 162
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/56 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"Snapcraft","tags":"Creative,Factions,KitPVP,Mini Games,Prison,PVP,Raiding,Skyblock,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":22,"newTime":"2020-06-02T12:01:49","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"56","_version":1433,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":39059,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/68 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/68 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"FluxPVP","tags":"Arena,Economy,Faction,Hardcore,Land Claim,Mcmmo,PvP,Raiding,Ranks","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":27,"newTime":"2020-06-06T07:10:32","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"68","_version":511,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":20296,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/57 HTTP/1.1" 200 162
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/57 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"MC PGST","tags":"Adventure,Discord,Economy,Events,Survival","plugins":"","datapacks":"","mods":"Pixelmon","verified":1,"displayVersion":"1.7","country":"TW","rank":26,"newTime":"2020-06-02T12:01:53","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"57","_version":1433,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":20297,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/69 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/69 [status:200 request:0.008s]
+DEBUG:elasticsearch:> {"name":"Wheelcraft","tags":"BungeeCord,Creative,Economy,Mcmmo,PvP,Skyblock,Skywars,Spigot,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"ID","rank":28,"newTime":"2020-06-06T07:10:46","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"69","_version":513,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":32157,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/58 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/58 [status:200 request:0.009s]
+DEBUG:elasticsearch:> {"name":"Datblock","tags":"Creative,Economy,Faction,Minigames,Skyblock,Skywars,Survival,Towny,Vanilla","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":30,"newTime":"2020-06-06T06:40:44","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"58","_version":517,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":38933,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/70 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/70 [status:200 request:0.009s]
+DEBUG:elasticsearch:> {"name":"Altitude Community","tags":"Bukkit,BungeeCord,Discord,Economy,Events,Land Claim,Mcmmo,PvE,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":54,"newTime":"2020-06-06T07:08:58","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"70","_version":511,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":32158,"_primary_term":7}
+INFO:application.Program:finished checking updates
+DEBUG:safe:Reading from cache file /tmp/safe-0.4.words.cache
+INFO:application.Program:checking updates
+INFO:application.Program:pinging servers for updates
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/80 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/80 [status:200 request:0.035s]
+DEBUG:elasticsearch:> {"name":"Arefy Network","tags":"Bukkit,Faction,Mcmmo,Prison,PvP,Raiding,Skyblock,Spigot,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"ES","rank":23,"newTime":"2020-06-06T10:18:49","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"80","_version":480,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":48022,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/89 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/89 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"PrimeMC","tags":"Economy,Mcmmo,Prison,PvP,Skyblock,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":34,"newTime":"2020-06-06T10:23:24","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"89","_version":479,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":32159,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/83 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/83 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"Pokeverse","tags":"Economy,Parkour,Pixelmon,Pixelmon Reforged,Pixelspark,Pokemon,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.12.2","country":"US","rank":58,"newTime":"2020-06-06T10:19:34","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"83","_version":479,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":32160,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/86 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/86 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"Blockstackers","tags":"Economy,Jobs,Mcmmo,PvE,Roleplay,Skyblock,Survival,Towny,Vanilla","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"SG","rank":44,"newTime":"2020-06-06T10:21:25","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"86","_version":479,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":32161,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/92 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/92 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"Fruit Servers","tags":"Economy,Events,Mcmmo,Parkour,Prison,PvE,Skyblock,Spigot,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"AU","rank":50,"newTime":"2020-06-06T10:26:27","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"92","_version":477,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":38934,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/81 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/81 [status:200 request:0.010s]
+DEBUG:elasticsearch:> {"name":"PokeNinjas","tags":"Economy,Events,Land Claim,Pixelmon,Ranks","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":32,"newTime":"2020-06-06T10:19:00","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"81","_version":480,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":39060,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/88 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/88 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"PokeBrawl","tags":"Economy,Pixelmon,Pixelmon Reforged,Pixelspark,Pokemon,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.12.2","country":"US","rank":62,"newTime":"2020-06-06T10:23:16","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"88","_version":478,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":39061,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/87 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/87 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"Mortal Mines","tags":"Drug,Economy,Events,Faction,Parkour,Prison,PvP,Skyblock,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.15.2","country":"US","rank":51,"newTime":"2020-06-06T10:23:02","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"87","_version":478,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":20298,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/84 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/84 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"VanityMC","tags":"Creative,Faction,KitPvP,Minigames,Parkour,Prison,Skyblock,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"US","rank":17,"newTime":"2020-06-06T10:19:46","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"84","_version":479,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":38935,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/90 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/90 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"Mineraze","tags":"Adventure,Events,Jobs,Mcmmo,PvE,Ranks,Roleplay,Survival,Towny","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"US","rank":47,"newTime":"2020-06-06T10:25:05","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"90","_version":478,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":39062,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/93 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/93 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"Momento Network","tags":"BungeeCord,Creative,Faction,Prison,PvP,Skyblock,Skywars,Spigot,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":35,"newTime":"2020-06-06T10:26:42","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"93","_version":477,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":48023,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/79 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/79 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"BreakdownCraft","tags":"Discord,Economy,Faction,Jobs,Land Claim,Mcmmo,Ranks,Skyblock,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":46,"newTime":"2020-06-06T10:17:20","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"79","_version":481,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":32162,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/82 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/82 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"SurviveWithUs","tags":"BungeeCord,Economy,Events,Land Claim,PvE,Ranks,Spigot,Survival,Vanilla","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":49,"newTime":"2020-06-06T10:19:22","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"82","_version":479,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":32163,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/91 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/91 [status:200 request:0.006s]
+DEBUG:elasticsearch:> {"name":"CultivateMC","tags":"Discord,Economy,Jobs,Land Claim,Mcmmo,PvE,Ranks,Skyblock,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.8","country":"US","rank":60,"newTime":"2020-06-06T10:25:15","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"91","_version":478,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":39063,"_primary_term":7}
+DEBUG:urllib3.connectionpool:https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443 "PUT /server/_doc/85 HTTP/1.1" 200 161
+INFO:elasticsearch:PUT https://search-serverlist-hvnm3ui64ncyamrzoz6tiihn4m.us-east-2.es.amazonaws.com:443/server/_doc/85 [status:200 request:0.007s]
+DEBUG:elasticsearch:> {"name":"KampungMC","tags":"Adventure,Bukkit,Discord,Economy,Mcmmo,Minigames,Ranks,Roleplay,Survival","plugins":"","datapacks":"","mods":"","verified":1,"displayVersion":"1.7","country":"ID","rank":84,"newTime":"2020-06-06T10:19:55","online":1}
+DEBUG:elasticsearch:< {"_index":"server","_type":"_doc","_id":"85","_version":479,"result":"updated","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":39064,"_primary_term":7}
+INFO:application.Program:finished checking updates
