@@ -3,9 +3,9 @@ from logging.handlers import SMTPHandler
 from .Config import getProduction
 def setup(app):
 	if(getProduction() == False):
-		logging.basicConfig(filename='testing.log',level=logging.DEBUG)
+		pass
 	else:
-		logging.basicConfig(filename='main.log',level=logging.DEBUG)
+		pass
 	#mail_handler = SMTPHandler(
 	#			mailhost=(app.config['MAIL_SERVER'], 587),
 	#			fromaddr='jackdonaldson005@gmail.com',
