@@ -1,4 +1,3 @@
-{% autoescape true %}
 Your Server, {{server.name}} has not been verified because of the following reasons:
 
 {{server.rejectReason}}
@@ -9,4 +8,3 @@ If you have any questions or comments regarding this, simply reply to this email
 
 Sincerely,
 The Serverlist Team
-{% endautoescape %}
