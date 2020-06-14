@@ -2,25 +2,25 @@
 <head>
 	<link rel="preconnect" href="https://www.google-analytics.com">
 	<link rel="preconnect" href="https://www.googletagmanager.com">
-	<link rel="preconnect" href="https://code.jquery.com">
+	<link rel="preconnect" href="https://cdn.jsdelivr.net">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#18A558">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<link rel="stylesheet" href="https://cdn.statically.io/gh/jiak1/ServerList/e7b03502/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.css">
 	<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108144905-4"></script>
 	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
 
-	gtag('config', 'UA-108144905-4');
+		gtag('config', 'UA-108144905-4');
 	</script>
 	 {% block head %} {% endblock %}
 </head>
@@ -60,12 +60,11 @@
 		</div>
   	</nav>
 
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-	 crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.2/umd/popper.min.js">
 	</script>
-	<script src="https://cdn.statically.io/gh/jiak1/ServerList/68948e76/bootstrap.min.js">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js">
 	</script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
@@ -89,7 +88,7 @@
 		</button>
 	</div>
 	<!-- END Bootstrap-Cookie-Alert -->
-	<script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>
+	<script src="{{url_for('static',filename='js/cookiealert.js')}}"></script>
 	<!-- Footer -->
 <footer class="page-footer font-small unique-color-dark" style="">
 

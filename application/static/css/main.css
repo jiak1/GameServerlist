@@ -1,3 +1,7 @@
+*:focus {
+    outline: 0;
+}
+
 #mainNav{
 	background-color:#18A558;
 }
