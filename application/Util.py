@@ -342,7 +342,6 @@ def do_update_check(app):
 				if(count < fourth):
 					count += 1
 					update_server_details(server)
-		db.session.commit()
 		app.logger.info('finished checking updates')
 		return
 
@@ -364,18 +363,16 @@ def update_server_details(server,forceOn = False,forceIcon = False):
 		if(forceIcon and not forceOn):
 			if('favicon' in stats):
 				server.icon = stats['favicon']
-			db.session.commit()
 		if(forceOn):
 			if('favicon' in stats):
 				server.icon = stats['favicon']
 			server.displayVersion = getVersion(stats['server']['name'])
-			db.session.commit()
+		db.session.commit()
 	else:
 		#Server Offline
 		server.online = 0
 		server.playerCount = 0
-		if(forceOn):
-			db.session.commit()
+		db.session.commit()
 
 def serverRank():
 	app.logger.info('ranking servers')
