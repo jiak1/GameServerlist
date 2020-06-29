@@ -334,6 +334,14 @@ version = "2.20"
 
 [[package]]
 category = "main"
+description = "A development tool to measure, monitor and analyze the memory behavior of Python objects."
+name = "pympler"
+optional = false
+python-versions = "*"
+version = "0.8"
+
+[[package]]
+category = "main"
 description = "Pure Python MySQL Driver"
 name = "pymysql"
 optional = false
@@ -506,7 +514,7 @@ ipaddress = ["ipaddress"]
 locale = ["Babel (>=1.3)"]
 
 [metadata]
-content-hash = "28235e96b13abac98a6926c27c19f48ebe8f538bdf9365b49d4bdf46229d06b7"
+content-hash = "c41ecaa2d3f908eaa6cc83212b2fea787b7bfba7af04df50e8f3ca6cc38dda09"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -705,6 +713,9 @@ pyasn1 = [
 pycparser = [
     {file = "pycparser-2.20-py2.py3-none-any.whl", hash = "sha256:7582ad22678f0fcd81102833f60ef8d0e57288b6b5fb00323d101be910e35705"},
     {file = "pycparser-2.20.tar.gz", hash = "sha256:2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0"},
+]
+pympler = [
+    {file = "Pympler-0.8.tar.gz", hash = "sha256:f74cd2982c5cd92ded55561191945616f2bb904a0ae5cdacdb566c6696bdb922"},
 ]
 pymysql = [
     {file = "PyMySQL-0.9.3-py2.py3-none-any.whl", hash = "sha256:3943fbbbc1e902f41daf7f9165519f140c4451c179380677e6a848587042561a"},

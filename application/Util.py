@@ -529,4 +529,18 @@ def do_vote_month_change(app):
 		for server in servers:
 			server.monthlyVotes = 0
 		db.session.commit()
-		
+
+logCount = 0
+for file in os.listdir(os.fsencode(APP_ROOT+"/static/logs")):
+	logCount+=1
+from pympler import summary, muppy
+def do_logging():
+	mem_summary = summary.summarize(muppy.get_objects())
+	rows = summary.format_(mem_summary)
+	result = "<h1>"+datetime.datetime.now().strftime("%H:%M:%S")+"</h1><br>"
+	for line in rows:
+		result = result +"<code>"+line+"</code><br>"
+
+	f = open(APP_ROOT+"/static/logs/"+str(logCount)+".txt","w")
+	f.write(result)
+	f.close()

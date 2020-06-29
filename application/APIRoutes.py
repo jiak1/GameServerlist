@@ -1,13 +1,13 @@
 from flask import request,Blueprint, jsonify,abort,url_for,redirect
 from .Program import mc_db as db
 import os
-from .Util import ServerUp,ServerStatus,cleanupTempBanners,cleanupTempData,checkServerUpdates, serverRank,clearVotes,logServerGraphs,sendVotifierVote,disableServers
+from .Util import ServerUp,ServerStatus,cleanupTempBanners,cleanupTempData,checkServerUpdates, serverRank,clearVotes,logServerGraphs,sendVotifierVote,disableServers,do_logging
 from .SendVote import sendVote
 from .Models import Server,ReviewTag
 from .Program import mc_mail as mail, elasticsearch
 from random import randrange
 from .Config import IMGDOMAIN,getProduction,ISADMIN
-
+from pympler import summary, muppy
 APIRoutes = Blueprint('APIRoutes', __name__)
 curDir = os.path.dirname(os.path.realpath(__file__))
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -20,6 +20,17 @@ if(ISADMIN):
 	from .Program import admin_crontab as crontab
 else:
 	from .Program import mc_crontab as crontab
+
+@APIRoutes.route(prefix+"API/DEBUG",methods=['GET'])
+def APIDebug():
+	# Only import Pympler when we need it. We don't want it to
+	# affect our process if we never call memory_summary.
+	mem_summary = summary.summarize(muppy.get_objects())
+	rows = summary.format_(mem_summary)
+	result = ""
+	for line in rows:
+		result = result +"<code>"+line+"</code><br>"
+	return result
 
 @APIRoutes.route(prefix+"API/PING",methods=['POST'])
 def APIPing():
@@ -112,6 +123,10 @@ indexCreation = {
 @crontab.job(minute="*/1")
 def doUpdate():
 	checkServerUpdates()
+
+@crontab.job(minute="*/1")
+def doLogging():
+	do_logging()
 
 @crontab.job(minute="*/5")
 def clearVotesCron():

@@ -31,4 +31,5 @@ sentry-sdk = "^0.14.3"
 setuptools = "^46.1"
 sqlalchemy = "^1.3"
 wtforms = "^2.3"
+pympler = "^0.8"
 [tool.poetry.dev-dependencies]
