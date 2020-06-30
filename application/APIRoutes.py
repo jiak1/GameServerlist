@@ -126,7 +126,8 @@ def doUpdate():
 
 @crontab.job(minute="*/1")
 def doLogging():
-	do_logging()
+	#do_logging()
+	pass
 
 @crontab.job(minute="*/5")
 def clearVotesCron():
