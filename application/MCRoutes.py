@@ -385,7 +385,7 @@ def addServerPage():
 
 				if(bannerURL != ""):
 					im = Image.open(bannerURL)
-					newPath = Live_Banner_URL+str(server.id)+"."+im.format;
+					newPath = Live_Banner_URL+str(server.id)+"."+str(im.format);
 #					if(im.format == "GIF" or im.format == "WEBP"):
 						# Get sequence iterator
 #						frames = ImageSequence.Iterator(im)
@@ -406,9 +406,9 @@ def addServerPage():
 					#	im.save(newPath,'webp',quality=100)
 					
 					im = im.resize(size=(498,60))
-					im.save(newPath,im.format,quality=100)
+					im.save(newPath,str(im.format),quality=100)
 
-					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+im.format+"?1"
+					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+str(im.format)+"?1"
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
@@ -461,7 +461,7 @@ def editServerPage(serverid):
 				if(bannerURL != ""):
 
 					im = Image.open(bannerURL) #Load the uploaded image
-					newPath = Live_Banner_URL+str(server.id)+"."+im.format;
+					newPath = Live_Banner_URL+str(server.id)+"."+str(im.format);
 					#if os.path.isfile(newPath):
 					#	os.remove(newPath)
 
@@ -485,10 +485,10 @@ def editServerPage(serverid):
 					#	im = im.resize(size=(498,60))
 					#	im.save(newPath,'webp',quality=100)
 					im = im.resize(size=(498,60))
-					im.save(newPath,im.format,quality=100)
+					im.save(newPath,str(im.format),quality=100)
 
 					end = int(server.banner.split('?')[1])+1
-					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+im.format+"?"+str(end)
+					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+str(im.format)+"?"+str(end)
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
