@@ -480,7 +480,7 @@ def editServerPage(serverid):
 						#Stitch frames together in a new compressed webp format
 					else:
 						im = im.resize(size=(498,60))
-						im.save(newPath,None,quality=100)
+						im.save(newPath,im.format,quality=100)
 
 					end = int(server.banner.split('?')[1])+1
 					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+str(im.format)+"?"+str(end)
