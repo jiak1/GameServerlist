@@ -38,7 +38,6 @@ def updateCacheNum():
 
 @MCRoutes.route(prefix,methods=['GET'])
 def MCHomePage():
-	print("HERE")
 	page = request.args.get('page', 1, type=int)
 	search = request.args.get('search', "")
 	canonURL="https://minecraft.server-lists.com"
@@ -68,9 +67,9 @@ def MCHomePage():
 
 @MCRoutes.route(prefix+"tag/<string:tagname>",methods=['GET'])
 def tagSearchPage(tagname):
-	page = request.args.get('page', 1, type=int)
-	search = tagname
 	try:
+		page = request.args.get('page', 1, type=int)
+		search = tagname
 		servers,total = Server.search(search,page,POSTS_PER_PAGE)
 		if total > page * POSTS_PER_PAGE:
 			next_url = url_for('MCRoutes.tagSearchPage',tagname=tagname, page=page + 1)
@@ -773,3 +772,9 @@ def serverReportPage(serverid):
 @MCRoutes.route(prefix+"pinterest-0cb36",methods=['GET'])
 def PintrestConfirmation():
 	return render_template("admin/pinterest-0cb36.html")
+
+@MCRoutes.route(prefix+"pay",methods=['GET','POST'])
+def sponsorPayPage():
+	
+
+	return render_template("mc/pay.html")

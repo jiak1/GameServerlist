@@ -253,13 +253,14 @@ def send_data(app,accid):
 			for vote in server.votes:
 				_data['votes'].append(vote.serialize())
 
-
-		url = "./application/data/"+str(account.id)+".json"
-		if( os.path.isfile(url)):
-			os.remove(url)
-		with open(url, 'w+') as fp:
-			json.dump(_data, fp, indent=4, sort_keys=True, default=str)
-
+		try:
+			url = "./application/data/"+str(account.id)+".json"
+			if( os.path.isfile(url)):
+				os.remove(url)
+			with open(url, 'w+') as fp:
+				json.dump(_data, fp, indent=4, sort_keys=True, default=str)
+		except:
+			pass
 		send_email('[Serverlist] Download Your Data',
 				sender="contact@server-lists.com",
 				recipients=[account.email],
