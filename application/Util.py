@@ -418,6 +418,7 @@ def UpdateAdminServerWithForm(_serverForm, _serverModel):
 	_serverModel.playerCount = _serverForm.playerCount.data
 	_serverModel.playerMax = _serverForm.playerMax.data
 	_serverModel.notes = _serverForm.notes.data
+	_serverModel.banner = _serverForm.banner.data
 
 def sendServerApprovedEmail(server):
     send_email('[Serverlist] Server Approved',
