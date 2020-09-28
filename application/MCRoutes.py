@@ -386,24 +386,24 @@ def addServerPage():
 				if(bannerURL != ""):
 					im = Image.open(bannerURL)
 					newPath = Live_Banner_URL+str(server.id)+"."+str(im.format);
-#					if(im.format == "GIF" or im.format == "WEBP"):
+					if(im.format == "GIF" or im.format == "WEBP"):
 						# Get sequence iterator
-#						frames = ImageSequence.Iterator(im)
+						frames = ImageSequence.Iterator(im)
 
 						# Wrap on-the-fly thumbnail generator
-#						def thumbnails(frames):
-#							for frame in frames:
-#								thumbnail = frame.copy()
-#								thumbnail.thumbnail((498,60),Image.ANTIALIAS)
-#								yield thumbnail
-#
-						#frames = thumbnails(frames)
-						#om = next(frames)
-						#om.info = im.info
-						#om.save(newPath,'webp',quality=100,save_all=True, loop=0,#append_images=list(frames))
-					#else:
-					#	im = im.resize(size=(498,60))
-					#	im.save(newPath,'webp',quality=100)
+						def thumbnails(frames):
+							for frame in frames:
+								thumbnail = frame.copy()
+								thumbnail.thumbnail((498,60),Image.ANTIALIAS)
+							yield thumbnail
+
+						frames = thumbnails(frames)
+						om = next(frames)
+						om.info = im.info
+						om.save(newPath,None,quality=100,save_all=True, loop=0,append_images=list(frames))
+					else:
+						im = im.resize(size=(498,60))
+						im.save(newPath,None,quality=100)
 					
 					im = im.resize(size=(498,60))
 					im.save(newPath,str(im.format),quality=100)
