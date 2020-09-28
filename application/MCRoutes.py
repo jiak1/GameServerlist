@@ -384,28 +384,32 @@ def addServerPage():
 				db.session.refresh(server)
 
 				if(bannerURL != ""):
-					im = Image.open(bannerURL)
-					newPath = Live_Banner_URL+str(server.id)+"."+str(im.format);
-					if(im.format == "GIF" or im.format == "WEBP"):
+					#im = Image.open(bannerURL)
+					#newPath = Live_Banner_URL+str(server.id)+"."+str(im.format);
+					#if(im.format == "GIF" or im.format == "WEBP"):
 						# Get sequence iterator
-						frames = ImageSequence.Iterator(im)
+						#frames = ImageSequence.Iterator(im)
 
 						# Wrap on-the-fly thumbnail generator
-						def thumbnails(frames):
-							for frame in frames:
-								thumbnail = frame.copy()
-								thumbnail.thumbnail((498,60),Image.ANTIALIAS)
-							yield thumbnail
+						#def thumbnails(frames):
+						#	for frame in frames:
+						#		thumbnail = frame.copy()
+						#		thumbnail.thumbnail((498,60),Image.ANTIALIAS)
+						#	yield thumbnail
 
-						frames = thumbnails(frames)
-						om = next(frames)
-						om.info = im.info
-						om.save(newPath,None,quality=100,save_all=True, loop=0,append_images=list(frames))
-					else:
-						im = im.resize(size=(498,60))
-						im.save(newPath,im.format,quality=100)
-
-					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+str(im.format)+"?1"
+						#frames = thumbnails(frames)
+						#om = next(frames)
+						#om.info = im.info
+						#om.save(newPath,None,quality=100,save_all=True, loop=0,append_images=list(frames))
+					#else:
+						#im = im.resize(size=(498,60))
+						#im.save(newPath,im.format,quality=100)
+					fExt = bannerURL.split(".")[-1]
+					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
+					os.replace(bannerURL,newPath)
+					
+					#server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+fExt+"?1"
+					server.banner="https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&f=auto&cache=1"
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
@@ -484,9 +488,12 @@ def editServerPage(serverid):
 					fExt = bannerURL.split(".")[-1]
 					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
 					os.replace(bannerURL,newPath)
-					
-					end = int(server.banner.split('?')[1])+1
-					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+fExt+"?"+str(end)
+					try:
+						end = int(server.banner.split('cache=')[-1])+1
+					except:
+						end = "1"
+					#server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+fExt+"?"+str(end)
+					server.banner="https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&f=auto&cache="+str(end)
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
