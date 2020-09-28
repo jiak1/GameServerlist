@@ -1,13 +1,15 @@
 {% extends 'email/base_email.html' %}
 {% block main %}
     <p style="font-size:20px"><b>Hello {{ user.email }},</b></p>
+	<h4>We have recieved a request asking you to remind you of your username.</h4>
 	<p>
-		Your username is <h1>{{user.username}}</h1> 
+		It is actually <h3>{{user.username}}</h3> 
 		To login with it <a href="{{ url_for('MCRoutes.MCHomePage', _external=True) }}">click here</a>.
 	</p>
+	<br>
 	<p>Alternatively, you can paste the following link into your browser's address bar:</p>
 	<p>{{ url_for('MCRoutes.MCHomePage', _external=True) }}</p>
-
+<br>
 	<p>Sincerely,</p>
 	<p>The Serverlist Team</p>
 {% endblock %}
