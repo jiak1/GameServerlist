@@ -403,7 +403,7 @@ def addServerPage():
 						om.save(newPath,None,quality=100,save_all=True, loop=0,append_images=list(frames))
 					else:
 						im = im.resize(size=(498,60))
-						im.save(newPath,None,quality=100)
+						im.save(newPath,im.format,quality=100)
 
 					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+str(im.format)+"?1"
 					
