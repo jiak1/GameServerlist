@@ -385,27 +385,30 @@ def addServerPage():
 
 				if(bannerURL != ""):
 					im = Image.open(bannerURL)
-					newPath = Live_Banner_URL+str(server.id)+".webp";
-					if(im.format == "GIF" or im.format == "WEBP"):
+					newPath = Live_Banner_URL+str(server.id)+"."+im.format;
+#					if(im.format == "GIF" or im.format == "WEBP"):
 						# Get sequence iterator
-						frames = ImageSequence.Iterator(im)
+#						frames = ImageSequence.Iterator(im)
 
 						# Wrap on-the-fly thumbnail generator
-						def thumbnails(frames):
-							for frame in frames:
-								thumbnail = frame.copy()
-								thumbnail.thumbnail((498,60),Image.ANTIALIAS)
-								yield thumbnail
+#						def thumbnails(frames):
+#							for frame in frames:
+#								thumbnail = frame.copy()
+#								thumbnail.thumbnail((498,60),Image.ANTIALIAS)
+#								yield thumbnail
+#
+						#frames = thumbnails(frames)
+						#om = next(frames)
+						#om.info = im.info
+						#om.save(newPath,'webp',quality=100,save_all=True, loop=0,#append_images=list(frames))
+					#else:
+					#	im = im.resize(size=(498,60))
+					#	im.save(newPath,'webp',quality=100)
+					
+					im = im.resize(size=(498,60))
+					im.save(newPath,im.format,quality=100)
 
-						frames = thumbnails(frames)
-						om = next(frames)
-						om.info = im.info
-						om.save(newPath,'webp',quality=100,save_all=True, loop=0,append_images=list(frames))
-					else:
-						im = im.resize(size=(498,60))
-						im.save(newPath,'webp',quality=100)
-
-					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+".webp?1"
+					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+im.format+"?1"
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
@@ -458,32 +461,35 @@ def editServerPage(serverid):
 				if(bannerURL != ""):
 
 					im = Image.open(bannerURL) #Load the uploaded image
-					newPath = Live_Banner_URL+str(server.id)+".webp";
-					if os.path.isfile(newPath):
-						os.remove(newPath)
+					newPath = Live_Banner_URL+str(server.id)+"."+im.format;
+					#if os.path.isfile(newPath):
+					#	os.remove(newPath)
 
-					if(im.format == "GIF" or im.format == "WEBP"): #Convert Image to WEBP!!
+					#if(im.format == "GIF" or im.format == "WEBP"): #Convert Image to WEBP!!
 						# Get sequence iterator
-						frames = ImageSequence.Iterator(im)
+					#	frames = ImageSequence.Iterator(im)
 
 						# Wrap on-the-fly thumbnail generator
-						def thumbnails(frames):
-							for frame in frames:#Loop through each frame and turn it into a webp
-								thumbnail = frame.copy()
-								thumbnail.thumbnail((498,60),resample=3,reducing_gap=3)
-								yield thumbnail
+					#	def thumbnails(frames):
+					#		for frame in frames:#Loop through each frame and turn it into a webp
+					#			thumbnail = frame.copy()
+					#			thumbnail.thumbnail((498,60),resample=3,reducing_gap=3)
+					#			yield thumbnail
 
-						frames = thumbnails(frames)
-						om = next(frames)
-						om.info = im.info #Copy image metadata over
-						om.save(newPath,'webp',quality=100,save_all=True, loop=0, append_images=list(frames))
+					#	frames = thumbnails(frames)
+					#	om = next(frames)
+					#	om.info = im.info #Copy image metadata over
+					#	om.save(newPath,'webp',quality=100,save_all=True, loop=0, append_images=list(frames))
 						#Stitch frames together in a new compressed webp format
-					else:
-						im = im.resize(size=(498,60))
-						im.save(newPath,'webp',quality=100)
+					#else:
+					#	im = im.resize(size=(498,60))
+					#	im.save(newPath,'webp',quality=100)
+					im = im.resize(size=(498,60))
+					im.save(newPath,im.format,quality=100)
 
 					end = int(server.banner.split('?')[1])+1
-					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+".webp?"+str(end)
+					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+im.format+"?"+str(end)
+					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
 				server.version = mcdetails['server']['name']

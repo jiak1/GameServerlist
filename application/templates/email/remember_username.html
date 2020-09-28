@@ -1,9 +1,9 @@
 {% extends 'email/base_email.html' %}
 {% block main %}
     <p style="font-size:20px"><b>Hello {{ user.email }},</b></p>
-	<h4>We have recieved a request asking you to remind you of your username.</h4>
+	<h4>We have received a request asking for a reminder of your username.</h4>
 	<p>
-		It is actually <h3>{{user.username}}</h3> 
+		It is actually <b>{{user.username}}</b>. 
 		To login with it <a href="{{ url_for('MCRoutes.MCHomePage', _external=True) }}">click here</a>.
 	</p>
 	<br>
