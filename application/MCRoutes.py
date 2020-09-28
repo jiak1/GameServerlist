@@ -61,15 +61,15 @@ def MCHomePage():
 			canonURL="https://minecraft.server-lists.com?search="+search
 		
 		return render_template("mc/index.html",servers=servers,search=search,next_url=next_url,prev_url=prev_url,cacheNum=SUGGESTION_CACHE_NUM,title=title,description="Find top Minecraft Servers using our Minecraft Server List to find a Server that you want to play on, whether that be Survival, Creative or much more!",canonURL=canonURL,searchTerm=_term)
-	except TypeError as e:
+	except:
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.MCHomePage",search=search))
 
 @MCRoutes.route(prefix+"tag/<tagname>",methods=['GET'])
 def tagSearchPage(tagname):
+	page = request.args.get('page', 1, type=int)
+	search = tagname
 	try:
-		page = request.args.get('page', 1, type=int)
-		search = tagname
 		servers,total = Server.search(search,page,POSTS_PER_PAGE)
 		if total > page * POSTS_PER_PAGE:
 			next_url = url_for('MCRoutes.tagSearchPage',tagname=tagname, page=page + 1)
@@ -92,19 +92,27 @@ def tagsPage():
 
 @MCRoutes.route(prefix+"login",methods=['GET', 'POST'])
 def loginPage():
-	if current_user.is_authenticated:
+	if current_user.is_authenticated: #Flask Login Keeps Track Of Current User
 		 return redirect(url_for('MCRoutes.MCHomePage'))
-	form = LoginForm()
-	if form.validate_on_submit():
+
+	form = LoginForm() #Use Flask Forms To Retrieve The Post Info & Validate
+
+	if form.validate_on_submit(): #Validate Login Info (Correct Data Type & Size etc)
+		#Query Database
 		user = Account.query.filter_by(username=form.username.data).first()
+		#Check Account Exists
 		if user is None or not user.check_password(form.password.data):
 			flash('Invalid username or password',"danger")
 			return redirect(url_for('MCRoutes.loginPage'))
+		#Check If Email Is Confirmed
 		if(user.emailConfirmed == 0):
 			return redirect(url_for("MCRoutes.emailConfirmationPage"))
+		#Simply Login User :D
 		login_user(user, remember=form.remember_me.data)
 		return redirect(url_for('MCRoutes.MCHomePage'))
-	return render_template('mc/login.html', form=form)
+
+	return render_template('mc/login.html', form=form) 
+	#Show Login Form If Not Posting
 
 @MCRoutes.route(prefix+"googlelogin",methods=['GET'])
 def googleLoginPage():
@@ -449,26 +457,27 @@ def editServerPage(serverid):
 				UpdateServerWithForm(form,server)
 				if(bannerURL != ""):
 
-					im = Image.open(bannerURL)
+					im = Image.open(bannerURL) #Load the uploaded image
 					newPath = Live_Banner_URL+str(server.id)+".webp";
 					if os.path.isfile(newPath):
 						os.remove(newPath)
 
-					if(im.format == "GIF" or im.format == "WEBP"):
+					if(im.format == "GIF" or im.format == "WEBP"): #Convert Image to WEBP!!
 						# Get sequence iterator
 						frames = ImageSequence.Iterator(im)
 
 						# Wrap on-the-fly thumbnail generator
 						def thumbnails(frames):
-							for frame in frames:
+							for frame in frames:#Loop through each frame and turn it into a webp
 								thumbnail = frame.copy()
 								thumbnail.thumbnail((498,60),resample=3,reducing_gap=3)
 								yield thumbnail
 
 						frames = thumbnails(frames)
 						om = next(frames)
-						om.info = im.info
+						om.info = im.info #Copy image metadata over
 						om.save(newPath,'webp',quality=100,save_all=True, loop=0, append_images=list(frames))
+						#Stitch frames together in a new compressed webp format
 					else:
 						im = im.resize(size=(498,60))
 						im.save(newPath,'webp',quality=100)
