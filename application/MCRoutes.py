@@ -28,8 +28,8 @@ prefix = "/"
 if(getProduction() == False):
 	print("TO CONNECT GO TO testing.server-lists.com/minecraft/")
 	prefix = "/minecraft/" 
-else:
-	from .ErrorHandler import *
+
+from .ErrorHandler import *
 
 @crontab.job(minute="*/5")
 def updateCacheNum():
@@ -38,6 +38,7 @@ def updateCacheNum():
 
 @MCRoutes.route(prefix,methods=['GET'])
 def MCHomePage():
+	print("HERE")
 	page = request.args.get('page', 1, type=int)
 	search = request.args.get('search', "")
 	canonURL="https://minecraft.server-lists.com"
@@ -65,7 +66,7 @@ def MCHomePage():
 		#runs if we go to an invalid page
 		return redirect(url_for("MCRoutes.MCHomePage",search=search))
 
-@MCRoutes.route(prefix+"tag/<tagname>",methods=['GET'])
+@MCRoutes.route(prefix+"tag/<string:tagname>",methods=['GET'])
 def tagSearchPage(tagname):
 	page = request.args.get('page', 1, type=int)
 	search = tagname

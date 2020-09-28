@@ -14,7 +14,6 @@ def remove_from_index(index, model):
     elasticsearch.delete(index=index, id=model.id)
 
 def query_index(index, query, page, per_page):
-	print(per_page)
 	if not elasticsearch:
 		return [], 0
 	if( query == ""):
