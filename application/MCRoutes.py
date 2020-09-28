@@ -462,30 +462,28 @@ def editServerPage(serverid):
 
 					im = Image.open(bannerURL) #Load the uploaded image
 					newPath = Live_Banner_URL+str(server.id)+"."+str(im.format);
-					#if os.path.isfile(newPath):
-					#	os.remove(newPath)
+					if os.path.isfile(newPath):
+						os.remove(newPath)
 
-					#if(im.format == "GIF" or im.format == "WEBP"): #Convert Image to WEBP!!
+					if(im.format == "GIF" or im.format == "WEBP"): #Convert Image to WEBP!!
 						# Get sequence iterator
-					#	frames = ImageSequence.Iterator(im)
+						frames = ImageSequence.Iterator(im)
 
 						# Wrap on-the-fly thumbnail generator
-					#	def thumbnails(frames):
-					#		for frame in frames:#Loop through each frame and turn it into a webp
-					#			thumbnail = frame.copy()
-					#			thumbnail.thumbnail((498,60),resample=3,reducing_gap=3)
-					#			yield thumbnail
+						def thumbnails(frames):
+							for frame in frames:#Loop through each frame and turn it into a webp
+								thumbnail = frame.copy()
+								thumbnail.thumbnail((498,60),resample=3,reducing_gap=3)
+								yield thumbnail
 
-					#	frames = thumbnails(frames)
-					#	om = next(frames)
-					#	om.info = im.info #Copy image metadata over
-					#	om.save(newPath,'webp',quality=100,save_all=True, loop=0, append_images=list(frames))
+						frames = thumbnails(frames)
+						om = next(frames)
+						om.info = im.info #Copy image metadata over
+						om.save(newPath,None,quality=100,save_all=True, loop=0, append_images=list(frames))
 						#Stitch frames together in a new compressed webp format
-					#else:
-					#	im = im.resize(size=(498,60))
-					#	im.save(newPath,'webp',quality=100)
-					im = im.resize(size=(498,60))
-					im.save(newPath,str(im.format),quality=100)
+					else:
+						im = im.resize(size=(498,60))
+						im.save(newPath,None,quality=100)
 
 					end = int(server.banner.split('?')[1])+1
 					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+str(im.format)+"?"+str(end)
