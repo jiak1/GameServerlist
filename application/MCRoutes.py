@@ -404,9 +404,6 @@ def addServerPage():
 					else:
 						im = im.resize(size=(498,60))
 						im.save(newPath,None,quality=100)
-					
-					im = im.resize(size=(498,60))
-					im.save(newPath,str(im.format),quality=100)
 
 					server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+str(im.format)+"?1"
 					
