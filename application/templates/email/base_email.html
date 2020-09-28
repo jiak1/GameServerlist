@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <style>
+    	.CenterDiv{
+      			background-color:white;
+      			width:80%;
+      			margin-left:auto;
+      			margin-right:auto;
+      			padding:5%;
+      			margin-top:5%;
+      			margin-bottom:5%;
+				height: fit-content;
+      			border-radius:5px;
+      }
+      
+      .TopDiv {
+      		width:100%;
+      		text-align:center;
+      		padding-top:5%;
+      		
+      }
+      .BottomDiv{
+            width:80%;
+      		margin-left:auto;
+      		margin-right:auto;
+      		text-align:center;
+      		margin-top:5%;
+      		padding-bottom:5%;
+      }
+      .HeadingText {
+              font-family:Karla,sans-serif;
+              font-weight: 600;
+              color:white;
+      font-size:36px;
+      }
+      .NoLink, .NoLink:hover, .NoLink:active{
+      	text-decoration:none;
+      }
+      h1,h4{
+      		font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+      }
+      p{
+      		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      }
+      .BottomText{
+      	color:white;
+      }
+      a{
+      		color:#007bff;
+      }
+	  {% block styles %}
+	  {% endblock %}
+    </style>
+  </head>
+<body style="background-color:#18A558">
+  <div class="TopDiv">
+    <a class="NoLink" href="https://minecraft.server-lists.com"><h1 class="HeadingText">Minecraft Server List</h1></a>
+  </div>
+  <div class="CenterDiv">
+	{% block main %}
+	{% endblock %}
+  </div>
+  <div class="BottomDiv">
+    <p class="BottomText"  style="font-size:16px">
+       Need to get in touch? Simply reply to this email or contact us at <a href="mailto:contact@server-lists.com" style="color:white">contact@server-lists.com</a><br><br>
+    </p>
+    <p class="BottomText"  style="font-size:12px">
+        This email was sent to you by Server Lists. By using our services, you agree to our <a href="https://minecraft.server-lists.com/terms" style="color:white" target="_blank">Terms Of Service.</a><br><br>
+      © Server Lists 2020. All rights reserved.
+    </p>
+  </div>
+</body>
+</html>

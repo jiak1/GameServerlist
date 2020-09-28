@@ -1,15 +1,18 @@
-<h1>Congratulations!</h1>
+{% extends 'email/base_email.html' %}
+{% block main %}
+	<h1>Congratulations!</h1>
 
-<p>Your Server, <b>{{server.name}}</b> has been approved!</p>
+	<p>Your Server, <b>{{server.name}}</b> has been approved!</p>
 
-<p>This means you are free to edit it whenever you want and it is now visible on our site to all of our viewers!</p>
+	<p>This means you are free to edit it whenever you want and it is now visible on our site to all of our viewers!</p>
 
-{% if server.rejectReason != "" %}
-<p>The following recommendations have being made by our staff:</p>
-<p>{{server.rejectReason}}</p>
-{% endif %}
+	{% if server.rejectReason != "" %}
+	<p>The following recommendations have being made by our staff:</p>
+	<p>{{server.rejectReason}}</p>
+	{% endif %}
 
-<p>To visit your server page go to https://minecraft.server-lists.com/server/{{server.id}}</p>
+	<p>To visit your server page go to https://minecraft.server-lists.com/server/{{server.id}}</p>
 
-<p>Sincerely,</p>
-<p>The Serverlist Team</p>
+	<p>Sincerely,</p>
+	<p>The Serverlist Team</p>
+{% endblock %}
