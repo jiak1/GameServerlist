@@ -498,7 +498,7 @@ def editServerPage(serverid):
 					file.write(response.content)
 					file.close()
 					#server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+fExt+"?"+str(end)
-					server.banner="https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&f=auto&cache="+str(end)
+					server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+".webp?cache="+str(end)
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
