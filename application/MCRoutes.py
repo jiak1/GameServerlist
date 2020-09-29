@@ -486,9 +486,9 @@ def editServerPage(serverid):
 					#	im = im.resize(size=(498,60))
 					#	im.save(newPath,im.format,quality=100)
 					fExt = bannerURL.split(".")[-1]
-					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
+					newPath = Live_Banner_URL+str(server.id)+".webp";
 					#os.replace(bannerURL,newPath)images/banners/temp
-					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&f=auto"
+					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100&f=auto"
 					try:
 						end = int(server.banner.split('cache=')[-1])+1
 					except:
