@@ -26,14 +26,14 @@
 			{% if current_user.is_anonymous %}
 			<li class="nav-item">
 			<a class="nav-link" href="{{url_for('AdminRoutes.homePage')}}">Login</a>
-			{% else %}
 			</li>
+			{% else %}
 			<li class="nav-item">
-			<a class="nav-link" href="{{url_for('AdminRoutes.reviewsPage')}}">Review</a>
+			<a class="nav-link" href="{{url_for('AdminRoutes.reviewsPage')}}">Review</a></li>
 			<li class="nav-item">
-			<a class="nav-link" href="{{url_for('AdminRoutes.profilePage')}}">Profile</a>
+			<a class="nav-link" href="{{url_for('AdminRoutes.profilePage')}}">Profile</a></li>
 			<li class="nav-item">
-			<a class="nav-link" href="{{url_for('AdminRoutes.logoutPage')}}">Logout</a>
+			<a class="nav-link" href="{{url_for('AdminRoutes.logoutPage')}}">Logout</a></li>
 			{% endif %}
 		</ul>
 		</div></div>

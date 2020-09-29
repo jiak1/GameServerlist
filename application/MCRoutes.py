@@ -487,11 +487,16 @@ def editServerPage(serverid):
 					#	im.save(newPath,im.format,quality=100)
 					fExt = bannerURL.split(".")[-1]
 					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
-					os.replace(bannerURL,newPath)
+					#os.replace(bannerURL,newPath)images/banners/temp
+					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&f=auto"
 					try:
 						end = int(server.banner.split('cache=')[-1])+1
 					except:
 						end = "1"
+					response = requests.get(tempPath);
+					file = open(newPath,"wb")
+					file.write(response.content)
+					file.close()
 					#server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+fExt+"?"+str(end)
 					server.banner="https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&f=auto&cache="+str(end)
 					
