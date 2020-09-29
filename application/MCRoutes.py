@@ -404,12 +404,18 @@ def addServerPage():
 					#else:
 						#im = im.resize(size=(498,60))
 						#im.save(newPath,im.format,quality=100)
-					fExt = bannerURL.split(".")[-1]
-					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
-					os.replace(bannerURL,newPath)
 					
-					#server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+fExt+"?1"
-					server.banner="https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&f=auto&cache=1"
+					fExt = bannerURL.split(".")[-1]
+					newPath = Live_Banner_URL+str(server.id)+".webp";
+					#os.replace(bannerURL,newPath)images/banners/temp
+					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100&f=auto"
+
+					response = requests.get(tempPath);
+					file = open(newPath,"wb")
+					file.write(response.content)
+					file.close()
+					#server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+fExt+"?"+str(end)
+					server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+".webp?cache=1"
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
