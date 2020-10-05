@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="{{url_for('static',filename='css/background.css')}}">
 <script data-ad-client="ca-pub-1227185612431566" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <meta property="og:image" content="https://minecraft.server-lists.com/images/main/ogimage.webp" />
+<meta property="og:title" content="Minecraft Server Lists" />
+<meta property="og:type" content="website" />
 <title>{{title}}</title>
 <meta name="description" content="{{description}}">
 <script type="application/ld+json">
@@ -23,7 +25,6 @@
 <link rel="canonical" href="{{canonURL}}" />
 <!-- Flags -->
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/world-flags-sprite@0.0.2/stylesheets/flags32.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="styles.css"></noscript>
 <link href="{{url_for('static',filename='css/searchtagsinput.css')}}" rel="stylesheet">
 {% endblock %}
 
@@ -46,7 +47,10 @@
                     <li></li>
             </ul>
 </div >
-<h2 id="searchTerm">{{searchTerm}}</h2>
+<h2 id="searchTerm" data-toggle="collapse" href="#searchCollapse" style="cursor:pointer">{{searchTerm}}</h2>
+<div class="collapse" id="searchCollapse" style="margin-top:20px">
+	<div class="card card-body">Minecraft Server Lists is a site that allows server owners to list the IP for their servers. People looking to join servers with other players can use this IP to join using the required version of Minecraft. Some of these servers have different requirements in order to join whether that be versions, mods or whitelists, utilise the server page and read through the descriptions to find out more details. All servers are tagged for easy searching, using the bar above so that you can find them quickly and easily.</div>
+</div>
 <div class="row row-cols-1 row-cols-md-2" style="padding-top:50px">
 {% for server in servers %}
 <div class="col mb-4" style="width:100%;padding-bottom:30px;">

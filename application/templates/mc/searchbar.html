@@ -3,7 +3,7 @@
 <header class="green-primary-back">
 	<div class="container-fluid" style="padding-top:15px;max-width:90%">
 	<div class="container-md" style="padding-bottom:35px;">
-		<img src="{{url_for('static',filename='images/background3.png')}}" class="imgCenter" style="max-width:95%" alt="">
+		<img src="{{url_for('static',filename='images/background3.png')}}" class="imgCenter" style="max-width:95%" alt="An illustration in black & white of a Minecraft Scene.">
 		<div>
 		<div class="input-group input-group-lg searchInput">
 			<input type="text" class="form-control removeOutline" placeholder="Find a server you're interested in..." aria-label="Search box" aria-describedby="basic-addon2" name="search" id="search" value="{{search}}">
@@ -13,8 +13,8 @@
 			<a href="/" class="btn btn-outline-light tagButton"><i class="fas fa-trophy"></i> Top</a>
 			<a href="{{url_for('MCRoutes.tagSearchPage',tagname='New')}}" class="btn btn-outline-light tagButton"><i class="fas fa-clock"></i> New</a>
 			<a href="{{url_for('MCRoutes.tagSearchPage',tagname='Creative')}}" class="btn btn-outline-light tagButton"><i class="fas fa-infinity"></i> Creative</a>
-			<a href="{{url_for('MCRoutes.tagSearchPage',tagname='Survival')}}" class="btn btn-outline-light tagButton"><img src="{{url_for('static',filename='images/homeicon.png')}}" class="textIcon" alt=""> Survival</a>
-			<a href="{{url_for('MCRoutes.tagSearchPage',tagname='PVP')}}" class="btn btn-outline-light tagButton"><img src="{{url_for('static',filename='images/swordcrossicon.png')}}" class="textIcon" alt=""> PVP</a>
+			<a href="{{url_for('MCRoutes.tagSearchPage',tagname='Survival')}}" class="btn btn-outline-light tagButton"><img src="{{url_for('static',filename='images/homeicon.png')}}" class="textIcon" alt="An icon of a house."> Survival</a>
+			<a href="{{url_for('MCRoutes.tagSearchPage',tagname='PVP')}}" class="btn btn-outline-light tagButton"><img src="{{url_for('static',filename='images/swordcrossicon.png')}}" class="textIcon" alt="An icon of some swords crossed."> PVP</a>
 			<a href="{{url_for('MCRoutes.tagSearchPage',tagname='Vanilla')}}" class="btn btn-outline-light tagButton"><i class="fas fa-heart"></i> Vanilla</a>
 			<a href="{{url_for('MCRoutes.tagsPage')}}" class="btn btn-outline-light tagButton"><i class="fas fa-tags"></i> More Tags</a>
 		</div>

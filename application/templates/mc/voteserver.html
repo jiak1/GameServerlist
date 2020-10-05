@@ -5,7 +5,20 @@
 <link rel="stylesheet" href="{{url_for('static',filename='css/form.css')}}">
 <link rel="stylesheet" href="{{url_for('static',filename='css/vote.css')}}">
 <title>Vote for {{server.name}} - Minecraft Server Lists</title>
-<meta name="robots" content="noindex">
+
+<link rel="canonical" href="https://minecraft.server-lists.com/{{server.id}}">
+
+<meta property="og:title" content="{{server.name}} - Minecraft Server Lists" />
+<meta property="og:image" content="https://minecraft.server-lists.com/images/main/ogimage.webp" />
+{% if server.trailer != "" %}
+<meta property="og:video" content="https://www.youtube.com/v/{{server.trailer}}" />
+<meta property="og:type" content="video" />
+{% else %}
+<meta property="og:type" content="article" />
+{% endif %}
+
+<meta property="og:description" name="description" content="{{server.description}}" />
+
 {% endblock %}
 
 {% block beforeBody %}

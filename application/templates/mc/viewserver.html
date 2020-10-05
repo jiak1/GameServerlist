@@ -9,9 +9,13 @@
 <meta property="og:image" content="https://minecraft.server-lists.com/images/main/ogimage.webp" />
 {% if server.trailer != "" %}
 <meta property="og:video" content="https://www.youtube.com/v/{{server.trailer}}" />
+<meta property="og:type" content="video" />
+{% else %}
+<meta property="og:type" content="article" />
 {% endif %}
-<meta property="og:description" 
-  content="{{server.description}}" />
+<meta property="og:description" name="description" content="{{server.description}}" />
+
+<link rel="canonical" href="https://minecraft.server-lists.com/{{server.id}}">
 {% endblock %}
 
 {% block beforeBody %}
@@ -27,7 +31,7 @@
 	<div class="row justify-content-start">
 		<div class="col-xs" style>
 	<img class="" style="display:flex;align-items:center;border-radius:5px;" src="{{server.icon}}"></div>
-	<div class="col-xs"><h1 class="" style="display:flex;align-items:center;height:100%;margin-bottom:0px">{{server.name}}</h1></div>
+	<div class="col-xs"><h2 class="" style="display:flex;align-items:center;height:100%;margin-bottom:0px;font-size:2.5rem">{{server.name}}</h2></div>
 	<div class="col-sm-2" style="display:flex;align-items:center"><a href="{{server.id}}/vote" style="font-weight:500;font-size:1.2rem;width:100%" class="btn btn-success">Vote</a></div>
 	</div>
 
@@ -91,7 +95,7 @@
 			</tr>
 			{% if server.website != "" %}
 			<th class="firstCol" scope="row">Website</th>
-			<td><a href="https://{{server.website}}" target="_blank" style="word-wrap:break-word;" rel="nofollow">{{server.website}}</a></td>
+			<td><a href="https://{{server.website}}" target="_blank" style="word-wrap:break-word;" rel="nofollow noindex">{{server.website}}</a></td>
 			</tr>
 			{% endif %}
 			</tr>

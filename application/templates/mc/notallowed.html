@@ -13,7 +13,7 @@
 {% block body %}
 <br>
 <div class="container-sm" style="max-width:100%">
-<img src="{{url_for('static',filename='images/background4.png')}}" style="max-width:inherit">
+<img src="{{url_for('static',filename='images/background4.png')}}" alt="A white illustration from a scene in Minecraft" style="max-width:inherit">
 <div class="jumbotron-fluid">
   <h1 class="display-4">Please login!</h1>
   <p class="lead">In order to view this page you have to log in.</p>
@@ -23,7 +23,7 @@
     <a class="btn btn-success btn-lg" href="{{url_for('MCRoutes.loginPage')}}" role="button" style="margin-bottom:10px;">Login</a>
 	<a class="btn btn-success btn-lg" href="{{url_for('MCRoutes.registerPage')}}" role="button" style="margin-bottom:10px;">Register</a>
 
-	<button type="button" class="btn btn-lg btn-primary btn-block" style="margin-bottom:10px;font-weight:500;display:inline-block;max-width:350px" onclick="window.location.href = '{{url_for('MCRoutes.googleLoginPage')}}';"><img id="google" src="{{url_for('static',filename='images/main/googleIcon.png')}}" style="	max-height: 30px;vertical-align: middle;padding-right: 10px;">Sign in/Register with Google</button>
+	<button type="button" class="btn btn-lg btn-primary btn-block" style="margin-bottom:10px;font-weight:500;display:inline-block;max-width:350px" onclick="window.location.href = '{{url_for('MCRoutes.googleLoginPage')}}';"><img id="google" src="{{url_for('static',filename='images/main/googleIcon.png')}}" style="	max-height: 30px;vertical-align: middle;padding-right: 10px;" alt="Google's Logo">Sign in/Register with Google</button>
   </p>
 </div>
 </div>
