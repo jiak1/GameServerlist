@@ -1,8 +1,670 @@
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!--
- created with Free Online Sitemap Generator www.xml-sitemaps.com 
--->
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
 <url>
-<loc>https://minecraft.server-lists.com/addserver</loc>
+  <loc>https://minecraft.server-lists.com/</loc>
+  
 </url>
+<url>
+  <loc>https://minecraft.server-lists.com/addserver</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/login</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/tag/New</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/tag/Creative</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/tag/Survival</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/tag/PVP</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/tag/Vanilla</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/tags</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/7</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/21</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/38</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/37</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/77</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/49</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/39</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/59</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/68</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/11</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/44</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/94</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/10</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/55</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/terms</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/privacy</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/register</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/forgotusername</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/forgotpassword</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/101</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/100</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/99</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/95</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/93</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/91</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/45</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/63</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/69</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/56</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/66</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/74</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/79</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/82</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/54</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/62</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/35</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/51</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/46</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/60</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/61</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/65</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/50</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/90</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/85</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/88</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/47</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/52</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/89</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/87</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/33</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/84</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/73</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/25</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/58</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/34</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/86</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/7/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/21/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/38/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/37/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/77/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/49/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/39/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/59/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/68/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/11/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/44/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/94/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/10/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/55/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/3</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/57</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/29</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/64</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/101/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/100/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/99/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/95/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/93/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/92</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/83</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/81</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/80</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/tag/New?page=1</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/tag/New?page=3</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/91/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/45/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/63/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/69/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/56/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/66/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/74/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/79/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/82/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/54/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/62/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/75</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/78</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/14</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/35/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/51/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/46/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/60/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/61/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/65/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/50/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/90/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/85/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/88/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/53</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/36</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/48</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/47/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/52/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/89/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/87/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/33/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/67</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/72</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/tag/PVP?page=1</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/tag/PVP?page=3</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/84/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/73/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/25/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/58/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/34/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/86/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/3/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/57/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/29/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/64/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/71</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/70</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/92/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/83/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/81/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/80/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/76</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/75/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/78/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/14/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/53/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/36/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/48/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/tag/Survival?page=4</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/67/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/72/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/71/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/70/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/76/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/13</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/4</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/23</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/13/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/4/vote</loc>
+  
+</url>
+<url>
+  <loc>https://minecraft.server-lists.com/server/23/vote</loc>
+  
+</url>
+
+
 </urlset>
