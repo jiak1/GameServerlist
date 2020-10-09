@@ -409,22 +409,9 @@ def addServerPage():
 					fExt = bannerURL.split(".")[-1]
 					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
 
-					#os.replace(bannerURL,newPath)images/banners/temp
-					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100"
-
-					count = 1
-					success = False
-					while count < 5 and success == False:
-						try:
-							response = requests.get(tempPath);
-							file = open(newPath,"wb")
-							file.write(response.content)
-							file.close()
-							#server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+fExt+"?"+str(end)
-							server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?cache=1"
-							success = True
-						except:
-							count += 1
+					os.replace(bannerURL,newPath)#images/banners/temp
+					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100&cache=1"
+					server.banner=tempPath
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
@@ -502,28 +489,16 @@ def editServerPage(serverid):
 					#	im.save(newPath,im.format,quality=100)
 					fExt = bannerURL.split(".")[-1]
 					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
-					#os.replace(bannerURL,newPath)images/banners/temp
-					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100"
+					os.replace(bannerURL,newPath)#images/banners/temp
 					try:
 						end = int(server.banner.split('cache=')[-1])+1
 					except:
 						end = "1"
-					
-					count = 1
-					success = False
-					while count < 5 and success == False:
-						try:
-							response = requests.get(tempPath)
-							file = open(newPath,"wb")
-							file.write(response.content)
-							file.close()
-							server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?cache="+str(end)
-							success = True
-						except:
-							time.sleep(0.5)
-							count += 1
 
+					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100&cache="+str(end)
+					server.banner=tempPath
 					
+
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
 				server.version = mcdetails['server']['name']
