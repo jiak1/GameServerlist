@@ -74,7 +74,8 @@ def APIBannerUpload():
 		newName = filename+"."+ext
 		url = os.path.join(APP_ROOT+"/static"+tempURL+"/", newName)
 	banner.save(url)
-	return jsonify({"URL":url,"IMGURL":"https://"+IMGDOMAIN+tempURL+"/"+banner.filename})
+	return jsonify({"URL":url,"IMGURL":"https://https://minecraft.server-lists.com/images/banners/temp/"
+	+banner.filename})
 
 @APIRoutes.route(prefix+"API/VOTIFIER",methods=['POST'])
 def APIVotifier():
@@ -135,9 +136,8 @@ def clearVotesCron():
 
 @crontab.job(minute="0", hour="*/1")
 def doCleanup():
-	#cleanupTempBanners()
-	#cleanupTempData()
-	return
+	cleanupTempBanners()
+	cleanupTempData()
 
 @crontab.job(minute="8", hour="*/8")
 def doRank():
