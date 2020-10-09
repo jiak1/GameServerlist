@@ -154,7 +154,7 @@
 
 function setHeight(ele){
 	//alert(ele.scrollTop)
-	ele.css{{"height":""}}
+	ele.css({"height":""})
     ele.css({"height":2+ele[0].scrollHeight+"px"} );
 }
 setHeight($('#Description'));
