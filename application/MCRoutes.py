@@ -10,6 +10,7 @@ import requests
 import json
 import datetime
 from PIL import Image,ImageSequence
+import time
 
 MCRoutes = Blueprint('MCRoutes', __name__)
 curDir = os.path.dirname(os.path.realpath(__file__))
@@ -518,6 +519,7 @@ def editServerPage(serverid):
 							server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+".webp?cache="+str(end)
 							success = True
 						except:
+							time.sleep(0.5)
 							count += 1
 
 					
