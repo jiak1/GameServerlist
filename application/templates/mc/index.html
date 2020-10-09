@@ -61,7 +61,11 @@
 			{% else %}
 			<a class="tag badge badge-danger CLICKABLE" id="version">{{server.displayVersion}}</a>
 			{% endif %}
+			{% if server.initialBanner != None %}
+        	<img src="{{server.initialBanner}}" data-srcset="{{server.banner}}" class="lazy card-img-top CLICKABLE" alt="{{server.name}}">
+			{% else %}
         	<img src="/images/main/LoadingBanner.webp" data-srcset="{{server.banner}}" class="lazy card-img-top CLICKABLE" alt="{{server.name}}">
+			{% endif %}
         </div>
     	<div class="card-body CLICKABLE">
 		<div id="info" class="CLICKABLE" style="display:inline-block;width:100%;height:100%">

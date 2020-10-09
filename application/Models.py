@@ -198,7 +198,8 @@ class Server(SearchableMixin, db.Model,Serializer):
 
 	trailer = db.Column(db.String(15), nullable=True, default="")
 
-	banner = db.Column(db.Text(), nullable=True, default="/images/main/LoadingBanner.webp?1")
+	banner = db.Column(db.Text(), nullable=True, default="/images/main/LoadingBanner.webp?1")#Default doesn't work, do in editserver/addserver code
+	initialBanner = db.Column(db.Text(), nullable=True)
 
 	rejectReason = db.Column(db.Text(), nullable=True, default="")
 

@@ -4,13 +4,13 @@ from flask_login import current_user, login_user,logout_user, login_required
 import os
 from .Forms import LoginForm,RegisterForm,ServerForm,ResetPasswordForm,VotifierTestForm,AccountEmailChangeForm,AccountPasswordChangeForm,VoteForm,AccountUsernameChangeForm,AccountGoogleLinkForm,AccountDeleteForm,ServerDeleteForm,ReportServerForm
 from .Models import Account, Server,Vote,Report
-from .Util import UpdateServerWithForm,update_server_details, send_password_reset_email,send_username_reminder_email, getVersion,get_google_provider_cfg,sendVotifierVote,validateServer,sendData,updateTagRequests,verifyCaptcha,checkHasVoted,submitVote,sendConfirmEmail,sendChangeEmail,ValidUsername,getSuggestionCacheNum,ServerHasQuery,send_email
+from .Util import UpdateServerWithForm,update_server_details, send_password_reset_email,send_username_reminder_email, getVersion,get_google_provider_cfg,sendVotifierVote,validateServer,sendData,updateTagRequests,verifyCaptcha,checkHasVoted,submitVote,sendConfirmEmail,sendChangeEmail,ValidUsername,getSuggestionCacheNum,ServerHasQuery,send_email,download_image
 from .Config import getProduction,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,POSTS_PER_PAGE
 import requests
 import json
 import datetime
 from PIL import Image,ImageSequence
-import time
+import io
 
 MCRoutes = Blueprint('MCRoutes', __name__)
 curDir = os.path.dirname(os.path.realpath(__file__))
@@ -21,9 +21,11 @@ SUGGESTION_CACHE_NUM = getSuggestionCacheNum()
 if(getProduction() == False):
 	fName = "images/banners/testing"
 	Live_Banner_URL = os.path.join("https://testing.server-lists.com/images/banners/testing");
+	Initial_Banner_URL = APP_ROOT+"/static/images/banners/testing/";
 else:
 	fName = "images/banners/live"
 	Live_Banner_URL = APP_ROOT+"/static/images/banners/live/";
+	Initial_Banner_URL = APP_ROOT+"/static/images/banners/initial/";
 
 prefix = "/"
 if(getProduction() == False):
@@ -385,33 +387,34 @@ def addServerPage():
 				db.session.refresh(server)
 
 				if(bannerURL != ""):
-					#im = Image.open(bannerURL)
-					#newPath = Live_Banner_URL+str(server.id)+"."+str(im.format);
-					#if(im.format == "GIF" or im.format == "WEBP"):
-						# Get sequence iterator
-						#frames = ImageSequence.Iterator(im)
-
-						# Wrap on-the-fly thumbnail generator
-						#def thumbnails(frames):
-						#	for frame in frames:
-						#		thumbnail = frame.copy()
-						#		thumbnail.thumbnail((498,60),Image.ANTIALIAS)
-						#	yield thumbnail
-
-						#frames = thumbnails(frames)
-						#om = next(frames)
-						#om.info = im.info
-						#om.save(newPath,None,quality=100,save_all=True, loop=0,append_images=list(frames))
-					#else:
-						#im = im.resize(size=(498,60))
-						#im.save(newPath,im.format,quality=100)
-					
 					fExt = bannerURL.split(".")[-1]
 					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
 
 					os.replace(bannerURL,newPath)#images/banners/temp
 					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&cache=1"
 					server.banner=tempPath
+
+					try:
+						nonWebpPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache=1"
+
+						tempDIR = Initial_Banner_URL+"TEMP_"+str(server.id)+"."+fExt
+
+						download_image(nonWebpPath,tempDIR)
+						im = Image.open(tempDIR)
+						if(fExt.lower() == "gif" or fExt.lower() == "webp"):
+							frame = im.convert("RGB")
+							frame.save(Initial_Banner_URL+str(server.id)+".png","png")
+							im.close()
+						else:
+							im.save(Initial_Banner_URL+str(server.id)+"."+fExt)
+							im.close()
+
+						if os.path.isfile(tempDIR):
+							os.remove(tempDIR)
+
+						server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/initial/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache=1"
+					except:
+						server.initialBanner = "/images/main/LoadingBanner.webp"
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
@@ -463,30 +466,6 @@ def editServerPage(serverid):
 				UpdateServerWithForm(form,server)
 				if(bannerURL != ""):
 
-					#im = Image.open(bannerURL) #Load the uploaded image
-					#newPath = Live_Banner_URL+str(server.id)+"."+str(im.format);
-					#if os.path.isfile(newPath):
-					#	os.remove(newPath)
-
-					#if(im.format == "GIF" or im.format == "WEBP"): #Convert Image to WEBP!!
-						# Get sequence iterator
-					#	frames = ImageSequence.Iterator(im)
-
-						# Wrap on-the-fly thumbnail generator
-					#	def thumbnails(frames):
-					#		for frame in frames:#Loop through each frame and turn it into a webp
-					#			thumbnail = frame.copy()
-					#			thumbnail.thumbnail((498,60),resample=3,reducing_gap=3)
-					#			yield thumbnail
-
-					#	frames = thumbnails(frames)
-					#	om = next(frames)
-					#	om.info = im.info #Copy image metadata over
-					#	om.save(newPath,None,quality=100,save_all=True, loop=0, append_images=list(frames))
-						#Stitch frames together in a new compressed webp format
-					#else:
-					#	im = im.resize(size=(498,60))
-					#	im.save(newPath,im.format,quality=100)
 					fExt = bannerURL.split(".")[-1]
 					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
 					os.replace(bannerURL,newPath)#images/banners/temp
@@ -494,10 +473,31 @@ def editServerPage(serverid):
 						end = int(server.banner.split('cache=')[-1])+1
 					except:
 						end = "1"
-
-					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&cache="+str(end)
-					server.banner=tempPath
 					
+					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&f=auto&cache="+str(end)
+					server.banner=tempPath
+
+					try:
+						nonWebpPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache="+str(end)
+
+						tempDIR = Initial_Banner_URL+"TEMP_"+str(server.id)+"."+fExt
+
+						download_image(nonWebpPath,tempDIR)
+						im = Image.open(tempDIR)
+						if(fExt.lower() == "gif" or fExt.lower() == "webp"):
+							frame = im.convert("RGB")
+							frame.save(Initial_Banner_URL+str(server.id)+".png","png")
+							im.close()
+						else:
+							im.save(Initial_Banner_URL+str(server.id)+"."+fExt)
+							im.close()
+
+						if os.path.isfile(tempDIR):
+							os.remove(tempDIR)
+
+						server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/initial/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache="+str(end)
+					except:
+						server.initialBanner = "/images/main/LoadingBanner.webp"
 
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn

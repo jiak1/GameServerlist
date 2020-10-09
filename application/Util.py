@@ -3,7 +3,7 @@ from .Models import Server,ReviewTag,Vote,Account
 from .Forms import ServerForm
 from flask_mail import Message
 from flask import render_template,url_for
-from .Config import GOOGLE_DISCOVERY_URL,ISADMIN
+from .Config import GOOGLE_DISCOVERY_URL,ISADMIN,getProduction
 from .SendVote import sendVote
 from pathlib import Path
 import arrow
@@ -13,6 +13,7 @@ import json
 import datetime
 import socket
 from mcstatus import MinecraftServer
+import urllib
 
 if(ISADMIN):
 	from .Program import admin_mail as mail,admin_app as app
@@ -22,6 +23,11 @@ else:
 	from .Program import mc_db as db
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+def download_image(url, image_file_path):
+	print("starting...")
+	urllib.request.urlretrieve(url, image_file_path)
+	print('Image downloaded from url: {} and saved to: {}.'.format(url, image_file_path))
 
 def ServerUp(ip,port):
 	try:
@@ -149,6 +155,8 @@ def updateTagRequests(email,tags,plugins,mods,datapacks):
 		db.session.commit()
 
 def checkTags(section,given,email):
+	if(getProduction() == False):
+		return False
 	did = False
 	tags = ReviewTag.query.filter_by(section=section).all()
 	pending = []
@@ -466,10 +474,13 @@ def clearVotes():
 	db.session.commit()
 
 def getSuggestionCacheNum():
-	f = open('application/static/json/cache.txt')
-	response = f.readline()
-	f.close()
-	return response
+	try:
+		f = open('application/static/json/cache.txt')
+		response = f.readline()
+		f.close()
+		return response
+	except:
+		return "1"
 
 def updateSuggestionCacheNum():
 	nextCacheNum = str(int(getSuggestionCacheNum())+1)
