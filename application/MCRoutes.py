@@ -410,7 +410,7 @@ def addServerPage():
 					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
 
 					os.replace(bannerURL,newPath)#images/banners/temp
-					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100&cache=1"
+					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&cache=1"
 					server.banner=tempPath
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
@@ -495,7 +495,7 @@ def editServerPage(serverid):
 					except:
 						end = "1"
 
-					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100&cache="+str(end)
+					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&cache="+str(end)
 					server.banner=tempPath
 					
 
