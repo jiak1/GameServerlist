@@ -189,10 +189,5 @@
 #searchTerm{
 	padding-top: 20px;
     margin-bottom: 0px;
-}
-
-@media screen and (max-width: 780px){
-	#searchTerm{
-		  text-align:center;
-	}
+	text-align:center;
 }
