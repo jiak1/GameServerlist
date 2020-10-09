@@ -135,8 +135,8 @@ def clearVotesCron():
 
 @crontab.job(minute="0", hour="*/1")
 def doCleanup():
-	cleanupTempBanners()
-	cleanupTempData()
+	#cleanupTempBanners()
+	#cleanupTempData()
 
 @crontab.job(minute="8", hour="*/8")
 def doRank():
