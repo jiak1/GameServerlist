@@ -499,12 +499,20 @@ def editServerPage(serverid):
 						end = int(server.banner.split('cache=')[-1])+1
 					except:
 						end = "1"
-					response = requests.get(tempPath);
-					file = open(newPath,"wb")
-					file.write(response.content)
-					file.close()
-					#server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+fExt+"?"+str(end)
-					server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+".webp?cache="+str(end)
+					
+					count = 1
+					success = False
+					while count < 3 or success:
+						try:
+							response = requests.get(tempPath)
+							file = open(newPath,"wb")
+							file.write(response.content)
+							file.close()
+							server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+".webp?cache="+str(end)
+							success = True
+						except:
+							count += 1
+
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
