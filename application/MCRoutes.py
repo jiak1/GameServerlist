@@ -407,9 +407,10 @@ def addServerPage():
 						#im.save(newPath,im.format,quality=100)
 					
 					fExt = bannerURL.split(".")[-1]
-					newPath = Live_Banner_URL+str(server.id)+".webp";
+					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
+
 					#os.replace(bannerURL,newPath)images/banners/temp
-					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100&f=auto"
+					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100"
 
 					count = 1
 					success = False
@@ -420,7 +421,7 @@ def addServerPage():
 							file.write(response.content)
 							file.close()
 							#server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+fExt+"?"+str(end)
-							server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+".webp?cache=1"
+							server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?cache=1"
 							success = True
 						except:
 							count += 1
@@ -500,9 +501,9 @@ def editServerPage(serverid):
 					#	im = im.resize(size=(498,60))
 					#	im.save(newPath,im.format,quality=100)
 					fExt = bannerURL.split(".")[-1]
-					newPath = Live_Banner_URL+str(server.id)+".webp";
+					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
 					#os.replace(bannerURL,newPath)images/banners/temp
-					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100&f=auto"
+					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100"
 					try:
 						end = int(server.banner.split('cache=')[-1])+1
 					except:
@@ -516,7 +517,7 @@ def editServerPage(serverid):
 							file = open(newPath,"wb")
 							file.write(response.content)
 							file.close()
-							server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+".webp?cache="+str(end)
+							server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?cache="+str(end)
 							success = True
 						except:
 							time.sleep(0.5)
