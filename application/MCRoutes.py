@@ -502,7 +502,7 @@ def editServerPage(serverid):
 					
 					count = 1
 					success = False
-					while count < 3 or success:
+					while count < 5 and success == False:
 						try:
 							response = requests.get(tempPath)
 							file = open(newPath,"wb")
