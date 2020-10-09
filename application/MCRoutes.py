@@ -477,27 +477,27 @@ def editServerPage(serverid):
 					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&f=auto&cache="+str(end)
 					server.banner=tempPath
 
-					
-					nonWebpPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache="+str(end)
+					try:
+						nonWebpPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache="+str(end)
 
-					tempDIR = Initial_Banner_URL+"TEMP_"+str(server.id)+"."+fExt
+						tempDIR = Initial_Banner_URL+"TEMP_"+str(server.id)+"."+fExt
 
-					download_image(nonWebpPath,tempDIR)
-					im = Image.open(tempDIR)
-					if(fExt.lower() == "gif" or fExt.lower() == "webp"):
-						frame = im.convert("RGB")
-						frame.save(Initial_Banner_URL+str(server.id)+".png","png")
-						im.close()
-					else:
-						im.save(Initial_Banner_URL+str(server.id)+"."+fExt)
-						im.close()
+						download_image(nonWebpPath,tempDIR)
+						im = Image.open(tempDIR)
+						if(fExt.lower() == "gif" or fExt.lower() == "webp"):
+							frame = im.convert("RGB")
+							frame.save(Initial_Banner_URL+str(server.id)+".png","png")
+							im.close()
+						else:
+							im.save(Initial_Banner_URL+str(server.id)+"."+fExt)
+							im.close()
 
-					if os.path.isfile(tempDIR):
-						os.remove(tempDIR)
+						if os.path.isfile(tempDIR):
+							os.remove(tempDIR)
 
-					server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/initial/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache="+str(end)
-					#except:
-					#	server.initialBanner = "/images/main/LoadingBanner.webp"
+						server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/initial/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache="+str(end)
+					except:
+						server.initialBanner = "/images/main/LoadingBanner.webp"
 
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
