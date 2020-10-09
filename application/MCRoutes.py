@@ -404,6 +404,7 @@ def addServerPage():
 						if(fExt.lower() == "gif" or fExt.lower() == "webp"):
 							frame = im.convert("RGB")
 							frame.save(Initial_Banner_URL+str(server.id)+".png","png")
+							fExt = "png"
 							im.close()
 						else:
 							im.save(Initial_Banner_URL+str(server.id)+"."+fExt)
@@ -487,6 +488,7 @@ def editServerPage(serverid):
 						if(fExt.lower() == "gif" or fExt.lower() == "webp"):
 							frame = im.convert("RGB")
 							frame.save(Initial_Banner_URL+str(server.id)+".png","png")
+							fExt = "png"
 							im.close()
 						else:
 							im.save(Initial_Banner_URL+str(server.id)+"."+fExt)
