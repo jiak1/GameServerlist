@@ -410,12 +410,19 @@ def addServerPage():
 					#os.replace(bannerURL,newPath)images/banners/temp
 					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"+str(bannerURL.split("/")[-1].split(".")[0])+"."+fExt+"?w=498&h=60&quality=100&f=auto"
 
-					response = requests.get(tempPath);
-					file = open(newPath,"wb")
-					file.write(response.content)
-					file.close()
-					#server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+fExt+"?"+str(end)
-					server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+".webp?cache=1"
+					count = 1
+					success = False
+					while count < 5 and success == False:
+						try:
+							response = requests.get(tempPath);
+							file = open(newPath,"wb")
+							file.write(response.content)
+							file.close()
+							#server.banner=url_for('static',filename=fName)+"/"+str(server.id)+"."+fExt+"?"+str(end)
+							server.banner="https://minecraft.server-lists.com/images/banners/live/"+str(server.id)+".webp?cache=1"
+							success = True
+						except:
+							count += 1
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
