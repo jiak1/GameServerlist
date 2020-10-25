@@ -43,6 +43,9 @@
 			<li class="{{ 'nav-item active' if active_page == 'home' else 'nav-item' }}">
 			<a class="nav-link" href="{{url_for('MCRoutes.MCHomePage')}}"><i class="fas fa-search"></i> Search</a>
 			</li>
+			<li class="{{ 'nav-item active' if active_page == 'guides' else 'nav-item' }}">
+			<a class="nav-link" href="{{url_for('MCRoutes.guidesPage')}}"><i class="fas fa-book-open"></i> Guides</a>
+			</li>
 			<li class="{{ 'nav-item active' if active_page == 'addserver' else 'nav-item' }}">
 			<a class="nav-link" href="{{url_for('MCRoutes.addServerPage')}}"><i class="fas fa-plus-circle"></i> Add A Server</a>
 			</li>

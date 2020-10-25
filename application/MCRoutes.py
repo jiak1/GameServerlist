@@ -795,3 +795,11 @@ def sponsorPayPage():
 	
 
 	return render_template("mc/pay.html")
+
+@MCRoutes.route(prefix+"guides",methods=['GET'])
+def guidesPage():
+	return render_template("mc/guides.html")
+
+@MCRoutes.route(prefix+"guides/how-to-make-a-minecraft-server",methods=['GET'])
+def makeServerPage():
+	return render_template("mc/guides/makeServer.html")

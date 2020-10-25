@@ -1,0 +1,26 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "guides" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/post.css')}}">
+{% block pageHead%}
+{% endblock %}
+{% endblock %}
+
+{% block beforeBody %}
+<div style="background-color: #18A558;width: 100%;padding-top: 30px;">
+<div style="width: fit-content;margin-left: auto; margin-right: auto;text-align: center;border-radius: 5px;color: white;">
+{% block pageTitle %}
+
+{% endblock %}
+</div>
+</div>
+{% endblock %}
+
+{% block body %}
+
+<div class="container-sm" style="background-color:white;padding:20px;border-radius: 5px;">
+{% block pageBody %}
+{% endblock %}
+</div>
+{% endblock %}

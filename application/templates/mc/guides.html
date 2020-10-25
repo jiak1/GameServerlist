@@ -1,0 +1,49 @@
+{% extends 'mc/base.html' %}
+{% set active_page = "guides" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/guides.css')}}">
+<title>Minecraft Server Guides</title>
+<meta name="description" content="A collection of guides related to setting up and starting a Minecraft Server.">
+{% endblock %}
+
+{% block beforeBody %}
+<div style="background-color: #18A558;width: 100%;height: 150px;padding-top: 30px;">
+<div style="width: fit-content;margin-left: auto; margin-right: auto;text-align: center;border-radius: 5px;color: white;">
+<h2 style="padding-bottom: 20px;font-size: 62px;">Guides</h2>
+</div>
+</div>
+<div class="strip"></div>
+{% endblock %}
+
+{% block body %}
+
+<div class="container-sm" style="background-color:white;padding:20px;">
+	<div class="row row-cols-1 row-cols-md-1" style="padding-top:50px">
+
+<div class="col mb-4" style="width:100%;padding-bottom:30px;">
+	 <div class="card">
+        <div class="row no-gutters">
+            <div class="col">
+                <img src="/images/makeGuide.PNG" class="img-fluid" alt="">
+            </div>
+            <div class="col">
+                <div class="card-block px-2">
+                    <h3 class="card-title">How To Make A Minecraft Server</h3>
+                    <p class="card-text">Interested in starting your own server but don't know how? As long as you have a computer we will teach you how to create one in a few simple steps.</p>
+                    <a href="{{url_for('MCRoutes.makeServerPage')}}" class="btn btn-success btn-card-bottom">Learn</a>
+                </div>
+            </div>
+        </div>
+  </div>
+</div>
+<div class="col mb-4" style="width:100%;padding-bottom:30px;">
+	<div class="card server-info CLICKABLE" style="cursor: pointer;" url="/minecraft/server/1">
+		<div id="info" class="CLICKABLE" style="display:inline-block;width:100%;height:100%">
+		</div>
+	</div>
+</div>
+
+</div>
+</div>
+{% endblock %}
