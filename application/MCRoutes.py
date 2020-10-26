@@ -802,4 +802,5 @@ def guidesPage():
 
 @MCRoutes.route(prefix+"guides/how-to-make-a-minecraft-server",methods=['GET'])
 def makeServerPage():
-	return render_template("mc/guides/makeServer.html")
+	return render_template("mc/notallowed.html")
+	#return render_template("mc/guides/makeServer.html")

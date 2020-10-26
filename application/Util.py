@@ -37,9 +37,8 @@ def ServerUp(ip,port):
 		else:
 			MinecraftServer.lookup(ip).status(retries=1)
 		return True
-	except (socket.timeout, ConnectionRefusedError, ConnectionResetError, OSError):
-		return False
 	except Exception as e:
+		print(e)
 		return False
 
 def ServerStatus(ip,port):
@@ -66,8 +65,9 @@ def ServerStatus(ip,port):
 	except (socket.timeout, ConnectionRefusedError, ConnectionResetError, OSError):
 		#Server Offline
 		return (False,None);
-	except Exception:
+	except Exception as e:
 		#Server Offline
+		print(e)
 		return (False,None);
 
 def ServerQuery(ip,port):
@@ -94,7 +94,8 @@ def ServerQuery(ip,port):
 	except (socket.timeout, ConnectionRefusedError, ConnectionResetError, OSError):
 		#Server Offline
 		return (False,None);
-	except Exception:
+	except Exception as e:
+		print(e)
 		#Server Offline
 		return (False,None);
 
@@ -335,6 +336,7 @@ def submitVote(server, username,ip):
 
 def checkServerUpdates():
 	app.logger.info('checking updates')
+	print("checking updates")
 	Thread(target=do_update_check, args=(app,)).start()
 
 #run once a every 1 minute
