@@ -30,19 +30,19 @@ def download_image(url, image_file_path):
 	print('Image downloaded from url: {} and saved to: {}.'.format(url, image_file_path))
 
 def ServerUp(ip,port):
-	try:
+	#if True:
 		if(port != "25565"):
 			#TLDR using ping caused weird issues
 			MinecraftServer.lookup(ip+":"+port).status(retries=1)
 		else:
 			MinecraftServer.lookup(ip).status(retries=1)
 		return True
-	except Exception as e:
-		print(e)
-		return False
+	#except Exception as e:
+	#	print(e)
+	#	return False
 
 def ServerStatus(ip,port):
-	try:
+	if True:
 		if(port != "25565"):
 			status = MinecraftServer.lookup(ip+":"+port).status(retries=1)
 		else:
@@ -62,13 +62,13 @@ def ServerStatus(ip,port):
 			"favicon":status.favicon
 		})
 
-	except (socket.timeout, ConnectionRefusedError, ConnectionResetError, OSError):
+	#except (socket.timeout, ConnectionRefusedError, ConnectionResetError, OSError):
 		#Server Offline
-		return (False,None);
-	except Exception as e:
+	#	return (False,None);
+	#except Exception as e:
 		#Server Offline
-		print(e)
-		return (False,None);
+	#	print(e)
+	#	return (False,None);
 
 def ServerQuery(ip,port):
 	try:
