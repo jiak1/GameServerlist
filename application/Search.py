@@ -24,7 +24,21 @@ def query_index(index, query, page, per_page):
 					"rank":"asc"
 				},
 				"query" : {
-					"term":{"verified" : "1",}
+					"bool":{
+						"must":{
+							"term":{
+								"verified" : "1"
+							}
+						},
+						"should":{
+							"term":{
+								"online":{
+									"value":"1",
+									"boost":500
+									},
+							}
+						}
+					}
 				},
 				"from":(page-1)*per_page,
 				"size":per_page
@@ -37,7 +51,21 @@ def query_index(index, query, page, per_page):
 					"newTime":"desc"
 				},
 				"query" : {
-					"term":{"verified" : "1"}
+					"bool":{
+						"must":{
+							"term":{
+								"verified" : "1"
+							}
+						},
+						"should":{
+							"term":{
+								"online":{
+										"value":"1",
+										"boost":500
+									},
+							}
+						}
+					}
 				},
 				"from":(page-1)*per_page,
 				"size":per_page
@@ -58,6 +86,14 @@ def query_index(index, query, page, per_page):
 						"filter":{
 							"term":{
 								"verified":"1"
+							}
+						},
+						"should":{
+							"term":{
+								"online":{
+										"value":"1",
+										"boost":500
+									},
 							}
 						}
 					}

@@ -21,15 +21,15 @@ indexCreation = {
         "default": {
           "tokenizer": "keyword",
           "filter": [ 
-			  "3_5_grams",
+			  "4_5_grams",
 			  "lowercase"
 			]
         }
       },
       "filter": {
-        "3_5_grams": {
+        "4_5_grams": {
           "type": "ngram",
-          "min_gram": 3,
+          "min_gram": 4,
           "max_gram": 10,
 		  "token_chars":[
             "letter",
