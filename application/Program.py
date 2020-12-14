@@ -87,7 +87,7 @@ def create_mc_app():
 	sentry_sdk.init("https://48bd4af68237433c8b42f566835b585d@o385754.ingest.sentry.io/5226663",integrations=[FlaskIntegration(),SqlalchemyIntegration()])
 	"""Construct the core mc_application."""
 	global mc_app
-	mc_app = Flask(__name__,static_folder=None)
+	mc_app = Flask(__name__,static_url_path="static", static_folder="static")
 
 	mc_app.config.from_object(AppConfig)
 	
@@ -132,7 +132,7 @@ def create_admin_app():
 	sentry_sdk.init("https://48bd4af68237433c8b42f566835b585d@o385754.ingest.sentry.io/5226663",integrations=[FlaskIntegration(),SqlalchemyIntegration()])
 	"""Construct the core admin_application."""
 	global admin_app
-	admin_app = Flask(__name__,static_folder=None)
+	admin_app = Flask(__name__,static_url_path="static", static_folder="static")
 	admin_app.config.from_object(AppConfig)
 
 	admin_app.config.update(mail_settings)
