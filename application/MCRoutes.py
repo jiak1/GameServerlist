@@ -34,6 +34,19 @@ if(getProduction() == False):
 
 from .ErrorHandler import *
 
+@MCRoutes.route(prefix+"API/FIXFUCKUP",methods=['POST'])
+def APIFIXFUCKUP():
+	servers = Server.query.all()
+	for server in servers:
+		if(server.initialBanner[0:8] == "/images/"):
+			server.initialBanner = "/static"+server.initialBanner
+		else:
+			splitted = server.initialBanner.split("banners")
+			if(splitted[0] == "https://cdn.statically.io/img/minecraft.server-lists.com/images/"):
+				server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners"+splitted[1]
+	db.session.commit()
+
+
 @crontab.job(minute="*/5")
 def updateCacheNum():
 	global SUGGESTION_CACHE_NUM
@@ -392,11 +405,11 @@ def addServerPage():
 					newPath = Live_Banner_URL+str(server.id)+"."+fExt;
 
 					os.replace(bannerURL,newPath)#images/banners/temp
-					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&cache=1"
+					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&quality=100&cache=1"
 					server.banner=tempPath
 
 					try:
-						nonWebpPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache=1"
+						nonWebpPath = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache=1"
 
 						tempDIR = Initial_Banner_URL+"TEMP_"+str(server.id)+"."+fExt
 
@@ -414,7 +427,7 @@ def addServerPage():
 						if os.path.isfile(tempDIR):
 							os.remove(tempDIR)
 
-						server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/initial/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache=1"
+						server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners/initial/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache=1"
 					except:
 						server.initialBanner = "/images/main/LoadingBanner.webp"
 					
@@ -476,11 +489,11 @@ def editServerPage(serverid):
 					except:
 						end = "1"
 					
-					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&f=auto&cache="+str(end)
+					tempPath = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&f=auto&cache="+str(end)
 					server.banner=tempPath
 
 					try:
-						nonWebpPath = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache="+str(end)
+						nonWebpPath = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache="+str(end)
 
 						tempDIR = Initial_Banner_URL+"TEMP_"+str(server.id)+"."+fExt
 
@@ -498,7 +511,7 @@ def editServerPage(serverid):
 						if os.path.isfile(tempDIR):
 							os.remove(tempDIR)
 
-						server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/initial/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache="+str(end)
+						server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners/initial/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache="+str(end)
 					except:
 						server.initialBanner = "/images/main/LoadingBanner.webp"
 
