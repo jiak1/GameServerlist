@@ -191,6 +191,7 @@ class AdminServerForm(FlaskForm):
 
 	website = URLField('Website',validators=[Optional(),Length(max=100)])
 	discord = URLField('Discord',validators=[Optional(),Length(max=80)])
+	discordInvite = URLField('Discord Invite',validators=[Optional(),Length(max=80)])
 
 	trailer = URLField('Trailer',validators=[Optional(),Length(max=15)])
 

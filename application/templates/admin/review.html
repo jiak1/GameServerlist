@@ -112,6 +112,10 @@
 			{% endif %}
         </p>
 		<p>
+            {{ form.discordInvite.label }}<br>
+            {{ form.discordInvite(value=server.discordInvite) }}
+        </p>
+		<p>
             {{ form.trailer.label }}<br>
             {{ form.trailer(value=server.trailer) }}
 			<a href="https://www.youtube.com/watch?v={{server.trailer}}" target="_blank">View Trailer</a>
@@ -147,7 +151,7 @@
 		<p>
             {{ form.banner.label }}<br>
             {{ form.banner(value=server.banner) }}
-			<p> Default Banner Loc </p><input value="/images/main/LoadingBanner.webp" disabled>
+			<p> Default Banner Loc </p><input value="/static/images/main/LoadingBanner.webp" disabled>
         </p>
 		<p>
             {{ form.rejectReason.label }}<br>

@@ -195,6 +195,7 @@ class Server(SearchableMixin, db.Model,Serializer):
 
 	website = db.Column(db.String(100), nullable=True, default="")
 	discord = db.Column(db.String(80), nullable=True, default="")
+	discordInvite = db.Column(db.String(80), nullable=True, default="")
 
 	trailer = db.Column(db.String(15), nullable=True, default="")
 
