@@ -65,14 +65,14 @@ def APIStatus():
 def APIBannerUpload():
 	banner=request.files.get('file')
 	tempURL = url_for('static',filename='images/banners/temp')
-	url = "static"+tempURL+"/"+banner.filename;
-	url = os.path.join(APP_ROOT+"/static"+tempURL+"/", banner.filename)
+	url = ""+tempURL+"/"+banner.filename;
+	url = os.path.join(APP_ROOT+"/"+tempURL+"/", banner.filename)
 	if os.path.isfile(url):
 		#Another file is already called this
 		filename,ext = banner.filename.split(".")
 		filename += str(randrange(10000,10000000))
 		newName = filename+"."+ext
-		url = os.path.join(APP_ROOT+"/static"+tempURL+"/", newName)
+		url = os.path.join(APP_ROOT+"/"+tempURL+"/", newName)
 	banner.save(url)
 	return jsonify({"URL":url,"IMGURL":"https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"
 	+banner.filename+"?w=498&h=60&quality=100&cache=-1"})

@@ -180,7 +180,7 @@ $('.tag').each(function(i, obj) {
 $.ajax({
     type: "GET",
     cache: false,
-    url: "/json/graphs/{{server.id}}.json",
+    url: "/static/json/graphs/{{server.id}}.json",
     success: function(data) {
       setupGraph(data)
     }
