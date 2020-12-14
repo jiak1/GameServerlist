@@ -34,30 +34,6 @@ if(getProduction() == False):
 
 from .ErrorHandler import *
 
-@MCRoutes.route(prefix+"API/FIXFUCKUP",methods=['GET'])
-def APIFIXFUCKUP():
-	servers = db.session.query(Server).all()
-	for server in servers:
-		print(server.name)
-		try:
-			if(server.initialBanner[0:8] == "/images/"):
-				server.initialBanner = "/static"+server.initialBanner
-			else:
-				splitted = server.initialBanner.split("banners")
-				if(splitted[0] == "https://cdn.statically.io/img/minecraft.server-lists.com/images/"):
-					server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners"+splitted[1]
-			if(server.banner[0:8] == "/images/"):
-				server.banner = "/static"+server.banner
-			else:
-				splitted = server.banner.split("banners")
-				if(splitted[0] == "https://cdn.statically.io/img/minecraft.server-lists.com/images/"):
-					server.banner = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners"+splitted[1]
-		except:
-			pass
-	db.session.commit()
-	return "done"
-
-
 @crontab.job(minute="*/5")
 def updateCacheNum():
 	global SUGGESTION_CACHE_NUM
