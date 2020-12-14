@@ -74,7 +74,7 @@ def APIBannerUpload():
 		newName = filename+"."+ext
 		url = os.path.join(APP_ROOT+"/static"+tempURL+"/", newName)
 	banner.save(url)
-	return jsonify({"URL":url,"IMGURL":"https://minecraft.server-lists.com/images/banners/temp/"
+	return jsonify({"URL":url,"IMGURL":"https://cdn.statically.io/img/minecraft.server-lists.com/images/banners/temp/"
 	+banner.filename+"?w=498&h=60&quality=100&cache=-1"})
 
 @APIRoutes.route(prefix+"API/VOTIFIER",methods=['POST'])
