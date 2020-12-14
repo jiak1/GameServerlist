@@ -46,6 +46,12 @@ def APIFIXFUCKUP():
 				splitted = server.initialBanner.split("banners")
 				if(splitted[0] == "https://cdn.statically.io/img/minecraft.server-lists.com/images/"):
 					server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners"+splitted[1]
+			if(server.banner[0:8] == "/images/"):
+				server.banner = "/static"+server.banner
+			else:
+				splitted = server.banner.split("banners")
+				if(splitted[0] == "https://cdn.statically.io/img/minecraft.server-lists.com/images/"):
+					server.banner = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners"+splitted[1]
 		except:
 			pass
 	db.session.commit()
