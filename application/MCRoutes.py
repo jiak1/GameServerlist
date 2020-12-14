@@ -34,7 +34,7 @@ if(getProduction() == False):
 
 from .ErrorHandler import *
 
-@MCRoutes.route(prefix+"API/FIXFUCKUP",methods=['POST'])
+@MCRoutes.route(prefix+"API/FIXFUCKUP",methods=['GET'])
 def APIFIXFUCKUP():
 	servers = Server.query.all()
 	for server in servers:
@@ -45,6 +45,7 @@ def APIFIXFUCKUP():
 			if(splitted[0] == "https://cdn.statically.io/img/minecraft.server-lists.com/images/"):
 				server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners"+splitted[1]
 	db.session.commit()
+	return "done"
 
 
 @crontab.job(minute="*/5")
