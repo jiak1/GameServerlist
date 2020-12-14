@@ -36,14 +36,18 @@ from .ErrorHandler import *
 
 @MCRoutes.route(prefix+"API/FIXFUCKUP",methods=['GET'])
 def APIFIXFUCKUP():
-	servers = Server.query.all()
+	servers = db.session.query(Server).all()
 	for server in servers:
-		if(server.initialBanner[0:8] == "/images/"):
-			server.initialBanner = "/static"+server.initialBanner
-		else:
-			splitted = server.initialBanner.split("banners")
-			if(splitted[0] == "https://cdn.statically.io/img/minecraft.server-lists.com/images/"):
-				server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners"+splitted[1]
+		print(server.name)
+		try:
+			if(server.initialBanner[0:8] == "/images/"):
+				server.initialBanner = "/static"+server.initialBanner
+			else:
+				splitted = server.initialBanner.split("banners")
+				if(splitted[0] == "https://cdn.statically.io/img/minecraft.server-lists.com/images/"):
+					server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners"+splitted[1]
+		except:
+			pass
 	db.session.commit()
 	return "done"
 
