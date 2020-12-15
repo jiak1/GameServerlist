@@ -430,6 +430,7 @@ def UpdateAdminServerWithForm(_serverForm, _serverModel):
 	_serverModel.notes = _serverForm.notes.data
 	_serverModel.banner = _serverForm.banner.data
 	_serverModel.discordInvite = _serverForm.discordInvite.data
+	_serverModel.emailContent = _serverForm.emailContent.data
 
 def sendServerApprovedEmail(server):
     send_email('[Serverlist] Server Approved',
@@ -438,6 +439,15 @@ def sendServerApprovedEmail(server):
                text_body=render_template('email/server_approved.txt',
                                          server=server),
                html_body=render_template('email/server_approved.html',
+                                         server=server))
+
+def sendServerNotifyEmail(server):
+    send_email('[Serverlist] Server Listing',
+               sender="contact@server-lists.com",
+               recipients=[server.owner.email],
+               text_body=render_template('email/server_notify.txt',
+                                         server=server),
+               html_body=render_template('email/server_notify.html',
                                          server=server))
 
 def sendServerDeniedEmail(server):

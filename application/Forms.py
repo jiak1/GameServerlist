@@ -62,6 +62,7 @@ class ServerForm(FlaskForm):
 	trailer = URLField('Trailer',validators=[Optional(),Length(max=15)])
 
 	rejectReason = StringField('Reject Reason')
+	emailContent = StringField('Email Content')
 	action = SubmitField('Action')
 
 	isEdit = HiddenField('Is Edit')

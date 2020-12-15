@@ -1,0 +1,13 @@
+Hello,
+
+We are contacting you in regards to {{server.name}}, a Minecraft Server Listing linked to your account.
+
+The following message has been sent by our staff:
+{{server.emailContent}}
+
+To visit your server page go to https://minecraft.server-lists.com/server/{{server.id}}
+
+If you have any queries simply reply to this email.
+
+Sincerely,
+The Serverlist Team

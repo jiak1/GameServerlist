@@ -1,0 +1,16 @@
+{% extends 'email/base_email.html' %}
+{% block main %}
+	<h1>Hello,</h1>
+
+	<p>We are contacting you in regards to <b>{{server.name}}</b>, a Minecraft Server Listing linked to your account.</p>
+
+	<p>The following message has been sent by our staff:</p>
+	<p>{{server.emailContent}}</p>
+
+	<p>To visit your server page go to https://minecraft.server-lists.com/server/{{server.id}}</p>
+
+	<p>If you have any queries simply <b>reply</b> to this email.</p>
+
+	<p>Sincerely,</p>
+	<p>The Serverlist Team</p>
+{% endblock %}

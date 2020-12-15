@@ -158,6 +158,10 @@
 			<textarea name="rejectReason" id="rejectReason">{{server.rejectReason}}</textarea>
         </p>
 		<p>
+            {{ form.emailContent.label }}<br>
+			<textarea name="emailContent" id="emailContent">{{server.emailContent}}</textarea>
+        </p>
+		<p>
             {{ form.notes.label }}<br>
 			<textarea name="notes" id="notes">{{server.notes}}</textarea>
         </p>
@@ -167,6 +171,7 @@
 		<div>
 		<button class="btn-primary float-left" type="submit" name="update" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=UPDATE">Update Case</button>
 		<button class="btn-warning float-right" type="submit" name="update" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=BAN">Ban Server</button>
+		<button class="btn-dark float-left" type="submit" name="update" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=EMAIL">Send Email</button>
 		</div>
 
 		<div style="height:200px"></div>
