@@ -17,7 +17,7 @@
 	<div style="margin-top:30px" id="ServerList">
 	{% for server in servers %}
 	<div class="card" style="margin-bottom:20px;max-width:700px;margin-left:auto;margin-right:auto;background-color:#c7c7c75e;border:none;color:black;font-weight:500;">
-		<img class="card-img-top" src="{{server.banner}}">
+		<img class="card-img-top" src="{{server.initialBanner}}" data-srcset="{{server.banner}}">
 		{% if server.online %}
 		<a class="badge badge-success" style="color:white" id="serverStatus">Online</a>
 		{% else %}
@@ -58,4 +58,5 @@
 	<hr>
 	<p style="width:50%;text-align:center;margin:auto;">End of your servers.</p>
 </div>
+<script src="https://minecraft.server-lists.com/static/js/lazy-load.js"></script>
 {% endblock %}

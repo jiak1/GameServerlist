@@ -168,9 +168,11 @@
 		<button class="btn-success" type="submit" name="approve" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=APPROVE">Approve</button>
 		<button class="btn-danger float-right" type="submit" name="reject" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=REJECT">Reject</button>
 		</div>
-		<div>
+		<div style="height: 40px;">
 		<button class="btn-primary float-left" type="submit" name="update" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=UPDATE">Update Case</button>
 		<button class="btn-warning float-right" type="submit" name="update" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=BAN">Ban Server</button>
+		</div>
+		<div >
 		<button class="btn-dark float-left" type="submit" name="update" formaction="{{url_for('AdminRoutes.reviewPage')}}?id={{server.id}}&action=EMAIL">Send Email</button>
 		</div>
 
