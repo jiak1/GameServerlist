@@ -260,10 +260,14 @@ def send_data(app,accid):
 		for server in servers:
 			_data['servers'].append(server.serialize())
 			_data['servers'][count]['votes'] = []
+			_data['servers'][count]['notes'] = "hidden"
+			vCount = 0
 			for vote in server.votes:
 				_data['servers'][count]['votes'].append(vote.serialize())
+				_data['servers'][count]['votes'][vCount]['ip'] = "hidden"
+				vCount += 1
 			count += 1
-		_data['password_hash'] = None
+		_data['password_hash'] = "hidden"
 		try:
 			url = "./application/data/"+str(account.id)+".json"
 			if( os.path.isfile(url)):
