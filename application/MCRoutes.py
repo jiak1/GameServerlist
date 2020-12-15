@@ -480,7 +480,7 @@ def editServerPage(serverid):
 					server.banner=tempPath
 
 					try:
-						nonWebpPath = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache="+str(end)
+						nonWebpPath = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners/live/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&f=auto&cache="+str(end)
 
 						tempDIR = Initial_Banner_URL+"TEMP_"+str(server.id)+"."+fExt
 
