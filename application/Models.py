@@ -203,6 +203,7 @@ class Server(SearchableMixin, db.Model,Serializer):
 	initialBanner = db.Column(db.Text(), nullable=True)
 
 	rejectReason = db.Column(db.Text(), nullable=True, default="")
+	notes = db.Column(db.Text(), nullable=True, default="")
 	emailContent = db.Column(db.Text(), nullable=True, default="")
 
 class ReviewTag(db.Model):
