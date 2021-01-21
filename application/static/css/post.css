@@ -1,3 +1,31 @@
 body{
 	background-color:#18A558;
 }
+
+p.medium{
+	font-size:1.2rem;
+}
+
+.justify{
+	text-align:justify;
+}
+
+img.postimg{
+	margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    display: block;
+    border: 6px solid #343a40;
+    border-radius: 8px;
+}
+
+label.postlabel{
+	text-align: center;
+    width: 100%;
+    font-style: italic;
+    margin-top: 8px;
+}
+
+.medium a{
+	font-weight: 500;
+}

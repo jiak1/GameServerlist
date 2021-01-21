@@ -416,7 +416,9 @@ def addServerPage():
 
 						server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners/initial/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache=1"
 					except:
-						server.initialBanner = "/images/main/LoadingBanner.webp"
+						server.initialBanner = "/static/images/main/LoadingBanner.webp"
+				else:
+					server.initialBanner = "/static/images/main/LoadingBanner.webp"	
 					
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
@@ -500,8 +502,9 @@ def editServerPage(serverid):
 
 						server.initialBanner = "https://cdn.statically.io/img/minecraft.server-lists.com/static/images/banners/initial/"+str(server.id)+"."+fExt+"?w=498&h=60&q=100&cache="+str(end)
 					except:
-						server.initialBanner = "/images/main/LoadingBanner.webp"
-
+						server.initialBanner = "/static/images/main/LoadingBanner.webp"
+				else:
+					server.initialBanner = "/static/images/main/LoadingBanner.webp"	
 				queryOn = ServerHasQuery(server.ip,server.port)
 				server.queryOn = queryOn
 				server.version = mcdetails['server']['name']
@@ -803,5 +806,5 @@ def guidesPage():
 
 @MCRoutes.route(prefix+"guides/how-to-make-a-minecraft-server",methods=['GET'])
 def makeServerPage():
-	return render_template("mc/notallowed.html")
-	#return render_template("mc/guides/makeServer.html")
+	#return render_template("mc/notallowed.html")
+	return render_template("mc/guides/makeServer.html")

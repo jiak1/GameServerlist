@@ -3,7 +3,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{url_for('static',filename='css/post.css')}}">
-{% block pageHead%}
+{% block pageHead %}
 {% endblock %}
 {% endblock %}
 
@@ -22,5 +22,8 @@
 <div class="container-sm" style="background-color:white;padding:20px;border-radius: 5px;">
 {% block pageBody %}
 {% endblock %}
+<div id="authordate" style="margin-top: 30px;margin-bottom: -5px;">
+<p style="text-align:right">Written by Jack Donaldson<br><i>Last Updated On 15/12/2020</i></p>
+</div>
 </div>
 {% endblock %}
