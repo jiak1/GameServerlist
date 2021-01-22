@@ -14,9 +14,10 @@ import sentry_sdk
 from sentry_sdk.integrations.flask import FlaskIntegration
 from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 #from sentry_sdk.integrations.aiohttp import AioHttpIntegration
+useAWS = False
 
 def getElasticSearchURL():
-	if(getProduction() == True):
+	if(getProduction() == True and useAWS):
 		host = BONSAIURL # WITHOUT HTTP AND ENDING /
 		region = 'us-east-2' # e.g. us-east-2
 
