@@ -2,7 +2,7 @@
 {% set active_page = "viewserver" %}
 
 {% block head %}
-<link rel="stylesheet" href="{{url_for('static',filename='css/viewserver.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/viewserver.css')}}?c=2">
 <title>{{server.name}} {{server.displayVersion}} - Minecraft Server Lists</title>
 <!--<meta name="description" content="View information about the Minecraft Server {{server.name}}, including their IP, player count and more!">-->
 <meta property="og:title" content="{{server.name}} - Minecraft Server Lists" />

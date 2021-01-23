@@ -47,7 +47,7 @@
 	resize: none;
 	border:none;
 	background-color:transparent;
-	text-align:justify;
+	text-align:left;
 }
 
 #Description:focus{

@@ -234,6 +234,7 @@ def esDeletePage():
 	elasticsearch.indices.delete(index='server', ignore=[400, 404])
 	return redirect(url_for("AdminRoutes.homePage"))
 
+#Elasticsearch update!
 @AdminRoutes.route(prefix+"reindex",methods=['GET'])
 @login_required
 def esReindexPage():

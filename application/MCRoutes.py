@@ -720,10 +720,13 @@ def termsDetails():
 
 @MCRoutes.route(prefix+"server/<serverid>",methods=['GET'])
 def viewServerPage(serverid):
-	server = Server.query.get(int(serverid))
-	if(server is not None and server.verified == 1):
-		return render_template("mc/viewserver.html",server=server)
-	else:
+	try:
+		server = Server.query.get(int(serverid))
+		if(server is not None and server.verified == 1):
+			return render_template("mc/viewserver.html",server=server)
+		else:
+			return redirect(url_for("MCRoutes.MCHomePage"))
+	except:
 		return redirect(url_for("MCRoutes.MCHomePage"))
 
 @MCRoutes.route(prefix+"ping/<serverid>",methods=['GET'])
