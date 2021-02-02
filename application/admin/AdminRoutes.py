@@ -4,9 +4,10 @@ from flask_login import current_user, login_user,logout_user, login_required
 import os
 from ..Forms import LoginForm,RegisterForm,AdminServerForm,PasswordChangeForm,EmailChangeForm,TagsForm,ViewTagsForm
 from ..Models import Admin,Server,Account,ReviewTag,Report
-from ..Util import UpdateAdminServerWithForm,addNewTags,sendServerApprovedEmail,sendServerDeniedEmail,serverRank,logServerGraphs,checkServerUpdates,transitionVotesMonth, sendServerNotifyEmail,getTagData,forceUpdateTagSection
+from ..Util import UpdateAdminServerWithForm,addNewTags,sendServerApprovedEmail,sendServerDeniedEmail,serverRank,logServerGraphs,checkServerUpdates,transitionVotesMonth, sendServerNotifyEmail,getTagData,forceUpdateTagSection,updateTotalTags
 from ..Config import getProduction,INDEX_CREATION
 import datetime
+import traceback
 
 AdminRoutes = Blueprint('AdminRoutes', __name__)
 curDir = os.path.dirname(os.path.realpath(__file__))
@@ -178,8 +179,10 @@ def tagsViewPage():
 			forceUpdateTagSection("datapacks",form.datapacks.data)
 			forceUpdateTagSection("plugins",form.plugins.data)
 			forceUpdateTagSection("tags",form.tags.data)
+			updateTotalTags(form.tags.data,form.mods.data,form.plugins.data,form.datapacks.data)
 		except:
-			flash("Incorrect JSON Syntax","danger")
+			error = traceback.format_exc()
+			flash("Incorrect JSON Syntax " + str(error),"danger")
 
 		return redirect(url_for("AdminRoutes.tagsViewPage"))
 	else:

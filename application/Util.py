@@ -286,13 +286,29 @@ def send_data(app,accid):
 		app.logger.info('finished sending data')
 		return
 
+def removeListDupes(x):
+  return list(dict.fromkeys(x))
+
+def getTotal(tags,plugins,datapacks,mods):
+	responseList = tags + plugins + datapacks + mods
+	responseList = removeListDupes(responseList)
+	return responseList
+
+def stringToList(data):
+	return json.loads(data.replace('\'', '"'))
+
 def addNewTags(tags,mods,plugins,datapacks):
 	addSection('tags',tags)
 	addSection('plugins',plugins)
 	addSection('datapacks',datapacks)
 	addSection('mods',mods)
+	updateTotalTags(tags,mods,plugins,datapacks)
+
 	db.session.commit()
 	updateSuggestionCacheNum()
+
+def updateTotalTags(tags,mods,plugins,datapacks):
+	forceUpdateTagSection('totaltags',str(getTotal(stringToList(tags),stringToList(datapacks),stringToList(plugins),stringToList(mods))))
 
 def addSection(section,values):
 	if(values == ""):
@@ -319,7 +335,7 @@ def forceUpdateTagSection(section, data):
 	if(data == ""):
 		return
 	f = open('application/static/json/'+section+'.json', 'r+')
-	json_object = json.loads(data)
+	json_object = stringToList(data)
 	f.seek(0)
 	json.dump(json_object,f, indent=4)
 	f.truncate()

@@ -24,46 +24,20 @@
 	<div class="strip"></div>
 </header>
 <script>
-var tags = new Bloodhound({
+var totaltags = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: '{{url_for("static",filename="/json/tags.json")}}?{{cacheNum}}',
+    prefetch: '{{url_for("static",filename="json/totaltags.json")}}?{{cacheNum}}',
 });
-tags.initialize();
-var datapacks = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: '{{url_for("static",filename="/json/datapacks.json")}}?{{cacheNum}}',
-});
-datapacks.initialize();
-var plugins = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: '{{url_for("static",filename="/json/plugins.json")}}?{{cacheNum}}',
-});
-plugins.initialize();
-var mods = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.obj.whitespace,
-    prefetch: '{{url_for("static",filename="/json/mods.json")}}?{{cacheNum}}',
-});
-mods.initialize();
+totaltags.initialize();
+
 $('#search').tagsinput({
 	typeaheadjs: [{
         highlight:true,
 		minlength: 0
     },[{
-        name: 'plugins',
-        source: plugins.ttAdapter(),
-    },{
-        name: 'mods',
-        source: mods.ttAdapter()
-    },{
-        name: 'datapacks',
-        source: datapacks.ttAdapter(),
-    },{
-        name: 'tags',
-        source: tags.ttAdapter(),
+        name: 'totaltags',
+        source: totaltags.ttAdapter(),
     }]],
     freeInput: true,
 	trimValue: true,
