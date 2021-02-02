@@ -2,9 +2,9 @@ from flask import request, render_template,Blueprint,redirect,flash,url_for,send
 from ..Program import admin_db as db,admin_login as login,elasticsearch
 from flask_login import current_user, login_user,logout_user, login_required
 import os
-from ..Forms import LoginForm,RegisterForm,AdminServerForm,PasswordChangeForm,EmailChangeForm,TagsForm
+from ..Forms import LoginForm,RegisterForm,AdminServerForm,PasswordChangeForm,EmailChangeForm,TagsForm,ViewTagsForm
 from ..Models import Admin,Server,Account,ReviewTag,Report
-from ..Util import UpdateAdminServerWithForm,addNewTags,sendServerApprovedEmail,sendServerDeniedEmail,serverRank,logServerGraphs,checkServerUpdates,transitionVotesMonth, sendServerNotifyEmail
+from ..Util import UpdateAdminServerWithForm,addNewTags,sendServerApprovedEmail,sendServerDeniedEmail,serverRank,logServerGraphs,checkServerUpdates,transitionVotesMonth, sendServerNotifyEmail,getTagData,forceUpdateTagSection
 from ..Config import getProduction,INDEX_CREATION
 import datetime
 
@@ -168,6 +168,27 @@ def reviewTagsPage():
 	tags = ReviewTag.query.all()
 	return render_template("admin/reviewTags.html",form=form,tags=tags)
 
+@AdminRoutes.route(prefix+"tagsView",methods=['GET','POST'])
+@login_required
+def tagsViewPage():
+	form = ViewTagsForm()
+	if(request.method == "POST"):
+		try:
+			forceUpdateTagSection("mods",form.mods.data)
+			forceUpdateTagSection("datapacks",form.datapacks.data)
+			forceUpdateTagSection("plugins",form.plugins.data)
+			forceUpdateTagSection("tags",form.tags.data)
+		except:
+			flash("Incorrect JSON Syntax","danger")
+
+		return redirect(url_for("AdminRoutes.tagsViewPage"))
+	else:
+		mods = getTagData("mods")
+		datapacks = getTagData("datapacks")
+		plugins = getTagData("plugins")
+		tags = getTagData("tags")
+
+		return render_template("admin/viewTags.html",form=form, mods=mods,datapacks=datapacks,plugins=plugins,tags=tags)
 
 @AdminRoutes.route("/admin/API/REMOVEREVIEW",methods=['GET'])
 @login_required

@@ -1,0 +1,41 @@
+{% extends 'admin/base.html' %}
+
+{% block head %}
+<title>View Tags</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/review.css')}}">
+{% endblock %}
+
+{% block beforeBody %}
+<div class="container-sm" style="padding-top:50px">
+{% include 'notify.html' %}
+<h1>Tags</h1>
+<form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+		<div class="form-group">
+			<p>
+				{{ form.mods.label }}<br>
+				<textarea name="mods" id="mods">{{mods}}</textarea>
+			</p>
+			<p>
+				{{ form.datapacks.label }}<br>
+				<textarea name="datapacks" id="datapacks">{{datapacks}}</textarea>
+			</p>
+			<p>
+				{{ form.plugins.label }}<br>
+				<textarea name="plugins" id="plugins">{{plugins}}</textarea>
+			</p>
+			<p>
+				{{ form.tags.label }}<br>
+				<textarea name="tags" id="tags">{{tags}}</textarea>
+			</p>
+			
+			<button class="btn-primary" type="submit" name="approve" formaction="{{url_for('AdminRoutes.tagsViewPage')}}">Update</button>
+		</div>
+
+		<div style="height:200px"></div>
+</form>
+</div>
+{% endblock %}
+
+{% block body %}
+{% endblock %}

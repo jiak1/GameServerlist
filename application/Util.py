@@ -308,7 +308,23 @@ def addSection(section,values):
 	json.dump(json_object,f, indent=4)
 	f.truncate()
 	f.close()
-	
+
+def getTagData(section):
+	f = open('application/static/json/'+section+'.json', 'r+')
+	json_object = json.load(f)
+	f.close()
+	return json_object
+
+def forceUpdateTagSection(section, data):
+	if(data == ""):
+		return
+	f = open('application/static/json/'+section+'.json', 'r+')
+	json_object = json.loads(data)
+	f.seek(0)
+	json.dump(json_object,f, indent=4)
+	f.truncate()
+	f.close()
+
 _secret = app.config['RECAPTCHA_PRIVATE_KEY']
 
 def verifyCaptcha(token):

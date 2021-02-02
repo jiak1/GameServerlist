@@ -163,6 +163,14 @@ class TagsForm(FlaskForm):
 	data = StringField('Tags To Add:', validators=[DataRequired()])
 	submit = SubmitField('Add Tags')
 
+class ViewTagsForm(FlaskForm):
+	mods = StringField('Mods:', validators=[DataRequired()])
+	datapacks = StringField('Datapacks:', validators=[DataRequired()])
+	plugins = StringField('Plugins:', validators=[DataRequired()])
+	tags = StringField('Tags:', validators=[DataRequired()])
+
+	submit = SubmitField('Update Tags')
+
 class VoteForm(FlaskForm):
 	username = StringField('Minecraft Username', validators=[DataRequired(message="Please enter your Minecraft Username."),Length(max=80,message="Username too long.")])
 	voteSubmit = SubmitField('Vote')
