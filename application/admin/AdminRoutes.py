@@ -5,48 +5,11 @@ import os
 from ..Forms import LoginForm,RegisterForm,AdminServerForm,PasswordChangeForm,EmailChangeForm,TagsForm
 from ..Models import Admin,Server,Account,ReviewTag,Report
 from ..Util import UpdateAdminServerWithForm,addNewTags,sendServerApprovedEmail,sendServerDeniedEmail,serverRank,logServerGraphs,checkServerUpdates,transitionVotesMonth, sendServerNotifyEmail
-from ..Config import getProduction, ISADMIN
+from ..Config import getProduction,INDEX_CREATION
 import datetime
-import time
 
 AdminRoutes = Blueprint('AdminRoutes', __name__)
 curDir = os.path.dirname(os.path.realpath(__file__))
-
-indexCreation = {
-  "settings": {
-    "index": {
-      "max_ngram_diff": 7
-    },
-    "analysis": {
-      "analyzer": {
-        "default": {
-          "tokenizer": "keyword",
-          "filter": [ 
-			  "4_5_grams",
-			  "lowercase"
-			]
-        }
-      },
-      "filter": {
-        "4_5_grams": {
-          "type": "ngram",
-          "min_gram": 4,
-          "max_gram": 10,
-		  "token_chars":[
-            "letter",
-            "digit",
-            "symbol"
-          ]
-        }
-      }
-    }
-  }
-}
-
-if(ISADMIN):
-	from ..Program import admin_crontab as crontab
-else:
-	from ..Program import mc_crontab as crontab
 
 prefix = "/"
 if(getProduction() == False):
@@ -231,7 +194,7 @@ def APIAddTags():
 @AdminRoutes.route(prefix+"elasticsearch",methods=['GET'])
 @login_required
 def esSetupPage():
-	elasticsearch.indices.create(index='server',body=indexCreation)
+	elasticsearch.indices.create(index='server',body=INDEX_CREATION)
 	return redirect(url_for("AdminRoutes.homePage"))
 
 @AdminRoutes.route(prefix+"esdelete",methods=['GET'])
@@ -273,11 +236,3 @@ def voteMonthChange():
 def breakPage():
 	print(1+"2")
 	return "test"
-
-@crontab.job(minute="8", hour="*/23")
-def doESReshuffle():
-	elasticsearch.indices.delete(index='server', ignore=[400, 404])
-	time.sleep(2)#2 seconds
-	elasticsearch.indices.create(index='server',body=indexCreation)
-	time.sleep(2)#2 seconds
-	Server.reindex()

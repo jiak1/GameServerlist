@@ -6,8 +6,10 @@ from .SendVote import sendVote
 from .Models import Server,ReviewTag
 from .Program import mc_mail as mail, elasticsearch
 from random import randrange
-from .Config import IMGDOMAIN,getProduction,ISADMIN
+from .Config import IMGDOMAIN,getProduction,ISADMIN,INDEX_CREATION
 from pympler import summary, muppy
+import time
+
 APIRoutes = Blueprint('APIRoutes', __name__)
 curDir = os.path.dirname(os.path.realpath(__file__))
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -96,37 +98,6 @@ def APIVotifier():
 	}
 	return jsonify(result)
 
-indexCreation = {
-  "settings": {
-    "index": {
-      "max_ngram_diff": 7
-    },
-    "analysis": {
-      "analyzer": {
-        "default": {
-          "tokenizer": "keyword",
-          "filter": [ 
-			  "3_5_grams",
-			  "lowercase"
-			]
-        }
-      },
-      "filter": {
-        "3_5_grams": {
-          "type": "ngram",
-          "min_gram": 3,
-          "max_gram": 10,
-		  "token_chars":[
-            "letter",
-            "digit",
-            "symbol"
-          ]
-        }
-      }
-    }
-  }
-}
-
 @crontab.job(minute="*/1")
 def doUpdate():
 	checkServerUpdates()
@@ -156,3 +127,11 @@ def graphServers():
 @crontab.job(minute="20", hour="*/10")
 def doDisableCheck():
 	disableServers()
+
+@crontab.job(minute="8", hour="*/23")
+def doESReshuffle():
+	elasticsearch.indices.delete(index='server', ignore=[400, 404])
+	time.sleep(2)#2 seconds
+	elasticsearch.indices.create(index='server',body=INDEX_CREATION)
+	time.sleep(2)#2 seconds
+	Server.reindex()

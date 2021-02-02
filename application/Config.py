@@ -31,6 +31,37 @@ PRODUCTION_MAIL_SETTINGS = {
     "MAIL_PASSWORD": os.getenv("PRODUCTION_MAIL_PASSWORD")
 }
 
+INDEX_CREATION = {
+  "settings": {
+    "index": {
+      "max_ngram_diff": 7
+    },
+    "analysis": {
+      "analyzer": {
+        "default": {
+          "tokenizer": "keyword",
+          "filter": [ 
+			  "4_5_grams",
+			  "lowercase"
+			]
+        }
+      },
+      "filter": {
+        "4_5_grams": {
+          "type": "ngram",
+          "min_gram": 4,
+          "max_gram": 10,
+		  "token_chars":[
+            "letter",
+            "digit",
+            "symbol"
+          ]
+        }
+      }
+    }
+  }
+}
+
 def getProduction():
 	if(os.getenv("PRODUCTION") == "False"):
 		return False
