@@ -5,8 +5,9 @@ import os
 from ..Forms import LoginForm,RegisterForm,AdminServerForm,PasswordChangeForm,EmailChangeForm,TagsForm
 from ..Models import Admin,Server,Account,ReviewTag,Report
 from ..Util import UpdateAdminServerWithForm,addNewTags,sendServerApprovedEmail,sendServerDeniedEmail,serverRank,logServerGraphs,checkServerUpdates,transitionVotesMonth, sendServerNotifyEmail
-from ..Config import getProduction
+from ..Config import getProduction, ISADMIN
 import datetime
+import time
 
 AdminRoutes = Blueprint('AdminRoutes', __name__)
 curDir = os.path.dirname(os.path.realpath(__file__))
@@ -41,6 +42,11 @@ indexCreation = {
     }
   }
 }
+
+if(ISADMIN):
+	from .Program import admin_crontab as crontab
+else:
+	from .Program import mc_crontab as crontab
 
 prefix = "/"
 if(getProduction() == False):
@@ -267,3 +273,11 @@ def voteMonthChange():
 def breakPage():
 	print(1+"2")
 	return "test"
+
+@crontab.job(minute="8", hour="*/23")
+def doESReshuffle():
+	elasticsearch.indices.delete(index='server', ignore=[400, 404])
+	time.sleep(2)#2 seconds
+	elasticsearch.indices.create(index='server',body=indexCreation)
+	time.sleep(2)#2 seconds
+	Server.reindex()
