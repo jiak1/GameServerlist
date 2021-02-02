@@ -49,7 +49,7 @@
 	</div>
 	<div class="col-md-5">
 		<table class="table table-bordered" id="MainTable">
-		<img src="{{server.banner}}" style="width: 100%;border-top-left-radius: 5px;border-top-right-radius: 5px;" id="BannerIMG" alt="{{server.name}}">
+		<img class="banner lazy" src="{{server.initialBanner}}" data-srcset="{{server.banner}}" style="width: 100%;border-top-left-radius: 5px;border-top-right-radius: 5px;" id="BannerIMG" alt="{{server.name}}">
 		<div id="IP" class="input-group" style="border-radius:0px">
 		<div class="input-group-prepend">
     	<span class="btn btn-secondary" id="IPNotify">Server IP</span>
