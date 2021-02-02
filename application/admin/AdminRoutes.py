@@ -44,9 +44,9 @@ indexCreation = {
 }
 
 if(ISADMIN):
-	from .Program import admin_crontab as crontab
+	from ..Program import admin_crontab as crontab
 else:
-	from .Program import mc_crontab as crontab
+	from ..Program import mc_crontab as crontab
 
 prefix = "/"
 if(getProduction() == False):
