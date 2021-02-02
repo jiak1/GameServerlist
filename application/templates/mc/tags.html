@@ -39,19 +39,19 @@
 
 <script>
 	var mainTag;
-	$.getJSON('/json/tags.json?{{cacheNum}}').done(function( data ) {
+	$.getJSON('/static/json/tags.json?{{cacheNum}}').done(function( data ) {
 		generateTags($("#mainTags"),data)
 	});
 	var pluginTag;
-	$.getJSON('/json/plugins.json?{{cacheNum}}', function(data) {
+	$.getJSON('/static/json/plugins.json?{{cacheNum}}', function(data) {
     	generateTags($("#pluginTags"),data)
 	});
 	var datapackTag;
-	$.getJSON('/json/datapacks.json?{{cacheNum}}', function(data) {
+	$.getJSON('/static/json/datapacks.json?{{cacheNum}}', function(data) {
     	generateTags($("#datapackTags"),data)
 	});
 	var modsTag;
-	$.getJSON('/json/mods.json?{{cacheNum}}', function(data) {
+	$.getJSON('/static/json/mods.json?{{cacheNum}}', function(data) {
     	generateTags($("#modTags"),data)
 	});
 	var linkURL = "{{url_for('MCRoutes.tagSearchPage',tagname='')}}"
