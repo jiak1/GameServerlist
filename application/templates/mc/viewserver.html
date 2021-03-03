@@ -2,7 +2,7 @@
 {% set active_page = "viewserver" %}
 
 {% block head %}
-<link rel="stylesheet" href="{{url_for('static',filename='css/viewserver.css')}}?c=2">
+<link rel="stylesheet" href="https://cdn.statically.io/img/minecraft.server-lists.com{{url_for('static',filename='css/viewserver.css')}}?c=2">
 <title>{{server.name}} {{server.displayVersion}} - Minecraft Server Lists</title>
 <!--<meta name="description" content="View information about the Minecraft Server {{server.name}}, including their IP, player count and more!">-->
 <meta property="og:title" content="{{server.name}} - Minecraft Server Lists" />
@@ -135,7 +135,7 @@
 		{% if server.discord|length > 0 %}
 		<iframe src="https://discordapp.com/widget?id={{server.discord}}&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0"></iframe>
 		{% elif server.discordInvite|length > 0 %}
-			<a href="{{server.discordInvite}}" target="_blank" /> <img src="{{url_for('static',filename='images/discordinvite.png')}}" style="width: 100%;margin-bottom: 20px;margin-top: 10px;"/></a>
+			<a href="{{server.discordInvite}}" target="_blank" /> <img src="https://cdn.statically.io/img/minecraft.server-lists.com{{url_for('static',filename='images/discordinvite.png')}}" style="width: 100%;margin-bottom: 20px;margin-top: 10px;"/></a>
 		{% endif %}
 		<div class="" style="display:flex;align-items:center"><a href="{{server.id}}/report" style="font-weight:500;font-size:1.2rem;width:100%" class="btn btn-danger">Report</a></div>
 	</div>	
