@@ -88,7 +88,12 @@ else:
 	mail_settings = DEBUG_MAIL_SETTINGS
 
 def create_mc_app():
-	sentry_sdk.init("https://48bd4af68237433c8b42f566835b585d@o385754.ingest.sentry.io/5226663",integrations=[FlaskIntegration(),SqlalchemyIntegration()])
+	if(getProduction() == True):
+	 sample_rate = 1.0
+	else:
+	 sample_rate = 0.0
+
+	sentry_sdk.init("https://48bd4af68237433c8b42f566835b585d@o385754.ingest.sentry.io/5226663",integrations=[FlaskIntegration(),SqlalchemyIntegration()],traces_sample_rate=sample_rate)
 	"""Construct the core mc_application."""
 	global mc_app
 	mc_app = Flask(__name__,static_url_path="/static", static_folder="static")

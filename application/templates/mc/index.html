@@ -2,8 +2,10 @@
 {% set active_page = "home" %}
 
 {% block head %}
-<link rel="stylesheet" href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/search.css')}}?3">
-<link rel="stylesheet" href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/background.css')}}">
+<link rel="preload" href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/search.css')}}?3" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="preload" href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/background.css')}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
 <meta property="og:image" content="https://minecraft.server-lists.com/static/images/main/ogimage.webp" />
 <meta property="og:title" content="Minecraft Server Lists" />
 <meta property="og:type" content="website" />
@@ -24,7 +26,7 @@
 <link rel="canonical" href="{{canonURL}}" />
 <!-- Flags -->
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/world-flags-sprite@0.0.2/stylesheets/flags32.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/searchtagsinput.css')}}" rel="stylesheet">
+<link href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/searchtagsinput.css')}} " rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
 {% endblock %}
 
 {% block beforeBody %}

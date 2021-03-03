@@ -3,16 +3,23 @@
 	<link rel="preconnect" href="https://www.google-analytics.com">
 	<link rel="preconnect" href="https://www.googletagmanager.com">
 	<link rel="preconnect" href="https://cdn.jsdelivr.net">
+	<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+	<link rel="preconnect" href="https://cdn.statically.io">
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#18A558">
 	<link rel="shortcut icon" href="/static/favicon.ico">
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/cookiealert.css')}}">
-	<link rel="stylesheet" href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/main.css')}}">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	
+	<link rel="preload" href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/cookiealert.css')}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+	<link rel="preload" href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/main.css')}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108144905-4"></script>
 	<script>
@@ -91,7 +98,7 @@
 		</button>
 	</div>
 	<!-- END Bootstrap-Cookie-Alert -->
-	<script src="https://cdn.statically.io/js/minecraft.server-lists.com{{url_for('static',filename='js/cookiealert.js')}}"></script>
+	<script src="https://cdn.statically.io/js/minecraft.server-lists.com{{url_for('static',filename='js/cookiealert.js')}}" defer></script>
 	<!-- Footer -->
 <footer class="page-footer font-small unique-color-dark" style="">
 
