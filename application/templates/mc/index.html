@@ -2,8 +2,8 @@
 {% set active_page = "home" %}
 
 {% block head %}
-<link rel="stylesheet" href="https://cdn.statically.io/img/minecraft.server-lists.com{{url_for('static',filename='css/search.css')}}?3">
-<link rel="stylesheet" href="https://cdn.statically.io/img/minecraft.server-lists.com{{url_for('static',filename='css/background.css')}}">
+<link rel="stylesheet" href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/search.css')}}?3">
+<link rel="stylesheet" href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/background.css')}}">
 <meta property="og:image" content="https://minecraft.server-lists.com/static/images/main/ogimage.webp" />
 <meta property="og:title" content="Minecraft Server Lists" />
 <meta property="og:type" content="website" />
@@ -24,7 +24,7 @@
 <link rel="canonical" href="{{canonURL}}" />
 <!-- Flags -->
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/world-flags-sprite@0.0.2/stylesheets/flags32.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link href="https://cdn.statically.io/img/minecraft.server-lists.com{{url_for('static',filename='css/searchtagsinput.css')}}" rel="stylesheet">
+<link href="https://cdn.statically.io/css/minecraft.server-lists.com{{url_for('static',filename='css/searchtagsinput.css')}}" rel="stylesheet">
 {% endblock %}
 
 {% block beforeBody %}
@@ -129,5 +129,5 @@ $( window ).on("load", function(){
 });
 
 </script>
-<script src="https://cdn.statically.io/img/minecraft.server-lists.com/static/js/lazy-load.js"></script>
+<script src="https://cdn.statically.io/js/minecraft.server-lists.com/static/js/lazy-load.js"></script>
 {% endblock %}
