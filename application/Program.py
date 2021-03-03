@@ -5,6 +5,7 @@ from elasticsearch import Elasticsearch,RequestsHttpConnection
 from flask_mail import Mail
 from flask_crontab import Crontab
 from flask_migrate import Migrate
+from flask_debugtoolbar import DebugToolbarExtension
 import re
 from .Config import *
 from oauthlib.oauth2 import WebApplicationClient
@@ -70,6 +71,8 @@ admin_login = LoginManager()
 mc_mail = Mail();
 admin_mail = Mail();
 
+mc_debug = DebugToolbarExtension();
+
 mc_crontab = Crontab()
 admin_crontab = Crontab()
 
@@ -101,6 +104,9 @@ def create_mc_app():
 
 	mc_db.init_app(mc_app)
 	mc_login.init_app(mc_app)
+
+	mc_debug.init_app(mc_app)
+	#mc_app.debug=True
 
 	mc_crontab.init_app(mc_app)
 	migrate.init_app(mc_app)
