@@ -23,7 +23,7 @@ It also has a seperate administrator section that is used to approve new server 
 
 ## Project Report
 
-This project was completed as part of my HSC Major Work for Design & Technology, alongside the app I also developed a report which is [available here.](https://jackdonaldson.net/portfolio.pdf)
+This project was completed as part of my HSC Major Work for Design & Technology, alongside the app I also developed a report which is [available here.](./report.pdf?raw=true)
 
 ## Screenshots
 
